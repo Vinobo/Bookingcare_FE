@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { getAllUsers, createNewUserService } from '../../services/userService';
+import { getAllUsers, createNewUserService, deleteUserService } from '../../services/userService';
 import { bind } from 'lodash';
 import ModalUser from './ModalUser';
 
@@ -57,6 +57,19 @@ class UserManage extends Component {
         }
     }
 
+    handleDeleteUser = async (user) => {
+        try {
+            let res = await deleteUserService(user.id);
+            if (res && res.errCode === 0) {
+                await this.getAllUsersFromReact();
+            } else {
+                alert(res.errMessage)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     render() {
         console.log(this.state);
         let arrUsers = this.state.arrUsers
@@ -95,8 +108,12 @@ class UserManage extends Component {
                                                 <td>{item.lastName}</td>
                                                 <td>{item.address}</td>
                                                 <td>
-                                                    <button className='btn-edit'><i class="far fa-edit"></i></button>
-                                                    <button className='btn-delete'><i class="fas fa-trash-alt"></i></button>
+                                                    <button className='btn-edit'>
+                                                        <i class="far fa-edit"></i>
+                                                    </button>
+                                                    <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}>
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </>

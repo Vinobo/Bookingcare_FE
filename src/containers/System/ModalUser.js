@@ -36,7 +36,6 @@ class ModalUser extends Component {
     let isValid = true;
     let arrInput = Object.keys(this.state);
     for (let i = 0; i < arrInput.length; i++) {
-      console.log('check inside loop', this.state[arrInput[i]], arrInput[i])
       if (!this.state[arrInput[i]]) {
         isValid = false;
         alert('Missing parameter: ' + arrInput[i]);
@@ -71,35 +70,30 @@ class ModalUser extends Component {
                 <label>Email</label>
                 <input type='text' placeholder='Email'
                   onChange={(event) => { this.handleOneChangeInput(event, 'email') }}
-                  value={this.state.email}
                 />
               </div>
               <div className='input-container'>
                 <label>Password</label>
                 <input type='password' placeholder='Password'
                   onChange={(event) => { this.handleOneChangeInput(event, 'password') }}
-                  value={this.state.password}
                 />
               </div>
               <div className='input-container'>
                 <label>First name</label>
                 <input type='text' placeholder='First name'
                   onChange={(event) => { this.handleOneChangeInput(event, 'firstName') }}
-                  value={this.state.firstName}
                 />
               </div>
               <div className='input-container'>
                 <label>Last name</label>
                 <input type='text' placeholder='Last name'
                   onChange={(event) => { this.handleOneChangeInput(event, 'lastName') }}
-                  value={this.state.lastName}
                 />
               </div>
               <div className='input-container max-width-input'>
                 <label>Address</label>
                 <input type='text' placeholder='123 Address, st'
                   onChange={(event) => { this.handleOneChangeInput(event, 'address') }}
-                  value={this.state.address}
                 />
               </div>
             </div>
