@@ -5,10 +5,19 @@ import logo from "../../assets/images/bookingcare-2020.svg";
 import icon_mental_heath from "../../assets/images/icon-mental-health.png";
 import icon_tooth from "../../assets/images/tooth-icon.png";
 import { FormattedMessage } from 'react-intl';
+import { LANGUAGES } from "../../utils";
+import { changeLanguageApp } from "../../store/actions"
 
 class Header extends Component {
 
+  changeLanguage = (language) => {
+    this.props.changeLanguageAppRedux(language);
+
+  }
+
   render() {
+    let language = this.props.language;
+    console.log('check language', language)
 
     return (
       <React.Fragment>
@@ -45,8 +54,8 @@ class Header extends Component {
                 <i className="far fa-question-circle"></i>
                 <FormattedMessage id="home-header.support" />
               </div>
-              <div className='language-vi'>VN</div>
-              <div className='language-en'>EN</div>
+              <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
+              <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
             </div>
           </div>
         </div>
@@ -90,7 +99,7 @@ class Header extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 
@@ -105,6 +114,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    changeLanguageAppRedux: (language) => {
+      dispatch(changeLanguageApp(language))
+    }
   };
 };
 

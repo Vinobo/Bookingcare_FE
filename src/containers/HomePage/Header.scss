@@ -41,6 +41,8 @@
       align-items: center;
 
       .child-content {
+        cursor: pointer;
+
         .subs-title {
           font-weight: 400;
           font-size: 12px;
@@ -64,18 +66,27 @@
       }
 
       .language-vi {
+        opacity: 0.2;
         cursor: pointer;
-        margin-right: 10px;
-
-        &.active {
-          color: orange;
+        &.active,
+        &:hover {
+          opacity: 1;
+          span {
+            color: orange;
+          }
         }
       }
 
       .language-en {
+        margin-left: 10px;
+        opacity: 0.2;
         cursor: pointer;
-        &.active {
-          color: blue;
+        &.active,
+        &:hover {
+          opacity: 1;
+          span {
+            color: blue;
+          }
         }
       }
     }
@@ -87,7 +98,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 530px;
+  height: 630px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -158,6 +169,7 @@
       .option-child {
         height: 100px;
         width: 100px;
+        cursor: pointer;
 
         i {
           font-size: 22px;
@@ -182,7 +194,6 @@
         .text-child {
           font-size: 16px;
           font-weight: bold;
-          cursor: pointer;
 
           &:hover {
             color: #49bce2;
