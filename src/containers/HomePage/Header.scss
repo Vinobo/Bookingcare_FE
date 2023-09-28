@@ -3,11 +3,15 @@
   width: 100%;
   padding: 10px 0;
 
+  &.sticky-md-top {
+    background-color: #fff;
+  }
+
   .home-header-content {
     width: 100%;
     height: 100%;
     display: flex;
-    padding: 0 100px;
+    padding: 0 280px;
 
     .left-content {
       display: flex;
@@ -44,8 +48,11 @@
         cursor: pointer;
 
         .subs-title {
-          font-weight: 400;
           font-size: 12px;
+        }
+        .subs-content {
+          font-weight: 400;
+          font-size: 10px;
         }
       }
     }
@@ -118,6 +125,7 @@
       text-shadow: 1px 1px 1px #333;
       margin-bottom: 5px;
       margin-top: 30px;
+      outline: none;
     }
 
     .title2 {
@@ -128,6 +136,7 @@
       color: #fff;
       text-shadow: 1px 1px 1px #333;
       margin-bottom: 20px;
+      outline: none;
     }
 
     .search {
@@ -186,12 +195,6 @@
           border-radius: 50%;
           text-align: center;
           margin: 0 auto;
-
-          img {
-            height: 100%;
-            width: 100%;
-            // color: #49bce2;
-          }
         }
 
         .text-child {

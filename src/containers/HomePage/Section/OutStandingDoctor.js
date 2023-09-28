@@ -1,48 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './scss/Specialty.scss';
+import './scss/OutStandingDoctor.scss';
 import { FormattedMessage } from 'react-intl';
 
 import Slider from "react-slick";
 
-
-class Specialty extends Component {
+class OutStandingDoctor extends Component {
 
 
   render() {
 
     return (
-      <div className='section-general specialty'>
+      <div className='section-general out-standing-doctor'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Chuyên khoa phổ biến</span>
-            <button>Xem thêm</button>
+            <span>Bác sĩ nổi bật tuần qua</span>
+            <button>Tìm kiếm</button>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp </span>
+                <div>Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội</div>
+                <span>Nam học</span>
               </div>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp 2</span>
+                <div>Bệnh viện Chợ Rẫy</div>
+                <span>Bệnh viện Chợ Rẫy</span>
               </div>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp 3</span>
+                <div>Bệnh viện Chợ Rẫy</div>
+                <span>Bệnh viện Chợ Rẫy</span>
               </div>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp 4</span>
+                <div>Bệnh viện Chợ Rẫy</div>
+                <span>Bệnh viện Chợ Rẫy</span>
               </div>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp 5</span>
+                <div>Bệnh viện Chợ Rẫy</div>
+                <span>Bệnh viện Chợ Rẫy</span>
               </div>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp 6</span>
+                <div>Bệnh viện Chợ Rẫy</div>
+                <span>Bệnh viện Chợ Rẫy</span>
               </div>
             </Slider>
           </div>
@@ -67,4 +72,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);

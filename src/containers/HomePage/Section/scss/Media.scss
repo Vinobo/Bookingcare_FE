@@ -1,0 +1,16 @@
+.media {
+  .section-content {
+    display: flex;
+    height: 320px !important;
+
+    .content-left {
+      width: 50%;
+    }
+
+    .content-right {
+      display: flex;
+      width: 50%;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.out-standing-doctor {
+  .section-img {
+    border: 1px solid #eee;
+    text-align: center;
+    height: 200px;
+    padding: 10px 5px;
+    z-index: 999 !important;
+
+    &:hover {
+      span {
+        color: #000;
+      }
+    }
+
+    .img-customize {
+      background-image: url("../../../../assets/outStandingDoctor/anh-dai-dien-bs.jpg");
+      height: 120px !important;
+      width: 120px !important;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+  }
+}

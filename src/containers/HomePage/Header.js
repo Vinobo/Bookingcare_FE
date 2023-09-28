@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.scss';
 import logo from "../../assets/images/bookingcare-2020.svg";
-import icon_mental_heath from "../../assets/images/icon-mental-health.png";
-import icon_tooth from "../../assets/images/tooth-icon.png";
+
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions"
@@ -21,7 +20,7 @@ class Header extends Component {
 
     return (
       <React.Fragment>
-        <div className='home-header-container'>
+        <div className='home-header-container sticky-md-top'>
           <div className='home-header-content'>
             <div className='left-content'>
               <i className="fas fa-bars"></i>
@@ -32,20 +31,20 @@ class Header extends Component {
 
             <div className='center-content'>
               <div className='child-content'>
-                <div><b><FormattedMessage id="home-header.speciality" /></b></div>
-                <div className='subs-title'><FormattedMessage id="home-header.search-doctor" /></div>
+                <div className='subs-title'><b><FormattedMessage id="home-header.speciality" /></b></div>
+                <div className='subs-content'><FormattedMessage id="home-header.search-doctor" /></div>
               </div>
               <div className='child-content'>
-                <div><b><FormattedMessage id="home-header.health-facility" /></b></div>
-                <div className='subs-title'><FormattedMessage id="home-header.select-room" /></div>
+                <div className='subs-title'><b><FormattedMessage id="home-header.health-facility" /></b></div>
+                <div className='subs-content'><FormattedMessage id="home-header.select-room" /></div>
               </div>
               <div className='child-content'>
-                <div><b><FormattedMessage id="home-header.doctor" /></b></div>
-                <div className='subs-title'><FormattedMessage id="home-header.select-doctor" /></div>
+                <div className='subs-title'><b><FormattedMessage id="home-header.doctor" /></b></div>
+                <div className='subs-content'><FormattedMessage id="home-header.select-doctor" /></div>
               </div>
               <div className='child-content'>
-                <div><b><FormattedMessage id="home-header.fee" /></b></div>
-                <div className='subs-title'><FormattedMessage id="home-header.general-health-check" /></div>
+                <div className='subs-title'><b><FormattedMessage id="home-header.fee" /></b></div>
+                <div className='subs-content'><FormattedMessage id="home-header.general-health-check" /></div>
               </div>
             </div>
 
@@ -89,11 +88,14 @@ class Header extends Component {
                 <div className='text-child'><FormattedMessage id="banner.child4" /></div>
               </div>
               <div className='option-child'>
-                <div className='icon-child'><img src={icon_mental_heath} /></div>
+                <div className='icon-child'>
+                  <i className="material-symbols-outlined">psychology</i>
+                </div>
                 <div className='text-child'><FormattedMessage id="banner.child5" /></div>
               </div>
               <div className='option-child'>
-                <div className='icon-child'><img src={icon_tooth} /></div>
+                <div className='icon-child'>
+                  <i className="material-symbols-outlined">dentistry</i></div>
                 <div className='text-child'><FormattedMessage id="banner.child6" /></div>
               </div>
             </div>

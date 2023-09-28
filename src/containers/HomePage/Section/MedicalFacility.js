@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './scss/Specialty.scss';
+import './scss/MedicalFacility.scss';
 import { FormattedMessage } from 'react-intl';
 
 import Slider from "react-slick";
 
-
-class Specialty extends Component {
+class MedicalFacility extends Component {
 
 
   render() {
 
     return (
-      <div className='section-general specialty'>
+      <div className='section-general medical-facility'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Chuyên khoa phổ biến</span>
-            <button>Xem thêm</button>
+            <span>Cơ sở y tế nổi bật</span>
+            <button>Tìm kiếm</button>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>
               <div className='section-img'>
                 <div className='img-customize' />
-                <span>Cơ xương khớp </span>
+                <span>Bệnh viện Chợ Rẫy</span>
               </div>
               <div className='section-img'>
                 <div className='img-customize' />
@@ -67,4 +66,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
