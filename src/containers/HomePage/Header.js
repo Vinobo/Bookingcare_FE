@@ -53,8 +53,8 @@ class Header extends Component {
                 <i className="far fa-question-circle"></i>
                 <FormattedMessage id="home-header.support" />
               </div>
-              <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
-              <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
+              <div className={language === LANGUAGES.VI ? 'lang-vi active' : 'lang-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
+              <div className={language === LANGUAGES.EN ? 'lang-en active' : 'lang-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
             </div>
           </div>
         </div>

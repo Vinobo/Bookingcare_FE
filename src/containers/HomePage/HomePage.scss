@@ -107,6 +107,12 @@
     font-size: 20px;
   }
 
+  .slick-prev.slick-disabled:before {
+    opacity: 0;
+    border-color: transparent;
+    color: transparent !important;
+  }
+
   .slick-next {
     right: -10px !important;
     top: 40%;
@@ -122,11 +128,17 @@
     font-size: 20px;
   }
 
+  .slick-next.slick-disabled:before {
+    opacity: 0;
+    border-color: transparent;
+    color: transparent !important;
+  }
+
   .slick-prev,
   .slick-next {
     height: 48px;
     width: 44px;
-    background: transparent;
+    // background: transparent;
   }
   .slick-arrow:before {
     font-family: "Material Symbols Outlined" !important;
