@@ -1,6 +1,6 @@
 {
   "home-header": {
-    "speciality": "Medical specialty",
+    "specialty": "Medical specialty",
     "search-doctor": "Find doctors by specialty",
     "health-facility": "Health facilities",
     "select-room": "Choose a hospital or clinic",
@@ -8,7 +8,8 @@
     "select-doctor": "Choose a good doctor",
     "fee": "Health Checkup Package",
     "general-health-check": "General health check",
-    "support": "Support"
+    "support": "Support",
+    "welcome": "Welcome"
   },
   "banner": {
     "title1": "Medical foundation",
@@ -58,6 +59,20 @@
       "system-parameter": {
         "header": "System-parameter"
       }
+    },
+
+    "admin": {
+      "manage-user": "Users System",
+      "manage-doctor": "Manage doctor",
+      "manage-admin": "Manage admin",
+      "crud": "CRUD user",
+      "crud-redux": "CRUD redux",
+      "clinic": "Clinics",
+      "manage-clinic": "Manage clinic",
+      "specialty": "Specialty",
+      "manage-specialty": "Manage specialty",
+      "handbook": "HandBook",
+      "manage-handbook": "Manage handbook"
     }
   },
   "system": {

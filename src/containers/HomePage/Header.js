@@ -16,7 +16,7 @@ class Header extends Component {
 
   render() {
     let language = this.props.language;
-    console.log('check language', language)
+    console.log('check language', language);
 
     return (
       <React.Fragment>
@@ -31,7 +31,7 @@ class Header extends Component {
 
             <div className='center-content'>
               <div className='child-content'>
-                <div className='subs-title'><b><FormattedMessage id="home-header.speciality" /></b></div>
+                <div className='subs-title'><b><FormattedMessage id="home-header.specialty" /></b></div>
                 <div className='subs-content'><FormattedMessage id="home-header.search-doctor" /></div>
               </div>
               <div className='child-content'>
@@ -110,7 +110,7 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    language: state.app.language
+    language: state.app.language,
   };
 };
 
