@@ -27,7 +27,7 @@ class Header extends Component {
 
                 <div className='languages'>
                     <span className='welcome'><FormattedMessage id="home-header.welcome" />,
-                        {userInfo && userInfo.firstName ? userInfo.firstName : ''}!
+                        {userInfo && userInfo.firstName ? userInfo.firstName : ''} !
                     </span>
                     {/* nút logout */}
                     <div className="btn btn-logout" onClick={processLogout} title='Log out'>

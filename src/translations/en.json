@@ -89,6 +89,7 @@
     "address": "Address",
     "position": "Position",
     "role": "Role",
+    "upload": "Upload",
     "save": "Save",
     "status": "Status",
     "add-user": "Add new user",
