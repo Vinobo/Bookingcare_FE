@@ -91,6 +91,7 @@
     "role": "Role",
     "upload": "Upload",
     "save": "Save",
+    "edit": "Save change",
     "status": "Status",
     "add-user": "Add new user",
     "edit-user": "Edit user information",
