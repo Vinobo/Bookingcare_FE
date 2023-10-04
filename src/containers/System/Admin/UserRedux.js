@@ -6,6 +6,7 @@ import * as actions from "../../../store/actions";
 import './scss/UserRedux.scss';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import TableManageUser from './TableManageUser';
 
 
 class UserRedux extends Component {
@@ -17,6 +18,10 @@ class UserRedux extends Component {
             roleArr: [],
             previewImgURL: '',
             isOpen: false,
+            arrCheck: {
+                email: 'Email', password: 'Mật khẩu', firstName: 'Tên',
+                lastName: 'Họ', phoneNumber: 'Số điện thoại', address: 'Địa chỉ'
+            },
 
             email: '',
             password: '',
@@ -108,19 +113,41 @@ class UserRedux extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = ['email', 'password', 'firstName', 'lastName', 'phoneNumber',
-            'address']
-        for (let i = 0; i < arrCheck.length; i++) {
-            if (!this.state[arrCheck[i]]) {
+        // let arrCheck = ['email', 'password', 'firstName', 'lastName', 'phoneNumber',
+        //     'address']
+        // for (let i = 0; i < arrCheck.length; i++) {
+        //     if (!this.state[arrCheck[i]]) {
+        //         isValid = false;
+        //         alert('This input is required: ' + arrCheck[i])
+        //         break;
+        //     }
+        // }
+        // return isValid;
+
+        if (this.props.language === 'en') {
+            this.setState({
+                arrCheck: { email: 'Email', password: 'Password', firstName: 'First name', lastName: 'Last name', phoneNumber: 'Phone number', address: 'Address' }
+            })
+        } else {
+            this.setState({
+                arrCheck: { email: 'Email', password: 'Mật khẩu', firstName: 'Tên', lastName: 'Họ', phoneNumber: 'Số điện thoại', address: 'Địa chỉ' }
+            })
+        }
+        // console.log('check state: ', this.state);
+        for (let i = 0; i < Object.keys(this.state.arrCheck).length; i++) {
+            let key = Object.keys(this.state.arrCheck)[i];
+            // console.log('key: ', key);
+            if (!this.state[key]) {
                 isValid = false;
-                alert('This input is required: ' + arrCheck[i])
+                if (this.props.language === 'en') {
+                    alert('This input is required: ' + this.state.arrCheck[key]);
+                } else {
+                    alert('Ô dữ liệu cần phải nhập vào: ' + this.state.arrCheck[key]);
+                }
                 break;
             }
         }
-
-        return {
-            isValid
-        }
+        return isValid;
     }
 
     onChangInput = (event, id) => {
@@ -134,7 +161,6 @@ class UserRedux extends Component {
     render() {
         let genders = this.state.genderArr;
         let language = this.props.language;
-        let isLoadingGender = this.state.isLoadingGender;
         let positions = this.state.positionArr;
         let roles = this.state.roleArr;
 
@@ -146,124 +172,117 @@ class UserRedux extends Component {
                 <div className='title'>User Redux</div>
                 <div className="user-redux-body" >
                     <div className='container'>
-                        <div className='row'>
-                            <div>{isLoadingGender === true ? 'Loading genders' : ''}</div>
+                        <div className='row g-3'>
                             <div className='col-12'><FormattedMessage id="user-manage.add-user" /></div>
-                            <form class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label"><FormattedMessage id="user-manage.email" /></label>
-                                    <input type="email" class="form-control"
-                                        onChange={(event) => this.onChangInput(event, 'email')}
+                            <div class="col-md-6">
+                                <label class="form-label"><FormattedMessage id="user-manage.email" /></label>
+                                <input type="email" class="form-control"
+                                    onChange={(event) => this.onChangInput(event, 'email')}
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label"><FormattedMessage id="user-manage.password" /></label>
+                                <input type="password" class="form-control"
+                                    onChange={(event) => this.onChangInput(event, 'password')}
+                                />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><FormattedMessage id="user-manage.firstName" /> </label>
+                                <input type="text" class="form-control"
+                                    onChange={(event) => this.onChangInput(event, 'firstName')}
+                                />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><FormattedMessage id="user-manage.lastName" /></label>
+                                <input type="text" class="form-control"
+                                    onChange={(event) => this.onChangInput(event, 'lastName')}
+                                />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label"><FormattedMessage id="user-manage.gender" /></label>
+                                <select id="inputState" class="form-select"
+                                    onChange={(event) => this.onChangInput(event, 'gender')}
+                                >
+                                    {genders && genders.length > 0 &&
+                                        genders.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.key}>
+                                                    {language === LANGUAGES.VI ? item.value_vi : item.value_en}
+                                                </option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><FormattedMessage id="user-manage.mobile" /></label>
+                                <input type="text" class="form-control"
+                                    onChange={(event) => this.onChangInput(event, 'phoneNumber')}
+                                />
+                            </div>
+                            <div class="col-md-9">
+                                <label class="form-label"><FormattedMessage id="user-manage.address" /></label>
+                                <input type="text" class="form-control"
+                                    onChange={(event) => this.onChangInput(event, 'address')}
+                                />
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputEmail4" class="form-label"><FormattedMessage id="user-manage.avatar" /></label>
+                                <div className='preview-container'>
+                                    <input id='uploadImg' type="file" hidden
+                                        onChange={(event) => this.handleOnchangeImage(event)}
                                     />
+                                    <label className='label-upload' htmlFor='uploadImg'><FormattedMessage id="user-manage.upload" /> <i class="fas fa-upload"></i></label>
+                                    <div className='preview-img'
+                                        style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+                                        onClick={() => this.openPreviewImage()}
+                                    ></div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label"><FormattedMessage id="user-manage.password" /></label>
-                                    <input type="password" class="form-control"
-                                        onChange={(event) => this.onChangInput(event, 'password')}
-                                    />
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label"><FormattedMessage id="user-manage.firstName" /> </label>
-                                    <input type="text" class="form-control"
-                                        onChange={(event) => this.onChangInput(event, 'firstName')}
-                                    />
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label"><FormattedMessage id="user-manage.lastName" /></label>
-                                    <input type="text" class="form-control"
-                                        onChange={(event) => this.onChangInput(event, 'lastName')}
-                                    />
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="inputState" class="form-label"><FormattedMessage id="user-manage.gender" /></label>
-                                    <select id="inputState" class="form-select"
-                                        onChange={(event) => this.onChangInput(event, 'gender')}
-                                    >
-                                        {genders && genders.length > 0 &&
-                                            genders.map((item, index) => {
-                                                return (
-                                                    <option key={index} value={item.key}>
-                                                        {language === LANGUAGES.VI ? item.value_vi : item.value_en}
-                                                    </option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label"><FormattedMessage id="user-manage.mobile" /></label>
-                                    <input type="text" class="form-control"
-                                        onChange={(event) => this.onChangInput(event, 'phoneNumber')}
-                                    />
-                                </div>
-                                <div class="col-md-9">
-                                    <label class="form-label"><FormattedMessage id="user-manage.address" /></label>
-                                    <input type="text" class="form-control"
-                                        onChange={(event) => this.onChangInput(event, 'address')}
-                                    />
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="inputEmail4" class="form-label"><FormattedMessage id="user-manage.avatar" /></label>
-                                    <div className='preview-container'>
-                                        <input id='uploadImg' type="file" hidden
-                                            onChange={(event) => this.handleOnchangeImage(event)}
-                                        />
-                                        <label className='label-upload' htmlFor='uploadImg'><FormattedMessage id="user-manage.upload" /> <i class="fas fa-upload"></i></label>
-                                        <div className='preview-img'
-                                            style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
-                                            onClick={() => this.openPreviewImage()}
-                                        ></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="inputState" class="form-label"><FormattedMessage id="user-manage.position" /></label>
-                                    <select id="inputState" class="form-select"
-                                        onChange={(event) => this.onChangInput(event, 'position')}
-                                    >
-                                        {positions && positions.length > 0 &&
-                                            positions.map((item, index) => {
-                                                return (
-                                                    <option key={index} value={item.key}>
-                                                        {language === LANGUAGES.VI ? item.value_vi : item.value_en}
-                                                    </option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="inputState" class="form-label"><FormattedMessage id="user-manage.role" /></label>
-                                    <select id="inputState" class="form-select"
-                                        onChange={(event) => this.onChangInput(event, 'role')}
-                                    >
-                                        {roles && roles.length > 0 &&
-                                            roles.map((item, index) => {
-                                                return (
-                                                    <option key={index} value={item.key}>
-                                                        {language === LANGUAGES.VI ? item.value_vi : item.value_en}
-                                                    </option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" />
-                                        <label class="form-check-label" for="gridCheck">
-                                            Check me out
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary"
-                                        onClick={() => this.handleSaveUser()}
-                                    ><FormattedMessage id="user-manage.save" /></button>
-                                </div>
-                            </form>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label"><FormattedMessage id="user-manage.position" /></label>
+                                <select id="inputState" class="form-select"
+                                    onChange={(event) => this.onChangInput(event, 'position')}
+                                >
+                                    {positions && positions.length > 0 &&
+                                        positions.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.key}>
+                                                    {language === LANGUAGES.VI ? item.value_vi : item.value_en}
+                                                </option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputState" class="form-label"><FormattedMessage id="user-manage.role" /></label>
+                                <select id="inputState" class="form-select"
+                                    onChange={(event) => this.onChangInput(event, 'role')}
+                                >
+                                    {roles && roles.length > 0 &&
+                                        roles.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.key}>
+                                                    {language === LANGUAGES.VI ? item.value_vi : item.value_en}
+                                                </option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <button type='button' class="btn btn-primary"
+                                    onClick={() => this.handleSaveUser()}
+                                ><FormattedMessage id="user-manage.save" /></button>
+                            </div>
+                            <div className='col-12 pb-5'>
+                                <TableManageUser />
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 {this.state.isOpen === true &&
                     <Lightbox
                         mainSrc={this.state.previewImgURL}
@@ -282,7 +301,6 @@ const mapStateToProps = state => {
     return {
         language: state.app.language,
         genderRedux: state.admin.genders,
-        isLoadingGender: state.admin.isLoadingGender,
         positionRedux: state.admin.positions,
         roleRedux: state.admin.roles,
     };

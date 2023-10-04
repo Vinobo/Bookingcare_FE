@@ -10,7 +10,7 @@ const actionTypes = Object.freeze({
     USER_LOGIN_FAIL: 'USER_LOGIN_FAIL',
     PROCESS_LOGOUT: 'PROCESS_LOGOUT',
 
-    //admin
+    //admin:
     //gender
     FETCH_GENDER_START: 'FETCH_GENDER_START',
     FETCH_GENDER_SUCCESS: 'FETCH_GENDER_SUCCESS',
@@ -27,6 +27,14 @@ const actionTypes = Object.freeze({
     //save user
     CREATE_USER_SUCCESS: 'CREATE_USER_SUCCESS',
     CREATE_USER_FAILED: 'CREATE_USER_FAILED',
+
+    //delete user
+    DELETE_USER_SUCCESS: 'DELETE_USER_SUCCESS',
+    DELETE_USER_FAILED: 'DELETE_USER_FAILED',
+
+    //display user
+    FETCH_ALL_USERS_SUCCESS: 'FETCH_ALL_USERS_SUCCESS',
+    FETCH_ALL_USERS_FAILED: 'FETCH_ALL_USERS_FAILED',
 })
 
 export default actionTypes;
