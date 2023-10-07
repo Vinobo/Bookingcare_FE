@@ -15,8 +15,8 @@ class Healthy extends Component {
       <div className='section-general healthy'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Sống khỏe</span>
-            <button>Tất cả bài viết</button>
+            <span><FormattedMessage id="home-body.healthy" /></span>
+            <button><FormattedMessage id="home-body.all-articles" /></button>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>

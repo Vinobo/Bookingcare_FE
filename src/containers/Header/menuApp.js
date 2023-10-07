@@ -22,7 +22,7 @@ export const adminMenu = [
     },
 
     { //quản lý phòng khám
-        name: 'menu.admin.manage-clinic',
+        name: 'common.clinic',
         menus: [
             {
                 name: 'menu.admin.manage-clinic', link: '/system/manage-clinic'
@@ -32,7 +32,7 @@ export const adminMenu = [
     },
 
     { //quản lý chuyên khoa
-        name: 'menu.admin.specialty',
+        name: 'common.specialty',
         menus: [
             {
                 name: 'menu.admin.manage-specialty', link: '/system/manage-specialty'
@@ -42,7 +42,7 @@ export const adminMenu = [
     },
 
     { //quản lý cẩm nang
-        name: 'menu.admin.handbook',
+        name: 'common.handbook',
         menus: [
             {
                 name: 'menu.admin.manage-handbook', link: '/system/manage-handbook'

@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 import {
   getAllCodeService, createNewUserService, getAllUsers,
-  deleteUserService, editUserService,
+  deleteUserService, editUserService, getTopDoctorHomeSevice
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -88,7 +88,6 @@ export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await createNewUserService(data);
-      console.log('Check create user redux: ', res)
       if (res && res.errCode === 0) {
         toast.success("Create a new user");
         dispatch(createUserSuccess());
@@ -195,3 +194,27 @@ export const deleteUserSuccess = () => ({
 export const deleteUserFailed = () => ({
   type: actionTypes.DELETE_USER_FAILED
 })
+
+//display Outstanding Doctor
+export const fetchTopDoctor = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getTopDoctorHomeSevice('20');
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+          data: res.data
+        })
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+        })
+      }
+    } catch (e) {
+      console.log('FETCH_TOP_DOCTORS_FAILED: ', e)
+      dispatch({
+        type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+      })
+    }
+  }
+}

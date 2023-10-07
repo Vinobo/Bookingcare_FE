@@ -14,8 +14,8 @@ class MedicalFacility extends Component {
       <div className='section-general medical-facility'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Cơ sở y tế nổi bật</span>
-            <button>Tìm kiếm</button>
+            <span><FormattedMessage id="home-body.outstanding-facility" /></span>
+            <button><FormattedMessage id="common.search" /></button>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>

@@ -15,7 +15,7 @@ class Media extends Component {
       <div className='section-general media'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Truyền thông nói về BookingCare</span>
+            <span><FormattedMessage id="home-body.media" /></span>
           </div>
           <div className='section-content'>
             <div className='content-left'>

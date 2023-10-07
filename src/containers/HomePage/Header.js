@@ -31,7 +31,7 @@ class Header extends Component {
 
             <div className='center-content'>
               <div className='child-content'>
-                <div className='subs-title'><b><FormattedMessage id="home-header.specialty" /></b></div>
+                <div className='subs-title'><b><FormattedMessage id="common.specialty" /></b></div>
                 <div className='subs-content'><FormattedMessage id="home-header.search-doctor" /></div>
               </div>
               <div className='child-content'>

@@ -1,6 +1,5 @@
 {
   "home-header": {
-    "specialty": "Chuyên khoa",
     "search-doctor": "Tìm bác sĩ theo chuyên khoa",
     "health-facility": "Cơ sở y tế",
     "select-room": "Chọn bệnh viện phòng khám",
@@ -21,6 +20,16 @@
     "child5": "Sức khỏe tinh thần",
     "child6": "Khám nha khoa"
   },
+  "home-body": {
+    "popular-specialties": "Chuyên khoa phổ biến",
+    "telemedicine": "Bác sĩ từ xa qua video",
+    "outstanding-facility": "Cơ sở y tế nổi bật",
+    "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+    "healthy": "Sống khỏe",
+    "media": "Truyền thông nói về BookingCare",
+    "view-more": "Xem thêm",
+    "all-articles": "Tất cả bài viết"
+  },
   "common": {
     "add": "Thêm",
     "edit": "Sửa",
@@ -29,6 +38,7 @@
     "close": "Đóng",
     "save": "Lưu",
     "refresh": "Refresh",
+    "search": "Tìm kiếm",
     "accept": "Chấp nhận",
     "confirm": "Xác nhận",
     "confirm-this-task": "Bạn có chắc chắn thực hiện tác vụ này?",
@@ -39,7 +49,10 @@
     "forbiden-request": "Thông tin truyền vào không hợp lệ",
     "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
     "sum": "Tổng",
-    "date-range-invalid": "Khoảng thời gian không hợp lệ"
+    "date-range-invalid": "Khoảng thời gian không hợp lệ",
+    "specialty": "Chuyên khoa",
+    "clinic": "Phòng khám",
+    "handbook": "Cẩm nang"
   },
   "login": {
     "login": "Đăng nhập",
@@ -66,11 +79,11 @@
       "manage-admin": "Quản lý admin",
       "crud": "CRUD user",
       "crud-redux": "CRUD redux",
-      "clinic": "Phòng khám",
+
       "manage-clinic": "Quản lý phòng khám",
-      "specialty": "Chuyên khoa",
+
       "manage-specialty": "Quản lý chuyên khoa",
-      "handbook": "Cẩm nang",
+
       "manage-handbook": "Quản lý cẩm nang"
     }
   },

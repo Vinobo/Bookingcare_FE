@@ -14,8 +14,8 @@ class Telemedicine extends Component {
       <div className='section-general telemedicine'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Bác sĩ từ xa qua video</span>
-            <button>Xem thêm</button>
+            <span><FormattedMessage id="home-body.telemedicine" /></span>
+            <button><FormattedMessage id="home-body.view-more" /></button>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>

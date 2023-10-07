@@ -23,8 +23,8 @@ class HandBook extends Component {
       <div className='section-general hand-book'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Cẩm nang</span>
-            <button>Tất cả bài viết</button>
+            <span><FormattedMessage id="common.handbook" /></span>
+            <button><FormattedMessage id="home-body.all-articles" /></button>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>
