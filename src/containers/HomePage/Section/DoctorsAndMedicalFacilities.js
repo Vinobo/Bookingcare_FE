@@ -15,7 +15,7 @@ class DoctorsAndMedicalFacilities extends Component {
       <div className='section-general doctors-and-medical-facilities'>
         <div className='section-cotainer'>
           <div className='section-header'>
-            <span>Dành cho bác sĩ và cơ sở y tế</span>
+            <span><FormattedMessage id="home-body.doctors-and-medical-facilities" /></span>
             <button>Liên hệ</button>
             <button className='btn-center'>Hợp tác</button>
             <button>Bài viết</button>

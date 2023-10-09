@@ -352,7 +352,7 @@ class UserRedux extends Component {
                                 >
                                     {this.state.action === CRUD_ACTIONS.EDIT ?
                                         <FormattedMessage id="user-manage.edit" /> :
-                                        <FormattedMessage id="user-manage.save" />}
+                                        <FormattedMessage id="common.save" />}
                                 </button>
                             </div>
                             <div className='col-12 mb-5'>

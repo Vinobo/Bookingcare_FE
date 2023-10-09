@@ -27,6 +27,7 @@
     "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
     "healthy": "Sống khỏe",
     "media": "Truyền thông nói về BookingCare",
+    "doctors-and-medical-facilities": "Dành cho bác sĩ và cơ sở y tế  ",
     "view-more": "Xem thêm",
     "all-articles": "Tất cả bài viết"
   },
@@ -102,6 +103,7 @@
     "role": "Vai trò",
     "upload": "Tải ảnh",
     "save": "Lưu",
+    "action": "Hành động",
     "edit": "Lưu thay đổi",
     "status": "Trạng thái",
     "add-user": "Thêm mới người dùng",

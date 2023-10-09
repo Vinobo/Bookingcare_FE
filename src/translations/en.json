@@ -27,6 +27,7 @@
     "outstanding-doctor": "Featured Doctor of the Week",
     "healthy": "Live Strong",
     "media": "Media talks about BookingCare",
+    "doctors-and-medical-facilities": "For doctors and medical facilities",
     "view-more": "View more",
     "all-articles": "All articles"
   },
@@ -101,6 +102,7 @@
     "role": "Role",
     "upload": "Upload",
     "save": "Save",
+    "action": "Actions",
     "edit": "Save change",
     "status": "Status",
     "add-user": "Add new user",
