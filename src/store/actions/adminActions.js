@@ -269,3 +269,27 @@ export const saveInforDoctor = (data) => {
     }
   }
 }
+
+// //get detail Doctor
+// export const fetchDetailDoctor = (doctorId) => {
+//   return async (dispatch, getState) => {
+//     try {
+//       let res = await getDetailInforDoctor(doctorId);
+//       if (res && res.errCode === 0) {
+//         dispatch({
+//           type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+//           dataDr: res.data
+//         })
+//       } else {
+//         dispatch({
+//           type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
+//         })
+//       }
+//     } catch (e) {
+//       console.log('FETCH_DETAIL_DOCTOR_FAILED: ', e)
+//       dispatch({
+//         type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
+//       })
+//     }
+//   }
+// }
