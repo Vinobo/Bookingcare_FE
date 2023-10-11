@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.scss';
 import logo from "../../assets/images/bookingcare-2020.svg";
-
+import { withRouter } from 'react-router'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions"
@@ -12,6 +12,12 @@ class Header extends Component {
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
 
+  }
+
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`)
+    }
   }
 
   render() {
@@ -25,7 +31,7 @@ class Header extends Component {
             <div className='left-content'>
               <i className="fas fa-bars"></i>
               <div className='header-logo'>
-                <img src={logo} />
+                <img src={logo} onClick={() => this.returnToHome()} />
               </div>
             </div>
 
@@ -124,4 +130,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

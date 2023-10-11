@@ -26,7 +26,22 @@
     margin: 20px 0;
   }
 
-  .save-content-doctor {
+  .edit-content-doctor {
+    background-color: orange;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-bottom: 30px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+
+  .create-content-doctor {
     background-color: blue;
     color: #fff;
     outline: none;

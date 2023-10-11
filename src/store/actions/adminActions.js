@@ -2,7 +2,8 @@ import actionTypes from './actionTypes';
 import {
   getAllCodeService, createNewUserService, getAllUsers,
   deleteUserService, editUserService, getTopDoctorHomeSevice,
-  getAllDoctors, saveInforDoctorService
+  getAllDoctors, saveInforDoctorService,
+  getDetailInforDoctor
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -271,14 +272,15 @@ export const saveInforDoctor = (data) => {
 }
 
 // //get detail Doctor
-// export const fetchDetailDoctor = (doctorId) => {
+// export const fetchDetailDoctor = () => {
 //   return async (dispatch, getState) => {
 //     try {
-//       let res = await getDetailInforDoctor(doctorId);
+//       let res = await getDetailInforDoctor();
+//       console.log('check ressss/: ', res)
 //       if (res && res.errCode === 0) {
 //         dispatch({
 //           type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
-//           dataDr: res.data
+//           detailDr: res.data
 //         })
 //       } else {
 //         dispatch({

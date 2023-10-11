@@ -107,6 +107,20 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       }
 
+    // //get detail doctor
+    // case actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS:
+    //   state.detailDoctor = action.detailDr;
+
+    //   return {
+    //     ...state,
+    //   }
+
+    // case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
+    //   state.detailDoctor = [];
+    //   return {
+    //     ...state,
+    //   }
+
     default:
       return state;
   }
