@@ -18,6 +18,7 @@ class DetailDoctor extends Component {
   }
 
   async componentDidMount() {
+    // this.props.fetchAllDoctors();
     // this.props.fetchDetailDoctor();
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
@@ -42,6 +43,7 @@ class DetailDoctor extends Component {
 
   render() {
     console.log('Check state: ', this.state);
+
     let { language } = this.props;
     let { detailDoctor } = this.state;
     let nameVi = '', nameEn = ''
@@ -107,7 +109,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchDetailDoctor: (doctorId) => dispatch(actions.fetchDetailDoctor(doctorId))
+    // fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+    // fetchDetailDoctor: () => dispatch(actions.fetchDetailDoctor())
   };
 };
 
