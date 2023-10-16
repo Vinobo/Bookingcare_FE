@@ -1,8 +1,10 @@
 .doctor-detail-container {
+  .general-container {
+    padding: 15px 15px;
+    margin: 0 240px;
+  }
   .intro-doctor {
     display: flex;
-    padding: 0 15px;
-    margin: 0 240px;
 
     .content-left {
       background-position: center center;
@@ -32,13 +34,29 @@
     }
   }
 
-  .infor-doctor {
+  .schedule-doctor {
+    // padding: 0 15px;
+    // margin: 0 240px;
+    display: flex;
+    height: 200px;
+    border: 1px solid red;
+
+    .content-left {
+      width: 50%;
+    }
+
+    .content-right {
+      width: 50%;
+    }
+  }
+
+  .detail-doctor {
     padding: 15px 0;
     background-color: #f5f5f5;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
-    .detail-doctor {
+    .content-detail {
       padding: 0 15px;
       margin: 0 240px;
     }

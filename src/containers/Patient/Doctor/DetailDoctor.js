@@ -6,6 +6,7 @@ import Header from '../../HomePage/Header';
 import './DetailDoctor.scss';
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 
 class DetailDoctor extends Component {
 
@@ -57,11 +58,10 @@ class DetailDoctor extends Component {
         <Header isShowBanner={false} />
 
         <div className='doctor-detail-container'>
-          <div className='intro-doctor'>
+          <div className='intro-doctor general-container'>
             <div className='content-left'
               style={{ backgroundImage: `url(${detailDoctor && detailDoctor.image ? detailDoctor.image : ''})` }}
             >
-
             </div>
             <div className='content-right'>
               <div className='title-doctor'>
@@ -77,12 +77,19 @@ class DetailDoctor extends Component {
             </div>
           </div>
 
-          <div className='schedule-doctorr'>
+          <div className='schedule-doctor general-container'>
+            <div className='content-left'>
+              <DoctorSchedule
+                doctorIdFromParent={detailDoctor && detailDoctor.id ? detailDoctor.id : - 1}
+              />
+            </div>
+            <div className='content-right'>
 
+            </div>
           </div>
 
-          <div className='infor-doctor'>
-            <div className='detail-doctor'>
+          <div className='detail-doctor'>
+            <div className='content-detail general-container'>
               {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML &&
                 <div
                   dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}
