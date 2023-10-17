@@ -6,6 +6,8 @@ import localization from 'moment/locale/vi';
 import './DoctorSchedule.scss';
 import { LANGUAGES } from '../../../utils';
 import { getScheduleDoctorByDate } from '../../../services/userService';
+import { FormattedMessage } from 'react-intl';
+
 // import
 
 class DoctorSchedule extends Component {
@@ -14,6 +16,7 @@ class DoctorSchedule extends Component {
     super(props);
     this.state = {
       allDays: [],
+      allAvailable: []
     }
 
   }
@@ -27,12 +30,17 @@ class DoctorSchedule extends Component {
     this.setArrDays(language);
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   setArrDays = (language) => {
     let allDays = []
     for (let i = 0; i < 7; i++) {
       let object = {};
       if (language === LANGUAGES.VI) {
-        object.label = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
+        let labelVi = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
+        object.label = this.capitalizeFirstLetter(labelVi);
       } else {
         object.label = moment(new Date()).add(i, 'days').locale('en').format('ddd - DD/MM');
       }
@@ -58,14 +66,20 @@ class DoctorSchedule extends Component {
     if (this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
       let doctorId = this.props.doctorIdFromParent;
       let date = event.target.value
-
       let res = await getScheduleDoctorByDate(doctorId, date);
+
+      if (res && res.errCode === 0) {
+        this.setState({
+          allAvailable: res.data ? res.data : []
+        })
+      }
       console.log('Check res form data: ', res)
     }
   }
 
   render() {
-    let { allDays } = this.state;
+    let { allDays, allAvailable } = this.state;
+    let { language } = this.props;
 
     return (
       <div className='container doctor-schedule'>
@@ -86,7 +100,21 @@ class DoctorSchedule extends Component {
           </select>
         </div>
         <div className='all-available-time'>
-
+          <div className='text-calendar'>
+            <span><i className="fas fa-calendar-alt"></i> <FormattedMessage id="common.schedule" /></span>
+          </div>
+          <div className='time-schedule'>
+            {allAvailable && allAvailable.length > 0 ?
+              allAvailable.map((item, index) => {
+                let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
+                return (
+                  <button key={index}> {timeDisplay} </button>
+                )
+              })
+              :
+              <div><FormattedMessage id="manage-doctor.not-schedule" /></div>
+            }
+          </div>
         </div>
       </div>
     );

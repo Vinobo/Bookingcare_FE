@@ -34,7 +34,8 @@
   "manage-doctor": {
     "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
     "choose-doctor": "Chọn bác sĩ",
-    "choose-date": "Chọn ngày"
+    "choose-date": "Chọn ngày",
+    "not-schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!"
   },
   "common": {
     "add": "Thêm",
@@ -58,7 +59,8 @@
     "date-range-invalid": "Khoảng thời gian không hợp lệ",
     "specialty": "Chuyên khoa",
     "clinic": "Phòng khám",
-    "handbook": "Cẩm nang"
+    "handbook": "Cẩm nang",
+    "schedule": "Lịch khám"
   },
   "login": {
     "login": "Đăng nhập",
@@ -93,8 +95,7 @@
       "manage-handbook": "Quản lý cẩm nang"
     },
     "doctor": {
-      "manage-schedule": "Quản lý kế hoạch khám bệnh",
-      "schedule": "Lịch khám"
+      "manage-schedule": "Quản lý kế hoạch khám bệnh"
     }
   },
   "user-manage": {
