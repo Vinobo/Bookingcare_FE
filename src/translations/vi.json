@@ -34,8 +34,12 @@
   "manage-doctor": {
     "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
     "choose-doctor": "Chọn bác sĩ",
-    "choose-date": "Chọn ngày",
-    "not-schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!"
+    "choose-date": "Chọn ngày"
+  },
+  "patient": {
+    "detail-doctor": {
+      "not-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!"
+    }
   },
   "common": {
     "add": "Thêm",
@@ -60,7 +64,9 @@
     "specialty": "Chuyên khoa",
     "clinic": "Phòng khám",
     "handbook": "Cẩm nang",
-    "schedule": "Lịch khám"
+    "schedule": "Lịch khám",
+    "select": "Chọn",
+    "book-free": "và đặt chỗ (miễn phí)"
   },
   "login": {
     "login": "Đăng nhập",
