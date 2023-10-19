@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as actions from "../../../store/actions";
 import Header from '../../HomePage/Header';
-import './DetailDoctor.scss';
+import './scss/DetailDoctor.scss';
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import ClinicFeeAddress from './ClinicFeeAddress';
+
 
 class DetailDoctor extends Component {
 
@@ -90,7 +92,7 @@ class DetailDoctor extends Component {
               />
             </div>
             <div className='content-right'>
-
+              <ClinicFeeAddress />
             </div>
           </div>
 

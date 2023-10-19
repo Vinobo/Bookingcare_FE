@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import moment from 'moment';
 import localization from 'moment/locale/vi';
-import './DoctorSchedule.scss';
+import './scss/DoctorSchedule.scss';
 import { LANGUAGES } from '../../../utils';
 import { getScheduleDoctorByDate } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
