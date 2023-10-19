@@ -3,7 +3,6 @@
     "search-doctor": "Find doctors by specialty",
     "health-facility": "Health facilities",
     "select-room": "Choose a hospital or clinic",
-    "doctor": "Doctor",
     "select-doctor": "Choose a good doctor",
     "fee": "Health Checkup Package",
     "general-health-check": "General health check",
@@ -42,7 +41,14 @@
   },
   "admin": {
     "manage-doctor": {
-      "title": "Create doctor infor"
+      "title": "Create doctor infor",
+      "price": "Price",
+      "payment": "Payment",
+      "province": "Province",
+      "addressClinic": "Clinic's address",
+      "choose-price": "Select price",
+      "choose-payment": "Select payment",
+      "choose-province": "Select province"
     }
   },
   "common": {
@@ -65,15 +71,17 @@
     "fail-to-load-all-code": "Fail to load data from allcode",
     "sum": "Sum",
     "date-range-invalid": "Date range invalid",
-    "clinic": "Clinics",
+    "clinic": "Clinic",
     "specialty": "Specialty",
     "handbook": "HandBook",
     "schedule": "Appointment",
     "select": "Select",
     "book-free": "and book (free)",
-    "choose-doctor": "Choose doctor",
+    "doctor": "Doctor",
+    "choose-doctor": "Select doctor",
     "choose-date": "Choose date",
-    "intro": "Introduction"
+    "intro": "Introduction",
+    "note": "Note"
   },
   "login": {
     "login": "Login",

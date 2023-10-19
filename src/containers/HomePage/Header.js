@@ -45,7 +45,7 @@ class Header extends Component {
                 <div className='subs-content'><FormattedMessage id="home-header.select-room" /></div>
               </div>
               <div className='child-content'>
-                <div className='subs-title'><b><FormattedMessage id="home-header.doctor" /></b></div>
+                <div className='subs-title'><b><FormattedMessage id="common.doctor" /></b></div>
                 <div className='subs-content'><FormattedMessage id="home-header.select-doctor" /></div>
               </div>
               <div className='child-content'>
