@@ -145,12 +145,12 @@ class ManageSchedule extends Component {
     return (
       <div className='container manage-shedule '>
         <div className='m-s-title'>
-          <FormattedMessage id='manage-doctor.title' />
+          <FormattedMessage id='manage-schedule.title' />
         </div>
         <div className='container'>
           <div className='row'>
             <div className='col-6 form-group'>
-              <label><FormattedMessage id='manage-doctor.choose-doctor' /></label>
+              <label><FormattedMessage id='common.choose-doctor' /></label>
               <Select
                 value={this.state.selectedDoctor}
                 onChange={this.handleChangeSelect}
@@ -159,7 +159,7 @@ class ManageSchedule extends Component {
             </div>
 
             <div className='col-6 form-group'>
-              <label><FormattedMessage id='manage-doctor.choose-date' /></label>
+              <label><FormattedMessage id='common.choose-date' /></label>
               <DatePicker
                 className='form-control'
                 onChange={this.handleOnchangeDatePiker}

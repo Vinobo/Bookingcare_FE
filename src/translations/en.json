@@ -11,6 +11,7 @@
     "welcome": "Welcome"
   },
   "banner": {
+    "search": "Find a medical specialist",
     "title1": "Medical Platform",
     "title2": "Comprehensive health care",
     "child1": "Specialized examination",
@@ -31,14 +32,17 @@
     "view-more": "View more",
     "all-articles": "All articles"
   },
-  "manage-doctor": {
-    "title": "Manage doctor's medical schedule plans",
-    "choose-doctor": "Choose doctor",
-    "choose-date": "Choose date"
+  "manage-schedule": {
+    "title": "Manage doctor's medical schedule plans"
   },
   "patient": {
     "detail-doctor": {
       "not-schedule": "The doctor does not schedules available during this time, please choose another time!"
+    }
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Create doctor infor"
     }
   },
   "common": {
@@ -66,7 +70,10 @@
     "handbook": "HandBook",
     "schedule": "Appointment",
     "select": "Select",
-    "book-free": "and book (free)"
+    "book-free": "and book (free)",
+    "choose-doctor": "Choose doctor",
+    "choose-date": "Choose date",
+    "intro": "Introduction"
   },
   "login": {
     "login": "Login",

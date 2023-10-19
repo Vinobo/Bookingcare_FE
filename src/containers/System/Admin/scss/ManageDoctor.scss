@@ -10,15 +10,40 @@
   }
 
   .more-info {
-    display: flex;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
 
-    .content-left {
-      width: 30%;
+    .select-doctor {
+      grid-column: 1 / span 1;
     }
 
-    .content-right {
-      width: 70%;
+    .intro-doctor {
+      grid-column: 2 / span 2;
+    }
+
+    .price {
+    }
+
+    .payment {
+    }
+
+    .provience {
+    }
+
+    .clinic {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .clinic-address {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .note {
+      display: flex;
+      flex-direction: column;
     }
   }
 

@@ -11,6 +11,7 @@
     "welcome": "Xin chào"
   },
   "banner": {
+    "search": "Tìm chuyên khoa khám bệnh",
     "title1": "Nền tảng y tế",
     "title2": "Chăm sóc sức khỏe toàn diện",
     "child1": "Khám chuyên khoa",
@@ -31,14 +32,17 @@
     "view-more": "Xem thêm",
     "all-articles": "Tất cả bài viết"
   },
-  "manage-doctor": {
-    "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
-    "choose-doctor": "Chọn bác sĩ",
-    "choose-date": "Chọn ngày"
+  "manage-schedule": {
+    "title": "Quản lý kế hoạch khám bệnh của bác sĩ"
   },
   "patient": {
     "detail-doctor": {
       "not-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!"
+    }
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Tạo thông tin bác sĩ"
     }
   },
   "common": {
@@ -66,7 +70,10 @@
     "handbook": "Cẩm nang",
     "schedule": "Lịch khám",
     "select": "Chọn",
-    "book-free": "và đặt chỗ (miễn phí)"
+    "book-free": "và đặt chỗ (miễn phí)",
+    "choose-doctor": "Chọn bác sĩ",
+    "choose-date": "Chọn ngày",
+    "intro": "Thông tin giới thiệu"
   },
   "login": {
     "login": "Đăng nhập",

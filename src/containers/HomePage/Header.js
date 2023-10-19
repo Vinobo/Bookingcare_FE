@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './Header.scss';
 import logo from "../../assets/images/bookingcare-2020.svg";
@@ -26,7 +26,7 @@ class Header extends Component {
 
     return (
       <React.Fragment>
-        <div className='home-header-container sticky-md-top'>
+        <div className='home-header-container sticky-md-top' >
           <div className='home-header-content'>
             <div className='left-content'>
               <i className="fas fa-bars"></i>
@@ -129,5 +129,6 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
+
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
