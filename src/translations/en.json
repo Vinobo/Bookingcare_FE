@@ -36,7 +36,8 @@
   },
   "patient": {
     "detail-doctor": {
-      "not-schedule": "The doctor does not schedules available during this time, please choose another time!"
+      "not-schedule": "The doctor does not schedules available during this time, please choose another time!",
+      "payment": "The clinic accepts payment in the form of cash and card swipe"
     }
   },
   "admin": {
@@ -81,7 +82,13 @@
     "choose-doctor": "Select doctor",
     "choose-date": "Choose date",
     "intro": "Introduction",
-    "note": "Note"
+    "note": "Note",
+    "address-clinic": "Clinic address",
+    "price-examination": "Examination price",
+    "type-insurance": "Type of insurance applicable",
+    "see-details": "See details",
+    "hide-price": "Hide price list",
+    "shorten": "Shorten"
   },
   "login": {
     "login": "Login",

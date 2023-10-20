@@ -6,7 +6,7 @@ html {
   background-image: "#fff";
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: $fontmain;
+  font-family: "Montserrat", sans-serif;
   font-size: $base-size - 2px;
   height: 100vh;
   overflow: hidden;
@@ -33,7 +33,6 @@ html {
     .modal-content {
       .modal-header {
         padding: 0 10px;
-        height: 35px;
         background-color: $colormain;
         color: $common-text-color;
         .modal-title {

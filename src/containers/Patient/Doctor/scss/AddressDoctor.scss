@@ -1,9 +1,19 @@
-.clinic-fee-address {
+.address-doctor {
   .text-title {
     text-transform: uppercase;
     font-size: 14px;
     color: #666;
     font-weight: bold;
+  }
+
+  .btn-showOn {
+    margin-left: 5px;
+  }
+
+  .btn-showOn,
+  .btn-showOff {
+    cursor: pointer;
+    color: #45c3d2;
   }
 
   .clinic-address {
@@ -19,10 +29,17 @@
 
   .fee {
     border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    .btn-on-off {
-      cursor: pointer;
-      color: #45c3d2;
+    padding-top: 10px;
+    margin-top: 10px;
+
+    .price-approx {
+      margin-left: 5px;
+    }
+
+    .currency-vnd::after {
+      content: "đ";
+      vertical-align: super;
+      font-size: smaller;
     }
 
     .container-fee {
@@ -32,6 +49,7 @@
         border: 1px solid #ddd;
         background-color: #f8f8f8;
         padding: 3px;
+        margin-top: 10px;
         color: #666;
 
         .price {
@@ -42,6 +60,7 @@
         }
 
         .note {
+          font-size: smaller;
         }
       }
 
@@ -55,5 +74,25 @@
   }
 
   .insurance {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+
+    .container-insurance {
+      .detail-insurance {
+        border: 1px solid #ddd;
+        background-color: #f8f8f8;
+        padding: 3px;
+        margin-top: 10px;
+        color: #666;
+
+        .price {
+          font-weight: 550;
+          .right {
+            float: right;
+          }
+        }
+      }
+    }
   }
 }

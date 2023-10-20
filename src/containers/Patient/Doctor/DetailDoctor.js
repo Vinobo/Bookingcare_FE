@@ -7,7 +7,7 @@ import './scss/DetailDoctor.scss';
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
-import ClinicFeeAddress from './ClinicFeeAddress';
+import AddressDoctor from './AddressDoctor';
 
 
 class DetailDoctor extends Component {
@@ -51,8 +51,6 @@ class DetailDoctor extends Component {
   }
 
   render() {
-    console.log('Check state: ', this.state);
-
     let { language } = this.props;
     let { detailDoctor } = this.state;
     let nameVi = '', nameEn = ''
@@ -92,7 +90,9 @@ class DetailDoctor extends Component {
               />
             </div>
             <div className='content-right'>
-              <ClinicFeeAddress />
+              <AddressDoctor
+                doctorIdFromParent={this.state.currentDoctorId}
+              />
             </div>
           </div>
 
