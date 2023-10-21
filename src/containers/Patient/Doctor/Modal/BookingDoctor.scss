@@ -1,6 +1,5 @@
 .booking-modal-container {
   .booking-modal-content {
-    height: 500px;
     display: flex;
     flex-direction: column;
 
@@ -12,8 +11,15 @@
 
       .left {
         font-size: 14px;
-        font-weight: bold;
         color: #333;
+
+        .booking-title {
+          font-weight: bold;
+        }
+
+        .doctor-infor {
+          margin: 10px 0;
+        }
       }
 
       .right {
@@ -30,6 +36,16 @@
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
       padding: 10px;
+
+      .price-approx {
+        margin-left: 5px;
+      }
+
+      .currency-vnd::after {
+        content: "đ";
+        vertical-align: super;
+        font-size: smaller;
+      }
 
       .price {
       }
@@ -62,11 +78,19 @@
       }
 
       .btn-confirm {
-        background-color: green;
+        background-color: #ffc419;
+        color: #fff;
       }
 
       .btn-cancel {
-        background-color: gray;
+        background-color: #ccc;
+        color: #333;
+      }
+
+      .btn-confirm,
+      .btn-cancel {
+        font-weight: 500;
+        font-size: 16px;
       }
     }
   }

@@ -87,7 +87,6 @@ class DoctorSchedule extends Component {
   }
 
   handleOnchangeSelect = async (event) => {
-    console.log('doctorIdFromParent: ', event.target.value)
     if (this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
       let doctorId = this.props.doctorIdFromParent;
       let date = event.target.value
@@ -106,7 +105,6 @@ class DoctorSchedule extends Component {
       isOpenBookingDoctor: true,
       dataScheduleTimeModal: time
     })
-    console.log('Check timeeeeeeeeeeeeeeeee: ', time)
   }
 
   closeBookingDoctor = () => {

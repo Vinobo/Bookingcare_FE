@@ -58,7 +58,6 @@ class AddressDoctor extends Component {
   render() {
     let { language } = this.props;
     let { isShowDetailFee, isShowDetailInsurance, addressFeeDoctor } = this.state
-    console.log('Check stateeeeeeeeeeeeeeeeeeeeee: ', this.state)
 
     return (
       <div className='container address-doctor'>
