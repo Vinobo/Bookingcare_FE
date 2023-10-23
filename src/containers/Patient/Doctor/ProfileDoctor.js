@@ -58,7 +58,7 @@ class ProfileDoctor extends Component {
       let date = language === LANGUAGES.VI ?
         moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
         :
-        moment.unix(+dataTime.date / 1000).locale('en').format('ddd - DD/MM/YYYY');
+        moment.unix(+dataTime.date / 1000).locale('en').format('ddd -MM/DD/YYYY');
 
 
       return (

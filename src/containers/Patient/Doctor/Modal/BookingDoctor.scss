@@ -37,19 +37,6 @@
       border-bottom: 1px solid #ccc;
       padding: 10px;
 
-      .price-approx {
-        margin-left: 5px;
-      }
-
-      .currency-vnd::after {
-        content: "đ";
-        vertical-align: super;
-        font-size: smaller;
-      }
-
-      .price {
-      }
-
       .booking-row {
         display: grid;
         grid-template-columns: auto auto;
@@ -62,6 +49,27 @@
 
         .booking-item.reason {
           grid-column: 1/3;
+        }
+      }
+
+      .priceModal {
+        margin-top: 10px;
+        padding: 15px;
+        background: #f6f6f6;
+
+        .price-title {
+          font-weight: 500;
+        }
+
+        .price-approx {
+          margin-left: 10px;
+          color: rgb(254, 56, 52);
+        }
+
+        .currency-vnd::after {
+          content: "đ";
+          vertical-align: super;
+          font-size: smaller;
         }
       }
     }

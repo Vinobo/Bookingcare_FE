@@ -38,6 +38,16 @@
     "detail-doctor": {
       "not-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
       "payment": "Phòng khám có thanh toán bằng hình thức tiền mặt và quẹt thẻ"
+    },
+    "booking-modal": {
+      "title": "Đặt lịch khám",
+      "fullName": "Họ và tên",
+      "gender": "Giới tính",
+      "birthday": "Ngày sinh",
+      "phoneNumber": "Số điện thoại",
+      "address": "Địa chỉ liên hệ",
+      "reason": "Lý do khám",
+      "confirm": "Xác nhận đặt khám"
     }
   },
   "admin": {
@@ -58,6 +68,7 @@
     "delete": "Xóa",
     "decentralize": "Phân quyền",
     "close": "Đóng",
+    "cancel": "Hủy",
     "save": "Lưu",
     "refresh": "Refresh",
     "search": "Tìm kiếm",
@@ -88,7 +99,8 @@
     "type-insurance": "Loại bảo hiểm áp dụng",
     "see-details": "Xem chi tiết",
     "hide-price": "Ẩn bảng giá",
-    "shorten": "Thu gọn"
+    "shorten": "Thu gọn",
+    "choose-gender": "Chọn giới tính"
   },
   "login": {
     "login": "Đăng nhập",

@@ -38,6 +38,16 @@
     "detail-doctor": {
       "not-schedule": "The doctor does not schedules available during this time, please choose another time!",
       "payment": "The clinic accepts payment in the form of cash and card swipe"
+    },
+    "booking-modal": {
+      "title": "Make an appointment",
+      "fullName": "Full name",
+      "gender": "Gender",
+      "birthday": "Birthday",
+      "phoneNumber": "Phone number",
+      "address": "Address",
+      "reason": "Reason",
+      "confirm": "Confirm"
     }
   },
   "admin": {
@@ -58,6 +68,7 @@
     "delete": "Delete",
     "decentralize": "Decentralize",
     "close": "Close",
+    "cancel": "Cancel",
     "save": "Save",
     "refresh": "Refresh",
     "search": "Search",
@@ -88,7 +99,8 @@
     "type-insurance": "Type of insurance applicable",
     "see-details": "See details",
     "hide-price": "Hide price list",
-    "shorten": "Shorten"
+    "shorten": "Shorten",
+    "choose-gender": "Select gender"
   },
   "login": {
     "login": "Login",
