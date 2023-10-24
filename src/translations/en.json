@@ -60,6 +60,11 @@
       "choose-price": "Select price",
       "choose-payment": "Select payment",
       "choose-province": "Select province"
+    },
+    "manage-specialty": {
+      "title": "Manage specialty",
+      "name": "Name specialty",
+      "img": "Specialty image"
     }
   },
   "common": {

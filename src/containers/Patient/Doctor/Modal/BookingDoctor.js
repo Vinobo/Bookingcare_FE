@@ -13,6 +13,8 @@ import DatePicker from '../../../../components/Input/DatePicker';
 import * as actions from '../../../../store/actions';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
+import moment from 'moment';
+import localization from 'moment/locale/vi';
 
 
 
@@ -118,6 +120,9 @@ class BookingDoctor extends Component {
   handleConfirmBooking = async () => {
     //validate input
     let birthday = new Date(this.state.birthday).getTime();
+    let timeString = this.buildTimeBooking(this.props.dataTime);
+    let doctorName = this.buildDoctorName(this.props.dataTime);
+
     let res = await postPatientBookAppointment({
       fullName: this.state.fullName,
       selectedGender: this.state.selectedGender.value,
@@ -128,7 +133,10 @@ class BookingDoctor extends Component {
       address: this.state.address,
       reason: this.state.reason,
       doctorId: this.state.doctorId,
-      timeType: this.state.timeType
+      timeType: this.state.timeType,
+      language: this.props.language,
+      timeString: timeString,
+      doctorName: doctorName
     })
 
     if (res && res.errCode === 0) {
@@ -137,6 +145,39 @@ class BookingDoctor extends Component {
     } else {
       toast.error('Booking a new appointment error!')
     }
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  buildTimeBooking = (dataTime) => {
+    let { language } = this.props;
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let time = language === LANGUAGES.VI ? dataTime.timeTypeData.valueVi
+        : dataTime.timeTypeData.valueEn;
+
+      let date = language === LANGUAGES.VI ?
+        this.capitalizeFirstLetter(moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY'))
+        :
+        moment.unix(+dataTime.date / 1000).locale('en').format('ddd - MM/DD/YYYY');
+
+      return `${time} - ${date}`
+    }
+    return ''
+  }
+
+  buildDoctorName = (dataTime) => {
+    let { language } = this.props;
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let name = language === LANGUAGES.VI ?
+        `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`
+        :
+        `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`;
+
+      return name;
+    }
+    return ''
   }
 
   render() {
@@ -154,6 +195,7 @@ class BookingDoctor extends Component {
         isOpen={isOpenModal}
         className='booking-modal-container'
         size='lg'
+        centered
       >
         <div className='booking-modal-content'>
           <div className='booking-modal-header'>

@@ -16,6 +16,7 @@
       display: flex;
       width: 25%;
       align-items: center;
+      justify-content: flex-start;
       gap: 10px;
 
       i {
@@ -39,7 +40,7 @@
 
     .center-content {
       display: flex;
-      width: 50%;
+      width: 60%;
       justify-content: space-between;
       align-items: center;
 
@@ -167,7 +168,7 @@
     height: 30%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 
     .options {
       text-align: center;
@@ -179,7 +180,7 @@
 
       .option-child {
         height: 100px;
-        width: 100px;
+        width: 110px;
         cursor: pointer;
 
         i {

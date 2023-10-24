@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
+import { LANGUAGES } from '../../utils';
 import { FormattedMessage } from 'react-intl';
 
 

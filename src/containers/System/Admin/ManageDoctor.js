@@ -312,7 +312,7 @@ class ManageDoctor extends Component {
         </div>
 
         <div className='manage-doctor-editor'>
-          <MdEditor style={{ height: '500px' }}
+          <MdEditor style={{ height: '300px' }}
             renderHTML={text => mdParser.render(text)}
             onChange={this.handleEditorChange}
             value={this.state.contentMarkdown}

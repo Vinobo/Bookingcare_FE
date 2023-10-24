@@ -2,14 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './scss/Specialty.scss';
 import { FormattedMessage } from 'react-intl';
-
 import Slider from "react-slick";
+import { getAllSpecialties } from '../../../services/userService';
 
 
 class Specialty extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      dataSpecialty: []
+    }
+  }
+
+  async componentDidMount() {
+    let res = await getAllSpecialties();
+    console.log('check resssssssssssss: ', res)
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataSpecialty: res.data ? res.data : []
+      })
+    }
+  }
 
   render() {
+    let { dataSpecialty } = this.state;
 
     return (
       <div className='section-general specialty'>
@@ -20,30 +37,20 @@ class Specialty extends Component {
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp </span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 2</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 3</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 4</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 5</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 6</span>
-              </div>
+              {dataSpecialty && dataSpecialty.length > 0 &&
+                dataSpecialty.map((item, index) => {
+                  return (
+                    <div className='section-img' key={index}>
+                      <div className='img-customize'
+                        style={{ backgroundImage: `url(${item.image})` }}
+                      />
+                      <span>{item.name}</span>
+                    </div>
+                  )
+                })
+              }
+
+
             </Slider>
           </div>
         </div>

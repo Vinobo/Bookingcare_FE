@@ -60,6 +60,11 @@
       "choose-price": "Chọn giá khám",
       "choose-payment": "Chọn phương thức thanh toán",
       "choose-province": "Chọn tỉnh thành"
+    },
+    "manage-specialty": {
+      "title": "Quản lý chuyên khoa",
+      "name": "Tên chuyên khoa",
+      "img": "Ảnh chuyên khoa"
     }
   },
   "common": {

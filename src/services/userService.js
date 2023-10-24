@@ -26,6 +26,7 @@ const getAllCodeService = (inputType) => {
   return axios.get(`/api/allcode?type=${inputType}`)
 }
 
+//DOCTOR
 const getTopDoctorHomeSevice = (limit) => {
   return axios.get(`/api/top-doctor-home?limit=${limit}`)
 }
@@ -58,24 +59,33 @@ const getProfileDoctorById = (doctorId) => {
   return axios.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}`)
 }
 
+//PATIENT BOOKING
 const postPatientBookAppointment = (data) => {
   return axios.post('/api/patient-book-appointment', data)
 }
 
+const postVerifyAppointment = (data) => {
+  return axios.post('/api/verify-booking', data)
+}
+
+//SPECIALTY
+const createNewSpecialty = (data) => {
+  return axios.post('/api/create-new-specialty', data)
+}
+
+const getAllSpecialties = () => {
+  return axios.get('/api/get-all-specialties')
+}
+
 export {
   handleLoginApi,
-  getAllUsers,
-  createNewUserService,
-  deleteUserService,
-  editUserService,
-  getAllCodeService,
-  getTopDoctorHomeSevice,
-  getAllDoctors,
-  saveInforDoctorService,
-  getDetailInforDoctor,
-  saveBulkScheduleDoctor,
-  getScheduleDoctorByDate,
-  getAddressFeeDoctorById,
-  getProfileDoctorById,
-  postPatientBookAppointment
+  getAllUsers, createNewUserService, deleteUserService, editUserService,
+
+  getAllCodeService, getTopDoctorHomeSevice, getAllDoctors,
+  saveInforDoctorService, getDetailInforDoctor, saveBulkScheduleDoctor,
+  getScheduleDoctorByDate, getAddressFeeDoctorById, getProfileDoctorById,
+
+  postPatientBookAppointment, postVerifyAppointment,
+
+  createNewSpecialty, getAllSpecialties,
 };
