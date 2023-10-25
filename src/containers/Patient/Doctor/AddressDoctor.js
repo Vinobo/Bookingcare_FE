@@ -24,6 +24,15 @@ class AddressDoctor extends Component {
   async componentDidMount() {
     let { language } = this.props;
 
+    if (this.props.doctorIdFromParent) {
+      let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
+      if (res && res.errCode === 0) {
+        this.setState({
+          addressFeeDoctor: res.data
+        })
+      }
+    }
+
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
