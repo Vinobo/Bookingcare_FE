@@ -65,6 +65,12 @@
       "title": "Manage specialty",
       "name": "Name specialty",
       "img": "Specialty image"
+    },
+    "manage-clinic": {
+      "title": "Manage clinic",
+      "name": "Name clinic",
+      "img": "Clinic image",
+      "address": "Clinic's address"
     }
   },
   "common": {

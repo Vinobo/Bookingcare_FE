@@ -65,6 +65,12 @@
       "title": "Quản lý chuyên khoa",
       "name": "Tên chuyên khoa",
       "img": "Ảnh chuyên khoa"
+    },
+    "manage-clinic": {
+      "title": "Quản lý phòng khám",
+      "name": "Tên phòng khám",
+      "img": "Ảnh phòng khám",
+      "address": "Địa chỉ phòng khám"
     }
   },
   "common": {

@@ -1,0 +1,84 @@
+.detail-specialty {
+  background-color: #eee;
+
+  .specialty-img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .description-specialty {
+    padding: 20px 0;
+    color: inherit;
+    font-family: inherit;
+    text-align: justify;
+    line-height: 1;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    h2,
+    h3 {
+      font-weight: bold;
+    }
+
+    h3,
+    p {
+      font-size: 14px;
+    }
+    // .max-height {
+    //   max-height: 135px;
+    // }
+  }
+  .search-specialty-doctor {
+    margin: 10px 0;
+
+    .select-province {
+      padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      border-radius: 5px;
+      border-color: #ccc;
+    }
+  }
+
+  .general-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 240px;
+  }
+  .content-specialty {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    // justify-content: space-around;
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+    border-radius: 8px;
+    border-bottom: none;
+    margin-bottom: 10px;
+
+    .detail-doctor {
+      width: 50%;
+      padding: 15px;
+    }
+
+    .extra-infor-doctor {
+      width: 50%;
+      border-left: 1px solid #eee;
+      padding: 15px;
+
+      .schedule-doctor {
+      }
+
+      .fee-address-doctor {
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+        margin-top: 10px;
+      }
+    }
+  }
+}

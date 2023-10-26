@@ -3,26 +3,26 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES, CommonUtils } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
-import './ManageSpecialty.scss';
+import './ManageClinic.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { createNewSpecialty } from '../../../services/userService';
+import { createNewClinic } from '../../../services/userService';
 import { toast } from 'react-toastify';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-class ManageSpecialty extends Component {
+class ManageClinic extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      nameSpecialty: '',
+      name: '',
       imageBase64: '',
-      descriptionHTML: '',
-      descriptionMarkdown: '',
+      introHTML: '',
+      introMarkdown: '',
 
       previewImgURL: '',
       isOpen: false,
@@ -51,8 +51,8 @@ class ManageSpecialty extends Component {
 
   handleEditorChange = ({ html, text }) => {
     this.setState({
-      descriptionMarkdown: text,
-      descriptionHTML: html,
+      introMarkdown: text,
+      introHTML: html,
     })
   }
 
@@ -77,19 +77,21 @@ class ManageSpecialty extends Component {
     })
   }
 
-  handleSaveNewSpecialty = async () => {
-    let res = await createNewSpecialty(this.state);
+  handleSaveNewClinic = async () => {
+    let res = await createNewClinic(this.state);
     if (res && res.errCode === 0) {
-      toast.success('Add new specialty succeed!')
+      toast.success('Add new clinic succeed!')
       this.setState({
-        nameSpecialty: '',
+        name: '',
         imageBase64: '',
         previewImgURL: '',
-        descriptionHTML: '',
-        descriptionMarkdown: '',
+        address: '',
+        introHTML: '',
+        introMarkdown: '',
       })
     } else {
-      toast.error('Add specialty faile!')
+      toast.error('Add clinic faile!')
+      console.log('checkkkkkkkk resssssssssss: ', res)
     }
   }
 
@@ -98,18 +100,18 @@ class ManageSpecialty extends Component {
 
     return (
       <div className='container manage-specialty'>
-        <div className='title-specialty'><FormattedMessage id="admin.manage-specialty.title" /></div>
+        <div className='title-specialty'><FormattedMessage id="admin.manage-clinic.title" /></div>
 
         <div className='manage-specialy-content'>
           <div className='name-specialty specialty-item'>
-            <label><FormattedMessage id="admin.manage-specialty.name" /></label>
+            <label><FormattedMessage id="admin.manage-clinic.name" /></label>
             <input type='text'
-              value={this.state.nameSpecialty}
-              onChange={(event) => this.handleOnchangeInput(event, 'nameSpecialty')}
+              value={this.state.name}
+              onChange={(event) => this.handleOnchangeInput(event, 'name')}
             ></input>
           </div>
           <div className='avatar-specialty specialty-item'>
-            <label><FormattedMessage id="admin.manage-specialty.img" /></label>
+            <label><FormattedMessage id="admin.manage-clinic.img" /></label>
             <div className='preview-container'>
               <input id='uploadImg' type="file" hidden
                 onChange={(event) => this.handleOnchangeImage(event)}
@@ -121,16 +123,23 @@ class ManageSpecialty extends Component {
               ></div>
             </div>
           </div>
+          <div className='name-specialty specialty-item'>
+            <label><FormattedMessage id="admin.manage-clinic.address" /></label>
+            <input type='text'
+              value={this.state.address}
+              onChange={(event) => this.handleOnchangeInput(event, 'address')}
+            ></input>
+          </div>
           <div className='manage-specialty-editor specialty-item'>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
               onChange={this.handleEditorChange}
-              value={this.state.descriptionMarkdown}
+              value={this.state.introMarkdown}
             />
           </div>
           <div className='btn-new-specialty'>
             <button
-              onClick={() => this.handleSaveNewSpecialty()}
+              onClick={() => this.handleSaveNewClinic()}
             ><FormattedMessage id="common.save" /></button>
           </div>
         </div>
@@ -158,4 +167,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSpecialty);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageClinic);

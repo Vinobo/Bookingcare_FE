@@ -25,9 +25,10 @@
 
       .preview-container {
         display: flex;
+
         .label-upload {
           padding: 0.375rem 0.75rem;
-          background-color: #e9ecef;
+          background-color: #cfd1d3;
           width: 30%;
           height: 30px;
           border-radius: 0.25rem;
@@ -43,6 +44,7 @@
 
         .preview-img {
           width: 70%;
+          height: 100px;
           background: center no-repeat;
           background-size: contain;
           background-color: #e9ecef;
