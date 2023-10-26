@@ -19,7 +19,8 @@ class DetailsSpecialty extends Component {
     this.state = {
       arrDoctorId: [],
       dataDetailSpecialty: {},
-      listProvince: []
+      listProvince: [],
+      isShowDescriptionSpecialty: false
     }
 
   }
@@ -49,10 +50,21 @@ class DetailsSpecialty extends Component {
 
           }
         }
+
+        let dataProvince = resProvince.data;
+        if (dataProvince && dataProvince.length > 0) {
+          dataProvince.unshift({
+            keyMap: 'ALL',
+            type: 'PROVINCE',
+            valueEn: 'ALL',
+            valueVi: 'Toàn quốc'
+          })
+        }
+
         this.setState({
           dataDetailSpecialty: res.data,
           arrDoctorId: arrDoctorId,
-          listProvince: resProvince.data
+          listProvince: dataProvince ? dataProvince : []
         })
       }
     }
@@ -65,28 +77,74 @@ class DetailsSpecialty extends Component {
     }
   }
 
-  handleOnChangeSelectProvince = (event) => {
-    console.log('check valueeeeeeeeeee: ', event.target.value)
+  handleOnChangeSelectProvince = async (event) => {
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      let id = this.props.match.params.id;
+      let location = event.target.value;
+      let res = await getAllDetailSpecialtyById({
+        id: id,
+        location: location
+      });
+
+      if (res && res.errCode === 0) {
+        let data = res.data;
+        let arrDoctorId = [];
+        if (data && !_.isEmpty(res.data)) {
+          let arr = data.doctorSpecialty;
+          if (arr && arr.length > 0) {
+            arr.map(item => {
+              arrDoctorId.push(item.doctorId)
+            })
+
+          }
+        }
+
+        this.setState({
+          dataDetailSpecialty: res.data,
+          arrDoctorId: arrDoctorId,
+        })
+      }
+    }
   }
 
+  // showHideDiscription = (status) => {
+  //   this.setState({
+  //     isShowDetailFee: status
+  //   })
+  // }
+
   render() {
-    let { language } = this.props;
+    let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
     console.log('check ressssssssssssssssss: ', this.state)
     return (
       <div className='detail-specialty'>
         <div>
           <Header />
-          <div className='description-specialty general-container'>
-            {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
-
-              <div
-                dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
-              >
-              </div>
-            }
+          <div className='specialty-img'
+            style={{
+              backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)),
+              url(${dataDetailSpecialty && dataDetailSpecialty.image ? dataDetailSpecialty.image : ''})`,
+            }}
+          >
+            <div className='description-specialty general-container'>
+              {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
+                <>
+                  <div className='max-height'
+                    dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
+                  >
+                  </div>
+                  {/* <div>
+                  <span className='btn-showOn'
+                    onClick={() => this.showHideDiscription(true)}
+                  >
+                    <FormattedMessage id="common.see-details" />
+                  </span>
+                </div> */}
+                </>
+              }
+            </div>
           </div>
-
           <div className='general-container'>
             <div className='search-specialty-doctor'>
               <select className='select-province'
@@ -113,6 +171,8 @@ class DetailsSpecialty extends Component {
                           doctorId={item}
                           // dataTime={dataTime}
                           isShowDescriptionDoctor={true}
+                          isShowLinkDetail={true}
+                          isShowLocation={true}
                         />
                       </div>
                     </div>
@@ -133,7 +193,7 @@ class DetailsSpecialty extends Component {
               })}
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

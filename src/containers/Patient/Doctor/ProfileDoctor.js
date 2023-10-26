@@ -8,6 +8,7 @@ import { getProfileDoctorById } from '../../../services/userService';
 import _ from 'lodash';
 import moment from 'moment';
 import localization from 'moment/locale/vi';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 
 
@@ -72,20 +73,36 @@ class ProfileDoctor extends Component {
   }
 
   render() {
-    let { language, isShowDescriptionDoctor, dataTime } = this.props;
+    let { language, doctorId, isShowDescriptionDoctor, dataTime, isShowLinkDetail, isShowLocation } = this.props;
     let { dataProfile } = this.state;
     let nameVi = '', nameEn = ''
     if (dataProfile && dataProfile.positionData) {
       nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
+    console.log('check stateee: ', this.state)
     return (
       <div className='container profile-doctor'>
         <div className='intro-doctor'>
+
           <div className='content-left'
-            style={{ backgroundImage: `url(${dataProfile && dataProfile.image ? dataProfile.image : ''})` }}
           >
+            <div className='avatar-doctor'
+              style={{ backgroundImage: `url(${dataProfile && dataProfile.image ? dataProfile.image : ''})` }}
+            >
+
+            </div>
+            {isShowLinkDetail === true &&
+              <div className='view-detail-doctor'>
+                <Link to={`/detail-doctor/${doctorId}`}
+                  className='text-view'
+                >
+                  Xem thêm
+                </Link>
+              </div>
+            }
           </div>
+
           <div className='content-right'>
             <div className='title-doctor'>
               {language === LANGUAGES.VI ? nameVi : nameEn}
@@ -105,6 +122,18 @@ class ProfileDoctor extends Component {
                 </>
               }
             </div>
+            {isShowLocation === true &&
+              <div className='location'><i className="fas fa-map-marker-alt"></i>
+                {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.provinceId &&
+                  <span>
+                    {language === LANGUAGES.VI ? dataProfile.Doctor_Infor.provinceData.valueVi
+                      :
+                      dataProfile.Doctor_Infor.provinceData.value}
+                  </span>
+                }
+              </div>
+            }
+
           </div>
         </div>
       </div>
