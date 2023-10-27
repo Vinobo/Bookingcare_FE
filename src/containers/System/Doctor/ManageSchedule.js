@@ -9,7 +9,7 @@ import Select from 'react-select';
 import DatePicker from '../../../components/Input/DatePicker';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import _, { result } from 'lodash';
+import _ from 'lodash';
 import { saveBulkScheduleDoctor } from '../../../services/userService';
 
 class ManageSchedule extends Component {

@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
-import { getAllSpecialties } from '../../../services/userService';
+import { getProfileDoctorById } from '../../../services/userService';
 import Slider from "react-slick";
 
 class OutStandingDoctor extends Component {
@@ -20,16 +20,20 @@ class OutStandingDoctor extends Component {
   async componentDidMount() {
     this.props.loadTopDoctors();
 
-    let res = await getAllSpecialties();
-    if (res && res.errCode === 0) {
-      this.setState({
-        dataSpecialty: res.data ? res.data : []
-      })
-    }
+    // let res = await getProfileDoctorById({
+    //   doctorId: this.state.arrDoctors
+    // });
+    // console.log('check resssssssss outstanding: ', this.state.arrDoctors)
+    // if (res && res.errCode === 0) {
+    //   this.setState({
+    //     dataSpecialty: res.data ? res.data : []
+    //   })
+    // }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+
       this.setState({
         arrDoctors: this.props.topDoctorsRedux
       })
@@ -47,7 +51,7 @@ class OutStandingDoctor extends Component {
     let { arrDoctors, dataSpecialty } = this.state;
     let { language } = this.props;
     arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
-
+    console.log('check stateeeeeeeeee outstanding: ', this.state)
     return (
       <div className='section-general out-standing-doctor'>
         <div className='section-cotainer'>
@@ -102,7 +106,7 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
-    topDoctorsRedux: state.admin.topDoctors
+    topDoctorsRedux: state.admin.topDoctors,
   };
 };
 
