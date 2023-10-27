@@ -55,6 +55,7 @@ class BookingDoctor extends Component {
 
     if (this.props.dataTime.doctorId !== prevProps.dataTime.doctorId) {
       let res = await getAddressFeeDoctorById(this.props.dataTime.doctorId);
+
       if (res && res.errCode === 0) {
 
         this.setState({

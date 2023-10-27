@@ -17,6 +17,7 @@ class AddressDoctor extends Component {
       isShowDetailFee: false,
       isShowDetailInsurance: false,
       addressFeeDoctor: {},
+      clinicData: {}
     }
 
   }
@@ -26,9 +27,14 @@ class AddressDoctor extends Component {
 
     if (this.props.doctorIdFromParent) {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
+
       if (res && res.errCode === 0) {
+        // nameCLinic = res.clinicData.name;
+        // addressClinic = res.clinicData.address;
+
         this.setState({
-          addressFeeDoctor: res.data
+          addressFeeDoctor: res.data,
+          clinicData: res.data.clinicData
         })
       }
     }
@@ -43,7 +49,8 @@ class AddressDoctor extends Component {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
       if (res && res.errCode === 0) {
         this.setState({
-          addressFeeDoctor: res.data
+          addressFeeDoctor: res.data,
+          clinicData: res.data.clinicData
         })
       }
 
@@ -66,7 +73,7 @@ class AddressDoctor extends Component {
 
   render() {
     let { language } = this.props;
-    let { isShowDetailFee, isShowDetailInsurance, addressFeeDoctor } = this.state
+    let { isShowDetailFee, isShowDetailInsurance, addressFeeDoctor, clinicData } = this.state
 
     return (
       <div className='container address-doctor'>
@@ -75,10 +82,10 @@ class AddressDoctor extends Component {
             <FormattedMessage id="common.address-clinic" />
           </div>
           <div className='name-clinic'>
-            {addressFeeDoctor && addressFeeDoctor.nameClinic ? addressFeeDoctor.nameClinic : ''}
+            {clinicData && clinicData.name ? clinicData.name : ''}
           </div>
           <div className='address'>
-            {addressFeeDoctor && addressFeeDoctor.addressClinic ? addressFeeDoctor.addressClinic : ''}
+            {clinicData && clinicData.address ? clinicData.address : ''}
           </div>
         </div>
         <div className='fee'>

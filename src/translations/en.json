@@ -34,6 +34,9 @@
   "manage-schedule": {
     "title": "Manage doctor's medical schedule plans"
   },
+  "manage-patient": {
+    "title": "Manage doctor's patient"
+  },
   "patient": {
     "detail-doctor": {
       "not-schedule": "The doctor does not schedules available during this time, please choose another time!",
@@ -146,7 +149,8 @@
       "manage-handbook": "Manage handbook"
     },
     "doctor": {
-      "manage-schedule": "Manage Doctor's schedule"
+      "manage-schedule": "Manage Doctor's schedule",
+      "manage-patient": "Manage Doctor's patient"
     }
   },
 

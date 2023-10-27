@@ -148,8 +148,8 @@ class ManageSchedule extends Component {
           <FormattedMessage id='manage-schedule.title' />
         </div>
         <div className='container'>
-          <div className='row'>
-            <div className='col-6 form-group'>
+          <div className='manage-shedule-body'>
+            <div className='select-doctor'>
               <label><FormattedMessage id='common.choose-doctor' /></label>
               <Select
                 value={this.state.selectedDoctor}
@@ -158,7 +158,7 @@ class ManageSchedule extends Component {
               />
             </div>
 
-            <div className='col-6 form-group'>
+            <div className='select-date'>
               <label><FormattedMessage id='common.choose-date' /></label>
               <DatePicker
                 className='form-control'
@@ -168,7 +168,7 @@ class ManageSchedule extends Component {
               />
             </div>
 
-            <div className='container pick-hour col-12 '>
+            <div className='pick-hour'>
               {rangeTime && rangeTime.length > 0 &&
                 rangeTime.map((item, index) => {
                   return (
@@ -183,7 +183,7 @@ class ManageSchedule extends Component {
                 })
               }
             </div>
-            <div className='col-12 '>
+            <div>
               <button className='btn btn-primary btn-save-schedule'
                 onClick={() => this.handleSaveSchedule()}
               >

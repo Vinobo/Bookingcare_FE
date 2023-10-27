@@ -116,7 +116,7 @@ class DetailsSpecialty extends Component {
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty } = this.state;
-    console.log('check ressssssssssssssssss: ', this.state)
+
     return (
       <div className='detail-specialty'>
         <div>
