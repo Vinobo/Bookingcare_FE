@@ -57,10 +57,13 @@
         width: 255px !important;
         margin: 5px;
         position: relative;
+        color: #111;
+
         &:hover {
           cursor: pointer;
           color: #45c3d2;
         }
+
         .img-customize {
           height: 150px;
           width: 100%;
@@ -69,12 +72,18 @@
           background-size: cover;
           background-color: #eee;
         }
+
+        .text-img {
+          font-size: 12px;
+          padding: 5px 0;
+        }
       }
 
       .section-img-row {
         display: flex !important;
         gap: 10px;
         width: 100%;
+
         &:hover {
           cursor: pointer;
           color: #45c3d2;

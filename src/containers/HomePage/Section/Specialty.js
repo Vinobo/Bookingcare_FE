@@ -18,7 +18,6 @@ class Specialty extends Component {
 
   async componentDidMount() {
     let res = await getAllSpecialties();
-    console.log('check resssssssssssss: ', res)
     if (res && res.errCode === 0) {
       this.setState({
         dataSpecialty: res.data ? res.data : []
@@ -54,7 +53,7 @@ class Specialty extends Component {
                       <div className='img-customize'
                         style={{ backgroundImage: `url(${item.image})` }}
                       />
-                      <span>{item.name}</span>
+                      <span className='text-img'>{item.name}</span>
                     </div>
                   )
                 })

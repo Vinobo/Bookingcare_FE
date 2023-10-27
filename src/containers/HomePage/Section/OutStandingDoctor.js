@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
-
+import { getAllSpecialties } from '../../../services/userService';
 import Slider from "react-slick";
 
 class OutStandingDoctor extends Component {
@@ -13,11 +13,19 @@ class OutStandingDoctor extends Component {
     super(props)
     this.state = {
       arrDoctors: [],
+      dataSpecialty: []
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.loadTopDoctors();
+
+    let res = await getAllSpecialties();
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataSpecialty: res.data ? res.data : []
+      })
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -36,7 +44,7 @@ class OutStandingDoctor extends Component {
   }
 
   render() {
-    let arrDoctors = this.state.arrDoctors;
+    let { arrDoctors, dataSpecialty } = this.state;
     let { language } = this.props;
     arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
 
@@ -69,7 +77,13 @@ class OutStandingDoctor extends Component {
                       <div>
                         {language === LANGUAGES.VI ? nameVi : nameEn}
                       </div>
-                      <span>Nam học</span>
+                      {dataSpecialty && dataSpecialty.length > 0 &&
+                        dataSpecialty.map((item, index) => {
+                          return (
+                            <span className='text-img' key={index}>{item.name}</span>
+                          )
+                        })
+                      }
                     </div>
                   )
                 })

@@ -27,9 +27,24 @@
     p {
       font-size: 14px;
     }
-    // .max-height {
-    //   max-height: 135px;
-    // }
+
+    .max-height {
+      max-height: 135px;
+      overflow: hidden;
+    }
+
+    .min-height {
+      min-height: 135px;
+    }
+
+    .btn-showOn,
+    .btn-showOff {
+      font-size: 14px;
+      color: #288ad6;
+      padding-top: 5px;
+      cursor: pointer;
+      display: block;
+    }
   }
   .search-specialty-doctor {
     margin: 10px 0;

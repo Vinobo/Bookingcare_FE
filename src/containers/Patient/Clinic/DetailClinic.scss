@@ -1,13 +1,13 @@
-.detail-specialty {
+.detail-clinic {
   background-color: #eee;
 
-  .specialty-img {
+  .clinic-img {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  .description-specialty {
+  .description-clinic {
     padding: 20px 0;
     color: inherit;
     font-family: inherit;
@@ -31,7 +31,7 @@
     //   max-height: 135px;
     // }
   }
-  .search-specialty-doctor {
+  .search-clinic-doctor {
     margin: 10px 0;
 
     .select-province {
@@ -50,7 +50,7 @@
     padding-left: 15px;
     margin: 0 240px;
   }
-  .content-specialty {
+  .content-clinic {
     display: flex;
     flex-direction: row;
     gap: 15px;

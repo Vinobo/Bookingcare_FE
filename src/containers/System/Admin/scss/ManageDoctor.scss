@@ -42,13 +42,15 @@
     }
 
     .note {
+      grid-column: 2 / span 3;
       display: flex;
       flex-direction: column;
     }
-  }
 
-  .manage-doctor-editor {
-    margin: 20px 0;
+    .manage-doctor-editor {
+      grid-column: 1/-1;
+      margin: 15px 0;
+    }
   }
 
   .edit-content-doctor {

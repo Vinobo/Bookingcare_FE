@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
-import './DetailsSpecialty.scss';
+import './DetailSpecialty.scss';
 import Header from '../../HomePage/Header';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import AddressDoctor from '../Doctor/AddressDoctor';
@@ -107,15 +107,15 @@ class DetailsSpecialty extends Component {
     }
   }
 
-  // showHideDiscription = (status) => {
-  //   this.setState({
-  //     isShowDetailFee: status
-  //   })
-  // }
+  showHideDiscription = (status) => {
+    this.setState({
+      isShowDescriptionSpecialty: status
+    })
+  }
 
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
-    let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
+    let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty } = this.state;
     console.log('check ressssssssssssssssss: ', this.state)
     return (
       <div className='detail-specialty'>
@@ -130,17 +130,31 @@ class DetailsSpecialty extends Component {
             <div className='description-specialty general-container'>
               {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
                 <>
-                  <div className='max-height'
+
+                  <div className={isShowDescriptionSpecialty === false ? 'max-height' : 'min-height'
+                  }
                     dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
                   >
                   </div>
-                  {/* <div>
-                  <span className='btn-showOn'
-                    onClick={() => this.showHideDiscription(true)}
-                  >
-                    <FormattedMessage id="common.see-details" />
-                  </span>
-                </div> */}
+                  <div>
+                    {isShowDescriptionSpecialty === false ?
+                      <>
+                        <span className='btn-showOn'
+                          onClick={() => this.showHideDiscription(true)}
+                        >
+                          <FormattedMessage id="common.see-details" />
+                        </span>
+                      </>
+                      :
+                      <>
+                        <span className='btn-showOff'
+                          onClick={() => this.showHideDiscription(false)}
+                        >
+                          <FormattedMessage id="common.shorten" />
+                        </span>
+                      </>
+                    }
+                  </div>
                 </>
               }
             </div>

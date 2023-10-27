@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
-import './DetailsClinic.scss';
+import './DetailClinic.scss';
 import Header from '../../HomePage/Header';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import AddressDoctor from '../Doctor/AddressDoctor';
@@ -19,7 +19,6 @@ class DetailsClinic extends Component {
     this.state = {
       arrDoctorId: [],
       dataDetailClinic: {},
-      listProvince: [],
       isShowDescriptionClinic: false
     }
 
@@ -33,57 +32,6 @@ class DetailsClinic extends Component {
 
       let res = await getAllDetailClinicById({
         id: id,
-        location: 'ALL'
-      });
-
-      let resProvince = await getAllCodeService('PROVINCE')
-
-      if (res && res.errCode === 0 && resProvince && resProvince.errCode === 0) {
-        let data = res.data;
-        let arrDoctorId = [];
-        if (data && !_.isEmpty(res.data)) {
-          let arr = data.doctorClinic;
-          if (arr && arr.length > 0) {
-            arr.map(item => {
-              arrDoctorId.push(item.doctorId)
-            })
-
-          }
-        }
-
-        let dataProvince = resProvince.data;
-        if (dataProvince && dataProvince.length > 0) {
-          dataProvince.unshift({
-            keyMap: 'ALL',
-            type: 'PROVINCE',
-            valueEn: 'ALL',
-            valueVi: 'Toàn quốc'
-          })
-        }
-
-        this.setState({
-          dataDetailClinic: res.data,
-          arrDoctorId: arrDoctorId,
-          listProvince: dataProvince ? dataProvince : []
-        })
-      }
-    }
-
-  }
-
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.language !== prevProps.language) {
-
-    }
-  }
-
-  handleOnChangeSelectProvince = async (event) => {
-    if (this.props.match && this.props.match.params && this.props.match.params.id) {
-      let id = this.props.match.params.id;
-      let location = event.target.value;
-      let res = await getAllDetailClinicById({
-        id: id,
-        location: location
       });
 
       if (res && res.errCode === 0) {
@@ -104,7 +52,17 @@ class DetailsClinic extends Component {
           arrDoctorId: arrDoctorId,
         })
       }
+
     }
+  }
+
+
+
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.language !== prevProps.language) {
+
+    }
+
   }
 
   // showHideDiscription = (status) => {
@@ -115,23 +73,29 @@ class DetailsClinic extends Component {
 
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
-    let { arrDoctorId, dataDetailClinic, listProvince } = this.state;
+    let { arrDoctorId, dataDetailClinic } = this.state;
     console.log('check ressssssssssssssssss: ', this.state)
     return (
-      <div className='detail-Clinic'>
+      <div className='detail-clinic'>
         <div>
           <Header />
-          <div className='Clinic-img'
+          <div className='clinic-img'
             style={{
               backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)),
               url(${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''})`,
             }}
           >
-            <div className='description-Clinic general-container'>
+            <div className='description-clinic general-container'>
               {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
                 <>
+                  <div className='name-clinic'>
+                    {dataDetailClinic.name}
+                  </div>
+                  <div className='address-clinic'>
+                    {dataDetailClinic.address}
+                  </div>
                   <div className='max-height'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.descriptionHTML }}
+                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.introHTML }}
                   >
                   </div>
                   {/* <div>
@@ -146,25 +110,10 @@ class DetailsClinic extends Component {
             </div>
           </div>
           <div className='general-container'>
-            <div className='search-Clinic-doctor'>
-              <select className='select-province'
-                onChange={(event) => this.handleOnChangeSelectProvince(event)}>
-                {listProvince && listProvince.length > 0 &&
-                  listProvince.map((item, index) => {
-                    return (
-                      <option key={index} value={item.keyMap}>
-                        {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
-                      </option>
-                    )
-                  })
-                }
-              </select>
-            </div>
-
             {arrDoctorId && arrDoctorId.length > 0 &&
               arrDoctorId.map((item, index) => {
                 return (
-                  <div className='content-Clinic' key={index}>
+                  <div className='content-clinic' key={index}>
                     <div className='detail-doctor'>
                       <div className='profile-doctor'>
                         <ProfileDoctor

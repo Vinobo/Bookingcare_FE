@@ -2,13 +2,37 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './scss/MedicalFacility.scss';
 import { FormattedMessage } from 'react-intl';
-
 import Slider from "react-slick";
+import { getAllClinic } from '../../../services/userService';
+import { withRouter } from 'react-router';
+
 
 class MedicalFacility extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dataClinic: []
+    }
+  }
 
+  async componentDidMount() {
+    let res = await getAllClinic();
+    console.log('check resssssssssssss: ', res)
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataClinic: res.data ? res.data : []
+      })
+    }
+  }
+
+  handleViewDetailClinic = (item) => {
+    if (this.props.history) {
+      this.props.history.push(`/detail-clinic/${item.id}`)
+    }
+  }
 
   render() {
+    let { dataClinic } = this.state;
 
     return (
       <div className='section-general medical-facility'>
@@ -19,30 +43,20 @@ class MedicalFacility extends Component {
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Bệnh viện Chợ Rẫy</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 2</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 3</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 4</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 5</span>
-              </div>
-              <div className='section-img'>
-                <div className='img-customize' />
-                <span>Cơ xương khớp 6</span>
-              </div>
+              {dataClinic && dataClinic.length > 0 &&
+                dataClinic.map((item, index) => {
+                  return (
+                    <div className='section-img' key={index}
+                      onClick={() => this.handleViewDetailClinic(item)}
+                    >
+                      <div className='img-customize'
+                        style={{ backgroundImage: `url(${item.image})` }}
+                      />
+                      <span className='text-img'>{item.name}</span>
+                    </div>
+                  )
+                })
+              }
             </Slider>
           </div>
         </div>
@@ -66,4 +80,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MedicalFacility));
