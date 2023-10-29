@@ -20,22 +20,23 @@ class OutStandingDoctor extends Component {
   async componentDidMount() {
     this.props.loadTopDoctors();
 
-    // let res = await getProfileDoctorById({
-    //   doctorId: this.state.arrDoctors
-    // });
-    // console.log('check resssssssss outstanding: ', this.state.arrDoctors)
-    // if (res && res.errCode === 0) {
-    //   this.setState({
-    //     dataSpecialty: res.data ? res.data : []
-    //   })
-    // }
+
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
 
-      this.setState({
-        arrDoctors: this.props.topDoctorsRedux
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      let arrDoctors = this.props.topDoctorsRedux;
+
+      arrDoctors.map(async (item, index) => {
+        let res = await getProfileDoctorById(item.id);
+
+        if (res && res.errCode === 0) {
+          this.setState({
+            dataSpecialty: res.data.Doctor_Infor,
+            arrDoctors: arrDoctors
+          })
+        }
       })
     }
   }
@@ -51,7 +52,8 @@ class OutStandingDoctor extends Component {
     let { arrDoctors, dataSpecialty } = this.state;
     let { language } = this.props;
     arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
-    console.log('check stateeeeeeeeee outstanding: ', this.state)
+    console.log('check steateeeeeee: ', this.state)
+
     return (
       <div className='section-general out-standing-doctor'>
         <div className='section-cotainer'>
@@ -83,8 +85,12 @@ class OutStandingDoctor extends Component {
                       </div>
                       {dataSpecialty && dataSpecialty.length > 0 &&
                         dataSpecialty.map((item, index) => {
+                          let name = item.name;
+                          console.log('check naemmmmmmmmmmmmmmmm: ', name)
                           return (
-                            <span className='text-img' key={index}>{item.name}</span>
+                            <div key={index}>
+                              <span className='text-img'>{item.specialtyData.name}</span>
+                            </div>
                           )
                         })
                       }
