@@ -19,8 +19,6 @@ class OutStandingDoctor extends Component {
 
   async componentDidMount() {
     this.props.loadTopDoctors();
-
-
   }
 
 
@@ -28,15 +26,8 @@ class OutStandingDoctor extends Component {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
       let arrDoctors = this.props.topDoctorsRedux;
 
-      arrDoctors.map(async (item, index) => {
-        let res = await getProfileDoctorById(item.id);
-
-        if (res && res.errCode === 0) {
-          this.setState({
-            dataSpecialty: res.data.Doctor_Infor,
-            arrDoctors: arrDoctors
-          })
-        }
+      this.setState({
+        arrDoctors: arrDoctors
       })
     }
   }
@@ -49,7 +40,7 @@ class OutStandingDoctor extends Component {
   }
 
   render() {
-    let { arrDoctors, dataSpecialty } = this.state;
+    let { arrDoctors } = this.state;
     let { language } = this.props;
     arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
     console.log('check steateeeeeee: ', this.state)
@@ -83,17 +74,8 @@ class OutStandingDoctor extends Component {
                       <div>
                         {language === LANGUAGES.VI ? nameVi : nameEn}
                       </div>
-                      {dataSpecialty && dataSpecialty.length > 0 &&
-                        dataSpecialty.map((item, index) => {
-                          let name = item.name;
-                          console.log('check naemmmmmmmmmmmmmmmm: ', name)
-                          return (
-                            <div key={index}>
-                              <span className='text-img'>{item.specialtyData.name}</span>
-                            </div>
-                          )
-                        })
-                      }
+
+                      <span className='text-img'>{item.Doctor_Infor.specialtyData.name}</span>
                     </div>
                   )
                 })

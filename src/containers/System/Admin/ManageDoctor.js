@@ -39,6 +39,7 @@ class ManageDoctor extends Component {
       selectedPayment: '',
       selectedProvince: '',
       note: '',
+      remote: false,
       clinicId: '',
       specialtyId: ''
     }
@@ -170,6 +171,7 @@ class ManageDoctor extends Component {
       selectedPayment: this.state.selectedPayment.value,
       selectedProvince: this.state.selectedProvince.value,
       note: this.state.note,
+      remote: this.state.remote,
       clinicId: this.state.selectedClinic.value,
       specialtyId: this.state.selectedSpecialty.value
     })
@@ -183,7 +185,7 @@ class ManageDoctor extends Component {
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
 
-      let priceId = '', paymentId = '', provinceId = '', note = '',
+      let priceId = '', paymentId = '', provinceId = '', note = '', remote = false,
         selectedPrice = '', selectedPayment = '', selectedProvince = '',
         selectedSpecialty = '', specialtyId = '',
         selectedClinic = '', clinicId = ''
@@ -191,6 +193,7 @@ class ManageDoctor extends Component {
 
       if (res.data.Doctor_Infor) {
         note = res.data.Doctor_Infor.note;
+        remote = res.data.Doctor_Infor.remote;
         priceId = res.data.Doctor_Infor.priceId;
         paymentId = res.data.Doctor_Infor.paymentId;
         provinceId = res.data.Doctor_Infor.provinceId;
@@ -220,6 +223,7 @@ class ManageDoctor extends Component {
         description: markdown.description,
         hasOldData: true,
         note: note,
+        remote: remote,
         selectedPrice: selectedPrice,
         selectedPayment: selectedPayment,
         selectedProvince: selectedProvince,
@@ -233,6 +237,7 @@ class ManageDoctor extends Component {
         description: '',
         hasOldData: false,
         note: '',
+        remote: false,
         selectedPrice: '',
         selectedPayment: '',
         selectedProvince: '',
@@ -246,7 +251,6 @@ class ManageDoctor extends Component {
     let stateName = name.name;
     let stateCopy = { ...this.state };
     stateCopy[stateName] = selectedOption;
-
     this.setState({
       ...stateCopy
     })
@@ -260,8 +264,15 @@ class ManageDoctor extends Component {
     })
   }
 
+  handleOnchangeRemote = (event) => {
+    this.setState({
+      remote: event.target.checked
+    })
+  }
+
   render() {
     let { hasOldData } = this.state;
+    console.log('checkkkkkkkk state: ', this.state)
 
     return (
       <div className='manage-doctor-container'>
@@ -349,7 +360,13 @@ class ManageDoctor extends Component {
               value={this.state.note}
             ></input>
           </div>
-
+          <div className='remote'>
+            <label>Remote examination</label>
+            <input type="checkbox"
+              onChange={(event) => this.handleOnchangeRemote(event, 'remote')}
+              value={this.state.remote}
+            />
+          </div>
           <div className='manage-doctor-editor'>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}

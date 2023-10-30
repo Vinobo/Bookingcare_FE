@@ -29,8 +29,6 @@ class AddressDoctor extends Component {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
 
       if (res && res.errCode === 0) {
-        // nameCLinic = res.clinicData.name;
-        // addressClinic = res.clinicData.address;
 
         this.setState({
           addressFeeDoctor: res.data,
