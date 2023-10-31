@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import './scss/Footer.scss';
+import './Footer.scss';
 import { FormattedMessage } from 'react-intl';
 
 import Slider from "react-slick";
@@ -12,8 +12,18 @@ class Footer extends Component {
   render() {
 
     return (
-      <div className='footer'>
-        <p>&copy; 2023 TrinhNKGCS18897.</p>
+      <div className='section-general footer'>
+        <div className='section-cotainer'>
+          <div className='footer-content'>
+            <div className='footer-left'>
+              <small>&copy; 2023 TrinhNKGCS18897.</small>
+            </div>
+            <div className='footer-right'>
+              <i className="fab fa-facebook-square"></i>
+              <i class="fab fa-youtube-square"></i>
+            </div>
+          </div>
+        </div>
       </div>
 
     );

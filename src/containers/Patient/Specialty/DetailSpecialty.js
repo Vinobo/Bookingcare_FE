@@ -10,6 +10,8 @@ import AddressDoctor from '../Doctor/AddressDoctor';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
 import { getAllCodeService, getAllDetailSpecialtyById } from '../../../services/userService';
 import _ from 'lodash';
+import About from '../../HomePage/Section/About';
+import Footer from '../../HomePage/Footer';
 
 
 class DetailsSpecialty extends Component {
@@ -206,6 +208,8 @@ class DetailsSpecialty extends Component {
                 )
               })}
           </div>
+          <About />
+          <Footer />
         </div>
       </div >
     );

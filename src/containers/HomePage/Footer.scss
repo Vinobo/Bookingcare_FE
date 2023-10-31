@@ -1,0 +1,37 @@
+.section-general {
+  padding: none;
+  border-bottom: none;
+}
+
+.footer {
+  background: #64b9e5 !important;
+  padding: 10px;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+
+    .footer-left {
+      color: #fff;
+      font-size: smaller;
+    }
+
+    .footer-right {
+      justify-self: end;
+
+      i {
+        font-size: 32px;
+        margin: 5px;
+        background-color: #fff;
+      }
+
+      .fa-facebook-square {
+        color: #3c579e;
+      }
+
+      .fa-youtube-square {
+        color: #cc191e;
+      }
+    }
+  }
+}

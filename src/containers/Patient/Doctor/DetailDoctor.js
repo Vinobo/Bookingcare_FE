@@ -8,6 +8,8 @@ import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import AddressDoctor from './AddressDoctor';
+import About from '../../HomePage/Section/About';
+import Footer from '../../HomePage/Footer';
 
 
 class DetailDoctor extends Component {
@@ -109,6 +111,8 @@ class DetailDoctor extends Component {
           <div className='comment-doctor'>
 
           </div>
+          <About />
+          <Footer />
         </div>
       </>
     );

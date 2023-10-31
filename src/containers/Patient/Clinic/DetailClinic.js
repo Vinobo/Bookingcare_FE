@@ -10,6 +10,8 @@ import AddressDoctor from '../Doctor/AddressDoctor';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
 import { getAllCodeService, getAllDetailClinicById } from '../../../services/userService';
 import _ from 'lodash';
+import About from '../../HomePage/Section/About';
+import Footer from '../../HomePage/Footer';
 
 
 class DetailsClinic extends Component {
@@ -141,6 +143,8 @@ class DetailsClinic extends Component {
                 )
               })}
           </div>
+          <About />
+          <Footer />
         </div>
       </div >
     );

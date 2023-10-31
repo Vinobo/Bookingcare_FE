@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
 import { getProfileDoctorById } from '../../../services/userService';
+
 import Slider from "react-slick";
 
 class OutStandingDoctor extends Component {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './scss/Media.scss';
 import { FormattedMessage } from 'react-intl';
-
 import Slider from "react-slick";
 
 
