@@ -23,9 +23,20 @@ class ManageClinic extends Component {
       imageBase64: '',
       introHTML: '',
       introMarkdown: '',
+      specialtyHTML: '',
+      specialtyMarkdown: '',
+      deviceHTML: '',
+      deviceMarkdown: '',
+      locationHTML: '',
+      locationMarkdown: '',
+      processHTML: '',
+      processMarkdown: '',
+
+      hasOldData: false,
 
       previewImgURL: '',
       isOpen: false,
+
     }
 
   }
@@ -49,10 +60,38 @@ class ManageClinic extends Component {
     })
   }
 
-  handleEditorChange = ({ html, text }) => {
+  handleIntroChange = ({ html, text }) => {
     this.setState({
       introMarkdown: text,
       introHTML: html,
+    })
+  }
+
+  handleSpecialtyChange = ({ html, text }) => {
+    this.setState({
+      specialtyHTML: html,
+      specialtyMarkdown: text,
+    })
+  }
+
+  handleDeviceChange = ({ html, text }) => {
+    this.setState({
+      deviceHTML: html,
+      deviceMarkdown: text,
+    })
+  }
+
+  handleLocationChange = ({ html, text }) => {
+    this.setState({
+      locationMarkdown: text,
+      locationHTML: html,
+    })
+  }
+
+  handleProcessChange = ({ html, text }) => {
+    this.setState({
+      processHTML: html,
+      processMarkdown: text,
     })
   }
 
@@ -88,6 +127,14 @@ class ManageClinic extends Component {
         address: '',
         introHTML: '',
         introMarkdown: '',
+        specialtyHTML: '',
+        specialtyMarkdown: '',
+        deviceHTML: '',
+        deviceMarkdown: '',
+        locationHTML: '',
+        locationMarkdown: '',
+        processHTML: '',
+        processMarkdown: '',
       })
     } else {
       toast.error('Add clinic faile!')
@@ -131,10 +178,43 @@ class ManageClinic extends Component {
             ></input>
           </div>
           <div className='manage-specialty-editor specialty-item'>
+            <label className='title-item'>Intro</label>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
-              onChange={this.handleEditorChange}
+              onChange={this.handleIntroChange}
               value={this.state.introMarkdown}
+            />
+          </div>
+          <div className='manage-specialty-editor specialty-item'>
+            <label className='title-item'>Specialty</label>
+            <MdEditor style={{ height: '300px' }}
+              renderHTML={text => mdParser.render(text)}
+              onChange={this.handleSpecialtyChange}
+              value={this.state.specialtyMarkdown}
+            />
+          </div>
+          <div className='manage-specialty-editor specialty-item'>
+            <div className='title-item'>Device</div>
+            <MdEditor style={{ height: '300px' }}
+              renderHTML={text => mdParser.render(text)}
+              onChange={this.handleDeviceChange}
+              value={this.state.deviceMarkdown}
+            />
+          </div>
+          <div className='manage-specialty-editor specialty-item'>
+            <div className='title-item'>Location</div>
+            <MdEditor style={{ height: '300px' }}
+              renderHTML={text => mdParser.render(text)}
+              onChange={this.handleLocationChange}
+              value={this.state.locationMarkdown}
+            />
+          </div>
+          <div className='manage-specialty-editor specialty-item'>
+            <div className='title-item'>Process</div>
+            <MdEditor style={{ height: '300px' }}
+              renderHTML={text => mdParser.render(text)}
+              onChange={this.handleProcessChange}
+              value={this.state.processMarkdown}
             />
           </div>
           <div className='btn-new-specialty'>

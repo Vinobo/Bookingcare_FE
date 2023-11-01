@@ -43,8 +43,6 @@ class OutStandingDoctor extends Component {
   render() {
     let { arrDoctors } = this.state;
     let { language } = this.props;
-    arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
-    console.log('check steateeeeeee: ', this.state)
 
     return (
       <div className='section-general out-standing-doctor'>
@@ -76,7 +74,9 @@ class OutStandingDoctor extends Component {
                         {language === LANGUAGES.VI ? nameVi : nameEn}
                       </div>
 
-                      <span className='text-img'>{item.Doctor_Infor.specialtyData.name}</span>
+                      <span className='text-img'>
+                        {item.Doctor_Infor && item.Doctor_Infor.specialtyData ? item.Doctor_Infor.specialtyData.name : ''}
+                      </span>
                     </div>
                   )
                 })

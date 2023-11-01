@@ -79,36 +79,46 @@ class DetailsClinic extends Component {
     console.log('check ressssssssssssssssss: ', this.state)
     return (
       <div className='detail-clinic'>
-        <div>
-          <Header />
+        <div className='clinic-container'>
+          <div cl>
+            <Header />
+          </div>
           <div className='clinic-img'
-            style={{
-              backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)),
-              url(${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''})`,
-            }}
+
           >
-            <div className='description-clinic general-container'>
+            <img
+              src={`${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''}`}
+            ></img>
+          </div>
+          <div className='general-container'>
+            <div className='title-clinic'>
               {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
                 <>
                   <div className='name-clinic'>
-                    {dataDetailClinic.name}
+                    <h1>{dataDetailClinic.name}</h1>
                   </div>
                   <div className='address-clinic'>
                     {dataDetailClinic.address}
                   </div>
-                  <div className='max-height'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.introHTML }}
-                  >
-                  </div>
-                  {/* <div>
-                  <span className='btn-showOn'
-                    onClick={() => this.showHideDiscription(true)}
-                  >
-                    <FormattedMessage id="common.see-details" />
-                  </span>
-                </div> */}
                 </>
               }
+            </div>
+          </div>
+          <div className='sticky-menu'>
+            <div className='general-container'>
+              <div className='menu-clinic'>
+                <a href='#doctor'>Đặt lịch khám</a>
+                <a href='#intro'>Giới thiệu</a>
+                <a href='#specialty'>Thế mạnh chuyên môn</a>
+                <a href='#device'>Trang thiết bị</a>
+                <a href='#location'>Vị trí</a>
+                <a href='#process'>Quy trình đi khám</a>
+              </div>
+            </div>
+          </div>
+          <div className='general-container'>
+            <div id='doctor' className='title-detail'>
+              Bác sĩ
             </div>
           </div>
           <div className='general-container'>
@@ -143,6 +153,65 @@ class DetailsClinic extends Component {
                 )
               })}
           </div>
+          <div className='description-clinic general-container'>
+            <div className='intro-clinic'>
+              <div id='intro' className='title-detail'>Giới thiệu</div>
+
+              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                <>
+                  <div className='text-details'
+                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.introHTML }}
+                  >
+                  </div>
+                </>
+              }
+            </div>
+            <div className='specialty-clinic'>
+              <div id='specialty' className='title-detail'>Thế mạnh chuyên môn</div>
+              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                <>
+                  <div className='text-details'
+                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.specialtyHTML }}
+                  >
+                  </div>
+                </>
+              }
+            </div>
+            <div className='device-clinic'>
+              <div id='device' className='title-detail'>Trang thiết bị</div>
+              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                <>
+                  <div className='text-details'
+                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.deviceHTML }}
+                  >
+                  </div>
+                </>
+              }
+            </div>
+            <div className='location-clinic'>
+              <div id='location' className='title-detail'>Vị trí</div>
+              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                <>
+                  <div className='text-details'
+                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.locationHTML }}
+                  >
+                  </div>
+                </>
+              }
+            </div>
+            <div className='process-clinic'>
+              <div id='process' className='title-detail'>Quy trình đi khám</div>
+              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                <>
+                  <div className='text-details'
+                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.processHTML }}
+                  >
+                  </div>
+                </>
+              }
+            </div>
+          </div>
+
           <About />
           <Footer />
         </div>
