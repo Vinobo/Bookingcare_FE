@@ -14,7 +14,8 @@ class OutStandingDoctor extends Component {
     super(props)
     this.state = {
       arrDoctors: [],
-      dataSpecialty: []
+      dataSpecialty: [],
+      doctorId: ''
     }
   }
 
@@ -101,7 +102,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadTopDoctors: () => dispatch(actions.fetchTopDoctor())
+    loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
   }
 };
 

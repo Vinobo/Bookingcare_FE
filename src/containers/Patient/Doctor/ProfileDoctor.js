@@ -128,12 +128,11 @@ class ProfileDoctor extends Component {
                   <span>
                     {language === LANGUAGES.VI ? dataProfile.Doctor_Infor.provinceData.valueVi
                       :
-                      dataProfile.Doctor_Infor.provinceData.value}
+                      dataProfile.Doctor_Infor.provinceData.valueEn}
                   </span>
                 }
               </div>
             }
-
           </div>
         </div>
       </div>

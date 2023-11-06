@@ -63,11 +63,11 @@ class AddressDoctor extends Component {
     })
   }
 
-  showHideInsurance = (status) => {
-    this.setState({
-      isShowDetailInsurance: status
-    })
-  }
+  // showHideInsurance = (status) => {
+  //   this.setState({
+  //     isShowDetailInsurance: status
+  //   })
+  // }
 
   render() {
     let { language } = this.props;
@@ -174,7 +174,7 @@ class AddressDoctor extends Component {
             </>
           }
         </div>
-        <div className='insurance'>
+        {/* <div className='insurance'>
           {isShowDetailInsurance === false ?
             <>
               <div>
@@ -223,7 +223,7 @@ class AddressDoctor extends Component {
               </div>
             </>
           }
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES, CommonUtils } from '../../../utils';
+import { LANGUAGES, CommonUtils, CRUD_ACTIONS } from '../../../utils';
+import * as actions from "../../../store/actions";
 import { FormattedMessage } from 'react-intl';
 import './ManageClinic.scss';
 import MarkdownIt from 'markdown-it';
@@ -10,6 +11,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { createNewClinic } from '../../../services/userService';
 import { toast } from 'react-toastify';
+import Select from 'react-select';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -21,6 +23,8 @@ class ManageClinic extends Component {
     this.state = {
       name: '',
       imageBase64: '',
+      listProvince: [],
+      selectedProvince: '',
       introHTML: '',
       introMarkdown: '',
       specialtyHTML: '',
@@ -41,14 +45,46 @@ class ManageClinic extends Component {
 
   }
 
+  buildDataInputSelect = (inputData, type) => {
+    let result = [];
+    let { language } = this.props;
+    if (inputData && inputData.length > 0) {
+      if (type === 'PROVINCE') {
+        inputData.map((item, index) => {
+          let object = {};
+          let labelVi = `${item.valueVi}`;
+          let labelEn = `${item.valueEn}`;
+          object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+          object.value = item.keyMap;
+          result.push(object)
+        })
+      }
+    }
+    return result;
+  }
+
   async componentDidMount() {
     let { language } = this.props;
-
+    this.props.getAllRequiredDoctorInfor();
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
+      let { resProvince } = this.props.allRequiredDoctorInfor;
+      let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
 
+      this.setState({
+        listProvince: dataSelectProvince,
+      })
+    }
+
+    if (prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor) {
+      let { resProvince } = this.props.allRequiredDoctorInfor;
+      let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
+
+      this.setState({
+        listProvince: dataSelectProvince,
+      })
     }
   }
 
@@ -59,6 +95,7 @@ class ManageClinic extends Component {
       ...stateCopy
     })
   }
+
 
   handleIntroChange = ({ html, text }) => {
     this.setState({
@@ -117,7 +154,21 @@ class ManageClinic extends Component {
   }
 
   handleSaveNewClinic = async () => {
-    let res = await createNewClinic(this.state);
+    let res = await createNewClinic({
+      name: this.state.name,
+      imageBase64: this.state.imageBase64,
+      address: this.state.address,
+      introHTML: this.state.introHTML,
+      introMarkdown: this.state.introMarkdown,
+      specialtyHTML: this.state.specialtyHTML,
+      specialtyMarkdown: this.state.specialtyMarkdown,
+      deviceHTML: this.state.deviceHTML,
+      deviceMarkdown: this.state.deviceMarkdown,
+      locationHTML: this.state.locationHTML,
+      locationMarkdown: this.state.locationMarkdown,
+      processHTML: this.state.processHTML,
+      processMarkdown: this.state.processMarkdown
+    });
     if (res && res.errCode === 0) {
       toast.success('Add new clinic succeed!')
       this.setState({
@@ -137,13 +188,16 @@ class ManageClinic extends Component {
         processMarkdown: '',
       })
     } else {
-      toast.error('Add clinic faile!')
+      toast.error('Add clinic failed!')
       console.log('checkkkkkkkk resssssssssss: ', res)
     }
   }
 
   render() {
     let { language } = this.props;
+    console.log('check stateeeeeee: ', this.state);
+    console.log('check prossssssssss: ', this.props)
+
 
     return (
       <div className='container manage-specialty'>
@@ -170,7 +224,7 @@ class ManageClinic extends Component {
               ></div>
             </div>
           </div>
-          <div className='name-specialty specialty-item'>
+          <div className='address-specialty specialty-item'>
             <label><FormattedMessage id="admin.manage-clinic.address" /></label>
             <input type='text'
               value={this.state.address}
@@ -238,12 +292,14 @@ class ManageClinic extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
+    allRequiredDoctorInfor: state.admin.allRequiredDoctorInfor
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    getAllRequiredDoctorInfor: () => dispatch(actions.getRequiredDoctorInfor()),
   };
 };
 

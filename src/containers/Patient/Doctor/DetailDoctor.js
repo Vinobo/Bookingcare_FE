@@ -108,9 +108,9 @@ class DetailDoctor extends Component {
               }
             </div>
           </div>
-          <div className='comment-doctor'>
+          {/* <div className='comment-doctor'>
 
-          </div>
+          </div> */}
           <About />
           <Footer />
         </div>
@@ -128,8 +128,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
-    // fetchDetailDoctor: () => dispatch(actions.fetchDetailDoctor())
+    //   fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+    //   fetchDetailDoctor: (currentDoctorId) => dispatch(actions.fetchDetailDoctor(currentDoctorId))
   };
 };
 

@@ -107,52 +107,84 @@ class DetailsClinic extends Component {
           <div className='sticky-menu'>
             <div className='general-container'>
               <div className='menu-clinic'>
-                <a href='#doctor'>Đặt lịch khám</a>
-                <a href='#intro'>Giới thiệu</a>
-                <a href='#specialty'>Thế mạnh chuyên môn</a>
-                <a href='#device'>Trang thiết bị</a>
-                <a href='#location'>Vị trí</a>
-                <a href='#process'>Quy trình đi khám</a>
+                {arrDoctorId && !_.isEmpty(arrDoctorId) &&
+                  <>
+                    <a href='#doctor'>Đặt lịch khám</a>
+                  </>
+
+                }
+                {dataDetailClinic && !_.isEmpty(dataDetailClinic.introHTML) &&
+                  <>
+                    <a href='#intro'>Giới thiệu</a>
+                  </>
+                }
+                {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
+                  <>
+                    <a href='#specialty'>Thế mạnh chuyên môn</a>
+                  </>
+                }
+                {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
+                  <>
+                    <a href='#device'>Trang thiết bị</a>
+                  </>
+                }
+                {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
+                  <>
+                    <a href='#location'>Vị trí</a>
+                  </>
+                }
+                {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
+                  <>
+                    <a href='#process'>Quy trình đi khám</a>
+                  </>
+                }
               </div>
             </div>
           </div>
-          <div className='general-container'>
-            <div id='doctor' className='title-detail'>
-              Bác sĩ
-            </div>
-          </div>
-          <div className='general-container'>
-            {arrDoctorId && arrDoctorId.length > 0 &&
-              arrDoctorId.map((item, index) => {
-                return (
-                  <div className='content-clinic' key={index}>
-                    <div className='detail-doctor'>
-                      <div className='profile-doctor'>
-                        <ProfileDoctor
-                          doctorId={item}
-                          // dataTime={dataTime}
-                          isShowDescriptionDoctor={true}
-                          isShowLinkDetail={true}
-                          isShowLocation={true}
-                        />
+          {arrDoctorId && !_.isEmpty(arrDoctorId) &&
+            <>
+              <div className='general-container'>
+                <div id='doctor' className='title-detail'>
+                  Bác sĩ
+                </div>
+              </div>
+            </>
+
+          }
+          {arrDoctorId && arrDoctorId.length > 0 &&
+            arrDoctorId.map((item, index) => {
+              return (
+                <>
+                  <div className='general-container'>
+                    <div className='content-clinic' key={index}>
+                      <div className='detail-doctor'>
+                        <div className='profile-doctor'>
+                          <ProfileDoctor
+                            doctorId={item}
+                            // dataTime={dataTime}
+                            isShowDescriptionDoctor={true}
+                            isShowLinkDetail={true}
+                            isShowLocation={true}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className='extra-infor-doctor'>
-                      <div className='schedule-doctor'>
-                        <DoctorSchedule
-                          doctorIdFromParent={item}
-                        />
-                      </div>
-                      <div className='fee-address-doctor'>
-                        <AddressDoctor
-                          doctorIdFromParent={item}
-                        />
+                      <div className='extra-infor-doctor'>
+                        <div className='schedule-doctor'>
+                          <DoctorSchedule
+                            doctorIdFromParent={item}
+                          />
+                        </div>
+                        <div className='fee-address-doctor'>
+                          <AddressDoctor
+                            doctorIdFromParent={item}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                )
-              })}
-          </div>
+                </>
+              )
+            })}
           <div className='description-clinic general-container'>
             <div className='intro-clinic'>
               <div id='intro' className='title-detail'>Giới thiệu</div>
@@ -166,50 +198,54 @@ class DetailsClinic extends Component {
                 </>
               }
             </div>
-            <div className='specialty-clinic'>
-              <div id='specialty' className='title-detail'>Thế mạnh chuyên môn</div>
-              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
-                <>
+            {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
+              <>
+                <div className='specialty-clinic'>
+                  <div id='specialty' className='title-detail'>Thế mạnh chuyên môn</div>
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.specialtyHTML }}
                   >
                   </div>
-                </>
-              }
-            </div>
-            <div className='device-clinic'>
-              <div id='device' className='title-detail'>Trang thiết bị</div>
-              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
-                <>
+                </div>
+              </>
+            }
+            {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
+              <>
+                <div className='device-clinic'>
+                  <div id='device' className='title-detail'>Trang thiết bị</div>
+
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.deviceHTML }}
                   >
                   </div>
-                </>
-              }
-            </div>
-            <div className='location-clinic'>
-              <div id='location' className='title-detail'>Vị trí</div>
-              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
-                <>
+                </div>
+              </>
+            }
+
+            {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
+              <>
+                <div className='location-clinic'>
+                  <div id='location' className='title-detail'>Vị trí</div>
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.locationHTML }}
                   >
                   </div>
-                </>
-              }
-            </div>
-            <div className='process-clinic'>
-              <div id='process' className='title-detail'>Quy trình đi khám</div>
-              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
-                <>
+                </div>
+              </>
+            }
+            {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
+              <>
+                <div className='process-clinic'>
+                  <div id='process' className='title-detail'>Quy trình đi khám</div>
+
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.processHTML }}
                   >
                   </div>
-                </>
-              }
-            </div>
+                </div>
+              </>
+            }
+
           </div>
 
           <About />

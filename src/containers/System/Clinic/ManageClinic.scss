@@ -9,6 +9,7 @@
 
   .manage-specialy-content {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
     .specialty-item {
@@ -20,9 +21,6 @@
     }
 
     .avatar-specialty {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-
       .preview-container {
         display: flex;
 
@@ -58,6 +56,9 @@
           }
         }
       }
+    }
+
+    .address-specialty {
     }
 
     .manage-specialty-editor {

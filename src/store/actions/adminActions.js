@@ -273,10 +273,10 @@ export const saveInforDoctor = (data) => {
 }
 
 // //get detail Doctor
-// export const fetchDetailDoctor = () => {
+// export const fetchDetailDoctor = currentDoctorId => {
 //   return async (dispatch, getState) => {
 //     try {
-//       let res = await getDetailInforDoctor('?ID');
+//       let res = await getDetailInforDoctor(currentDoctorId);
 //       if (res && res.errCode === 0) {
 //         dispatch({
 //           type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
