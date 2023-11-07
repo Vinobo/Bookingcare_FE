@@ -1,18 +1,27 @@
 .detail-clinic {
   .clinic-container {
     .clinic-img {
-      max-height: 150px;
-      overflow: hidden;
-
+      width: 100%;
+      position: absolute;
+      aspect-ratio: 4.8 / 1;
+      margin-bottom: 60px;
+      left: 0px;
+      right: 0px;
       img {
+        position: absolute;
+        inset: 0px;
         aspect-ratio: 4.8 / 1;
-        background-position: center;
-        background-repeat: no-repeat;
         object-fit: cover;
         height: 100%;
         width: 100%;
-        z-index: -1;
+        color: transparent;
+        z-index: -5;
       }
+    }
+
+    .spacing {
+      width: 100%;
+      aspect-ratio: 7.2 / 1;
     }
 
     .title-clinic {
@@ -74,7 +83,7 @@
       color: inherit;
       font-family: inherit;
       text-align: justify;
-      line-height: 1;
+      line-height: 1.7;
 
       h2 {
         font-size: 20px;
@@ -93,7 +102,6 @@
       .text-details {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
       }
     }

@@ -62,15 +62,29 @@
       grid-column: 1/3;
     }
 
-    .btn-new-specialty {
-      button {
-        border: none;
-        outline: none;
-        padding: 5px 10px;
-        min-width: 70px;
-        border-radius: 5px;
-        background-color: #0071ba;
-        color: white;
+    .edit-specialty {
+      background-color: orange;
+      color: #fff;
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin-bottom: 30px;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    }
+
+    .create-specialty {
+      background-color: blue;
+      color: #fff;
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin-bottom: 30px;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
       }
     }
   }

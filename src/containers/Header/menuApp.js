@@ -6,7 +6,7 @@ export const adminMenu = [
                 name: 'menu.admin.crud', link: '/system/user-manage'
             },
             {
-                name: 'menu.admin.crud-redux', link: '/system/user-redux'
+                name: 'menu.admin.crud-redux', link: '/system/manage-user'
             },
             {
                 name: 'menu.admin.manage-doctor', link: '/system/manage-doctor'
@@ -40,7 +40,10 @@ export const adminMenu = [
         name: 'common.specialty',
         menus: [
             {
-                name: 'menu.admin.manage-specialty', link: '/system/manage-specialty'
+                name: 'menu.admin.create-specialty', link: '/system/create-specialty/'
+            },
+            {
+                name: 'menu.specialty.manage-specialty', link: '/system/manage-specialty'
             },
         ]
 

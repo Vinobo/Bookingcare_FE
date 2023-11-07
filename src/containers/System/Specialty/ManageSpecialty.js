@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES, CommonUtils } from '../../../utils';
+import { LANGUAGES, CommonUtils, CRUD_ACTIONS } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import './ManageSpecialty.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { createNewSpecialty } from '../../../services/userService';
+import { createNewSpecialty, getAllDetailSpecialtyById } from '../../../services/userService';
 import { toast } from 'react-toastify';
 
 // Initialize a markdown parser
@@ -23,16 +23,55 @@ class ManageSpecialty extends Component {
       imageBase64: '',
       descriptionHTML: '',
       descriptionMarkdown: '',
+      currentSpecialtyId: '',
 
       previewImgURL: '',
       isOpen: false,
+
+      hasOldData: false,
     }
+
+  }
+
+  handleEditSpecialty = () => {
 
   }
 
   async componentDidMount() {
     let { language } = this.props;
 
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      let id = this.props.match.params.id;
+      this.setState({
+        currentSpecialtyId: id
+      })
+
+      let res = await getAllDetailSpecialtyById({
+        id: id,
+        location: 'ALL'
+      });
+      let nameSpecialty = '', imageBase64 = '', descriptionHTML = '', descriptionMarkdown = ''
+      if (res.data.image) {
+        const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
+        imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
+      }
+      if (res && res.errCode === 0) {
+        nameSpecialty = res.data.name;
+        imageBase64 = res.data.image;
+        descriptionHTML = res.data.descriptionHTML;
+        descriptionMarkdown = res.data.descriptionMarkdown;
+
+        this.setState({
+          nameSpecialty: nameSpecialty,
+          imageBase64: imageBase64,
+          previewImgURL: imageBase64,
+          descriptionHTML: descriptionHTML,
+          descriptionMarkdown: descriptionMarkdown,
+          hasOldData: true,
+          currentSpecialtyId: id
+        })
+      }
+    }
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -78,28 +117,54 @@ class ManageSpecialty extends Component {
   }
 
   handleSaveNewSpecialty = async () => {
-    let res = await createNewSpecialty(this.state);
-    if (res && res.errCode === 0) {
-      toast.success('Add new specialty succeed!')
-      this.setState({
-        nameSpecialty: '',
-        imageBase64: '',
-        previewImgURL: '',
-        descriptionHTML: '',
-        descriptionMarkdown: '',
-      })
-    } else {
-      toast.error('Add specialty faile!')
+    let { hasOldData } = this.state;
+
+    let res = await createNewSpecialty({
+      nameSpecialty: this.state.nameSpecialty,
+      imageBase64: this.state.imageBase64,
+      descriptionHTML: this.state.descriptionHTML,
+      descriptionMarkdown: this.state.descriptionMarkdown,
+      action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
+      id: this.state.currentSpecialtyId
+    });
+    if (hasOldData === false) {
+      if (res && res.errCode === 0) {
+        toast.success('Add new specialty succeed!')
+        this.setState({
+          nameSpecialty: '',
+          imageBase64: '',
+          previewImgURL: '',
+          descriptionHTML: '',
+          descriptionMarkdown: '',
+        })
+      } else {
+        toast.error('Add specialty failed!')
+      }
+    }
+    if (hasOldData === true) {
+      if (res && res.errCode === 0) {
+        toast.success('Edit the specialty succeed!')
+        this.setState({
+          nameSpecialty: '',
+          imageBase64: '',
+          previewImgURL: '',
+          descriptionHTML: '',
+          descriptionMarkdown: '',
+        })
+      } else {
+        toast.error('Edit the specialty failed!')
+      }
     }
   }
 
   render() {
     let { language } = this.props;
+    let { hasOldData } = this.state
 
     return (
       <div className='container manage-specialty'>
-        <div className='title-specialty'><FormattedMessage id="admin.manage-specialty.title" /></div>
-
+        <div className='title-specialty'>
+          {hasOldData === true ? <FormattedMessage id="menu.admin.edit-specialty" /> : <FormattedMessage id="menu.admin.create-specialty" />}</div>
         <div className='manage-specialy-content'>
           <div className='name-specialty specialty-item'>
             <label><FormattedMessage id="admin.manage-specialty.name" /></label>
@@ -128,10 +193,11 @@ class ManageSpecialty extends Component {
               value={this.state.descriptionMarkdown}
             />
           </div>
-          <div className='btn-new-specialty'>
+          <div>
             <button
+              className={hasOldData === true ? 'edit-specialty' : 'create-specialty'}
               onClick={() => this.handleSaveNewSpecialty()}
-            ><FormattedMessage id="common.save" /></button>
+            > {hasOldData === true ? <FormattedMessage id={"user-manage.edit"} /> : <FormattedMessage id={"common.save"} />}</button>
           </div>
         </div>
         {

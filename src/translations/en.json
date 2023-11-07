@@ -145,12 +145,17 @@
       "crud": "CRUD user",
       "crud-redux": "CRUD redux",
       "manage-clinic": "Manage clinic",
-      "manage-specialty": "Manage specialty",
+      "create-specialty": "Create specialty",
+      "edit-specialty": "Edit specialty",
       "manage-handbook": "Manage handbook"
     },
     "doctor": {
       "manage-schedule": "Manage Doctor's schedule",
       "manage-patient": "Manage Doctor's patient"
+    },
+    "specialty": {
+      "manage-specialty": "Manage specialty",
+      "manage-patient": "Quản lý bệnh nhân khám bệnh"
     }
   },
 

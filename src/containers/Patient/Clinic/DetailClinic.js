@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
@@ -59,7 +59,6 @@ class DetailsClinic extends Component {
   }
 
 
-
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
 
@@ -73,10 +72,12 @@ class DetailsClinic extends Component {
   //   })
   // }
 
+
+
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailClinic } = this.state;
-    console.log('check ressssssssssssssssss: ', this.state)
+
     return (
       <div className='detail-clinic'>
         <div className='clinic-container'>
@@ -90,6 +91,7 @@ class DetailsClinic extends Component {
               src={`${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''}`}
             ></img>
           </div>
+          <div className='spacing'></div>
           <div className='general-container'>
             <div className='title-clinic'>
               {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
@@ -255,6 +257,7 @@ class DetailsClinic extends Component {
     );
   }
 }
+
 
 const mapStateToProps = state => {
   return {

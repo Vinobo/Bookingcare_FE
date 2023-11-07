@@ -59,7 +59,6 @@ class Header extends Component {
   render() {
     let language = this.props.language;
     let { visible } = this.state;
-    console.log('check language', language);
 
     return (
       <React.Fragment>

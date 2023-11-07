@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Header from './Header';
 import Specialty from './Section/Specialty';
-import Telemedicine from './Section/Telemedicine';
 import MedicalFacility from './Section/MedicalFacility';
 import OutStandingDoctor from './Section/OutStandingDoctor';
 import Handbook from './Section/Handbook';
@@ -76,7 +75,6 @@ class HomePage extends Component {
       <div>
         <Header isShowBanner={true} />
         <Specialty settings={settings} />
-        <Telemedicine settings={settings} />
         <MedicalFacility settings={settings} />
         <OutStandingDoctor settings={settings} />
         <Handbook settings={setting_two} />

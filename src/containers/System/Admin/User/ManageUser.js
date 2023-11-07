@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../utils';
-import * as actions from "../../../store/actions";
-import './scss/UserRedux.scss';
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../../utils';
+import * as actions from "../../../../store/actions";
+import './ManageUser.scss';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManageUser from './TableManageUser';
 
 
 
-class UserRedux extends Component {
+class ManageUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -229,7 +229,7 @@ class UserRedux extends Component {
 
         return (
             <div className='user-redux-container'>
-                <div className='title'>User Redux</div>
+                <div className='title'>Manage User</div>
                 <div className="user-redux-body" >
                     <div className='container'>
                         <div className='row g-3'>
@@ -401,4 +401,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUser);

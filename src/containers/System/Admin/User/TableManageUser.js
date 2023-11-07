@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import './scss/TableManageUser.scss';
-import * as actions from "../../../store/actions";
+import './TableManageUser.scss';
+import * as actions from "../../../../store/actions";
 
 class TableManageUser extends Component {
 
