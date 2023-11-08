@@ -9,7 +9,7 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { createNewClinic } from '../../../services/userService';
+import { createNewClinic, getAllClinic, getAllDetailClinicById } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
 
@@ -23,8 +23,7 @@ class ManageClinic extends Component {
     this.state = {
       name: '',
       imageBase64: '',
-      listProvince: [],
-      selectedProvince: '',
+      address: '',
       introHTML: '',
       introMarkdown: '',
       specialtyHTML: '',
@@ -37,6 +36,7 @@ class ManageClinic extends Component {
       processMarkdown: '',
 
       hasOldData: false,
+      currentClinicId: '',
 
       previewImgURL: '',
       isOpen: false,
@@ -45,47 +45,82 @@ class ManageClinic extends Component {
 
   }
 
-  buildDataInputSelect = (inputData, type) => {
-    let result = [];
-    let { language } = this.props;
-    if (inputData && inputData.length > 0) {
-      if (type === 'PROVINCE') {
-        inputData.map((item, index) => {
-          let object = {};
-          let labelVi = `${item.valueVi}`;
-          let labelEn = `${item.valueEn}`;
-          object.label = language === LANGUAGES.VI ? labelVi : labelEn;
-          object.value = item.keyMap;
-          result.push(object)
-        })
-      }
-    }
-    return result;
-  }
 
   async componentDidMount() {
     let { language } = this.props;
-    this.props.getAllRequiredDoctorInfor();
+
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      let id = this.props.match.params;
+      this.setState({
+        currentClinicId: id.id
+      })
+
+      let res = await getAllDetailClinicById(id);
+      let name = '', imageBase64 = '', address = '', introHTML = '', introMarkdown = '',
+        specialtyHTML = '', specialtyMarkdown = '', deviceHTML = '', deviceMarkdown = '',
+        locationHTML = '', locationMarkdown = '', processHTML = '', processMarkdown = ''
+      if (res.data.image) {
+        const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
+        imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
+      }
+      if (res && res.errCode === 0) {
+        name = res.data.name;
+        imageBase64 = res.data.image;
+        address = res.data.address;
+        introHTML = res.data.introHTML;
+        introMarkdown = res.data.introMarkdown;
+        specialtyHTML = res.data.specialtyHTML;
+        specialtyMarkdown = res.data.specialtyMarkdown;
+        deviceHTML = res.data.deviceHTML;
+        deviceMarkdown = res.data.deviceMarkdown;
+        locationHTML = res.data.locationHTML;
+        locationMarkdown = res.data.locationMarkdown;
+        processHTML = res.data.processHTML;
+        processMarkdown = res.data.processMarkdown;
+
+        this.setState({
+          name: name,
+          imageBase64: imageBase64,
+          address: address,
+          previewImgURL: imageBase64,
+          introHTML: introHTML,
+          introMarkdown: introMarkdown,
+          specialtyHTML: specialtyHTML,
+          specialtyMarkdown: specialtyMarkdown,
+          deviceHTML: deviceHTML,
+          deviceMarkdown: deviceMarkdown,
+          locationHTML: locationHTML,
+          locationMarkdown: locationMarkdown,
+          processHTML: processHTML,
+          processMarkdown: processMarkdown,
+          hasOldData: true,
+          currentClinicId: id.id
+        })
+      } else {
+        this.setState({
+          name: '',
+          imageBase64: '',
+          previewImgURL: '',
+          address: '',
+          introHTML: '',
+          introMarkdown: '',
+          specialtyHTML: '',
+          specialtyMarkdown: '',
+          deviceHTML: '',
+          deviceMarkdown: '',
+          locationHTML: '',
+          locationMarkdown: '',
+          processHTML: '',
+          processMarkdown: '',
+          hasOldData: false,
+          currentClinicId: '',
+        })
+      }
+    }
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.language !== prevProps.language) {
-      let { resProvince } = this.props.allRequiredDoctorInfor;
-      let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
 
-      this.setState({
-        listProvince: dataSelectProvince,
-      })
-    }
-
-    if (prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor) {
-      let { resProvince } = this.props.allRequiredDoctorInfor;
-      let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
-
-      this.setState({
-        listProvince: dataSelectProvince,
-      })
-    }
   }
 
   handleOnchangeInput = (event, id) => {
@@ -154,6 +189,8 @@ class ManageClinic extends Component {
   }
 
   handleSaveNewClinic = async () => {
+    let { hasOldData } = this.state;
+
     let res = await createNewClinic({
       name: this.state.name,
       imageBase64: this.state.imageBase64,
@@ -167,51 +204,88 @@ class ManageClinic extends Component {
       locationHTML: this.state.locationHTML,
       locationMarkdown: this.state.locationMarkdown,
       processHTML: this.state.processHTML,
-      processMarkdown: this.state.processMarkdown
+      processMarkdown: this.state.processMarkdown,
+      action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
+      id: this.state.currentClinicId
     });
-    if (res && res.errCode === 0) {
-      toast.success('Add new clinic succeed!')
-      this.setState({
-        name: '',
-        imageBase64: '',
-        previewImgURL: '',
-        address: '',
-        introHTML: '',
-        introMarkdown: '',
-        specialtyHTML: '',
-        specialtyMarkdown: '',
-        deviceHTML: '',
-        deviceMarkdown: '',
-        locationHTML: '',
-        locationMarkdown: '',
-        processHTML: '',
-        processMarkdown: '',
-      })
-    } else {
-      toast.error('Add clinic failed!')
-      console.log('checkkkkkkkk resssssssssss: ', res)
+
+    if (hasOldData === false) {
+      if (res && res.errCode === 0) {
+        toast.success('Add new clinic succeed!')
+        this.setState({
+          name: '',
+          imageBase64: '',
+          previewImgURL: '',
+          address: '',
+          introHTML: '',
+          introMarkdown: '',
+          specialtyHTML: '',
+          specialtyMarkdown: '',
+          deviceHTML: '',
+          deviceMarkdown: '',
+          locationHTML: '',
+          locationMarkdown: '',
+          processHTML: '',
+          processMarkdown: '',
+        })
+
+        if (this.props.history) {
+          this.props.history.push(`/system/manage-clinic`)
+        }
+      } else {
+        toast.error('Add clinic failed!')
+      }
+    }
+
+    if (hasOldData === true) {
+      if (res && res.errCode === 0) {
+        toast.success('Edit the clinic succeed!')
+        this.setState({
+          name: '',
+          imageBase64: '',
+          previewImgURL: '',
+          address: '',
+          introHTML: '',
+          introMarkdown: '',
+          specialtyHTML: '',
+          specialtyMarkdown: '',
+          deviceHTML: '',
+          deviceMarkdown: '',
+          locationHTML: '',
+          locationMarkdown: '',
+          processHTML: '',
+          processMarkdown: '',
+        })
+
+        if (this.props.history) {
+          this.props.history.push(`/system/manage-clinic`)
+        }
+      } else {
+        toast.error('Edit the failed!')
+      }
     }
   }
 
   render() {
     let { language } = this.props;
-    console.log('check stateeeeeee: ', this.state);
-    console.log('check prossssssssss: ', this.props)
-
+    let { hasOldData } = this.state;
+    console.log('check state: ', this.state)
 
     return (
-      <div className='container manage-specialty'>
-        <div className='title-specialty'><FormattedMessage id="admin.manage-clinic.title" /></div>
+      <div className='container manage-clinic'>
+        <div className='title-clinic'>
+          {hasOldData === true ? <FormattedMessage id="admin.manage-clinic.edit-clinic" /> : <FormattedMessage id="admin.manage-clinic.create-clinic" />}
+        </div>
 
         <div className='manage-specialy-content'>
-          <div className='name-specialty specialty-item'>
+          <div className='name-clinic clinic-item'>
             <label><FormattedMessage id="admin.manage-clinic.name" /></label>
             <input type='text'
               value={this.state.name}
               onChange={(event) => this.handleOnchangeInput(event, 'name')}
             ></input>
           </div>
-          <div className='avatar-specialty specialty-item'>
+          <div className='avatar-clinic clinic-item'>
             <label><FormattedMessage id="admin.manage-clinic.img" /></label>
             <div className='preview-container'>
               <input id='uploadImg' type="file" hidden
@@ -224,14 +298,14 @@ class ManageClinic extends Component {
               ></div>
             </div>
           </div>
-          <div className='address-specialty specialty-item'>
+          <div className='address-clinic clinic-item'>
             <label><FormattedMessage id="admin.manage-clinic.address" /></label>
             <input type='text'
               value={this.state.address}
               onChange={(event) => this.handleOnchangeInput(event, 'address')}
             ></input>
           </div>
-          <div className='manage-specialty-editor specialty-item'>
+          <div className='manage-clinic-editor clinic-item'>
             <label className='title-item'>Intro</label>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
@@ -239,7 +313,7 @@ class ManageClinic extends Component {
               value={this.state.introMarkdown}
             />
           </div>
-          <div className='manage-specialty-editor specialty-item'>
+          <div className='manage-clinic-editor clinic-item'>
             <label className='title-item'>Specialty</label>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
@@ -247,7 +321,7 @@ class ManageClinic extends Component {
               value={this.state.specialtyMarkdown}
             />
           </div>
-          <div className='manage-specialty-editor specialty-item'>
+          <div className='manage-clinic-editor clinic-item'>
             <div className='title-item'>Device</div>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
@@ -255,7 +329,7 @@ class ManageClinic extends Component {
               value={this.state.deviceMarkdown}
             />
           </div>
-          <div className='manage-specialty-editor specialty-item'>
+          <div className='manage-clinic-editor clinic-item'>
             <div className='title-item'>Location</div>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
@@ -263,7 +337,7 @@ class ManageClinic extends Component {
               value={this.state.locationMarkdown}
             />
           </div>
-          <div className='manage-specialty-editor specialty-item'>
+          <div className='manage-clinic-editor clinic-item'>
             <div className='title-item'>Process</div>
             <MdEditor style={{ height: '300px' }}
               renderHTML={text => mdParser.render(text)}
@@ -271,10 +345,11 @@ class ManageClinic extends Component {
               value={this.state.processMarkdown}
             />
           </div>
-          <div className='btn-new-specialty'>
+          <div className='btn-new-clinic'>
             <button
+              className={hasOldData === true ? 'edit-clinic' : 'create-clinic'}
               onClick={() => this.handleSaveNewClinic()}
-            ><FormattedMessage id="common.save" /></button>
+            >{hasOldData === true ? <FormattedMessage id={"user-manage.edit"} /> : <FormattedMessage id={"common.save"} />}</button>
           </div>
         </div>
         {
@@ -292,14 +367,11 @@ class ManageClinic extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
-    allRequiredDoctorInfor: state.admin.allRequiredDoctorInfor
-
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllRequiredDoctorInfor: () => dispatch(actions.getRequiredDoctorInfor()),
   };
 };
 

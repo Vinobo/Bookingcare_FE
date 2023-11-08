@@ -3,99 +3,98 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
-import './TableManageSpecialty.scss';
+import './TableManageClinic.scss';
 import * as actions from "../../../store/actions";
-import { deleteSpecialtyService, getAllSpecialties } from '../../../services/userService';
+import { deleteClinicService, getAllClinic } from '../../../services/userService';
 import { toast } from 'react-toastify';
 
 
-class TableManageSpecialty extends Component {
+class TableManageClinic extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      dataSpecialty: [],
+      dataCLinic: [],
 
     }
   }
 
-  handleGetDataSpecialty = async () => {
-    let res = await getAllSpecialties();
+  handleGetDataClinic = async () => {
+    let res = await getAllClinic();
     if (res && res.errCode === 0) {
       this.setState({
-        dataSpecialty: res.data ? res.data.reverse() : []
+        dataCLinic: res.data ? res.data.reverse() : []
       })
     }
   }
 
   async componentDidMount() {
-    this.handleGetDataSpecialty();
+    this.handleGetDataClinic()
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState !== this.state) {
-      this.handleGetDataSpecialty();
+      this.handleGetDataClinic()
     }
   }
 
-  handleEditSpecialty = (specialty) => {
+  handleEditClinic = (clinic) => {
     if (this.props.history) {
-      this.props.history.push(`/system/edit-specialty/${specialty.id}`)
+      this.props.history.push(`/system/edit-clinic/${clinic.id}`)
     }
   }
 
-  handleDeleteSpecialty = async (specialty) => {
-    let res = await deleteSpecialtyService(specialty.id);
+  handleDeleteClinic = async (clinic) => {
+    let res = await deleteClinicService(clinic.id);
     if (res && res.errCode === 0) {
-      toast.success('Delete the specialty succeed!')
+      toast.success('Delete the clinic succeed!')
     } else {
-      toast.error('Delete the specialty failed!')
+      toast.error('Delete the clinic failed!')
     }
   }
 
-  toCreateSpecialty = () => {
+  toCreateClinic = () => {
     if (this.props.history) {
-      this.props.history.push(`/system/create-specialty`)
+      this.props.history.push(`/system/create-clinic`)
     }
   }
 
   render() {
-    let dataSpecialty = this.state.dataSpecialty;
-    console.log('check state ,', this.state)
+    let dataCLinic = this.state.dataCLinic;
 
     return (
-      <div className='mamage-specialty'>
+      <div className='mamage-clinic'>
         <div className='container'>
-          <div className='title-mn-specialty'><FormattedMessage id="admin.manage-specialty.title" /></div>
-          <div className='add-specialty'>
-            <button onClick={() => this.toCreateSpecialty()} >
-              <i className="fas fa-plus"></i> <FormattedMessage id="menu.admin.create-specialty" />
+          <div className='title-mn-clinic'><FormattedMessage id="admin.manage-clinic.title" /></div>
+          <div className='add-clinic'>
+            <button onClick={() => this.toCreateClinic()} >
+              <i className="fas fa-plus"></i> <FormattedMessage id="admin.manage-clinic.create-clinic" />
             </button>
           </div>
-          <table id='table-manage-specialty'>
+          <table id='table-manage-clinic'>
             <tbody>
               <tr>
                 <th>Name</th>
                 <th>Image</th>
-                <th>DescriptionHTML</th>
+                <th>IntroHTML</th>
                 <th><FormattedMessage id="user-manage.action" /></th>
               </tr>
 
-              {dataSpecialty && dataSpecialty.length > 0 &&
-                dataSpecialty.map((item, index) => {
+              {dataCLinic && dataCLinic.length > 0 &&
+                dataCLinic.map((item, index) => {
                   return (
                     <tr key={index}>
                       <td>{item.name}</td>
                       <td className='img-customize' style={{ backgroundImage: `url(${item.image})` }}></td>
-                      <td className='block-item'>{item.descriptionHTML}</td>
+                      <td className='block-item'>{item.introHTML}</td>
                       <td className='btn-item'>
                         <button className='btn-edit'
-                          onClick={() => this.handleEditSpecialty(item)}
+                          onClick={() => this.handleEditClinic(item)}
                         >
                           <i className="far fa-edit"></i>
                         </button>
                         <button className='btn-delete'
-                          onClick={() => this.handleDeleteSpecialty(item)}
+                          onClick={() => this.handleDeleteClinic(item)}
                         >
                           <i className="fas fa-trash-alt"></i>
                         </button>
@@ -124,4 +123,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TableManageSpecialty));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TableManageClinic));

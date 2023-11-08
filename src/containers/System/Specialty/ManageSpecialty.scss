@@ -9,6 +9,7 @@
 
   .manage-specialy-content {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 
     .specialty-item {
@@ -43,6 +44,7 @@
 
         .preview-img {
           width: 70%;
+          height: 90px;
           background: center no-repeat;
           background-size: contain;
           background-color: #e9ecef;

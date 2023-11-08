@@ -73,7 +73,9 @@
       "title": "Manage clinic",
       "name": "Name clinic",
       "img": "Clinic image",
-      "address": "Clinic's address"
+      "address": "Clinic's address",
+      "create-clinic": "Add clinic",
+      "edit-clinic": "Edit clinic"
     }
   },
   "common": {
@@ -145,17 +147,13 @@
       "crud": "CRUD user",
       "crud-redux": "CRUD redux",
       "manage-clinic": "Manage clinic",
-      "create-specialty": "Create specialty",
+      "create-specialty": "Add specialty",
       "edit-specialty": "Edit specialty",
       "manage-handbook": "Manage handbook"
     },
     "doctor": {
       "manage-schedule": "Manage Doctor's schedule",
       "manage-patient": "Manage Doctor's patient"
-    },
-    "specialty": {
-      "manage-specialty": "Manage specialty",
-      "manage-patient": "Quản lý bệnh nhân khám bệnh"
     }
   },
 

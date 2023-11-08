@@ -30,7 +30,7 @@ export const adminMenu = [
         name: 'common.clinic',
         menus: [
             {
-                name: 'menu.admin.manage-clinic', link: '/system/manage-clinic'
+                name: 'admin.manage-clinic.title', link: '/system/manage-clinic'
             },
         ]
 
@@ -40,10 +40,7 @@ export const adminMenu = [
         name: 'common.specialty',
         menus: [
             {
-                name: 'menu.admin.create-specialty', link: '/system/create-specialty/'
-            },
-            {
-                name: 'menu.specialty.manage-specialty', link: '/system/manage-specialty'
+                name: 'admin.manage-specialty.title', link: '/system/manage-specialty'
             },
         ]
 

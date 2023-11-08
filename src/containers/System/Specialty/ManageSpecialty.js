@@ -70,6 +70,16 @@ class ManageSpecialty extends Component {
           hasOldData: true,
           currentSpecialtyId: id
         })
+      } else {
+        this.setState({
+          nameSpecialty: '',
+          imageBase64: '',
+          previewImgURL: '',
+          descriptionHTML: '',
+          descriptionMarkdown: '',
+          hasOldData: false,
+          currentSpecialtyId: ''
+        })
       }
     }
   }
@@ -137,6 +147,9 @@ class ManageSpecialty extends Component {
           descriptionHTML: '',
           descriptionMarkdown: '',
         })
+        if (this.props.history) {
+          this.props.history.push(`/system/manage-specialty`)
+        }
       } else {
         toast.error('Add specialty failed!')
       }
@@ -151,6 +164,9 @@ class ManageSpecialty extends Component {
           descriptionHTML: '',
           descriptionMarkdown: '',
         })
+        if (this.props.history) {
+          this.props.history.push(`/system/manage-specialty`)
+        }
       } else {
         toast.error('Edit the specialty failed!')
       }

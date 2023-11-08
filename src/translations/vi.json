@@ -73,7 +73,9 @@
       "title": "Quản lý phòng khám",
       "name": "Tên phòng khám",
       "img": "Ảnh phòng khám",
-      "address": "Địa chỉ phòng khám"
+      "address": "Địa chỉ phòng khám",
+      "create-clinic": "Thêm phòng khám",
+      "edit-clinic": "Sửa phòng khám"
     }
   },
   "common": {
@@ -155,9 +157,6 @@
     "doctor": {
       "manage-schedule": "Quản lý kế hoạch khám bệnh",
       "manage-patient": "Quản lý bệnh nhân khám bệnh"
-    },
-    "specialty": {
-      "manage-specialty": "Quản lý chuyên khoa"
     }
   },
   "user-manage": {
