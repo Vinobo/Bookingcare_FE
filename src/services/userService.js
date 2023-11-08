@@ -39,8 +39,16 @@ const saveInforDoctorService = (data) => {
   return axios.post('/api/save-infor-doctor', data)
 }
 
+const getAllDoctorInfor = () => {
+  return axios.get(`/api/get-all-doctors-infor`)
+}
+
 const getDetailInforDoctor = (inputId) => {
   return axios.get(`/api/get-detail-doctor-by-id?id=${inputId}`)
+}
+
+const deleteDoctorInforService = (doctorId) => {
+  return axios.delete(`/api/delete-doctor-infor?id=${doctorId}`)
 }
 
 const saveBulkScheduleDoctor = (data) => {
@@ -114,8 +122,9 @@ export {
   handleLoginApi,
   getAllUsers, createNewUserService, deleteUserService, editUserService,
 
-  getAllCodeService, getTopDoctorHomeSevice, getAllDoctors,
-  saveInforDoctorService, getDetailInforDoctor, saveBulkScheduleDoctor,
+  getAllCodeService, getTopDoctorHomeSevice, getAllDoctors, getAllDoctorInfor,
+  saveInforDoctorService, getDetailInforDoctor, deleteDoctorInforService,
+  saveBulkScheduleDoctor,
   getScheduleDoctorByDate, getAddressFeeDoctorById, getProfileDoctorById,
   getAllPatientForDoctor, postSendRemedy,
 

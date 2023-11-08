@@ -1,34 +1,38 @@
 #table-manage-user {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
 
-  .btn-edit {
-    width: 40px;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: rgb(252, 187, 66);
+  .btn-action {
+    text-align: center;
 
-    &:hover {
-      cursor: pointer;
-      background-color: transparent !important;
+    .btn-edit {
+      width: 40px;
+      border: none;
+      outline: none;
+      background: transparent;
       color: rgb(252, 187, 66);
+
+      &:hover {
+        cursor: pointer;
+        background-color: transparent !important;
+        color: rgb(252, 187, 66);
+      }
     }
-  }
 
-  .btn-delete {
-    width: 40px;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: red;
-
-    &:hover {
-      cursor: pointer;
-      background-color: transparent !important;
+    .btn-delete {
+      width: 40px;
+      border: none;
+      outline: none;
+      background: transparent;
       color: red;
+
+      &:hover {
+        cursor: pointer;
+        background-color: transparent !important;
+        color: red;
+      }
     }
   }
 }
@@ -53,4 +57,8 @@
   text-align: left;
   background-color: #04aa6d;
   color: white;
+}
+
+#table-manage-user button i {
+  font-size: 16px;
 }

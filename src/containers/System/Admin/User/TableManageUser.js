@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageUser.scss';
 import * as actions from "../../../../store/actions";
+import { LANGUAGES, LanguageUtils } from '../../../../utils';
 
 class TableManageUser extends Component {
 
@@ -24,6 +25,11 @@ class TableManageUser extends Component {
         userRedux: this.props.listUsers
       })
     }
+    if (prevProps.language !== this.props.language) {
+      this.setState({
+        userRedux: this.props.listUsers
+      })
+    }
   }
 
   handleEditUser = (user) => {
@@ -35,7 +41,8 @@ class TableManageUser extends Component {
   }
 
   render() {
-    let arrUsers = this.state.userRedux
+    let arrUsers = this.state.userRedux;
+    let { language } = this.props
 
     return (
       <>
@@ -46,6 +53,7 @@ class TableManageUser extends Component {
               <th><FormattedMessage id="user-manage.firstName" /></th>
               <th><FormattedMessage id="user-manage.lastName" /></th>
               <th><FormattedMessage id="user-manage.address" /></th>
+              <th>Role</th>
               <th><FormattedMessage id="user-manage.action" /></th>
             </tr>
 
@@ -57,7 +65,8 @@ class TableManageUser extends Component {
                     <td>{item.firstName}</td>
                     <td>{item.lastName}</td>
                     <td>{item.address}</td>
-                    <td>
+                    <td>{language === LANGUAGES.VI ? item.roleData.valueVi : item.roleData.valueEn}</td>
+                    <td className='btn-action'>
                       <button className='btn-edit'
                         onClick={() => this.handleEditUser(item)}
                       >
@@ -84,7 +93,8 @@ class TableManageUser extends Component {
 
 const mapStateToProps = state => {
   return {
-    listUsers: state.admin.users
+    listUsers: state.admin.users,
+    language: state.app.language,
   };
 };
 

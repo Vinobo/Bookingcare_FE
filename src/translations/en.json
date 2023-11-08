@@ -62,7 +62,8 @@
       "addressClinic": "Clinic's address",
       "choose-price": "Select price",
       "choose-payment": "Select payment",
-      "choose-province": "Select province"
+      "choose-province": "Select province",
+      "edit-doctor": "Edit doctor infor"
     },
     "manage-specialty": {
       "title": "Manage specialty",

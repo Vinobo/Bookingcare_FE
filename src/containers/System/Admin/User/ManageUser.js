@@ -232,13 +232,13 @@ class ManageUser extends Component {
                 <div className='title'>Manage User</div>
                 <div className="user-redux-body" >
                     <div className='container'>
-                        <div className='row g-3'>
-                            <div className='col-12 title-user'>
+                        <div className='user-content'>
+                            <div className='title-user'>
                                 {this.state.action === CRUD_ACTIONS.EDIT ?
                                     <FormattedMessage id="user-manage.edit-user" /> :
                                     <FormattedMessage id="user-manage.add-user" />}
                             </div>
-                            <div className="col-md-6">
+                            <div className="email-user">
                                 <label className="form-label"><FormattedMessage id="user-manage.email" /></label>
                                 <input type="email" className="form-control"
                                     value={email}
@@ -246,7 +246,7 @@ class ManageUser extends Component {
                                     disabled={this.state.action === CRUD_ACTIONS.EDIT}
                                 />
                             </div>
-                            <div className="col-md-6">
+                            <div className="password-user">
                                 <label className="form-label"><FormattedMessage id="user-manage.password" /></label>
                                 <input type="password" className="form-control"
                                     value={password}
@@ -254,21 +254,21 @@ class ManageUser extends Component {
                                     disabled={this.state.action === CRUD_ACTIONS.EDIT}
                                 />
                             </div>
-                            <div className="col-md-3">
+                            <div className="firstName">
                                 <label className="form-label"><FormattedMessage id="user-manage.firstName" /> </label>
                                 <input type="text" className="form-control"
                                     value={firstName}
                                     onChange={(event) => this.onChangInput(event, 'firstName')}
                                 />
                             </div>
-                            <div className="col-md-3">
+                            <div className="lastName">
                                 <label className="form-label"><FormattedMessage id="user-manage.lastName" /></label>
                                 <input type="text" className="form-control"
                                     value={lastName}
                                     onChange={(event) => this.onChangInput(event, 'lastName')}
                                 />
                             </div>
-                            <div className="col-md-3">
+                            <div className="gender-user">
                                 <label for="inputState" className="form-label"><FormattedMessage id="user-manage.gender" /></label>
                                 <select id="inputState" className="form-select"
                                     value={gender}
@@ -285,21 +285,21 @@ class ManageUser extends Component {
                                     }
                                 </select>
                             </div>
-                            <div className="col-md-3">
+                            <div className="phoneNumber">
                                 <label className="form-label"><FormattedMessage id="user-manage.mobile" /></label>
                                 <input type="text" className="form-control"
                                     value={phoneNumber}
                                     onChange={(event) => this.onChangInput(event, 'phoneNumber')}
                                 />
                             </div>
-                            <div className="col-md-9">
+                            <div className="address-user">
                                 <label className="form-label"><FormattedMessage id="user-manage.address" /></label>
                                 <input type="text" className="form-control"
                                     value={address}
                                     onChange={(event) => this.onChangInput(event, 'address')}
                                 />
                             </div>
-                            <div className="col-md-3">
+                            <div className="avatar">
                                 <label for="inputEmail4" className="form-label"><FormattedMessage id="user-manage.avatar" /></label>
                                 <div className='preview-container'>
                                     <input id='uploadImg' type="file" hidden
@@ -312,7 +312,7 @@ class ManageUser extends Component {
                                     ></div>
                                 </div>
                             </div>
-                            <div className="col-md-3">
+                            <div className="position">
                                 <label for="inputState" className="form-label"><FormattedMessage id="user-manage.position" /></label>
                                 <select id="inputState" className="form-select"
                                     value={position}
@@ -329,7 +329,7 @@ class ManageUser extends Component {
                                     }
                                 </select>
                             </div>
-                            <div className="col-md-3">
+                            <div className="role">
                                 <label for="inputState" className="form-label"><FormattedMessage id="user-manage.role" /></label>
                                 <select id="inputState" className="form-select"
                                     value={role}
@@ -346,7 +346,7 @@ class ManageUser extends Component {
                                     }
                                 </select>
                             </div>
-                            <div className="col-12">
+                            <div className="btn-user">
                                 <button className={this.state.action === CRUD_ACTIONS.EDIT ? "btn btn-warning" : "btn btn-primary"}
                                     onClick={() => this.handleSaveUser()}
                                 >
@@ -355,7 +355,7 @@ class ManageUser extends Component {
                                         <FormattedMessage id="common.save" />}
                                 </button>
                             </div>
-                            <div className='col-12 mb-5'>
+                            <div className='table-user'>
                                 <TableManageUser
                                     handleEditUserFromParent={this.handleEditUserFromParent}
                                     action={this.state.action}

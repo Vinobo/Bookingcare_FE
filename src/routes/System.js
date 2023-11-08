@@ -4,11 +4,12 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
 import ManageUser from '../containers/System/Admin/User/ManageUser';
 import Header from '../containers/Header/Header';
-import ManageDoctor from '../containers/System/Admin/ManageDoctor';
+import ManageDoctor from '../containers/System/Admin/Doctor/ManageDoctor';
 import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
 import ManageClinic from '../containers/System/Clinic/ManageClinic';
 import TableManageSpecialty from '../containers/System/Specialty/TableManageSpecialty';
 import TableManageClinic from '../containers/System/Clinic/TableManageClinic';
+import TableManageDoctor from '../containers/System/Admin/Doctor/TableManageDoctor';
 
 class System extends Component {
     render() {
@@ -21,7 +22,9 @@ class System extends Component {
                         <Switch>
                             <Route path="/system/user-manage" component={UserManage} />
                             <Route path="/system/manage-user" component={ManageUser} />
-                            <Route path="/system/manage-doctor" component={ManageDoctor} />
+                            <Route path="/system/create-doctor-infor" component={ManageDoctor} />
+                            <Route path="/system/manage-doctor" component={TableManageDoctor} />
+
                             <Route path="/system/create-specialty/" component={ManageSpecialty} />
                             <Route path="/system/edit-specialty/:id" component={ManageSpecialty} />
                             <Route path="/system/manage-specialty" component={TableManageSpecialty} />

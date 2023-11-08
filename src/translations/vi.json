@@ -62,7 +62,8 @@
       "addressClinic": "Địa chỉ phòng khám",
       "choose-price": "Chọn giá khám",
       "choose-payment": "Chọn phương thức thanh toán",
-      "choose-province": "Chọn tỉnh thành"
+      "choose-province": "Chọn tỉnh thành",
+      "edit-doctor": "Thay đổi thông tin bác sĩ"
     },
     "manage-specialty": {
       "title": "Quản lý chuyên khoa",
