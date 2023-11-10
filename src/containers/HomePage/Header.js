@@ -7,18 +7,31 @@ import { withRouter } from 'react-router'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions"
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { getAllSpecialties } from '../../services/userService';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       prevScrollpos: window.pageYOffset,
-      visible: false
+      visible: false,
+      dataSpecialty: []
     };
   }
+  handleDataSpecialty = async () => {
+    let res = await getAllSpecialties();
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataSpecialty: res.data
+      })
+    }
+  }
+
   // Adds an event listener when the component is mount.
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+    this.handleDataSpecialty()
   }
   // Remove the event listener when the component is unmount.
   componentWillUnmount() {
@@ -58,32 +71,43 @@ class Header extends Component {
 
   render() {
     let language = this.props.language;
-    let { visible } = this.state;
+    let { visible, dataSpecialty } = this.state;
 
     return (
       <React.Fragment>
         <div className={`home-header-container sticky-md-top ${visible ? "header-hide" : "header-show"}`}>
           <div className='home-header-content'>
             <div className='left-content'>
-              <i className="fas fa-bars"></i>
               <div className='header-logo'>
                 <img src={logo} onClick={() => this.returnToHome()} />
               </div>
             </div>
 
             <div className='center-content'>
-              <div className='child-content'>
-                <div className='subs-title'><b><FormattedMessage id="common.specialty" /></b></div>
-                <div className='subs-content'><FormattedMessage id="home-header.search-doctor" /></div>
-              </div>
-              <div className='child-content'>
-                <div className='subs-title'><b><FormattedMessage id="home-header.health-facility" /></b></div>
-                <div className='subs-content'><FormattedMessage id="home-header.select-room" /></div>
-              </div>
-              <div className='child-content'>
-                <div className='subs-title'><b><FormattedMessage id="common.doctor" /></b></div>
-                <div className='subs-content'><FormattedMessage id="home-header.select-doctor" /></div>
-              </div>
+              <Link to={`/all-specialty/`}
+                className='text-view'
+              >
+                <div className='child-content'>
+                  <div className='subs-title'><b><FormattedMessage id="common.specialty" /></b></div>
+                  <div className='subs-content'><FormattedMessage id="home-header.search-doctor" /></div>
+                </div>
+              </Link>
+              <Link to={`/all-clinic/`}
+                className='text-view'
+              >
+                <div className='child-content'>
+                  <div className='subs-title'><b><FormattedMessage id="home-header.health-facility" /></b></div>
+                  <div className='subs-content'><FormattedMessage id="home-header.select-room" /></div>
+                </div>
+              </Link>
+              <Link to={`/all-doctor/`}
+                className='text-view'
+              >
+                <div className='child-content'>
+                  <div className='subs-title'><b><FormattedMessage id="common.doctor" /></b></div>
+                  <div className='subs-content'><FormattedMessage id="home-header.select-doctor" /></div>
+                </div>
+              </Link>
               <div className='child-content'>
                 <div className='subs-title'><b><FormattedMessage id="home-header.fee" /></b></div>
                 <div className='subs-content'><FormattedMessage id="home-header.general-health-check" /></div>
@@ -114,14 +138,20 @@ class Header extends Component {
 
             <div className='content-down'>
               <div className='options'>
-                <div className='option-child'>
-                  <div className='icon-child'><i className="far fa-hospital"></i></div>
-                  <div className='text-child'><FormattedMessage id="banner.child1" /></div>
-                </div>
+                <Link to={`/all-specialty/`}
+                  className='text-view'
+                >
+                  <div className='option-child'>
+                    <div className='icon-child'><i className="far fa-hospital"></i></div>
+                    <div className='text-child'><FormattedMessage id="banner.child1" /></div>
+                  </div>
+                </Link>
+
                 <div className='option-child'>
                   <div className='icon-child'><i className="fas fa-mobile-alt"></i></div>
                   <div className='text-child'><FormattedMessage id="banner.child2" /></div>
                 </div>
+
                 <div className='option-child'>
                   <div className='icon-child'><i className="fas fa-stethoscope"></i></div>
                   <div className='text-child'><FormattedMessage id="banner.child3" /></div>

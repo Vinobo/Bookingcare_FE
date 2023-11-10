@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../utils';
 import { FormattedMessage } from 'react-intl';
+import './DefaultClass.scss';
 
 
 class DefaultClass extends Component {

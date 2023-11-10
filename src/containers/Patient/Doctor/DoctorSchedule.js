@@ -19,6 +19,7 @@ class DoctorSchedule extends Component {
     this.state = {
       allDays: [],
       allAvailable: [],
+      dataBooking: [],
       isOpenBookingDoctor: false,
       dataScheduleTimeModal: {}
     }
@@ -35,7 +36,8 @@ class DoctorSchedule extends Component {
     if (this.props.doctorIdFromParent) {
       let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
       this.setState({
-        allAvailable: res.data ? res.data : []
+        allAvailable: res.data.dataSchedule ? res.data.dataSchedule : [],
+        dataBooking: res.data.dataBooking ? res.data.dataBooking : []
       })
     }
   }
@@ -82,11 +84,12 @@ class DoctorSchedule extends Component {
         allDays: allDays
       })
     }
-    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
+    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent && prevState !== this.state) {
       let allDays = this.getArrDays(this.props.language);
       let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
       this.setState({
-        allAvailable: res.data ? res.data : []
+        allAvailable: res.data.dataSchedule ? res.data.dataSchedule : [],
+        dataBooking: res.data.dataBooking ? res.data.dataBooking : []
       })
     }
   }
@@ -99,7 +102,8 @@ class DoctorSchedule extends Component {
 
       if (res && res.errCode === 0) {
         this.setState({
-          allAvailable: res.data ? res.data : []
+          allAvailable: res.data.dataSchedule ? res.data.dataSchedule : [],
+          dataBooking: res.data.dataBooking ? res.data.dataBooking : []
         })
       }
     }
@@ -119,7 +123,7 @@ class DoctorSchedule extends Component {
   }
 
   render() {
-    let { allDays, allAvailable, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
+    let { allDays, allAvailable, dataBooking, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
 
     return (
@@ -149,22 +153,33 @@ class DoctorSchedule extends Component {
               {allAvailable && allAvailable.length > 0 ?
                 <>
                   <div className='time-schedule-btns'>
-                    {allAvailable.map((item, index) => {
-                      let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
+                    {/* {dataBooking.map((item, index) => {
+                      let statusBooking = item.statusId;
+                      let doctocBooking = item.doctorId;
+                      let dateBooking = item.date;
+                      let timeBooking = item.timeType;
+                      let btnTime =
+                        ( */}
+                    {allAvailable.map((value, index) => {
+                      let timeDisplay = language === LANGUAGES.VI ? value.timeTypeData.valueVi : value.timeTypeData.valueEn;
                       return (
                         <button key={index}
-                          className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'}
-                          onClick={() => this.handleClickScheduleTime(item)}
+                          className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'
+                          }
+                          onClick={() => this.handleClickScheduleTime(value)}
                         >
                           {timeDisplay}
-                        </button>
-                      )
-                    })
-                    }
-                  </div>
+                        </button>);
+                    })}
+                    {/* )
+                      return btnTime; */}
 
-                  <div className='book-free'>
-                    <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
+                    {/* })} */}
+
+
+                    <div className='book-free'>
+                      <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
+                    </div>
                   </div>
                 </>
                 :
@@ -173,7 +188,7 @@ class DoctorSchedule extends Component {
               }
             </div>
           </div>
-        </div>
+        </div >
         <BookingDoctor
           isOpenModal={isOpenBookingDoctor}
           closeBookingDoctor={this.closeBookingDoctor}

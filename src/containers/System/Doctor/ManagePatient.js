@@ -115,7 +115,6 @@ class ManagePatient extends Component {
   render() {
     let { language } = this.props;
     let { dataPatient, isOpenRemedyModal, dataModal } = this.state;
-    console.log('checkkkkkkkk state: ', this.state)
     return (
       <>
         <LoadingOverlay

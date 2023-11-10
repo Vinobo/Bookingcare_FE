@@ -34,12 +34,6 @@
       justify-content: flex-start;
       gap: 10px;
 
-      i {
-        font-size: 25px;
-        color: gray;
-        cursor: pointer;
-      }
-
       .header-logo {
         // background: url("../../assets/images/bookingcare-2020.svg") center center no-repeat;
         // height: 40px;
@@ -222,5 +216,15 @@
         }
       }
     }
+  }
+}
+
+.text-view {
+  text-decoration: none;
+  color: #333;
+  outline: none;
+
+  &:visited {
+    color: #333;
   }
 }

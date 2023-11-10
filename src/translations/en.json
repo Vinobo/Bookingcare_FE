@@ -38,6 +38,11 @@
     "title": "Manage doctor's patient"
   },
   "patient": {
+    "title": {
+      "all-doctor": "List of doctors",
+      "all-specialty": "List of medical specialties",
+      "all-clinic": "List of medical facilities"
+    },
     "detail-doctor": {
       "not-schedule": "The doctor does not schedules available during this time, please choose another time!",
       "payment": "The clinic accepts payment in the form of cash and card swipe"

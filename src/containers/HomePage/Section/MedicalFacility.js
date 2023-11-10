@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
 import { getAllClinic } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 class MedicalFacility extends Component {
   constructor(props) {
@@ -37,7 +38,11 @@ class MedicalFacility extends Component {
         <div className='section-cotainer'>
           <div className='section-header'>
             <span><FormattedMessage id="home-body.outstanding-facility" /></span>
-            <button><FormattedMessage id="common.search" /></button>
+            <Link to={`/all-clinic/`}
+              className='text-view'
+            >
+              <button><FormattedMessage id="home-body.view-more" /></button>
+            </Link>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>

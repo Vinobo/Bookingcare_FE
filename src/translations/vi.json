@@ -38,6 +38,11 @@
     "title": "Quản lý bệnh nhân khám bệnh của bác sĩ"
   },
   "patient": {
+    "title": {
+      "all-doctor": "Danh sách các bác sĩ",
+      "all-specialty": "Danh sách chuyên khoa khám",
+      "all-clinic": "Danh sách cơ sở y tế"
+    },
     "detail-doctor": {
       "not-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
       "payment": "Phòng khám có thanh toán bằng hình thức tiền mặt và quẹt thẻ"

@@ -90,7 +90,6 @@ class ProfileDoctor extends Component {
             <div className='avatar-doctor'
               style={{ backgroundImage: `url(${dataProfile && dataProfile.image ? dataProfile.image : ''})` }}
             >
-
             </div>
             {isShowLinkDetail === true &&
               <div className='view-detail-doctor'>

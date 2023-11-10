@@ -6,7 +6,7 @@ import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
 import { getProfileDoctorById } from '../../../services/userService';
-
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 import Slider from "react-slick";
 
 class OutStandingDoctor extends Component {
@@ -14,7 +14,6 @@ class OutStandingDoctor extends Component {
     super(props)
     this.state = {
       arrDoctors: [],
-      dataSpecialty: [],
       doctorId: ''
     }
   }
@@ -50,7 +49,11 @@ class OutStandingDoctor extends Component {
         <div className='section-cotainer'>
           <div className='section-header'>
             <span><FormattedMessage id="home-body.outstanding-doctor" /></span>
-            <button><FormattedMessage id="common.search" /></button>
+            <Link to={`/all-doctor/`}
+              className='text-view'
+            >
+              <button><FormattedMessage id="home-body.view-more" /></button>
+            </Link>
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>

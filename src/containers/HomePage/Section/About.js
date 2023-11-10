@@ -67,7 +67,7 @@ class About extends Component {
               <span className='title-pt'>Đối tác bảo trợ nội dung</span>
               <ul>
                 <li>
-                  <a href="#" target="_blank">
+                  <a href="https://hellodoctors.vn/" target="_blank">
                     <img src="https://cdn.bookingcare.vn/fo/2023/09/08/093706-hellodoctorlogo.png" width="65px" height="40px" />
                     <div class="pt-detail">
                       <span className='title-pt'>Hello Doctor</span>
@@ -76,7 +76,7 @@ class About extends Component {
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank">
+                  <a href="https://bernard.vn/" target="_blank">
                     <img src="https://cdn.bookingcare.vn/fo/2022/03/21/082316-logo-bernard.png" width="65px" height="65px" />
                     <div class="pt-detail">
                       <span className='title-pt'>Hệ thống y khoa chuyên sâu quốc tế Bernard</span>
