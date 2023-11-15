@@ -60,13 +60,17 @@ class DetailDoctor extends Component {
       nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
       nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
-    console.log('check prossss: ', this.props)
 
     return (
       <>
         <Header isShowBanner={false} />
-
         <div className='doctor-detail-container'>
+          <div className='goBack'>
+            <div className='general-container'
+              onClick={() => this.props.history.goBack()}>
+              <i className="fas fa-long-arrow-alt-left"></i>
+            </div>
+          </div>
           <div className='intro-doctor general-container'>
             <div className='content-left'
               style={{ backgroundImage: `url(${detailDoctor && detailDoctor.image ? detailDoctor.image : ''})` }}

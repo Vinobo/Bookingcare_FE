@@ -1,6 +1,31 @@
 .detail-specialty {
   background-color: #eee;
 
+  .goBack {
+    background-color: #45c3d2;
+
+    .flex-back {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .css-13cymwt-control {
+        min-height: 30px;
+      }
+
+      .css-1xc3v61-indicatorContainer {
+        padding: 5px 8px;
+      }
+    }
+
+    i {
+      font-size: 20px;
+      padding: 10px 0;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .specialty-img {
     background-position: center center;
     background-repeat: no-repeat;

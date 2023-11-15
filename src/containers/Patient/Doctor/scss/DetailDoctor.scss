@@ -1,8 +1,25 @@
 .doctor-detail-container {
   .general-container {
     padding: 15px 15px;
-    margin: 0 240px;
+    width: 70%;
+    margin: 0 auto;
   }
+
+  .goBack {
+    background-color: #45c3d2;
+
+    i {
+      font-size: 20px;
+      padding: 5px 0;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .general-container {
+      padding: 0 15px;
+    }
+  }
+
   .intro-doctor {
     display: flex;
 

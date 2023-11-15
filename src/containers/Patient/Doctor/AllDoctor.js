@@ -5,11 +5,12 @@ import { LANGUAGES } from '../../../utils';
 import './scss/AllDoctor.scss';
 import * as actions from '../../../store/actions';
 import { FormattedMessage } from 'react-intl';
-import { getAllDoctor } from '../../../services/userService';
+import { getAllCodeService, getAllDetailDoctorByLoction, getAllDoctor } from '../../../services/userService';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import _ from 'lodash';
 
 class AllDoctor extends Component {
 
@@ -17,6 +18,7 @@ class AllDoctor extends Component {
     super(props);
     this.state = {
       arrDoctors: [],
+      listProvince: []
     }
 
   }
@@ -24,36 +26,84 @@ class AllDoctor extends Component {
 
   async componentDidMount() {
     let { language } = this.props;
-    this.props.loadTopDoctors();
+
+    let res = await getAllDetailDoctorByLoction({
+      location: 'ALL'
+    });
+
+    let resProvince = await getAllCodeService('PROVINCE')
+
+    if (res && res.errCode === 0 && resProvince && resProvince.errCode === 0) {
+
+      let dataProvince = resProvince.data;
+      if (dataProvince && dataProvince.length > 0) {
+        dataProvince.unshift({
+          keyMap: 'ALL',
+          type: 'PROVINCE',
+          valueEn: 'ALL',
+          valueVi: 'Toàn quốc'
+        })
+      }
+
+      this.setState({
+        dataDetailDoctor: res.data,
+        listProvince: dataProvince ? dataProvince : []
+      })
+    }
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
 
     }
-    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
-      let arrDoctors = this.props.topDoctorsRedux;
 
-      this.setState({
-        arrDoctors: arrDoctors
-      })
-    }
+  }
+
+  handleOnChangeSelectProvince = async (event) => {
+    let location = event.target.value;
+    let res = await getAllDetailDoctorByLoction({
+      location: location
+    });
+
+    this.setState({
+      dataDetailDoctor: res.data,
+    })
   }
 
   render() {
     let { language } = this.props;
-    let { arrDoctors } = this.state
+    let { dataDetailDoctor, listProvince } = this.state;
+    console.log('cheks stateeeeeeeeee: ', this.state)
 
     return (
       <>
         <Header></Header>
         <div className='all-doctor-container'>
+          <div className='goBack'>
+            <div className='general-container flex-back'>
+              <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+            </div>
+          </div>
           <div className='general-container'>
             <h1><FormattedMessage id="patient.title.all-doctor" /></h1>
+            <div className='search-specialty-doctor'>
+              <select className='select-province'
+                onChange={(event) => this.handleOnChangeSelectProvince(event)}>
+                {listProvince && listProvince.length > 0 &&
+                  listProvince.map((item, index) => {
+                    return (
+                      <option key={index} value={item.keyMap}>
+                        {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
+                      </option>
+                    )
+                  })
+                }
+              </select>
+            </div>
             <div className='detail-all-doctor'>
-              {arrDoctors && arrDoctors.length > 0 ?
+              {dataDetailDoctor && dataDetailDoctor.length > 0 ?
                 <>
-                  {arrDoctors.map((item, index) => {
+                  {dataDetailDoctor.map((item, index) => {
                     let imageBase64 = '';
                     if (item.image) {
                       imageBase64 = new Buffer(item.image, 'base64').toString('binary');
@@ -95,13 +145,12 @@ class AllDoctor extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
-    topDoctorsRedux: state.admin.topDoctors,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
+
   };
 };
 

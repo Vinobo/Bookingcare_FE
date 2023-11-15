@@ -1,4 +1,15 @@
 .all-doctor-container {
+  .goBack {
+    background-color: #45c3d2;
+
+    i {
+      font-size: 20px;
+      padding: 10px 0;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
   .general-container {
     padding-right: 15px;
     padding-left: 15px;
@@ -46,10 +57,12 @@
           gap: 5px;
 
           & span:first-child {
-            font-size: 18px;
+            font-size: 14px;
+            font-weight: 500;
           }
 
           & span:last-child {
+            font-size: 12px;
             font-style: italic;
           }
         }

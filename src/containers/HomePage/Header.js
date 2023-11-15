@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
 import './Header.scss';
 import logo from "../../assets/images/bookingcare-2020.svg";
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions"

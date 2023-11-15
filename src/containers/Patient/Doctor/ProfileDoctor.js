@@ -80,7 +80,7 @@ class ProfileDoctor extends Component {
       nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
-    console.log('check stateee: ', this.state)
+
     return (
       <div className='container profile-doctor'>
         <div className='intro-doctor'>

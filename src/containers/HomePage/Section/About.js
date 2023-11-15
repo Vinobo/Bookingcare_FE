@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './scss/About.scss';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
 import logo from "../../../assets/images/bookingcare-2020.svg";
 import MOIT from "../../../assets/about/bo-cong-thuong.svg"
 import Slider from "react-slick";
@@ -110,4 +111,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(About));

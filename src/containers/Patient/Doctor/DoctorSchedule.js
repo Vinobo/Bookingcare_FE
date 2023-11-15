@@ -153,30 +153,25 @@ class DoctorSchedule extends Component {
               {allAvailable && allAvailable.length > 0 ?
                 <>
                   <div className='time-schedule-btns'>
-                    {/* {dataBooking.map((item, index) => {
-                      let statusBooking = item.statusId;
-                      let doctocBooking = item.doctorId;
-                      let dateBooking = item.date;
-                      let timeBooking = item.timeType;
-                      let btnTime =
-                        ( */}
                     {allAvailable.map((value, index) => {
                       let timeDisplay = language === LANGUAGES.VI ? value.timeTypeData.valueVi : value.timeTypeData.valueEn;
-                      return (
+                      let btnTime =
                         <button key={index}
                           className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'
                           }
                           onClick={() => this.handleClickScheduleTime(value)}
                         >
                           {timeDisplay}
-                        </button>);
+                        </button>;
+                      // if (dataBooking && dataBooking.length > 0) {
+                      //   if ((dataBooking.map(item) => item) !== value)
+                      //     return btnTime;
+
+                      // } else {
+                      //   return btnTime
+                      // }
+                      return btnTime
                     })}
-                    {/* )
-                      return btnTime; */}
-
-                    {/* })} */}
-
-
                     <div className='book-free'>
                       <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
                     </div>

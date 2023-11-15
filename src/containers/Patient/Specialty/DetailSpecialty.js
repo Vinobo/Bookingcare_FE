@@ -8,10 +8,11 @@ import Header from '../../HomePage/Header';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import AddressDoctor from '../Doctor/AddressDoctor';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
-import { getAllCodeService, getAllDetailSpecialtyById } from '../../../services/userService';
+import { getAllCodeService, getAllDetailSpecialtyById, getAllSpecialties } from '../../../services/userService';
 import _ from 'lodash';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
+import Select from 'react-select';
 
 
 class DetailsSpecialty extends Component {
@@ -22,7 +23,9 @@ class DetailsSpecialty extends Component {
       arrDoctorId: [],
       dataDetailSpecialty: {},
       listProvince: [],
-      isShowDescriptionSpecialty: false
+      isShowDescriptionSpecialty: false,
+      selectedSpecialty: '',
+      listSpecialty: []
     }
 
   }
@@ -71,6 +74,14 @@ class DetailsSpecialty extends Component {
       }
     }
 
+    let res = await getAllSpecialties();
+    if (res && res.errCode === 0) {
+      let dataSelect = this.buildDataInputSelect(res.data)
+      this.setState({
+        listSpecialty: dataSelect
+      })
+    }
+
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -115,14 +126,44 @@ class DetailsSpecialty extends Component {
     })
   }
 
+  buildDataInputSelect = (inputData) => {
+    let result = [];
+    if (inputData && inputData.length > 0) {
+      inputData.map((item, index) => {
+        let object = {};
+        object.label = item.name;
+        object.value = item.id;
+        result.push(object)
+      })
+    }
+
+    return result;
+  }
+
+  handleChangeSelect = async (selectedSpecialty) => {
+    this.setState({ selectedSpecialty: selectedSpecialty });
+
+  }
+
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
-    let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty } = this.state;
+    let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty } = this.state;
+    console.log('check state: ', this.state)
 
     return (
       <div className='detail-specialty'>
         <div>
           <Header />
+          <div className='goBack'>
+            <div className='general-container flex-back'>
+              <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+              <Select
+                value={selectedSpecialty}
+                onChange={this.handleChangeSelect}
+                options={listSpecialty}
+              />
+            </div>
+          </div>
           <div className='specialty-img'
             style={{
               backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)),
@@ -132,7 +173,6 @@ class DetailsSpecialty extends Component {
             <div className='description-specialty general-container'>
               {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
                 <>
-
                   <div className={isShowDescriptionSpecialty === false ? 'max-height' : 'min-height'
                   }
                     dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
