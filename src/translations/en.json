@@ -56,6 +56,9 @@
       "address": "Address",
       "reason": "Reason",
       "confirm": "Confirm"
+    },
+    "specialty": {
+      "select": "Select another specialty"
     }
   },
   "admin": {

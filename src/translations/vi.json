@@ -56,6 +56,9 @@
       "address": "Địa chỉ liên hệ",
       "reason": "Lý do khám",
       "confirm": "Xác nhận đặt khám"
+    },
+    "specialty":{
+      "select": "Chọn chuyên khoa khác"
     }
   },
   "admin": {

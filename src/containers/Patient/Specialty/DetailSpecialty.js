@@ -13,6 +13,7 @@ import _ from 'lodash';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import Select from 'react-select';
+import { withRouter } from 'react-router';
 
 
 class DetailsSpecialty extends Component {
@@ -30,9 +31,7 @@ class DetailsSpecialty extends Component {
 
   }
 
-  async componentDidMount() {
-    let { language } = this.props;
-
+  handleData = async () => {
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
 
@@ -52,7 +51,6 @@ class DetailsSpecialty extends Component {
             arr.map(item => {
               arrDoctorId.push(item.doctorId)
             })
-
           }
         }
 
@@ -73,6 +71,12 @@ class DetailsSpecialty extends Component {
         })
       }
     }
+  }
+
+  async componentDidMount() {
+    let { language } = this.props;
+
+    this.handleData()
 
     let res = await getAllSpecialties();
     if (res && res.errCode === 0) {
@@ -87,6 +91,9 @@ class DetailsSpecialty extends Component {
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
 
+    }
+    if (this.props.location !== prevProps.location) {
+      this.handleData()
     }
   }
 
@@ -136,19 +143,29 @@ class DetailsSpecialty extends Component {
         result.push(object)
       })
     }
-
     return result;
   }
 
   handleChangeSelect = async (selectedSpecialty) => {
-    this.setState({ selectedSpecialty: selectedSpecialty });
+    if (this.props.history) {
+      this.props.history.push(`/detail-specialty/${selectedSpecialty.value}`)
+    }
+    // window.location.reload()
+    this.setState({
+      selectedSpecialty: selectedSpecialty,
+    });
+  }
+
+  handleGoBack = () => {
+    if (this.props.history) {
+      this.props.history.goBack();
+    }
 
   }
 
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty } = this.state;
-    console.log('check state: ', this.state)
 
     return (
       <div className='detail-specialty'>
@@ -156,11 +173,12 @@ class DetailsSpecialty extends Component {
           <Header />
           <div className='goBack'>
             <div className='general-container flex-back'>
-              <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+              <i className="fas fa-long-arrow-alt-left" onClick={() => this.handleGoBack()}></i>
               <Select
                 value={selectedSpecialty}
                 onChange={this.handleChangeSelect}
                 options={listSpecialty}
+                placeholder={<FormattedMessage id="patient.specialty.select" />}
               />
             </div>
           </div>
@@ -216,7 +234,6 @@ class DetailsSpecialty extends Component {
                 }
               </select>
             </div>
-
             {arrDoctorId && arrDoctorId.length > 0 &&
               arrDoctorId.map((item, index) => {
                 return (
@@ -268,4 +285,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsSpecialty);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DetailsSpecialty));

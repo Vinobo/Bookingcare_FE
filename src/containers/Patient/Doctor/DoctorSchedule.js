@@ -19,7 +19,6 @@ class DoctorSchedule extends Component {
     this.state = {
       allDays: [],
       allAvailable: [],
-      dataBooking: [],
       isOpenBookingDoctor: false,
       dataScheduleTimeModal: {}
     }
@@ -36,8 +35,7 @@ class DoctorSchedule extends Component {
     if (this.props.doctorIdFromParent) {
       let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
       this.setState({
-        allAvailable: res.data.dataSchedule ? res.data.dataSchedule : [],
-        dataBooking: res.data.dataBooking ? res.data.dataBooking : []
+        allAvailable: res.data ? res.data : [],
       })
     }
   }
@@ -84,12 +82,12 @@ class DoctorSchedule extends Component {
         allDays: allDays
       })
     }
-    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent && prevState !== this.state) {
+    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
       let allDays = this.getArrDays(this.props.language);
       let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
       this.setState({
-        allAvailable: res.data.dataSchedule ? res.data.dataSchedule : [],
-        dataBooking: res.data.dataBooking ? res.data.dataBooking : []
+        allAvailable: res.data ? res.data : [],
+        allDays: allDays
       })
     }
   }
@@ -102,8 +100,7 @@ class DoctorSchedule extends Component {
 
       if (res && res.errCode === 0) {
         this.setState({
-          allAvailable: res.data.dataSchedule ? res.data.dataSchedule : [],
-          dataBooking: res.data.dataBooking ? res.data.dataBooking : []
+          allAvailable: res.data ? res.data : [],
         })
       }
     }
@@ -123,7 +120,7 @@ class DoctorSchedule extends Component {
   }
 
   render() {
-    let { allDays, allAvailable, dataBooking, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
+    let { allDays, allAvailable, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
 
     return (
@@ -163,13 +160,6 @@ class DoctorSchedule extends Component {
                         >
                           {timeDisplay}
                         </button>;
-                      // if (dataBooking && dataBooking.length > 0) {
-                      //   if ((dataBooking.map(item) => item) !== value)
-                      //     return btnTime;
-
-                      // } else {
-                      //   return btnTime
-                      // }
                       return btnTime
                     })}
                     <div className='book-free'>

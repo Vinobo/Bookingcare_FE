@@ -12,6 +12,7 @@ import { getAllCodeService, getAllDetailClinicById } from '../../../services/use
 import _ from 'lodash';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 
 class DetailsClinic extends Component {
@@ -113,7 +114,6 @@ class DetailsClinic extends Component {
                   <>
                     <a href='#doctor'>Đặt lịch khám</a>
                   </>
-
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.introHTML) &&
                   <>
