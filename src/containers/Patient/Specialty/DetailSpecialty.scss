@@ -1,28 +1,58 @@
 .detail-specialty {
   background-color: #eee;
 
-  .goBack {
-    background-color: #45c3d2;
+  .sticky-menu {
+    position: sticky;
+    top: 0;
 
-    .flex-back {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .goBack {
+      background-color: #45c3d2;
 
-      .css-13cymwt-control {
-        min-height: 30px;
+      .flex-back {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .css-13cymwt-control {
+          min-height: 30px;
+        }
+
+        .css-1xc3v61-indicatorContainer {
+          padding: 5px 8px;
+        }
+
+        .css-qbdosj-Input {
+          min-width: 100px;
+        }
       }
 
-      .css-1xc3v61-indicatorContainer {
-        padding: 5px 8px;
-      }
-    }
+      .title-specialty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
 
-    i {
-      font-size: 20px;
-      padding: 10px 0;
-      color: #fff;
-      cursor: pointer;
+        i {
+          font-size: 20px;
+          padding: 10px 0;
+          color: #fff;
+          cursor: pointer;
+        }
+        span {
+          color: #fff;
+          font-size: 14px;
+
+          i {
+            font-size: 16px;
+          }
+        }
+
+        .bd-l-r {
+          border-left: 1px solid #fff;
+          border-right: 1px solid #fff;
+          padding: 0 5px;
+        }
+      }
     }
   }
 
@@ -54,12 +84,12 @@
     }
 
     .max-height {
-      max-height: 135px;
+      max-height: 140px;
       overflow: hidden;
     }
 
     .min-height {
-      min-height: 135px;
+      min-height: 140px;
     }
 
     .btn-showOn,

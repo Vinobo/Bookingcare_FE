@@ -1,5 +1,19 @@
 .hand-book {
-  .img-customize {
-    background-image: url("../../../../assets/handBook/chi-so-hba1c-binh-thuong.jpg");
+  .section-img-row {
+    padding-right: 10px;
+    margin: 5px;
+
+    img {
+      height: 150px;
+      width: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #eee;
+    }
+
+    .text-content {
+      text-align: justify;
+    }
   }
 }

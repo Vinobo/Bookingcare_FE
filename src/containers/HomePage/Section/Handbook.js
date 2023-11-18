@@ -3,20 +3,18 @@ import { connect } from 'react-redux';
 import './scss/Handbook.scss';
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
+import { withRouter } from 'react-router';
+import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
 
 
 class HandBook extends Component {
 
+  handleViewDetailHandbook = (id) => {
+
+    this.props.history.push(`/detail-handbook-${id}/`)
+  }
 
   render() {
-    // let settings = {
-    //   dots: false,
-    //   infinite: false,
-    //   speed: 500,
-    //   slidesToShow: 2,
-    //   slidesToScroll: 2,
-    //   initialSlide: 0,
-    // };
 
     return (
       <div className='section-general hand-book'>
@@ -27,30 +25,43 @@ class HandBook extends Component {
           </div>
           <div className='section-content'>
             <Slider {...this.props.settings}>
-              <div className='section-img-row'>
-                <div className='img-customize' />
+              <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(1)}>
+                <img src={five_different} />
                 <div className='text-content'>
-                  <span>Cơ xương khớp </span>
+                  <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
                 </div>
               </div>
-              <div className='section-img-row'>
-                <div className='img-customize' />
+              <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(2)}>
+                <img src={five_different} />
                 <div className='text-content'>
-                  <span>Cơ xương khớp </span>
+                  <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
                 </div>
               </div>
-              <div className='section-img-row'>
-                <div className='img-customize' />
+              <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(3)}>
+                <img src={five_different} />
                 <div className='text-content'>
-                  <span>Cơ xương khớp </span>
+                  <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
                 </div>
               </div>
-              <div className='section-img-row'>
-                <div className='img-customize' />
+              <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(4)}>
+                <img src={five_different} />
                 <div className='text-content'>
-                  <span>Cơ xương khớp </span>
+                  <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
                 </div>
               </div>
+              <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(5)}>
+                <img src={five_different} />
+                <div className='text-content'>
+                  <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
+                </div>
+              </div>
+              <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(6)}>
+                <img src={five_different} />
+                <div className='text-content'>
+                  <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
+                </div>
+              </div>
+
             </Slider>
           </div>
         </div>
@@ -74,4 +85,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HandBook);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HandBook));

@@ -92,8 +92,18 @@ class DetailsSpecialty extends Component {
     if (this.props.language !== prevProps.language) {
 
     }
-    if (this.props.location !== prevProps.location) {
-      this.handleData()
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.handleData();
+    }
+
+    if (this.props.history !== prevProps.history) {
+      let res = await getAllSpecialties();
+      if (res && res.errCode === 0) {
+        let dataSelect = this.buildDataInputSelect(res.data)
+        this.setState({
+          listSpecialty: dataSelect
+        })
+      }
     }
   }
 
@@ -150,7 +160,6 @@ class DetailsSpecialty extends Component {
     if (this.props.history) {
       this.props.history.push(`/detail-specialty/${selectedSpecialty.value}`)
     }
-    // window.location.reload()
     this.setState({
       selectedSpecialty: selectedSpecialty,
     });
@@ -160,26 +169,40 @@ class DetailsSpecialty extends Component {
     if (this.props.history) {
       this.props.history.goBack();
     }
+  }
 
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`)
+    }
   }
 
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty } = this.state;
+    console.log('chek statteee: ', this.state)
 
     return (
       <div className='detail-specialty'>
         <div>
-          <Header />
-          <div className='goBack'>
-            <div className='general-container flex-back'>
-              <i className="fas fa-long-arrow-alt-left" onClick={() => this.handleGoBack()}></i>
-              <Select
-                value={selectedSpecialty}
-                onChange={this.handleChangeSelect}
-                options={listSpecialty}
-                placeholder={<FormattedMessage id="patient.specialty.select" />}
-              />
+          <div>
+            <Header />
+          </div>
+          <div className='sticky-menu'>
+            <div className='goBack'>
+              <div className='general-container flex-back'>
+                <div className='title-specialty'>
+                  <i className="fas fa-long-arrow-alt-left" onClick={() => this.handleGoBack()}></i>
+                  <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
+                  <span>{dataDetailSpecialty ? dataDetailSpecialty.name : ''}</span>
+                </div>
+                <Select
+                  value={selectedSpecialty || selectedSpecialty[0]}
+                  onChange={this.handleChangeSelect}
+                  options={listSpecialty}
+                  placeholder={<FormattedMessage id="patient.specialty.select" />}
+                />
+              </div>
             </div>
           </div>
           <div className='specialty-img'

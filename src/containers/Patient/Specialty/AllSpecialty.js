@@ -43,17 +43,29 @@ class AllSpecialty extends Component {
     }
   }
 
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`)
+    }
+  }
+
   render() {
     let { language } = this.props;
     let { dataSpecialty } = this.state
 
     return (
       <>
-        <Header></Header>
+        <div>
+          <Header></Header>
+        </div>
         <div className='all-specialty-container'>
-          <div className='goBack'>
-            <div className='general-container flex-back'>
-              <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+          <div className='sticky-menu'>
+            <div className='goBack'>
+              <div className='general-container flex-back'>
+                <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+                <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
+                <span><FormattedMessage id="patient.title.all-specialty" /></span>
+              </div>
             </div>
           </div>
           <div className='general-container'>

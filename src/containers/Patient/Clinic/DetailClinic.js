@@ -82,7 +82,7 @@ class DetailsClinic extends Component {
     return (
       <div className='detail-clinic'>
         <div className='clinic-container'>
-          <div cl>
+          <div >
             <Header />
           </div>
           <div className='clinic-img'
@@ -145,8 +145,9 @@ class DetailsClinic extends Component {
           </div>
           {arrDoctorId && !_.isEmpty(arrDoctorId) &&
             <>
+              <span id='doctor'></span>
               <div className='general-container'>
-                <div id='doctor' className='title-detail'>
+                <div className='title-detail'>
                   Bác sĩ
                 </div>
               </div>
@@ -188,8 +189,9 @@ class DetailsClinic extends Component {
               )
             })}
           <div className='description-clinic general-container'>
+            <span id='intro'></span>
             <div className='intro-clinic'>
-              <div id='intro' className='title-detail'>Giới thiệu</div>
+              <div className='title-detail'>Giới thiệu</div>
 
               {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
                 <>
@@ -202,8 +204,9 @@ class DetailsClinic extends Component {
             </div>
             {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
               <>
+                <span id='specialty'></span>
                 <div className='specialty-clinic'>
-                  <div id='specialty' className='title-detail'>Thế mạnh chuyên môn</div>
+                  <div className='title-detail'>Thế mạnh chuyên môn</div>
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.specialtyHTML }}
                   >
@@ -213,8 +216,9 @@ class DetailsClinic extends Component {
             }
             {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
               <>
+                <span id='device' ></span>
                 <div className='device-clinic'>
-                  <div id='device' className='title-detail'>Trang thiết bị</div>
+                  <div className='title-detail'>Trang thiết bị</div>
 
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.deviceHTML }}
@@ -226,8 +230,9 @@ class DetailsClinic extends Component {
 
             {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
               <>
+                <span id='location'></span>
                 <div className='location-clinic'>
-                  <div id='location' className='title-detail'>Vị trí</div>
+                  <div className='title-detail'>Vị trí</div>
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.locationHTML }}
                   >
@@ -237,8 +242,9 @@ class DetailsClinic extends Component {
             }
             {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
               <>
+                <span id='process' ></span>
                 <div className='process-clinic'>
-                  <div id='process' className='title-detail'>Quy trình đi khám</div>
+                  <div className='title-detail'>Quy trình đi khám</div>
 
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.processHTML }}

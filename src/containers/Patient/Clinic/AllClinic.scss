@@ -2,11 +2,31 @@
   .goBack {
     background-color: #45c3d2;
 
-    i {
-      font-size: 20px;
-      padding: 10px 0;
-      color: #fff;
-      cursor: pointer;
+    .flex-back {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      i {
+        font-size: 20px;
+        padding: 10px 0;
+        color: #fff;
+        cursor: pointer;
+      }
+      span {
+        color: #fff;
+        font-size: 14px;
+
+        i {
+          font-size: 16px;
+        }
+      }
+
+      .bd-l-r {
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+        padding: 0 5px;
+      }
     }
   }
 

@@ -70,6 +70,12 @@ class AllDoctor extends Component {
     })
   }
 
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`)
+    }
+  }
+
   render() {
     let { language } = this.props;
     let { dataDetailDoctor, listProvince } = this.state;
@@ -77,16 +83,20 @@ class AllDoctor extends Component {
 
     return (
       <>
-        <Header></Header>
+        <div>
+          <Header></Header>
+        </div>
         <div className='all-doctor-container'>
           <div className='goBack'>
             <div className='general-container flex-back'>
               <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+              <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
+              <span><FormattedMessage id="patient.title.all-doctor" /></span>
             </div>
           </div>
           <div className='general-container'>
             <h1><FormattedMessage id="patient.title.all-doctor" /></h1>
-            <div className='search-specialty-doctor'>
+            {/* <div className='search-specialty-doctor'>
               <select className='select-province'
                 onChange={(event) => this.handleOnChangeSelectProvince(event)}>
                 {listProvince && listProvince.length > 0 &&
@@ -99,7 +109,7 @@ class AllDoctor extends Component {
                   })
                 }
               </select>
-            </div>
+            </div> */}
             <div className='detail-all-doctor'>
               {dataDetailDoctor && dataDetailDoctor.length > 0 ?
                 <>

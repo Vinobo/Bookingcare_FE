@@ -43,13 +43,23 @@ class DetailDoctor extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (prevProps.detailDoctor !== this.props.detailDoctor) {
-    //   let inforDoctor = this.props.detailDoctor
-    //   this.setState({
-    //     detailDoctor: inforDoctor
-    //   })
-    // }
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.match !== this.props.match) {
+      if (this.props.match && this.props.match.params && this.props.match.params.id) {
+        let id = this.props.match.params.id;
+        this.setState({
+          currentDoctorId: id
+        })
+
+        let res = await getDetailInforDoctor(id);
+        if (res && res.errCode === 0) {
+          this.setState({
+            detailDoctor: res.data,
+            currentDoctorId: id
+          })
+        }
+      }
+    }
   }
 
   render() {

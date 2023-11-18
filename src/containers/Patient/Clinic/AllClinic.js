@@ -43,6 +43,12 @@ class AllClinic extends Component {
     }
   }
 
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`)
+    }
+  }
+
   render() {
     let { language } = this.props;
     let { dataClinic } = this.state
@@ -54,6 +60,8 @@ class AllClinic extends Component {
           <div className='goBack'>
             <div className='general-container flex-back'>
               <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+              <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
+              <span><FormattedMessage id="patient.title.all-clinic" /></span>
             </div>
           </div>
           <div className='general-container'>
