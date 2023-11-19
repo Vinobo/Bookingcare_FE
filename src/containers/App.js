@@ -21,6 +21,11 @@ import AllSpecialty from './Patient/Specialty/AllSpecialty';
 import AllClinic from './Patient/Clinic/AllClinic';
 import AllDoctor from './Patient/Doctor/AllDoctor';
 import Detail1 from './Patient/Handbook/Detail1';
+import Detail2 from './Patient/Handbook/Detail2';
+import Detail3 from './Patient/Handbook/Detail3';
+import Detail4 from './Patient/Handbook/Detail4';
+import Detail5 from './Patient/Handbook/Detail5';
+import Detail6 from './Patient/Handbook/Detail6';
 
 
 class App extends Component {
@@ -70,6 +75,11 @@ class App extends Component {
 
                                     {/* HAND BOOK */}
                                     <Route path={'/detail-handbook-1/'} component={Detail1} />
+                                    <Route path={'/detail-handbook-2/'} component={Detail2} />
+                                    <Route path={'/detail-handbook-3/'} component={Detail3} />
+                                    <Route path={'/detail-handbook-4/'} component={Detail4} />
+                                    <Route path={'/detail-handbook-5/'} component={Detail5} />
+                                    <Route path={'/detail-handbook-6/'} component={Detail6} />
 
                                 </Switch>
                             </CustomScrollbars>

@@ -12,7 +12,7 @@ import generalHealth from '../../../assets/handBook/110621-kham-tong-quat-doctor
 
 
 
-class Detail1 extends Component {
+class Detail5 extends Component {
 
   constructor(props) {
     super(props);
@@ -41,6 +41,7 @@ class Detail1 extends Component {
               <ul>
                 <li onClick={() => this.returnToHome()}><i className="fas fa-home"></i></li>
                 <li>Handbook</li>
+                <li>Review khám chữa bệnh</li>
               </ul>
             </div>
           </div>
@@ -158,4 +159,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detail1);
+export default connect(mapStateToProps, mapDispatchToProps)(Detail5);
