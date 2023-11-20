@@ -1,6 +1,8 @@
 .media {
   .section-content {
     display: flex;
+    justify-content: space-between;
+    gap: 30px;
     height: 320px !important;
 
     .content-left {
@@ -8,9 +10,35 @@
     }
 
     .content-right {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
       width: 50%;
+      align-items: center;
       justify-content: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 65px;
+        background-color: #ddd;
+        border-radius: 10px;
+
+        .media-icon {
+          width: 60%;
+          height: 60%;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+        }
+      }
     }
   }
 }

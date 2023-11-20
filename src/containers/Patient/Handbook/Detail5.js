@@ -8,9 +8,10 @@ import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
-import generalHealth from '../../../assets/handBook/110621-kham-tong-quat-doctor-check.png'
-
-
+import HOSP115Register from '../../../assets/handBook/174114bv-115-register.jpg';
+import HOSP115 from '../../../assets/handBook/160418-bv-nhan-dan-115-ggrv-min.png';
+import HOSP115Map from '../../../assets/handBook/100052bv-115-so-do.jpg';
+import HOSP115Gate from '../../../assets/handBook/174114bv-115-gate.jpg';
 
 class Detail5 extends Component {
 
@@ -41,101 +42,189 @@ class Detail5 extends Component {
               <ul>
                 <li onClick={() => this.returnToHome()}><i className="fas fa-home"></i></li>
                 <li>Handbook</li>
-                <li>Review khám chữa bệnh</li>
               </ul>
             </div>
           </div>
           <div className='general-container grid-content'>
             <div className='content-handbook'>
-              <h1>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</h1>
-              <h2>Với 5 khác biệt khi tầm soát bệnh tại Doctor Check dưới đây, bạn đọc có thể phần nào tự giải đáp câu hỏi "Có nên khám tổng quát tại Doctor Check hay không?"</h2>
+              <h1>Kinh nghiệm thực tế đi khám tại Bệnh viện Nhân dân 115</h1>
+              <h2>Bệnh viện Nhân dân 115 đón tiếp hàng nghìn lượt bệnh nhân đăng kí khám mỗi ngày. Những thông tin về kinh nghiệm khám chữa bệnh tại Bệnh viện 115 sẽ giúp người đi khám chủ động và chuẩn bị tốt cho quá trình đi khám.</h2>
               <div className='detail-ct'>
                 <figure>
-                  <img src={five_different}></img>
-                  <figcaption>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</figcaption>
+                  <img src={HOSP115}></img>
+                  <figcaption>Cổng số 1 lối vào Bệnh viện Nhân dân 115</figcaption>
                 </figure>
-                <p>Doctor Check là một trong những địa chỉ khám chữa bệnh uy tín và chất lượng nhất ở TPHCM. Bên cạnh hoạt động thăm khám, Trung tâm cũng rất đầu tư vào lĩnh vực khám tổng quát, tầm soát bệnh. Với đội ngũ bác sĩ giàu kinh nghiệm, hệ thống máy móc hiện đại và chi phí hợp lý, Doctor Check đã trở thành lựa chọn của nhiều người dân TPHCM khi cần kiểm tra sức khỏe.</p>
-                <p>Trong bài viết này, BookingCare sẽ review khám tổng quát tại đây cũng như giới thiệu đến bạn 5 khác biệt khi tầm soát bệnh tại Doctor Check.</p>
+                <p>Bệnh viện Nhân dân 115 là bệnh viện đa khoa hạng I thuộc Sở Y tế TP.HCM. Bệnh viện đang triển khai nhiều dịch vụ khám khác nhau để phù hợp với từng bệnh nhân.</p>
+                <p>Trong bài viết này, BookingCare sẽ cung cấp chi tiết thông tin về các dịch vụ khám tại Bệnh viện Nhân dân 115 và một số lưu ý khi đi khám tại đây.</p>
+
                 <span id='0'></span>
-                <h2>Giới thiệu chung về Doctor Check</h2>
+                <h2>Bệnh viện Nhân dân 115 ở đâu?</h2>
+                <p>Cổng chính của Bệnh viện Nhân dân 115 tọa lạc tại đường Sư Vạn Hạnh. Tuy nhiên, để đi đến khoa Khám bệnh của Bệnh viện Nhân dân 115, người đi khám đến cổng số 3 (đường Thành Thái). Cụ thể địa chỉ như sau:</p>
+                <h3>Cổng chính Bệnh viện Nhân dân 115 (cổng số 3, khu chính)</h3>
                 <ul>
-                  <li>Địa chỉ: 429 Tô Hiến Thành, Phường 14, Quận 10, TPHCM</li>
-                  <li>
-                    Giờ làm việc:
-                    <ul>
-                      <li>Thứ 2 - thứ 7: 6h00 - 15h00</li>
-                      <li>Chủ nhật: 7h00 - 12h00</li>
-                    </ul>
-                  </li>
+                  <li>Số 527 Sư Vạn Hạnh, Quận 10, TP.HCM</li>
                 </ul>
-                <p><a href="https://www.doctorcheck.vn/" rel="nofollow" target='_blank'>Doctor Check</a> là một cơ sở y tế tại TPHCM chuyên về tầm soát bệnh và khám sức khỏe tổng quát. Với tầm nhìn là trở thành địa chỉ tin cậy cho việc tầm soát và chăm sóc sức khỏe của mọi người, Doctor Check chú trọng đầu tư vào cả đội ngũ con người lẫn hệ thống máy móc tiên tiến, hiện đại.</p>
-                <span id='1'></span>
-                <h2>5 khác biệt khi tầm soát bệnh tại Doctor Check</h2>
-                <p>Dưới đây là một số ưu điểm khi tầm soát bệnh tại Doctor Check mà bạn đọc có thể tham khảo trước khi lựa chọn thăm khám tại đây.</p>
-                <span id='2'></span>
-                <h3>1. Thời gian làm việc từ sớm từ 6h00 - 15h00</h3>
-                <p>Một trong những khác biệt nổi bật của Doctor Check so với các phòng khám khác là thời gian hoạt động linh hoạt. Phòng khám mở cửa từ 6h00 sáng đến 15h00 chiều, giúp khách hàng có thể dễ dàng đặt lịch hẹn và tới khám bệnh ngay từ sáng sớm.</p>
-                <p>Điều này rất thuận tiện cho những người ở xa, ngoài TPHCM có thể tới và thăm khám trong ngày.</p>
-                <span id='3'></span>
-                <h3>2. Thời gian khám tổng quát tiêu chuẩn chỉ 60 phút</h3>
-                <p>Một trong những lợi ích khi tầm soát bệnh tại Doctor Check là thời gian khám tổng quát được tối ưu hóa. Chỉ trong 60 phút, khách hàng có thể hoàn tất quá trình khám sức khỏe tổng quát. Điều này giúp tiết kiệm thời gian cho những người bận rộn, không có nhiều thời gian.</p>
-                <p>Với thời gian khám tổng quát tiêu chuẩn chỉ 60 phút, Doctor Check vừa giúp tiết kiệm thời gian cho bệnh nhân mà vẫn đảm bảo chất lượng thăm khám, dịch vụ.</p>
+                <h3>Khoa Khám bệnh (khu E, khám thường)</h3>
+                <ul>
+                  <li>Số 88 Thành Thái, Quận 10, TP.HCM</li>
+                </ul>
+                <p>Người đi khám có thể đi bộ từ khu chính sang khoa Khám bệnh và ngược lại, men theo đường Dương Quang Trung.</p>
                 <figure>
-                  <img src={generalHealth}></img>
-                  <figcaption>Khách hàng khám tổng quát tại Doctor Check</figcaption>
+                  <img src={HOSP115Map}></img>
+                  <figcaption>Sơ đồ Bệnh viện Nhân dân 115</figcaption>
                 </figure>
+
+                <span id='1'></span>
+                <h2>Bệnh viện Nhân dân 115 có những dịch vụ khám nào?</h2>
+                <blockquote>
+                  <div><i className="fas fa-quote-left"></i></div>
+                  <p>Bệnh viện Nhân dân 115 triển khai đa dạng các dịch vụ khám phục vụ nhu cầu của người bệnh. Bài viết này sẽ tập trung chủ yếu vào 3 dịch vụ khám bệnh chính: Khám bệnh thông thường, Khám theo yêu cầu và Phòng khám VIP - Doanh nhân.</p>
+                </blockquote>
+
+                <span id='2'></span>
+                <h3>1. Khám bệnh thông thường</h3>
+                <ul>
+                  <li>Địa chỉ: số 88 Thành Thái, quận 10, TP.HCM (khu E)</li>
+                  <li> Thời gian làm việc:
+                    <ul>
+                      <li>Thứ 2 - Thứ 6, từ 7h00 - 16h00 (bắt đầu phát số từ sáng 5h30)</li>
+                      <li>Thứ 2 - Thứ 6, từ 7h00 - 16h00 (bắt đầu phát số từ sáng 5h30)</li>
+                    </ul>
+                  </li>
+                </ul>
+                <figure>
+                  <img src={HOSP115Gate}></img>
+                  <figcaption>Lối vào khoa Khám bệnh, Bệnh viện Nhân dân 115</figcaption>
+                </figure>
+                <p>Lối vào chính của khoa Khám bệnh, Bệnh viện Nhân dân 115 ở đường Thành Thái, tách biệt so với các khu khác của Bệnh viện. Người đi khám có thể đăng kí khám BHYT, khám không BHYT và đăng kí khám hẹn giờ (qua 1080 hoặc tổng đài bệnh viện) tại khoa Khám bệnh.</p>
+                <p>Khoa Khám bệnh nhận khám và điều trị cho nhiều đối tượng bệnh nhân khác nhau. Do đó, lượng người đăng kí khám bệnh hàng ngày tại khoa rất đông. Những ngày đầu tuần là thời gian cao điểm của khoa. Buổi chiều bệnh nhân sẽ ít đông hơn so với buổi sáng.</p>
+                <p>Lầu 1, lầu 2 và lầu 3 là các khu khám chuyên sâu. Khoa Khám bệnh triển khai khám đa khoa các mặt bệnh khác nhau theo nhu cầu của người đi khám. Khoa có khu làm xét nghiệm, chụp chiếu riêng ở lầu 4, lầu 5.</p>
+                <p>Dù chỉ khám thường nhưng người bệnh vẫn có thể đặt hẹn lịch khám trước thông qua 1080 hay tổng đài bệnh viện. Bệnh nhân đã đặt hẹn trước vào thẳng quầy số 04 (tầng trệt) để làm thủ tục đăng kí khám.</p>
+                <h3 style={{ textDecoration: 'underline' }}>Lưu ý</h3>
+                <ul>
+                  <li>Khoa Khám bệnh có khu xét nghiệm, chụp chiếu riêng. Tuy nhiên, một vài trường hợp như chụp MRI, CT/SCAN thì sẽ được hướng dẫn qua khoa Chẩn đoán hình ảnh của Bệnh viện (khu A) để làm.</li>
+                  <li>Giá khám bệnh thông thường theo như niêm yết của Bộ Y tế.</li>
+                </ul>
+
+                <span id='3'></span>
+                <h3>2. Khám và điều trị theo yêu cầu</h3>
+                <ul>
+                  <li>Địa chỉ: số 527 Sư Vạn Hạnh, Quận 10, TP.HCM (khu A, Bệnh viện 115)</li>
+                  <li> Thời gian làm việc:
+                    <ul>
+                      <li>Thứ 2 - Thứ 7, từ 7h00 - 16h00</li>
+                      <li>Chủ nhật, từ 7h00 - 12h00</li>
+                    </ul>
+                  </li>
+                </ul>
+                <figure>
+                  <img src={HOSP115Register}></img>
+                  <figcaption>Khu vực nhận bệnh  tại khoa Khám và điều trị theo yêu cầu, Bệnh viện Nhân dân 115</figcaption>
+                </figure>
+                <p>Khoa Khám và điều trị theo yêu cầu nằm ở khu A Bệnh viện Nhân dân 115. Người đi khám đi thẳng từ cổng số 3 (đường Sư Vạn Hạnh) sẽ thấy khoa Khám theo yêu cầu trước mặt.</p>
+                <p>Số lượng người đăng kí khám ở đây đông cả buổi sáng lẫn chiều. Vì chỉ có một tầng trệt là khu khám kết hợp với khu chờ nên lượng người ở khu này rất đông, tạo cảm giác hơi ngột ngạt.</p>
+                <p>Ưu điểm khi khám tại khoa Khám và điều trị theo yêu cầu là khu xét nghiệm, chụp chiếu hay chẩn đoán hình ảnh nằm cùng một khu A. Riêng khoa Chẩn đoán hình ảnh nằm cạnh khu khám bệnh nên việc di chuyển qua lại giữa các khu dễ dàng.</p>
+                <p>Ở khoa Khám và điều trị theo yêu cầu có nhiều nhân viên hướng dẫn và điều dưỡng đứng trước các phòng khám hoặc các quầy khu vực chờ. Bệnh nhân có thể nhờ sự giúp đỡ của đội ngũ nhân viên bệnh viện nếu cần thiết.</p>
+                <p>Khám tại khoa Khám và điều trị theo yêu cầu, người đi khám có thể đặt lịch khám trước thông qua 1080 hay tổng đài của Bệnh viện. Khi đến khám, người bệnh vào thẳng quầy số 03 hoặc 04 để làm thủ tục đăng kí khám mà không phải khai lại thông tin trên Phiếu đăng kí khám.</p>
+                <h3 style={{ textDecoration: 'underline' }}>Lưu ý</h3>
+                <ul>
+                  <li>Khoa Khám và điều trị theo yêu cầu không tiếp nhận khám BHYT.</li>
+                  <li>Bệnh nhân khám chuyên khoa Mắt, Răng Hàm Mặt và Phụ khoa không khám ở khoa Khám và điều trị theo yêu cầu mà khám tại khoa Khám bệnh.</li>
+                  <li>
+                    <ul>
+                      <li>Khám không hẹn giờ Thứ 2 - Thứ 6, 120.000đ/chuyên khoa</li>
+                      <li>Khám không hẹn giờ Thứ 7 - Chủ nhật, 170.000đ/chuyên khoa</li>
+                      <li>Khám hẹn giờ (đặt qua 1080) Thứ 2 - Thứ 6, 140.000đ/chuyên khoa</li>
+                      <li>Khám hẹn giờ Thứ 7 - Chủ nhật, 190.000đ/chuyên khoa</li>
+                    </ul>
+                  </li>
+                </ul>
+
                 <span id='4'></span>
-                <h3>3. Đội ngũ bác sĩ đến từ các Bệnh viện đầu ngành tại TPHCM</h3>
-                <p>Trung tâ Doctor Check quy đội ngũ bác sĩ từ các Bệnh viện đầu ngành tại TPHCM, có trình độ chuyên môn cao và giàu kinh nghiệm trong lĩnh vực y tế. Tiêu biểu như:</p>
+                <h3>3. Phòng khám VIP – Doanh nhân</h3>
                 <ul>
-                  <li>ThS.BS CKI Lưu Ngọc Mai: Bác sĩ nội tổng quát, Bệnh viện Đại học Y dược TPHCM</li>
-                  <li>ThS.BSNT Thái Việt Nguyên: Bác sĩ nội tổng quát, Bệnh viện Nguyễn Tri Phương</li>
-                  <li>ThS.BS CKI Nguyễn Ngọc Quỳnh Dung: Bác sĩ nội tổng quát, Bệnh viện Thống Nhất</li>
-                  <li>BS CKI Đặng Nguyễn Nhật Thanh Thi: Bác sĩ nội soi, Bệnh viện Thống Nhất</li>
+                  <li>Địa chỉ: số 527 Sư Vạn Hạnh, Quận 10, TP.HCM (khu A, Bệnh viện 115, phía sau khoa Khám và điều trị theo yêu cầu)</li>
+                  <li> Thời gian làm việc:
+                    <ul>
+                      <li>Thứ 2 - Thứ 6, từ 7h00 - 16h00</li>
+                      <li>Thứ 7, từ 7h00 - 12h00</li>
+                    </ul>
+                  </li>
                 </ul>
+                <p>Phòng khám VIP – Doanh nhân là dịch vụ khám mới được Bệnh viện Nhân dân 115 triển khai trong khoảng thời gian gần đây. Bệnh nhân sẽ được khám hoàn toàn với các bác sĩ là giáo sư, tiến sĩ hàng đầu của Bệnh viện Nhân dân 115.</p>
+                <p>Chất lượng dịch vụ của Phòng khám VIP – Doanh nhân được đánh giá tốt. Bệnh nhân không phải chờ đợi quá lâu ở tất cả các khâu vì được ưu tiên so với các dịch vụ khác và ít bệnh nhân hơn so với 2 dịch vụ khám ở trên.</p>
+                <p>Khám tại Phòng khám VIP – Doanh nhân, người bệnh phải đăng kí trước qua hotline của Phòng khám (không đăng kí qua 1080 hay tổng đài bệnh viện). Thông thường, người bệnh nên hẹn trước khoảng 2 ngày – 1 tuần để Phòng khám chủ động sắp xếp lịch phù hợp cho cả bác sĩ và người đi khám.</p>
+                <h3 style={{ textDecoration: 'underline' }}>Lưu ý</h3>
+                <ul>
+                  <li>Bác sĩ thăm khám trực tiếp tại Phòng khám VIP - Doanh nhân là các Giáo sư, Tiến sĩ, Trưởng khoa hoặc Phó khoa của Bệnh viện.</li>
+                  <li>Bắt buộc phải đặt khám trước mới có thể đăng kí khám tại Phòng khám VIP -Doanh nhân.</li>
+                  <li>Giá khám tại Phòng khám VIP – Doanh nhân dao động từ 300.000đ - 500.000đ/lượt khám, chưa tính các khoản làm chụp chiếu, xét nghiệm.</li>
+                  <li>Phòng khám VIP - Doanh nhân không áp dụng khám BHYT.</li>
+                </ul>
+
                 <span id='5'></span>
-                <h3>4. Hệ thống máy móc đầy đủ, hiện đại</h3>
-                <p>Doctor Check đầu tư mạnh vào công nghệ và thiết bị y tế hiện đại để đảm bảo tầm soát bệnh chính xác và hiệu quả. Trung tâm sở hữu hệ thống máy móc tiên tiến giúp cho quá trình khám và chẩn đoán được diễn ra nhanh chóng và chính xác.</p>
+                <h3>4. Bệnh viện Nhân dân 115 có khám tại các khoa không?</h3>
+                <p>Ngoài các dịch vụ khám bệnh trên, tại một số khoa mũi nhọn và đông bệnh nhân, Bệnh viện Nhân dân 115 có triển khai khám dịch vụ ở khoa.</p>
+                <blockquote>
+                  <div><i className="fas fa-quote-left"></i></div>
+                  <p>Các khoa này đều nằm tại khu B của bệnh viện và cạnh nhau. Người đi khám có thể đi bằng cổng số 1 (đường Dương Quang Trung) là tiện nhất để đến các khoa này.</p>
+                </blockquote>
+                <p>Khám dịch vụ tại khoa gồm có:</p>
                 <ul>
-                  <li>Máy siêu âm màu Acuson Juniper - Siemens Mỹ</li>
-                  <li>Máy điện tim 3 kênh FX 8100 - Fukuda Nhật Bản</li>
-                  <li>Hệ thống chụp X-quang kỹ thuật số đến từ hãng Vikomed</li>
-                  <li>Hệ thống máy xét nghiệm: huyết học, sinh hóa miễn dịch</li>
+                  <li>Khám dịch vụ Cơ xương khớp – khoa Cơ xương khớp (tầng trệt, khu B)</li>
+                  <li>Khám dịch vụ VIP Tim mạch – khoa Tim mạch tổng quát (lầu 1 khu B)</li>
+                  <li>Khám dịch vụ Tiêu hóa - Gan mật – khoa Nội tiêu hóa (tầng trệt, khu B)</li>
+                  <li>Khám dịch vụ Ung bướu – khoa Ung bướu và Y học hạt nhân (tầng trệt, khu B)</li>
                 </ul>
+                <p>Các dịch vụ khám tại khoa nêu trên ít được bệnh nhân biết đến. Do đó người bệnh khi khám tại khoa không phải chờ đợi lâu, quá trình thăm khám diễn ra nhanh gọn. </p>
+                <p>Giá khám tại khoa cho các dịch vụ này là từ 300.000đ - 500.000đ/lần khám, chưa có phí thực hiện Cận lâm sàng. Người bệnh có nhu cầu khám dịch vụ các khoa này có thể đặt lịch hẹn trước hoặc đến thẳng chuyên khoa để đăng kí khám. Ở các khoa còn trang bị một số loại máy móc, thiết bị để thực hiện chỉ định Cận lâm sàng chuyên sâu.</p>
+                <h3 style={{ textDecoration: 'underline' }}>Lưu ý</h3>
+                <p>Các dịch vụ khám tại khoa không khám BHYT. Khoa chỉ thực hiện khám dịch vụ trong tuần, không làm việc cuối tuần.</p>
+                <p>Thời gian làm việc cụ thể như sau:</p>
+                <ul>
+                  <li>Thứ 2 - Thứ 6, từ 7h30 - 16h00</li>
+                  <li>Thứ 7, Chủ nhật nghỉ.</li>
+                </ul>
+
                 <span id='6'></span>
-                <h3>5. Chi phí rõ ràng, công khai, minh bạch</h3>
-                <p>Doctor Check luôn công khai và minh bạch về chi phí dịch vụ. Trước khi tiến hành bất kỳ dịch vụ nào, Doctor Check sẽ cung cấp cho khách hàng thông tin chi tiết về các khoản phí liên quan. </p>
-                <p>Chi tiết chi phí các gói tầm soát bệnh, khám tổng quát cũng được Doctor Check công khai trên website phòng khám, bạn đọc quan tâm có thể tham khảo. Dưới đây là chi phí một số gói khám nổi bật tại Doctor Check mà bạn đọc có thể tham khảo:</p>
+                <h2>Bệnh viện Nhân dân 115 khám chuyên khoa nào?</h2>
+                <p>Bệnh viện 115 là Bệnh viện Đa khoa hạng I của Sở Y tế TP.HCM. Bệnh viện tiếp nhận khám và điều trị nhiều chuyên khoa khác nhau. Trong đó, các chuyên khoa mũi nhọn của Bệnh viện bao gồm:</p>
                 <ul>
-                  <li>Gói khám tổng quát dành cho nữ:
-                    <ul>
-                      <li>Gói tiêu chuẩn - 17 chỉ số:&nbsp;560,000đ</li>
-                      <li>Gói chuyên sâu - 27 chỉ số:&nbsp;1,525,000đ</li>
-                      <li>Gói VIP - 34 chỉ số:&nbsp;2,180,000đ</li>
-                    </ul>
-                  </li>
-                  <li>Gói khám tổng quát dành cho nam:
-                    <ul>
-                      <li>Gói khám tiêu chuẩn - 17 chỉ số:&nbsp;560,000đ</li>
-                      <li>Gói khám chuyên sâu - 25 chỉ số:&nbsp;1,225,000đ</li>
-                      <li>Gói khám VIP - 32 chỉ số:&nbsp;1,840,000đ</li>
-                    </ul>
-                  </li>
+                  <li>Tim mạch tổng quát</li>
+                  <li>Thần kinh</li>
+                  <li>Thận – tiết niệu</li>
+                  <li>Ung bướu</li>
+                  <li>Tiêu hóa – Gan mật</li>
+                  <li>Cơ xương khớp…</li>
                 </ul>
+                <p>Mỗi chuyên khoa đều có các bác sĩ là những chuyên gia có kinh nghiệm và chuyên môn vững, là giảng viên của các trường đại học y nổi tiếng khu vực phía Nam.</p>
+
+                <span id='7'></span>
+                <h2>Lưu ý khi đi khám Bệnh viện Nhân dân 115</h2>
+                <ul>
+                  <li>Người đi khám gửi xe máy ở cổng số 1 (Dương Quang Trung),gửi ô tô ở cổng số 3 (Sư Vạn Hạnh). Không đi cổng số 2 vì Bệnh viện không mở cổng này.</li>
+                  <li>Khám BHYT chỉ chấp nhận ở khoa Khám bệnh. Các dịch vụ khác không triển khai BHYT.</li>
+                  <li>Thận – tiết niệu</li>
+                  <li>Nếu khám tại khoa Khám và điều trị theo yêu cầu, người bệnh nên đi sớm để lấy số thứ tự vì khu Khám này rất đông.</li>
+                  <li>Khám ở khoa Khám bệnh (Thành Thái),bệnh nhân nên đi khám vào thứ 5, thứ 6 sẽ ít đông hơn đầu và giữa tuần.</li>
+                  <li>Để đến được các phòng khám, xét nghiệm cụ thể, bệnh nhân có thể đi theo bảng hướng dẫn trên tường hoặc hỏi nhân viên bệnh viện để tránh đi lạc do không gian bệnh viện lớn.</li>
+                </ul>
+                <p>Những nội dung LiveCare đã chia sẻ trong bài viết trên mong rằng sẽ đem lại những thông tin thiết thực cho người bệnh có nhu cầu khám chữa tại Bệnh viện Nhân dân 115.</p>
               </div>
             </div>
 
             <div className='table-content'>
               <div className='title-tbct'>Nội dung chính</div>
-              <div className='tb-of-content'>
+              <div className='tb-of-content detail-5'>
                 <ul>
-                  <li><a href='#0'>Giới thiệu chung về Doctor Check</a></li>
-                  <li><a href='#1' >5 khác biệt khi tầm soát bệnh tại Doctor Check</a></li>
-                  <li><a href='#2'>1. Thời gian làm việc từ sớm từ 6h00 - 15h00</a></li>
-                  <li><a href='#3'>2. Thời gian khám tổng quát tiêu chuẩn chỉ 60 phút</a></li>
-                  <li><a href='#4'>3. Đội ngũ bác sĩ đến từ các Bệnh viện đầu ngành tại TPHCM</a></li>
-                  <li><a href='#5'>4. Hệ thống máy móc đầy đủ, hiện đại</a></li>
-                  <li><a href='#6'>5. Chi phí rõ ràng, công khai, minh bạch</a></li>
+                  <li><a href='#0'>Bệnh viện Nhân dân 115 ở đâu?</a></li>
+                  <li><a href='#1' >Bệnh viện Nhân dân 115 có những dịch vụ khám nào?</a></li>
+                  <li><a href='#2'>1. Khám bệnh thông thường</a></li>
+                  <li><a href='#3'>2. Khám và điều trị theo yêu cầu</a></li>
+                  <li><a href='#4'>3. Phòng khám VIP – Doanh nhân</a></li>
+                  <li><a href='#5'>4. Bệnh viện Nhân dân 115 có khám tại các khoa không?</a></li>
+                  <li><a href='#6'>Bệnh viện Nhân dân 115 khám chuyên khoa nào?</a></li>
+                  <li><a href='#7'>Lưu ý khi đi khám Bệnh viện Nhân dân 115</a></li>
                 </ul>
               </div>
             </div>

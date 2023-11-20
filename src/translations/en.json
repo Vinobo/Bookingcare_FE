@@ -39,9 +39,10 @@
   },
   "patient": {
     "title": {
-      "all-doctor": "List of doctors",
-      "all-specialty": "List of medical specialties",
-      "all-clinic": "List of medical facilities"
+      "all-doctor": "List of Doctors",
+      "all-specialty": "List of Medical specialties",
+      "all-clinic": "List of Medical Facilities",
+      "all-handbook": "List of HandBook"
     },
     "detail-doctor": {
       "not-schedule": "The doctor does not schedules available during this time, please choose another time!",

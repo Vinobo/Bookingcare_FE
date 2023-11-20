@@ -2,6 +2,7 @@
   a {
     color: #45c3d2;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .general-container {
@@ -89,13 +90,20 @@
         h3,
         h4,
         ul,
-        ol {
+        ol,
+        blockquote {
           margin: 20px auto;
           max-width: 600px;
         }
 
         p {
           margin-bottom: 10px;
+
+          a {
+            color: #45c3d2;
+            text-decoration: none;
+            cursor: pointer;
+          }
         }
 
         ul {
@@ -122,6 +130,28 @@
         h4 {
           font-size: 17px;
           font-style: italic;
+        }
+
+        blockquote {
+          background: transparent;
+          border-top: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+          font-weight: bold;
+          text-align: center;
+          color: #ed8b00;
+          padding: 25px 5px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+
+          i {
+            font-size: 36px;
+            color: #ccc;
+          }
+
+          p {
+            text-align: justify;
+            margin-top: 10px;
+          }
         }
       }
     }
@@ -212,6 +242,27 @@
             padding-left: 0;
             margin: 0;
           }
+        }
+      }
+
+      // CSS detail 5
+      .detail-5,
+      .detail-6 {
+        li:nth-child(7),
+        li:last-child {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
+        }
+      }
+
+      // CSS detail 6
+      .detail-6 {
+        li:nth-child(7),
+        li:last-child {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
         }
       }
     }

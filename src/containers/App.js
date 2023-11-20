@@ -26,6 +26,7 @@ import Detail3 from './Patient/Handbook/Detail3';
 import Detail4 from './Patient/Handbook/Detail4';
 import Detail5 from './Patient/Handbook/Detail5';
 import Detail6 from './Patient/Handbook/Detail6';
+import AllHandBooks from './Patient/Handbook/AllHandBooks';
 
 
 class App extends Component {
@@ -80,6 +81,7 @@ class App extends Component {
                                     <Route path={'/detail-handbook-4/'} component={Detail4} />
                                     <Route path={'/detail-handbook-5/'} component={Detail5} />
                                     <Route path={'/detail-handbook-6/'} component={Detail6} />
+                                    <Route path={'/all-handbook/'} component={AllHandBooks} />
 
                                 </Switch>
                             </CustomScrollbars>

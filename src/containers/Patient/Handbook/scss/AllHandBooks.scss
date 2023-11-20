@@ -1,0 +1,82 @@
+.all-handbook-container {
+  .sticky-menu {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    .goBack {
+      background-color: #45c3d2;
+
+      .flex-back {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        i {
+          font-size: 20px;
+          padding: 10px 0;
+          color: #fff;
+          cursor: pointer;
+        }
+        span {
+          color: #fff;
+          font-size: 14px;
+
+          i {
+            font-size: 16px;
+          }
+        }
+
+        .bd-l-r {
+          border-left: 1px solid #fff;
+          border-right: 1px solid #fff;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  .general-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 70%;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .detail-all-handbook {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+      margin-bottom: 30px;
+
+      .section-img-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-weight: bold;
+
+        &:hover {
+          cursor: pointer;
+          color: #45c3d2;
+        }
+
+        img {
+          height: auto;
+          width: 100%;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-color: #eee;
+        }
+
+        .text-content {
+          padding: 0 15px;
+        }
+      }
+    }
+  }
+}

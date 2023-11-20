@@ -1,37 +1,69 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import './scss/Handbook.scss';
+import { connect } from "react-redux";
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { LANGUAGES } from '../../../utils';
+import './scss/AllHandBooks.scss';
 import { FormattedMessage } from 'react-intl';
-import Slider from "react-slick";
-import { withRouter } from 'react-router';
+import Header from '../../HomePage/Header';
+import About from '../../HomePage/Section/About';
+import Footer from '../../HomePage/Footer';
 import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
 import five_clinic from '../../../assets/handBook/195059-dia-chi-kham-chan-thuong-the-thao.png';
 import GI_END from '../../../assets/handBook/152930noi-soi-tieu-hoa.jpg';
 import Male from '../../../assets/handBook/114438phong-kham-nam-khoa-uy-tin3.jpg';
 import HOSP115 from '../../../assets/handBook/160418-bv-nhan-dan-115-ggrv-min.png';
 import HOSPCRay from '../../../assets/handBook/110149-kham-than-kinh-benh-vien-cho-ray.jpg';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
+class AllHandBooks extends Component {
 
-class HandBook extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+
+  }
+
+  async componentDidMount() {
+
+  }
+
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.language !== prevProps.language) {
+
+    }
+  }
+
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`)
+    }
+  }
 
   handleViewDetailHandbook = (id) => {
     this.props.history.push(`/detail-handbook-${id}/`)
   }
 
   render() {
+    let { language } = this.props;
 
     return (
-      <div className='section-general hand-book'>
-        <div className='section-cotainer'>
-          <div className='section-header'>
-            <span><FormattedMessage id="common.handbook" /></span>
-            <Link to={`/all-handbook/`}
-            >
-              <button><FormattedMessage id="home-body.all-articles" /></button>
-            </Link>
+      <>
+        <div>
+          <Header></Header>
+        </div>
+        <div className='all-handbook-container'>
+          <div className='sticky-menu'>
+            <div className='goBack'>
+              <div className='general-container flex-back'>
+                <i className="fas fa-long-arrow-alt-left" onClick={() => this.props.history.goBack()}></i>
+                <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
+                <span><FormattedMessage id="patient.title.all-handbook" /></span>
+              </div>
+            </div>
           </div>
-          <div className='section-content'>
-            <Slider {...this.props.settings}>
+          <div className='general-container'>
+            <h1><FormattedMessage id="patient.title.all-handbook" /></h1>
+            <div className='detail-all-handbook'>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(1)}>
                 <img src={five_different} />
                 <div className='text-content'>
@@ -68,28 +100,27 @@ class HandBook extends Component {
                   <span>Hướng dẫn đi khám tại khoa Thần kinh, Bệnh viện Chợ Rẫy: Thủ tục thăm khám? Bác sĩ nào giỏi?</span>
                 </div>
               </div>
-
-            </Slider>
+            </div>
           </div>
-        </div>
-      </div>
 
+        </div>
+        <About></About>
+        <Footer></Footer>
+      </>
     );
   }
-
 }
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.user.isLoggedIn,
-    language: state.app.language
+    language: state.app.language,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-  }
+
+  };
 };
 
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HandBook));
+export default connect(mapStateToProps, mapDispatchToProps)(AllHandBooks);

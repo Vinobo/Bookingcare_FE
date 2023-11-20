@@ -41,7 +41,8 @@
     "title": {
       "all-doctor": "Danh sách các bác sĩ",
       "all-specialty": "Danh sách chuyên khoa khám",
-      "all-clinic": "Danh sách cơ sở y tế"
+      "all-clinic": "Danh sách cơ sở y tế",
+      "all-handbook": "Các bài cẩm nang"
     },
     "detail-doctor": {
       "not-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
@@ -57,7 +58,7 @@
       "reason": "Lý do khám",
       "confirm": "Xác nhận đặt khám"
     },
-    "specialty":{
+    "specialty": {
       "select": "Chọn chuyên khoa khác"
     }
   },
