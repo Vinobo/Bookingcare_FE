@@ -34,9 +34,6 @@ class TableManageDoctor extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState !== this.state) {
-      this.handleGetDataDoctor()
-    }
     if (prevProps.language !== this.props.language) {
       this.setState({
         dataDoctor: this.state.dataDoctor
@@ -47,7 +44,8 @@ class TableManageDoctor extends Component {
   handleDeleteDoctorInfor = async (doctor) => {
     let res = await deleteDoctorInforService(doctor.id);
     if (res && res.errCode === 0) {
-      toast.success('Delete the doctor succeed!')
+      toast.success('Delete the doctor succeed!');
+      this.handleGetDataDoctor()
     } else {
       toast.error('Delete the doctor failed!')
     }

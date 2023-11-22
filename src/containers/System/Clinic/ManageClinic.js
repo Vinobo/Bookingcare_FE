@@ -266,10 +266,15 @@ class ManageClinic extends Component {
     }
   }
 
+  handleCancle = () => {
+    if (this.props.history) {
+      this.props.history.push(`/system/manage-clinic`)
+    }
+  }
+
   render() {
     let { language } = this.props;
     let { hasOldData } = this.state;
-    console.log('check state: ', this.state)
 
     return (
       <div className='container manage-clinic'>
@@ -350,6 +355,7 @@ class ManageClinic extends Component {
               className={hasOldData === true ? 'edit-clinic' : 'create-clinic'}
               onClick={() => this.handleSaveNewClinic()}
             >{hasOldData === true ? <FormattedMessage id={"user-manage.edit"} /> : <FormattedMessage id={"common.save"} />}</button>
+            <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
           </div>
         </div>
         {

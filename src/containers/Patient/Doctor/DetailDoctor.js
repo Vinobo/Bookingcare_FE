@@ -73,12 +73,18 @@ class DetailDoctor extends Component {
 
     return (
       <>
-        <Header isShowBanner={false} />
+        <div>
+          <Header isShowBanner={false} />
+        </div>
         <div className='doctor-detail-container'>
           <div className='goBack'>
             <div className='general-container'
-              onClick={() => this.props.history.goBack()}>
-              <i className="fas fa-long-arrow-alt-left"></i>
+              onClick={() => this.props.history.goBack()}
+            >
+              <div className='flex-row'>
+                <i className="fas fa-long-arrow-alt-left"></i>
+                <span>{language === LANGUAGES.VI ? nameVi : nameEn}</span>
+              </div>
             </div>
           </div>
           <div className='intro-doctor general-container'>

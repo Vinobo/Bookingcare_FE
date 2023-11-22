@@ -173,6 +173,12 @@ class ManageSpecialty extends Component {
     }
   }
 
+  handleCancleSpecialty = () => {
+    if (this.props.history) {
+      this.props.history.push(`/system/manage-specialty`)
+    }
+  }
+
   render() {
     let { language } = this.props;
     let { hasOldData } = this.state
@@ -214,6 +220,7 @@ class ManageSpecialty extends Component {
               className={hasOldData === true ? 'edit-specialty' : 'create-specialty'}
               onClick={() => this.handleSaveNewSpecialty()}
             > {hasOldData === true ? <FormattedMessage id={"user-manage.edit"} /> : <FormattedMessage id={"common.save"} />}</button>
+            <button className='cancle' onClick={() => this.handleCancleSpecialty()}>Cancle</button>
           </div>
         </div>
         {

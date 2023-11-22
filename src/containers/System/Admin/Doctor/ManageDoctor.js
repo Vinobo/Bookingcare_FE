@@ -260,6 +260,12 @@ class ManageDoctor extends Component {
     })
   }
 
+  handleCancle = () => {
+    if (this.props.history) {
+      this.props.history.push(`/system/manage-doctor`)
+    }
+  }
+
   render() {
     let { hasOldData } = this.state;
 
@@ -363,6 +369,7 @@ class ManageDoctor extends Component {
           >
             {hasOldData === true ? <FormattedMessage id={"user-manage.edit"} /> : <FormattedMessage id={"common.save"} />}
           </button>
+          <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
         </div>
       </div >
     );

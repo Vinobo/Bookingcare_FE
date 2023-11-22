@@ -81,4 +81,18 @@
       opacity: 0.8;
     }
   }
+
+  .cancle {
+    background-color: rgb(238, 54, 54);
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
 }

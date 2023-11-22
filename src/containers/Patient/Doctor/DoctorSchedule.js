@@ -122,6 +122,7 @@ class DoctorSchedule extends Component {
   render() {
     let { allDays, allAvailable, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
+    console.log('check state: ', this.state)
 
     return (
       <>
@@ -150,17 +151,19 @@ class DoctorSchedule extends Component {
               {allAvailable && allAvailable.length > 0 ?
                 <>
                   <div className='time-schedule-btns'>
-                    {allAvailable.map((value, index) => {
-                      let timeDisplay = language === LANGUAGES.VI ? value.timeTypeData.valueVi : value.timeTypeData.valueEn;
+                    {allAvailable.map((item, index) => {
+                      let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
                       let btnTime =
                         <button key={index}
                           className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'
                           }
-                          onClick={() => this.handleClickScheduleTime(value)}
+                          onClick={() => this.handleClickScheduleTime(item)}
                         >
                           {timeDisplay}
                         </button>;
+                      // if (item.bookingData.timeType !== item.timeType) {
                       return btnTime
+                      // }
                     })}
                     <div className='book-free'>
                       <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>

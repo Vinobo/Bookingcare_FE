@@ -33,9 +33,7 @@ class TableManageClinic extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState !== this.state) {
-      this.handleGetDataClinic()
-    }
+
   }
 
   handleEditClinic = (clinic) => {
@@ -48,6 +46,7 @@ class TableManageClinic extends Component {
     let res = await deleteClinicService(clinic.id);
     if (res && res.errCode === 0) {
       toast.success('Delete the clinic succeed!')
+      this.handleGetDataClinic()
     } else {
       toast.error('Delete the clinic failed!')
     }

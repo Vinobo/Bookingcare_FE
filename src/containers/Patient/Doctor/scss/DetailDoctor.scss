@@ -7,12 +7,24 @@
 
   .goBack {
     background-color: #45c3d2;
+    position: sticky;
+    top: 0;
 
-    i {
-      font-size: 20px;
-      padding: 5px 0;
-      color: #fff;
-      cursor: pointer;
+    .flex-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      i {
+        font-size: 20px;
+        padding: 5px 0;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      span {
+        color: #fff;
+      }
     }
 
     .general-container {

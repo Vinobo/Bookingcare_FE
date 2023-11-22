@@ -33,9 +33,6 @@ class TableManageSpecialty extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState !== this.state) {
-      this.handleGetDataSpecialty();
-    }
   }
 
   handleEditSpecialty = (specialty) => {
@@ -47,7 +44,8 @@ class TableManageSpecialty extends Component {
   handleDeleteSpecialty = async (specialty) => {
     let res = await deleteSpecialtyService(specialty.id);
     if (res && res.errCode === 0) {
-      toast.success('Delete the specialty succeed!')
+      toast.success('Delete the specialty succeed!');
+      this.handleGetDataSpecialty();
     } else {
       toast.error('Delete the specialty failed!')
     }
@@ -61,7 +59,6 @@ class TableManageSpecialty extends Component {
 
   render() {
     let dataSpecialty = this.state.dataSpecialty;
-    console.log('check state ,', this.state)
 
     return (
       <div className='mamage-specialty'>

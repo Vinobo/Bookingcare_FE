@@ -218,6 +218,26 @@ class ManageUser extends Component {
         })
     }
 
+    handleCancle = () => {
+        let arrGenders = this.props.genderRedux;
+        let arrPosition = this.props.positionRedux;
+        let arrRole = this.props.roleRedux;
+        this.setState({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
+            position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
+            role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
+            avatar: '',
+            previewImgURL: '',
+            action: CRUD_ACTIONS.CREATE
+        })
+    }
+
     render() {
         let genders = this.state.genderArr;
         let language = this.props.language;
@@ -354,6 +374,11 @@ class ManageUser extends Component {
                                         <FormattedMessage id="user-manage.edit" /> :
                                         <FormattedMessage id="common.save" />}
                                 </button>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
+                                    :
+                                    <></>
+                                }
                             </div>
                             <div className='table-user'>
                                 <TableManageUser

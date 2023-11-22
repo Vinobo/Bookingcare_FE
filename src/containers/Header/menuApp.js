@@ -44,17 +44,7 @@ export const adminMenu = [
             },
         ]
 
-    },
-
-    { //quản lý cẩm nang
-        name: 'common.handbook',
-        menus: [
-            {
-                name: 'menu.admin.manage-handbook', link: '/system/manage-handbook'
-            },
-        ]
-
-    },
+    }
 
 ];
 
