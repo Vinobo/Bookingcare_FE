@@ -10,7 +10,7 @@ import DatePicker from '../../../components/Input/DatePicker';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
-import { saveBulkScheduleDoctor } from '../../../services/userService';
+import { deleteScheduleService, getScheduleDoctorByDate, saveBulkScheduleDoctor } from '../../../services/userService';
 
 class ManageSchedule extends Component {
   constructor(props) {
@@ -20,13 +20,24 @@ class ManageSchedule extends Component {
       selectedDoctor: {},
       currentDate: moment(new Date()).startOf('day').valueOf(),
       rangeTime: [],
-      userId: ''
+      userId: '',
+      dataSchedule: []
+    }
+  }
+
+  handleGetDataSchedule = async () => {
+    if (this.state.selectedDoctor.value) {
+      let res = await getScheduleDoctorByDate(this.state.selectedDoctor.value, this.state.currentDate);
+      this.setState({
+        dataSchedule: res.data ? res.data : [],
+      })
     }
   }
 
   componentDidMount() {
     this.props.fetchAllDoctors();
     this.props.fetchAllSchedulTime();
+    this.handleGetDataSchedule();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -68,13 +79,24 @@ class ManageSchedule extends Component {
   }
 
   handleChangeSelect = async (selectedDoctor) => {
-    this.setState({ selectedDoctor: selectedDoctor });
-
+    if (selectedDoctor) {
+      let res = await getScheduleDoctorByDate(selectedDoctor.value, this.state.currentDate);
+      this.setState({
+        dataSchedule: res.data ? res.data : [],
+      })
+    }
+    this.setState({
+      selectedDoctor: selectedDoctor
+    })
   }
 
-  handleOnchangeDatePiker = (date) => {
+
+  handleOnchangeDatePiker = async (date) => {
+    let formatedDate = new Date(date[0]).getTime();
+    let res = await getScheduleDoctorByDate(this.state.selectedDoctor.value, formatedDate);
     this.setState({
-      currentDate: date[0]
+      currentDate: formatedDate,
+      dataSchedule: res.data ? res.data : [],
     })
   }
 
@@ -142,9 +164,38 @@ class ManageSchedule extends Component {
       if (this.props.history) {
         this.props.history.push(`/doctor/manage-schedule`)
       }
+      let res = await getScheduleDoctorByDate(selectedDoctor.value, currentDate);
+      let value = [];
+      rangeTime.map(schedule => {
+        let object = {};
+        if (userRole === "R1") {
+          object.doctorId = selectedDoctor.value;
+        } else object.doctorId = userInfo.id;
+        object.date = formatedDate;
+        object.timeType = schedule.keyMap;
+        object.valueEn = schedule.valueEn;
+        object.valueVi = schedule.valueVi;
+        object.isSelected = false
+        value.push(object);
+      })
+      this.setState({
+        currentDate: currentDate,
+        rangeTime: value,
+        dataSchedule: res.data ? res.data : [],
+      })
     } else {
       toast.error("error saveBulkScheduleDoctor!");
       console.log('error saveBulkScheduleDoctor >>> res: ', res)
+    }
+  }
+
+  handleDeleteSchedule = async (id) => {
+    let res = await deleteScheduleService(id);
+    if (res && res.errCode === 0) {
+      toast.success('Delete the schedule succeed!')
+      this.handleGetDataSchedule()
+    } else {
+      toast.error('Delete the schedule failed!')
     }
   }
 
@@ -155,11 +206,11 @@ class ManageSchedule extends Component {
   }
 
   render() {
-    let { rangeTime } = this.state;
+    let { rangeTime, dataSchedule } = this.state;
     let { language, userInfo } = this.props;
     let userRole = userInfo.roleId;
     let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-    console.log('check pros: ', this.props)
+    console.log('check pros: ', this.state)
 
     return (
       <div className='container manage-shedule '>
@@ -223,10 +274,44 @@ class ManageSchedule extends Component {
               >
                 <FormattedMessage id='common.save' />
               </button>
-              <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
+              {userRole === "R1" ? <></> :
+                <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
+              }
             </div>
 
           </div>
+          {userRole === "R1" &&
+            <table id='table-manage-schedule'>
+              <tbody>
+                <tr>
+                  <th>Time</th>
+                  <th><FormattedMessage id="user-manage.action" /></th>
+                </tr>
+
+                {dataSchedule && dataSchedule.length > 0 ?
+                  dataSchedule.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn}</td>
+                        <td className='btn-item'>
+                          <button className='btn-delete'
+                            onClick={() => this.handleDeleteSchedule(item.id)}
+                          >
+                            <i className="fas fa-trash-alt"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                  :
+                  <tr>
+                    <td colSpan='6' style={{ textAlign: 'center' }}>Không có lịch trình</td>
+                  </tr>
+                }
+
+              </tbody>
+            </table>
+          }
         </div>
       </div >
     );

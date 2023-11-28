@@ -8,17 +8,22 @@ import TableManageSchedule from '../containers/System/Doctor/TableManageSchedule
 
 class Doctor extends Component {
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, userInfo } = this.props;
+    let userRole = userInfo.roleId;
     return (
       <>
         {isLoggedIn && <Header />}
         <div className="system-container" >
           <div className="system-list">
             <Switch>
-              <Route path="/doctor/manage-schedule" component={TableManageSchedule} />
-              <Route path="/doctor/create-schedule" component={ManageSchedule} />
-              <Route path="/doctor/manage-patient" component={ManagePatient} />
-
+              {userRole === "R1" ? <Route path="/doctor/manage-schedule" component={ManageSchedule} />
+                :
+                <>
+                  <Route path="/doctor/manage-schedule" component={TableManageSchedule} />
+                  <Route path="/doctor/create-schedule" component={ManageSchedule} />
+                  <Route path="/doctor/manage-patient" component={ManagePatient} />
+                </>
+              }
             </Switch>
           </div>
         </div >
@@ -29,7 +34,8 @@ class Doctor extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
   };
 };
 

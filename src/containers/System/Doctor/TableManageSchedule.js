@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import './TableManageSchedule.scss';
 import * as actions from "../../../store/actions";
-import { deleteClinicService, deleteScheduleService, getScheduleDoctorByDate } from '../../../services/userService';
+import { deletescheduleService, deleteScheduleService, getScheduleDoctorByDate } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import DatePicker from '../../../components/Input/DatePicker';
@@ -37,7 +37,10 @@ class TableManageSchedule extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    // this.handleGetDataSchedule()
+    if (prevProps.language !== this.props.language) {
+      this.handleGetDataSchedule()
+    }
+
   }
 
 
@@ -58,7 +61,7 @@ class TableManageSchedule extends Component {
   }
 
   handleOnchangeDatePiker = async (date) => {
-    let formatedDate = new Date(date).getTime();
+    let formatedDate = new Date(date[0]).getTime();
     let res = await getScheduleDoctorByDate(this.props.userInfo.id, formatedDate);
     this.setState({
       currentDate: formatedDate,
@@ -68,14 +71,14 @@ class TableManageSchedule extends Component {
 
   render() {
     let dataSchedule = this.state.dataSchedule;
-    let { userInfo, language } = this.props.userInfo;
+    let { userInfo, language } = this.props;
     console.log('chekc state: ', this.state)
 
     return (
-      <div className='mamage-clinic'>
+      <div className='mamage-schedule'>
         <div className='container'>
-          <div className='title-mn-clinic'><FormattedMessage id="admin.manage-schedule.title" /></div>
-          <div className='add-clinic'>
+          <div className='title-mn-schedule'><FormattedMessage id="admin.manage-schedule.title" /></div>
+          <div className='add-schedule'>
             <button onClick={() => this.toCreateSchedule()} >
               <i className="fas fa-plus"></i> <FormattedMessage id="admin.manage-doctor.create-schedule" />
             </button>
@@ -89,14 +92,14 @@ class TableManageSchedule extends Component {
               value={this.state.currentDate}
             />
           </div>
-          <table id='table-manage-clinic'>
+          <table id='table-manage-schedule'>
             <tbody>
               <tr>
                 <th>Time</th>
                 <th><FormattedMessage id="user-manage.action" /></th>
               </tr>
 
-              {dataSchedule && dataSchedule.length > 0 &&
+              {dataSchedule && dataSchedule.length > 0 ?
                 dataSchedule.map((item, index) => {
                   return (
                     <tr key={index}>
@@ -111,6 +114,10 @@ class TableManageSchedule extends Component {
                     </tr>
                   )
                 })
+                :
+                <tr>
+                  <td colSpan='6' style={{ textAlign: 'center' }}>Không có lịch trình</td>
+                </tr>
               }
 
             </tbody>

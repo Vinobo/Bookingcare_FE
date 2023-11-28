@@ -3,8 +3,8 @@ button {
   outline: none;
 }
 
-.mamage-clinic {
-  .title-mn-clinic {
+.mamage-schedule {
+  .title-mn-schedule {
     text-align: center;
     font-size: 17px;
     text-transform: uppercase;
@@ -12,7 +12,7 @@ button {
     margin: 20px 0;
   }
 
-  .add-clinic {
+  .add-schedule {
     margin: 20px 0;
     float: left;
 
@@ -28,7 +28,7 @@ button {
     float: right;
   }
 
-  #table-manage-clinic {
+  #table-manage-schedule {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     font-size: 12px;
@@ -83,25 +83,26 @@ button {
     }
   }
 
-  #table-manage-clinic td,
-  #table-manage-clinic th {
+  #table-manage-schedule td,
+  #table-manage-schedule th {
     border: 1px solid #ddd;
     padding: 8px;
     min-width: 100px;
+    text-align: center;
   }
 
-  #table-manage-clinic tr:nth-child(even) {
+  #table-manage-schedule tr:nth-child(even) {
     background-color: #f2f2f2;
   }
 
-  #table-manage-clinic tr:hover {
+  #table-manage-schedule tr:hover {
     background-color: #ddd;
   }
 
-  #table-manage-clinic th {
+  #table-manage-schedule th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #04aa6d;
     color: white;
   }

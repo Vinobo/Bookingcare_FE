@@ -160,7 +160,7 @@
     },
 
     "admin": {
-      "manage-user": "Users System",
+      "manage-user": "Manage Users",
       "manage-doctor": "Manage doctor",
       "manage-admin": "Manage admin",
       "crud": "CRUD user",

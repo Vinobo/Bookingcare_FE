@@ -26,9 +26,7 @@ class ManagePatient extends Component {
   }
 
   async componentDidMount() {
-
     this.getDataPatient()
-
   }
 
   getDataPatient = async () => {
@@ -115,6 +113,8 @@ class ManagePatient extends Component {
   render() {
     let { language } = this.props;
     let { dataPatient, isOpenRemedyModal, dataModal } = this.state;
+    console.log('cácgasfchgascgsa', this.state)
+
     return (
       <>
         <LoadingOverlay
