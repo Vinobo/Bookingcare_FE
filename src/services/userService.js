@@ -51,14 +51,6 @@ const deleteDoctorInforService = (doctorId) => {
   return axios.delete(`/api/delete-doctor-infor?id=${doctorId}`)
 }
 
-const saveBulkScheduleDoctor = (data) => {
-  return axios.post('/api/bulk-create-schedule', data)
-}
-
-const getScheduleDoctorByDate = (doctorId, date) => {
-  return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`)
-}
-
 const getAddressFeeDoctorById = (doctorId) => {
   return axios.get(`/api/get-address-fee-doctor-by-id?doctorId=${doctorId}`)
 }
@@ -77,6 +69,19 @@ const postSendRemedy = (data) => {
 
 const getAllDetailDoctorByLoction = (data) => {
   return axios.get(`/api/get-detail-doctor-by-location?location=${data.location}`)
+}
+
+//SCHEDULE
+const saveBulkScheduleDoctor = (data) => {
+  return axios.post('/api/bulk-create-schedule', data)
+}
+
+const getScheduleDoctorByDate = (doctorId, date) => {
+  return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`)
+}
+
+const deleteScheduleService = (scheduleId) => {
+  return axios.delete(`/api/delete-schedule?id=${scheduleId}`)
 }
 
 //PATIENT BOOKING
@@ -131,6 +136,8 @@ export {
   saveBulkScheduleDoctor, getAllDetailDoctorByLoction,
   getScheduleDoctorByDate, getAddressFeeDoctorById, getProfileDoctorById,
   getAllPatientForDoctor, postSendRemedy,
+
+  deleteScheduleService,
 
   postPatientBookAppointment, postVerifyAppointment,
 

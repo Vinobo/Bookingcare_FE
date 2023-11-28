@@ -38,11 +38,20 @@
         // background: url("../../assets/images/bookingcare-2020.svg") center center no-repeat;
         // height: 40px;
         // width: 160px;
-        cursor: pointer;
 
-        img {
-          height: 40px;
-          width: 160px;
+        .logo {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          img {
+            width: 50px;
+          }
+
+          span {
+            font-size: 20px;
+            color: orange;
+          }
         }
       }
     }

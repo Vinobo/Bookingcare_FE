@@ -18,8 +18,9 @@ class ManageSchedule extends Component {
     this.state = {
       listDoctors: [],
       selectedDoctor: {},
-      currentDate: '',
-      rangeTime: []
+      currentDate: moment(new Date()).startOf('day').valueOf(),
+      rangeTime: [],
+      userId: ''
     }
   }
 
@@ -88,20 +89,15 @@ class ManageSchedule extends Component {
       this.setState({
         rangeTime: rangeTime
       })
-
-
     }
-
   }
 
   handleSaveSchedule = async () => {
     let { rangeTime, selectedDoctor, currentDate } = this.state;
+    let { userInfo } = this.props;
     let result = [];
+    let userRole = userInfo.roleId;
 
-    if (selectedDoctor && _.isEmpty(selectedDoctor)) {
-      toast.error("Invalid selected doctor!");
-      return;
-    }
     if (!currentDate) {
       toast.error("Invalid Date!");
       return;
@@ -114,7 +110,9 @@ class ManageSchedule extends Component {
       let selectedTime = rangeTime.filter(item => item.isSelected === true)
       selectedTime.map(schedule => {
         let object = {};
-        object.doctorId = selectedDoctor.value;
+        if (userRole === "R1") {
+          object.doctorId = selectedDoctor.value;
+        } else object.doctorId = userInfo.id;
         object.date = formatedDate;
         object.timeType = schedule.keyMap;
         result.push(object);
@@ -123,24 +121,45 @@ class ManageSchedule extends Component {
       toast.error("Invalid selected time!");
       return;
     }
+
+    let doctorId = '';
+    if (userRole === "R1") {
+      doctorId = selectedDoctor.value;
+      if (selectedDoctor && _.isEmpty(selectedDoctor)) {
+        toast.error("Invalid selected doctor!");
+        return;
+      }
+    } else doctorId = userInfo.id
+
     let res = await saveBulkScheduleDoctor({
       arrSchedule: result,
-      doctorId: selectedDoctor.value,
-      formatedDate: formatedDate
+      doctorId: doctorId,
+      formatedDate: formatedDate,
     });
 
     if (res && res.errCode === 0) {
       toast.success("Save Infor succed!")
+      if (this.props.history) {
+        this.props.history.push(`/doctor/manage-schedule`)
+      }
     } else {
       toast.error("error saveBulkScheduleDoctor!");
       console.log('error saveBulkScheduleDoctor >>> res: ', res)
     }
   }
 
+  handleCancle = () => {
+    if (this.props.history) {
+      this.props.history.push(`/doctor/manage-schedule`)
+    }
+  }
+
   render() {
     let { rangeTime } = this.state;
-    let { language } = this.props;
+    let { language, userInfo } = this.props;
+    let userRole = userInfo.roleId;
     let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    console.log('check pros: ', this.props)
 
     return (
       <div className='container manage-shedule '>
@@ -150,12 +169,26 @@ class ManageSchedule extends Component {
         <div className='container'>
           <div className='manage-shedule-body'>
             <div className='select-doctor'>
-              <label><FormattedMessage id='common.choose-doctor' /></label>
-              <Select
-                value={this.state.selectedDoctor}
-                onChange={this.handleChangeSelect}
-                options={this.state.listDoctors}
-              />
+              {userRole && userRole === "R1" ?
+                <>
+                  <label><FormattedMessage id='common.choose-doctor' /></label>
+                  <Select
+                    value={this.state.selectedDoctor}
+                    onChange={this.handleChangeSelect}
+                    options={this.state.listDoctors}
+                  />
+                </>
+                :
+                <div className='flex-cl'>
+                  <label><FormattedMessage id='common.doctor' /></label>
+                  {language === 'vi' ?
+                    <label>{userInfo.lastName} {userInfo.firstName} </label>
+                    :
+                    <label>{userInfo.firstName} {userInfo.lastName} </label>
+                  }
+                </div>
+              }
+
             </div>
 
             <div className='select-date'>
@@ -164,6 +197,7 @@ class ManageSchedule extends Component {
                 className='form-control'
                 onChange={this.handleOnchangeDatePiker}
                 selected={this.state.currentDate}
+                value={this.state.currentDate}
                 minDate={yesterday}
               />
             </div>
@@ -189,6 +223,7 @@ class ManageSchedule extends Component {
               >
                 <FormattedMessage id='common.save' />
               </button>
+              <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
             </div>
 
           </div>
@@ -203,7 +238,8 @@ const mapStateToProps = state => {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
     allDoctors: state.admin.allDoctors,
-    allScheduleTime: state.admin.allScheduleTime
+    allScheduleTime: state.admin.allScheduleTime,
+    userInfo: state.user.userInfo,
   };
 };
 

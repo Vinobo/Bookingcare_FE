@@ -26,7 +26,7 @@
     "outstanding-facility": "Outstanding medical facilities",
     "outstanding-doctor": "Featured Doctor of the Week",
     "healthy": "Live Strong",
-    "media": "Media talks about BookingCare",
+    "media": "Media talks about LiveCare",
     "doctors-and-medical-facilities": "For doctors and medical facilities",
     "view-more": "View more",
     "all-articles": "All articles"
@@ -72,7 +72,16 @@
       "choose-price": "Select price",
       "choose-payment": "Select payment",
       "choose-province": "Select province",
-      "edit-doctor": "Edit doctor infor"
+      "edit-doctor": "Edit doctor infor",
+      "create-schedule": "Create schedules"
+    },
+    "manage-schedule": {
+      "title": "Manage schedules",
+      "name": "Tên phòng khám",
+      "img": "Ảnh phòng khám",
+      "address": "Địa chỉ phòng khám",
+      "create-clinic": "Thêm phòng khám",
+      "edit-clinic": "Sửa phòng khám"
     },
     "manage-specialty": {
       "title": "Manage specialty",

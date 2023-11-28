@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
 import './Header.scss';
-import logo from "../../assets/images/bookingcare-2020.svg";
+import logo from "../../assets/images/LOGO.png";
 import { withRouter } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
@@ -79,7 +79,10 @@ class Header extends Component {
           <div className='home-header-content'>
             <div className='left-content'>
               <div className='header-logo'>
-                <img src={logo} onClick={() => this.returnToHome()} />
+                <div className='logo' onClick={() => this.returnToHome()} >
+                  <img src={logo} />
+                  <span>LiveCare</span>
+                </div>
               </div>
             </div>
 

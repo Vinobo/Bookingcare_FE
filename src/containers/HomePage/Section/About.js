@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './scss/About.scss';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
-import logo from "../../../assets/images/bookingcare-2020.svg";
+import logo from "../../../assets/images/LOGO.png";
 import MOIT from "../../../assets/about/bo-cong-thuong.svg"
 import Slider from "react-slick";
 
@@ -24,10 +24,13 @@ class About extends Component {
           <div className='content-about'>
             <div className='info-company'>
               <div className='about-logo'>
-                <img src={logo} onClick={() => this.returnToHome()} />
+                <div className='logo' onClick={() => this.returnToHome()} >
+                  <img src={logo} />
+                  <span>LiveCare</span>
+                </div>
               </div>
               <div className='about-company'>
-                <h2>Công ty Cổ phần Công nghệ BookingCare</h2>
+                <h2>Công ty Cổ phần Công nghệ LiveCare</h2>
                 <p><i className="fas fa-map-marker-alt"></i> Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam</p>
                 <p><i className="fas fa-check"></i> ĐKKD số: 0106790291. Sở KHĐT Hà Nội cấp ngày 16/03/2015</p>
               </div>

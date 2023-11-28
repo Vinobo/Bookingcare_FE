@@ -26,7 +26,7 @@
     "outstanding-facility": "Cơ sở y tế nổi bật",
     "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
     "healthy": "Sống khỏe",
-    "media": "Truyền thông nói về BookingCare",
+    "media": "Truyền thông nói về LiveCare",
     "doctors-and-medical-facilities": "Dành cho bác sĩ và cơ sở y tế  ",
     "view-more": "Xem thêm",
     "all-articles": "Tất cả bài viết"
@@ -72,7 +72,16 @@
       "choose-price": "Chọn giá khám",
       "choose-payment": "Chọn phương thức thanh toán",
       "choose-province": "Chọn tỉnh thành",
-      "edit-doctor": "Thay đổi thông tin bác sĩ"
+      "edit-doctor": "Thay đổi thông tin bác sĩ",
+      "create-schedule": "Tạo lịch trình"
+    },
+    "manage-schedule": {
+      "title": "Quản lý lịch trình",
+      "name": "Tên phòng khám",
+      "img": "Ảnh phòng khám",
+      "address": "Địa chỉ phòng khám",
+      "create-clinic": "Thêm phòng khám",
+      "edit-clinic": "Sửa phòng khám"
     },
     "manage-specialty": {
       "title": "Quản lý chuyên khoa",
