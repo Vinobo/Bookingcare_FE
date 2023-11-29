@@ -30,6 +30,10 @@ button {
     width: 100%;
     margin: 20px 0;
 
+    .item-name {
+      min-width: 140px;
+    }
+
     .img-customize {
       height: 150px;
       width: 150px;
@@ -42,6 +46,7 @@ button {
     .block-item {
       display: block;
       max-height: 150px;
+      // max-width: 900px;
       overflow: auto;
     }
 

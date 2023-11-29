@@ -25,13 +25,14 @@ class DetailDoctor extends Component {
 
   async componentDidMount() {
     // this.props.fetchAllDoctors();
-    // this.props.fetchDetailDoctor();
+
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
       this.setState({
         currentDoctorId: id
       })
+      // this.props.fetchDetailDoctor(id);
 
       let res = await getDetailInforDoctor(id);
       if (res && res.errCode === 0) {
@@ -150,7 +151,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     //   fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
-    //   fetchDetailDoctor: (currentDoctorId) => dispatch(actions.fetchDetailDoctor(currentDoctorId))
+    // fetchDetailDoctor: (Id) => dispatch(actions.fetchDetailDoctor(Id))
   };
 };
 

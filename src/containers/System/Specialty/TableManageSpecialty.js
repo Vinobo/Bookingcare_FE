@@ -82,7 +82,7 @@ class TableManageSpecialty extends Component {
                 dataSpecialty.map((item, index) => {
                   return (
                     <tr key={index}>
-                      <td>{item.name}</td>
+                      <td className='item-name'>{item.name}</td>
                       <td className='img-customize' style={{ backgroundImage: `url(${item.image})` }}></td>
                       <td className='block-item'>{item.descriptionHTML}</td>
                       <td className='btn-item'>

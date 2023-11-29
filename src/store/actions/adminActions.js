@@ -273,7 +273,7 @@ export const saveInforDoctor = (data) => {
   }
 }
 
-// //get detail Doctor
+//get detail Doctor
 // export const fetchDetailDoctor = currentDoctorId => {
 //   return async (dispatch, getState) => {
 //     try {

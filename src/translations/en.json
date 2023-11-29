@@ -172,6 +172,7 @@
     },
     "doctor": {
       "manage-schedule": "Manage Doctor's schedule",
+      "doctor-patient": "Patient lists",
       "manage-patient": "Manage Doctor's patient"
     }
   },

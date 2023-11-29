@@ -175,6 +175,7 @@
     },
     "doctor": {
       "manage-schedule": "Quản lý kế hoạch khám bệnh",
+      "doctor-patient": "Dach sách bệnh nhân",
       "manage-patient": "Quản lý bệnh nhân khám bệnh"
     }
   },
