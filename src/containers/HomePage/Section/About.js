@@ -53,7 +53,7 @@ class About extends Component {
                 </div>
               </div>
             </div>
-            <div className='more-info'>
+            {/* <div className='more-info'>
               <ul>
                 <li><a href="#">Liên hệ hợp tác</a></li>
                 <li><a href="#">Danh bạ y tế</a></li>
@@ -66,7 +66,7 @@ class About extends Component {
                 <li><a href="#">Quy trình hỗ trợ giải quyết khiếu nại</a></li>
                 <li><a href="#">Quy chế hoạt động</a></li>
               </ul>
-            </div>
+            </div> */}
             <div className='partner'>
               <span className='title-pt'>Đối tác bảo trợ nội dung</span>
               <ul>

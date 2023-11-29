@@ -135,7 +135,7 @@ class Header extends Component {
               </div>
             </div>
 
-            <div className='content-down'>
+            {/* <div className='content-down'>
               <div className='options'>
                 <Link to={`/all-specialty/`}
                   className='text-view'
@@ -171,7 +171,7 @@ class Header extends Component {
                   <div className='text-child'><FormattedMessage id="banner.child6" /></div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         }
       </React.Fragment >
