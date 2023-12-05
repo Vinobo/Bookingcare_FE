@@ -142,7 +142,7 @@ class Header extends Component {
             {/* <div className='content-down'>
               <div className='options'>
                 <Link to={`/all-specialty/`}
-                  className='text-view'
+                  className='text-view' 
                 >
                   <div className='option-child'>
                     <div className='icon-child'><i className="far fa-hospital"></i></div>

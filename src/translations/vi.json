@@ -53,6 +53,15 @@
     }
   },
 
+  "clinic": {
+    "schedule": "Đặt lịch khám",
+    "intro": "Giới thiệu",
+    "specialty": "Thế mạnh chuyên môn",
+    "device": "Trang thiết bị",
+    "location": "Vị trí",
+    "process": "Quy trình đi khám"
+  },
+
   "manage-schedule": {
     "title": "Quản lý kế hoạch khám bệnh của bác sĩ"
   },

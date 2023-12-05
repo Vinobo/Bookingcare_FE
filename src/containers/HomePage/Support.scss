@@ -1,4 +1,33 @@
 .support {
+  .goBack {
+    background-color: #45c3d2;
+    position: sticky;
+    top: 0;
+
+    .flex-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      i {
+        font-size: 20px;
+        padding: 5px 0;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      span {
+        color: #fff;
+      }
+    }
+
+    .general-container {
+      padding: 0 15px;
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+
   h1 {
     font-size: 18px;
     text-align: center;

@@ -38,6 +38,15 @@
     "title": "Please choose one of the methods below to contact LiveCare to receive the best support"
   },
 
+  "clinic": {
+    "schedule": "Make an appointment",
+    "intro": "Introduction",
+    "specialty": "Professional strengths",
+    "device": "Medical equipment",
+    "location": "Location",
+    "process": "Examination process"
+  },
+
   "about": {
     "title": "LiveCare Technology Joint Stock Company",
     "location": "Lot B4/D21, Cau Giay New Urban Area, Dich Vong Hau Ward, Cau Giay District, Hanoi City, Vietnam",

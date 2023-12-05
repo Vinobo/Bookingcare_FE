@@ -112,32 +112,32 @@ class DetailsClinic extends Component {
               <div className='menu-clinic'>
                 {arrDoctorId && !_.isEmpty(arrDoctorId) &&
                   <>
-                    <a href='#doctor'>Đặt lịch khám</a>
+                    <a href='#doctor'><FormattedMessage id="clinic.schedule" /></a>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.introHTML) &&
                   <>
-                    <a href='#intro'>Giới thiệu</a>
+                    <a href='#intro'><FormattedMessage id="clinic.intro" /></a>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
                   <>
-                    <a href='#specialty'>Thế mạnh chuyên môn</a>
+                    <a href='#specialty'><FormattedMessage id="clinic.specialty" /></a>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
                   <>
-                    <a href='#device'>Trang thiết bị</a>
+                    <a href='#device'><FormattedMessage id="clinic.device" /></a>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
                   <>
-                    <a href='#location'>Vị trí</a>
+                    <a href='#location'><FormattedMessage id="clinic.location" /></a>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
                   <>
-                    <a href='#process'>Quy trình đi khám</a>
+                    <a href='#process'><FormattedMessage id="clinic.process" /></a>
                   </>
                 }
               </div>
@@ -148,7 +148,7 @@ class DetailsClinic extends Component {
               <span id='doctor'></span>
               <div className='general-container'>
                 <div className='title-detail'>
-                  Bác sĩ
+                  <FormattedMessage id="common.doctor" />
                 </div>
               </div>
             </>
@@ -191,7 +191,7 @@ class DetailsClinic extends Component {
           <div className='description-clinic general-container'>
             <span id='intro'></span>
             <div className='intro-clinic'>
-              <div className='title-detail'>Giới thiệu</div>
+              <div className='title-detail'><FormattedMessage id="clinic.intro" /></div>
 
               {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
                 <>
@@ -206,7 +206,7 @@ class DetailsClinic extends Component {
               <>
                 <span id='specialty'></span>
                 <div className='specialty-clinic'>
-                  <div className='title-detail'>Thế mạnh chuyên môn</div>
+                  <div className='title-detail'><FormattedMessage id="clinic.specialty" /></div>
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.specialtyHTML }}
                   >
@@ -218,7 +218,7 @@ class DetailsClinic extends Component {
               <>
                 <span id='device' ></span>
                 <div className='device-clinic'>
-                  <div className='title-detail'>Trang thiết bị</div>
+                  <div className='title-detail'><FormattedMessage id="clinic.device" /></div>
 
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.deviceHTML }}
@@ -232,7 +232,7 @@ class DetailsClinic extends Component {
               <>
                 <span id='location'></span>
                 <div className='location-clinic'>
-                  <div className='title-detail'>Vị trí</div>
+                  <div className='title-detail'><FormattedMessage id="clinic.location" /></div>
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.locationHTML }}
                   >
@@ -244,7 +244,7 @@ class DetailsClinic extends Component {
               <>
                 <span id='process' ></span>
                 <div className='process-clinic'>
-                  <div className='title-detail'>Quy trình đi khám</div>
+                  <div className='title-detail'><FormattedMessage id="clinic.process" /></div>
 
                   <div className='text-details'
                     dangerouslySetInnerHTML={{ __html: dataDetailClinic.processHTML }}
