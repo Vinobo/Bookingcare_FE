@@ -114,10 +114,14 @@ class Header extends Component {
             </div>
 
             <div className='right-content'>
-              <div className='support'>
-                <i className="far fa-question-circle"></i>
-                <FormattedMessage id="home-header.support" />
-              </div>
+              <Link to={`/support/`}
+                className='text-view'
+              >
+                <div className='support'>
+                  <i className="far fa-question-circle"></i>
+                  <FormattedMessage id="home-header.support" />
+                </div>
+              </Link>
               <div className={language === LANGUAGES.VI ? 'lang-vi active' : 'lang-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
               <div className={language === LANGUAGES.EN ? 'lang-en active' : 'lang-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
             </div>

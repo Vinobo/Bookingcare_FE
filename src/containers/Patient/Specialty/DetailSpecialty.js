@@ -96,15 +96,6 @@ class DetailsSpecialty extends Component {
       this.handleData();
     }
 
-    if (this.props.history !== prevProps.history) {
-      let res = await getAllSpecialties();
-      if (res && res.errCode === 0) {
-        let dataSelect = this.buildDataInputSelect(res.data)
-        this.setState({
-          listSpecialty: dataSelect
-        })
-      }
-    }
   }
 
   handleOnChangeSelectProvince = async (event) => {
@@ -180,7 +171,7 @@ class DetailsSpecialty extends Component {
   render() {
     let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty } = this.state;
-    console.log('chek statteee: ', this.state)
+
 
     return (
       <div className='detail-specialty'>
@@ -197,7 +188,7 @@ class DetailsSpecialty extends Component {
                   <span>{dataDetailSpecialty ? dataDetailSpecialty.name : ''}</span>
                 </div>
                 <Select
-                  value={selectedSpecialty || selectedSpecialty[0]}
+                  value={selectedSpecialty}
                   onChange={this.handleChangeSelect}
                   options={listSpecialty}
                   placeholder={<FormattedMessage id="patient.specialty.select" />}

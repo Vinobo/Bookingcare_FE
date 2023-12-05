@@ -5,7 +5,7 @@ import { LANGUAGES } from '../../../utils';
 import './scss/AllDoctor.scss';
 import * as actions from '../../../store/actions';
 import { FormattedMessage } from 'react-intl';
-import { getAllCodeService, getAllDetailDoctorByLoction, getAllDoctor } from '../../../services/userService';
+import { getAllCodeService, getAllDetailDoctorByLoction, getAllDoctors } from '../../../services/userService';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
@@ -27,9 +27,7 @@ class AllDoctor extends Component {
   async componentDidMount() {
     let { language } = this.props;
 
-    let res = await getAllDetailDoctorByLoction({
-      location: 'ALL'
-    });
+    let res = await getAllDoctors();
 
     let resProvince = await getAllCodeService('PROVINCE')
 
@@ -61,9 +59,7 @@ class AllDoctor extends Component {
 
   handleOnChangeSelectProvince = async (event) => {
     let location = event.target.value;
-    let res = await getAllDetailDoctorByLoction({
-      location: location
-    });
+    let res = await getAllDoctors();
 
     this.setState({
       dataDetailDoctor: res.data,

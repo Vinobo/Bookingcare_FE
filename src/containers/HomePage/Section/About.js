@@ -30,9 +30,9 @@ class About extends Component {
                 </div>
               </div>
               <div className='about-company'>
-                <h2>Công ty Cổ phần Công nghệ LiveCare</h2>
-                <p><i className="fas fa-map-marker-alt"></i> Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam</p>
-                <p><i className="fas fa-check"></i> ĐKKD số: 0106790291. Sở KHĐT Hà Nội cấp ngày 16/03/2015</p>
+                <h2><FormattedMessage id="about.title" /></h2>
+                <p><i className="fas fa-map-marker-alt"></i><FormattedMessage id="about.location" /></p>
+                <p><i className="fas fa-check"></i><FormattedMessage id="about.certification" /></p>
               </div>
               <div className='certification'>
                 <img src={MOIT}></img>
@@ -40,11 +40,11 @@ class About extends Component {
               </div>
               <div className='contact'>
                 <div className='ct-content'>
-                  <span className='title-ct'>Văn phòng tại TP Hồ Chí Minh</span>
-                  <span className='description-ct'>Số 01, Hồ Bá Kiện, Phường 15, Quận 10</span>
+                  <span className='title-ct'><FormattedMessage id="about.address-title" /></span>
+                  <span className='description-ct'><FormattedMessage id="about.address" /></span>
                 </div>
                 <div className='ct-content'>
-                  <span className='title-ct'>Hỗ trợ khách hàng</span>
+                  <span className='title-ct'><FormattedMessage id="about.support" /></span>
                   <span className='description-ct'>trinhnkgcs18897@fpt.edu.vn (7h - 18h)</span>
                 </div>
                 <div className='ct-content'>
@@ -68,14 +68,14 @@ class About extends Component {
               </ul>
             </div> */}
             <div className='partner'>
-              <span className='title-pt'>Đối tác bảo trợ nội dung</span>
+              <span className='title-pt'><FormattedMessage id="about.partner.title" /></span>
               <ul>
                 <li>
                   <a href="https://hellodoctors.vn/" target="_blank">
                     <img src="https://cdn.bookingcare.vn/fo/2023/09/08/093706-hellodoctorlogo.png" width="65px" height="40px" />
                     <div className="pt-detail">
                       <span className='title-pt'>Hello Doctor</span>
-                      <span>Bảo trợ chuyên mục nội dung “sức khỏe tinh thần”</span>
+                      <span><FormattedMessage id="about.partner.span1" /></span>
                     </div>
                   </a>
                 </li>
@@ -83,8 +83,8 @@ class About extends Component {
                   <a href="https://bernard.vn/" target="_blank">
                     <img src="https://cdn.bookingcare.vn/fo/2022/03/21/082316-logo-bernard.png" width="65px" height="65px" />
                     <div className="pt-detail">
-                      <span className='title-pt'>Hệ thống y khoa chuyên sâu quốc tế Bernard</span>
-                      <span>Bảo trợ chuyên mục nội dung “y khoa chuyên sâu”</span>
+                      <span className='title-pt'><FormattedMessage id="about.partner.partner2" /></span>
+                      <span><FormattedMessage id="about.partner.span2" /></span>
                     </div>
                   </a>
                 </li>

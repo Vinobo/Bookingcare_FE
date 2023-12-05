@@ -39,6 +39,10 @@ class TableManageDoctor extends Component {
         dataDoctor: this.state.dataDoctor
       })
     }
+
+    if (prevState.dataDoctor !== this.state.dataDoctor) {
+      this.handleGetDataDoctor()
+    }
   }
 
   handleDeleteDoctorInfor = async (doctor) => {

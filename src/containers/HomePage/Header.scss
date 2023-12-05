@@ -132,7 +132,7 @@
   .content-up {
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -144,7 +144,6 @@
       color: #fff;
       text-shadow: 1px 1px 1px #333;
       margin-bottom: 5px;
-      margin-top: 30px;
       outline: none;
     }
 

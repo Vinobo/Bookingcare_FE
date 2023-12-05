@@ -11,6 +11,7 @@ import Select from 'react-select';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../../utils';
 import { getDetailInforDoctor } from '../../../../services/userService';
 import { toast } from 'react-toastify';
+import actionTypes from '../../../../store/actions/actionTypes';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -174,6 +175,10 @@ class ManageDoctor extends Component {
       clinicId: this.state.selectedClinic.value,
       specialtyId: this.state.selectedSpecialty.value,
     });
+
+    if (this.props.history) {
+      this.props.history.push(`/system/manage-doctor`)
+    }
   }
 
   handleChangeSelect = async (selectedDoctor, name) => {

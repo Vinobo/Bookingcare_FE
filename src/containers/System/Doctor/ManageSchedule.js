@@ -165,22 +165,8 @@ class ManageSchedule extends Component {
         this.props.history.push(`/doctor/manage-schedule`)
       }
       let res = await getScheduleDoctorByDate(selectedDoctor.value, currentDate);
-      let value = [];
-      rangeTime.map(schedule => {
-        let object = {};
-        if (userRole === "R1") {
-          object.doctorId = selectedDoctor.value;
-        } else object.doctorId = userInfo.id;
-        object.date = formatedDate;
-        object.timeType = schedule.keyMap;
-        object.valueEn = schedule.valueEn;
-        object.valueVi = schedule.valueVi;
-        object.isSelected = false
-        value.push(object);
-      })
       this.setState({
         currentDate: currentDate,
-        rangeTime: value,
         dataSchedule: res.data ? res.data : [],
       })
     } else {

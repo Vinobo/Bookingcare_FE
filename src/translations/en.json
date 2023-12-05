@@ -9,6 +9,7 @@
     "support": "Support",
     "welcome": "Welcome"
   },
+
   "banner": {
     "search": "Find a medical specialist",
     "title1": "Medical Platform",
@@ -20,6 +21,7 @@
     "child5": "Mental health",
     "child6": "Dental examination"
   },
+
   "home-body": {
     "popular-specialties": "Popular specialties",
     "telemedicine": "Remote doctor via video",
@@ -31,12 +33,34 @@
     "view-more": "View more",
     "all-articles": "All articles"
   },
+
+  "support": {
+    "title": "Please choose one of the methods below to contact LiveCare to receive the best support"
+  },
+
+  "about": {
+    "title": "LiveCare Technology Joint Stock Company",
+    "location": "Lot B4/D21, Cau Giay New Urban Area, Dich Vong Hau Ward, Cau Giay District, Hanoi City, Vietnam",
+    "certification": "BRN: 0106790291. Hanoi DPI issued on March 16, 2015",
+    "address-title": "Office in Ho Chi Minh City",
+    "address": "No. 01, Ho Ba Kien, Ward 15, District 10",
+    "support": "Customer support",
+    "partner": {
+      "title": "Content sponsorship partners",
+      "span1": "Sponsor the content section “mental health”",
+      "partner2": "Bernard International Intensive Medical System",
+      "span2": "Sponsor the content section “specialized medicine”"
+    }
+  },
+
   "manage-schedule": {
     "title": "Manage doctor's medical schedule plans"
   },
+
   "manage-patient": {
     "title": "Manage doctor's patient"
   },
+
   "patient": {
     "title": {
       "all-doctor": "List of Doctors",
@@ -62,6 +86,7 @@
       "select": "Select another specialty"
     }
   },
+
   "admin": {
     "manage-doctor": {
       "title": "Create doctor infor",
@@ -97,6 +122,7 @@
       "edit-clinic": "Edit clinic"
     }
   },
+
   "common": {
     "add": "Add",
     "edit": "Edit",

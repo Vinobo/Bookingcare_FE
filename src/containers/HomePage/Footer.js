@@ -16,7 +16,7 @@ class Footer extends Component {
         <div className='section-cotainer'>
           <div className='footer-content'>
             <div className='footer-left'>
-              <small>&copy; 2023 TrinhNKGCS18897.</small>
+              <span>&copy; 2023 TrinhNKGCS18897.</span>
             </div>
             <div className='footer-right'>
               <a href='https://www.facebook.com/PolNKT/' target='_blank'><i className="fab fa-facebook-square"></i></a>

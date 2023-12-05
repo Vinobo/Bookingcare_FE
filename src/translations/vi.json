@@ -9,6 +9,7 @@
     "support": "Hỗ trợ",
     "welcome": "Xin chào"
   },
+
   "banner": {
     "search": "Tìm chuyên khoa khám bệnh",
     "title1": "Nền tảng y tế",
@@ -20,6 +21,7 @@
     "child5": "Sức khỏe tinh thần",
     "child6": "Khám nha khoa"
   },
+
   "home-body": {
     "popular-specialties": "Chuyên khoa phổ biến",
     "telemedicine": "Bác sĩ từ xa qua video",
@@ -31,12 +33,34 @@
     "view-more": "Xem thêm",
     "all-articles": "Tất cả bài viết"
   },
+
+  "support": {
+    "title": "Hãy chọn một trong những cách thức bên dưới liên hệ với LiveCare để nhận được sự hỗ trợ tốt nhất"
+  },
+
+  "about": {
+    "title": "Công ty Cổ phần Công nghệ LiveCare",
+    "location": "Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam",
+    "certification": "ĐKKD số: 0106790291. Sở KHĐT Hà Nội cấp ngày 16/03/2015",
+    "address-title": "Văn phòng tại TP Hồ Chí Minh",
+    "address": "Số 01, Hồ Bá Kiện, Phường 15, Quận 10",
+    "support": "Hỗ trợ khách hàng",
+    "partner": {
+      "title": "Đối tác bảo trợ nội dung",
+      "span1": "Bảo trợ chuyên mục nội dung “sức khỏe tinh thần”",
+      "partner2": "Hệ thống y khoa chuyên sâu quốc tế Bernard",
+      "span2": "Bảo trợ chuyên mục nội dung “y khoa chuyên sâu”"
+    }
+  },
+
   "manage-schedule": {
     "title": "Quản lý kế hoạch khám bệnh của bác sĩ"
   },
+
   "manage-patient": {
     "title": "Quản lý bệnh nhân khám bệnh của bác sĩ"
   },
+
   "patient": {
     "title": {
       "all-doctor": "Danh sách các bác sĩ",
@@ -62,6 +86,7 @@
       "select": "Chọn chuyên khoa khác"
     }
   },
+
   "admin": {
     "manage-doctor": {
       "title": "Tạo thông tin bác sĩ",
@@ -97,6 +122,7 @@
       "edit-clinic": "Sửa phòng khám"
     }
   },
+
   "common": {
     "add": "Thêm",
     "edit": "Sửa",
@@ -139,20 +165,20 @@
     "shorten": "Thu gọn",
     "choose-gender": "Chọn giới tính"
   },
+
   "login": {
     "login": "Đăng nhập",
     "username": "Tên đăng nhập",
     "password": "Mật khẩu",
     "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
   },
+
   "menu": {
     "system": {
       "header": "Hệ thống",
       "system-administrator": {
         "header": "Quản trị hệ thống",
-        "user-manage": "Quản lý người sử dụng",
-        "user-redux": "Quản lý người sử dụng redux",
-        "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+        "user-manage": "Quản lý người sử dụng"
       },
       "system-parameter": {
         "header": "Tham số hệ thống"
@@ -162,15 +188,9 @@
       "manage-user": "Quản lý người dùng",
       "manage-doctor": "Quản lý bác sĩ",
       "manage-admin": "Quản lý admin",
-      "crud": "CRUD user",
-      "crud-redux": "CRUD redux",
-
       "manage-clinic": "Quản lý phòng khám",
-
       "create-specialty": "Thêm chuyên khoa",
-
       "edit-specialty": "Sửa chuyên khoa",
-
       "manage-handbook": "Quản lý cẩm nang"
     },
     "doctor": {
@@ -179,6 +199,7 @@
       "manage-patient": "Quản lý bệnh nhân khám bệnh"
     }
   },
+
   "user-manage": {
     "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
     "user-id": "Mã người sử dụng",
