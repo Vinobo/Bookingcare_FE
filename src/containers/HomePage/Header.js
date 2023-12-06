@@ -111,6 +111,14 @@ class Header extends Component {
                   <div className='subs-content'><FormattedMessage id="home-header.select-doctor" /></div>
                 </div>
               </Link>
+              <Link to={`/all-handbook/`}
+                className='text-view'
+              >
+                <div className='child-content'>
+                  <div className='subs-title'><b><FormattedMessage id="common.handbook" /></b></div>
+                  <div className='subs-content'><FormattedMessage id="home-header.select-handbook" /></div>
+                </div>
+              </Link>
             </div>
 
             <div className='right-content'>
