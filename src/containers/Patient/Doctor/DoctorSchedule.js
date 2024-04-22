@@ -8,7 +8,7 @@ import { LANGUAGES } from '../../../utils';
 import { getScheduleDoctorByDate } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import BookingDoctor from './Modal/BookingDoctor';
-import { times } from 'lodash';
+import { times, uniq, uniqBy } from 'lodash';
 
 // import
 
@@ -119,10 +119,42 @@ class DoctorSchedule extends Component {
     })
   }
 
+  renderTimeSchedule = () => {
+    let { allAvailable } = this.state;
+    let { language } = this.props;
+
+    return (
+      <>
+        {allAvailable && allAvailable.length > 0 ?
+          <>
+            <div className='time-schedule-btns'>
+              {allAvailable.map((item, index) => {
+                let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
+                return (
+                  <button key={index}
+                    className={`${language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'} ${item.hasBooking ? 'disabled' : ''}`}
+                    onClick={() => this.handleClickScheduleTime(item)}
+                  >
+                    {timeDisplay}
+                  </button>);
+
+              })
+              }
+            </div>
+            <div className='book-free'>
+              <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
+            </div>
+          </>
+          :
+          <div className='not-schedule'><FormattedMessage id="patient.detail-doctor.not-schedule" /></div>
+        }
+      </>
+    )
+  }
+
   render() {
     let { allDays, allAvailable, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
-
 
     return (
       <>
@@ -148,32 +180,7 @@ class DoctorSchedule extends Component {
               <span><i className="fas fa-calendar-alt"></i> <FormattedMessage id="common.schedule" /></span>
             </div>
             <div className='time-schedule'>
-              {allAvailable && allAvailable.length > 0 ?
-                <>
-                  <div className='time-schedule-btns'>
-                    {allAvailable.map((item, index) => {
-                      let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
-                      let btnTime =
-                        <button key={index}
-                          className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'
-                          }
-                          onClick={() => this.handleClickScheduleTime(item)}
-                        >
-                          {timeDisplay}
-                        </button>;
-                      // if (item.bookingData.timeType !== item.timeType) {
-                      return btnTime
-                      // }
-                    })}
-                    <div className='book-free'>
-                      <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
-                    </div>
-                  </div>
-                </>
-                :
-
-                <div className='not-schedule'><FormattedMessage id="patient.detail-doctor.not-schedule" /></div>
-              }
+              {this.renderTimeSchedule()}
             </div>
           </div>
         </div >

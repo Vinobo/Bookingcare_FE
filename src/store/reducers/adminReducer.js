@@ -20,7 +20,6 @@ const adminReducer = (state = initialState, action) => {
       let copyState = { ...state };
       copyState.isLoadingGender = true;
 
-      console.log('fetch gender start: ', action)
       return {
         ...copyState,
       }

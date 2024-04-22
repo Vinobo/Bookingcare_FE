@@ -14,6 +14,7 @@ import TableManageDoctor from '../containers/System/Admin/Doctor/TableManageDoct
 class System extends Component {
     render() {
         const { systemMenuPath, isLoggedIn } = this.props;
+
         return (
             <>
                 {isLoggedIn && <Header />}
@@ -32,6 +33,7 @@ class System extends Component {
                             <Route path="/system/edit-clinic/:id" component={ManageClinic} />
 
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
+
                         </Switch>
                     </div>
                 </div >
@@ -43,7 +45,8 @@ class System extends Component {
 const mapStateToProps = state => {
     return {
         systemMenuPath: state.app.systemMenuPath,
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+
     };
 };
 

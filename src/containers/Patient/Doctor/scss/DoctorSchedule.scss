@@ -49,6 +49,11 @@
         .btn-en {
           min-width: 32%;
         }
+
+        .disabled {
+          opacity: 0.6;
+          pointer-events: none;
+        }
       }
 
       .book-free {
