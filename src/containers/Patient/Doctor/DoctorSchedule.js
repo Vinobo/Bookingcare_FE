@@ -90,6 +90,21 @@ class DoctorSchedule extends Component {
         allDays: allDays
       })
     }
+    if (prevState.isOpenBookingDoctor !== this.state.isOpenBookingDoctor) {
+      let allDays = this.getArrDays(this.props.language);
+      let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
+      this.setState({
+        allAvailable: res.data ? res.data : [],
+      })
+    }
+
+    // if (prevState.allAvailable !== this.state.allAvailable) {
+    //   let allDays = this.getArrDays(this.props.language);
+    //   let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
+    //   this.setState({
+    //     allAvailable: res.data ? res.data : [],
+    //   })
+    // }
   }
 
   handleOnchangeSelect = async (event) => {

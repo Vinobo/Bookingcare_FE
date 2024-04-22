@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { LANGUAGES } from '../../../../utils';
 import { FormattedMessage } from 'react-intl';
@@ -143,6 +142,7 @@ class BookingDoctor extends Component {
     if (res && res.errCode === 0) {
       toast.success('Booking a new appointment succeed!')
       this.props.closeBookingDoctor();
+      // setTimeout(() => window.location.reload(), 2000)
     } else {
       toast.error('Booking a new appointment error!')
     }
