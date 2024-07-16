@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
 import './AllSpecialty.scss';
 import { FormattedMessage } from 'react-intl';
 import { getAllSpecialties } from '../../../services/userService';
@@ -30,7 +28,7 @@ class AllSpecialty extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
     this.handleDataSpecialty()
   }
 
@@ -50,7 +48,7 @@ class AllSpecialty extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    // let { language } = this.props;
     let { dataSpecialty } = this.state
 
     return (

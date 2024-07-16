@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.scss';
 import logo from "../../assets/images/LOGO.png";
@@ -14,8 +13,6 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prevScrollpos: window.pageYOffset,
-      visible: false,
       dataSpecialty: []
     };
   }
@@ -27,36 +24,6 @@ class Header extends Component {
       })
     }
   }
-
-  // Adds an event listener when the component is mount.
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-    this.handleDataSpecialty()
-  }
-  // Remove the event listener when the component is unmount.
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-  // Hide or show the menu.
-  handleScroll = () => {
-    const { prevScrollpos } = this.state;
-    const currentScrollPos = window.pageYOffset;
-    const visible = prevScrollpos > currentScrollPos;
-    const diff = 4;
-    const stateNotMatched = visible !== this.state.visible
-    const scrollDownTooFast = currentScrollPos - prevScrollpos > diff
-    const scrollUpTooFast = currentScrollPos - prevScrollpos < - diff
-
-    const shouldToggleHeader = stateNotMatched && (scrollDownTooFast || scrollUpTooFast)
-    if (shouldToggleHeader) {
-      this.setState({
-        prevScrollpos: currentScrollPos,
-        visible: visible
-      });
-    }
-    prevScrollpos = currentScrollPos > 0 ? currentScrollPos : 0
-  };
-
 
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
@@ -71,16 +38,15 @@ class Header extends Component {
 
   render() {
     let language = this.props.language;
-    let { visible, dataSpecialty } = this.state;
 
     return (
       <React.Fragment>
-        <div className={`home-header-container sticky-md-top ${visible ? "header-hide" : "header-show"}`}>
+        <div className={`home-header-container sticky-md-top`}>
           <div className='home-header-content'>
             <div className='left-content'>
               <div className='header-logo'>
                 <div className='logo' onClick={() => this.returnToHome()} >
-                  <img src={logo} />
+                  <img src={logo} alt='logo' />
                   <span>LiveCare</span>
                 </div>
               </div>

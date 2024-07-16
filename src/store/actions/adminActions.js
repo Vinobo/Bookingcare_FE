@@ -274,28 +274,28 @@ export const saveInforDoctor = (data) => {
 }
 
 //get detail Doctor
-// export const fetchDetailDoctor = currentDoctorId => {
-//   return async (dispatch, getState) => {
-//     try {
-//       let res = await getDetailInforDoctor(currentDoctorId);
-//       if (res && res.errCode === 0) {
-//         dispatch({
-//           type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
-//           detailDr: res.data
-//         })
-//       } else {
-//         dispatch({
-//           type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
-//         })
-//       }
-//     } catch (e) {
-//       console.log('FETCH_DETAIL_DOCTOR_FAILED: ', e)
-//       dispatch({
-//         type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
-//       })
-//     }
-//   }
-// }
+export const fetchDetailDoctor = currentDoctorId => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDetailInforDoctor(currentDoctorId);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+          detailDr: res.data
+        })
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
+        })
+      }
+    } catch (e) {
+      console.log('FETCH_DETAIL_DOCTOR_FAILED: ', e)
+      dispatch({
+        type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
+      })
+    }
+  }
+}
 
 //get All Schedul Time
 export const fetchAllSchedulTime = () => {

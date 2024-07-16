@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
+// import { LANGUAGES } from '../../../utils';
 import './AllClinic.scss';
 import { FormattedMessage } from 'react-intl';
-import { getAllClinic, getAllSpecialties } from '../../../services/userService';
+import { getAllClinic } from '../../../services/userService';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
@@ -30,7 +29,7 @@ class AllClinic extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
     this.handleDataClinic()
   }
 
@@ -50,7 +49,7 @@ class AllClinic extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    // let { language } = this.props;
     let { dataClinic } = this.state
 
     return (
@@ -73,6 +72,7 @@ class AllClinic extends Component {
                     return (
                       <Link to={`/detail-clinic/${item.id}`}
                         className='text-view'
+                        key={index}
                       >
                         <div className='item-row'>
                           <div className='img-clinic'

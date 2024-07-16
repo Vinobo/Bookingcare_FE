@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { CommonUtils, LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { CommonUtils } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './RemedyModal.scss';
-import _ from 'lodash';
-import { toast } from 'react-toastify';
+// import _ from 'lodash';
+// import { toast } from 'react-toastify';
 
 
 
@@ -22,7 +22,7 @@ class RemedyModal extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     if (this.props.dataModal) {
       this.setState({
@@ -61,7 +61,7 @@ class RemedyModal extends Component {
   }
 
   render() {
-    let { isOpenModal, closeRemedyModal, dataModal, sendRemedy } = this.props
+    let { isOpenModal, closeRemedyModal } = this.props
     return (
       <Modal
         isOpen={isOpenModal}

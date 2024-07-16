@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+// import { LANGUAGES } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './scss/Detail.scss';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
@@ -12,6 +12,7 @@ import HOSPCRayDo from '../../../assets/handBook/162533-phau-thuat-than-kinh-ben
 import HOSPCRayReview1 from '../../../assets/handBook/115151-review-benh-vien-cho-ray-1png.jpg';
 import HOSPCRayReview2 from '../../../assets/handBook/115150-review-benh-vien-cho-ray-2.jpg';
 import HOSPCRayMap from '../../../assets/handBook/214810-so-do-benh-vien-cho-ray.jpg';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 class Detail6 extends Component {
 
@@ -29,11 +30,11 @@ class Detail6 extends Component {
     }
   }
 
-  handleClinic = () => {
-    if (this.props.history) {
-      this.props.history.push(`/detail-clinic/4`)
-    }
-  }
+  // handleClinic = () => {
+  //   if (this.props.history) {
+  //     this.props.history.push(`/detail-clinic/4`)
+  //   }
+  // }
 
   render() {
 
@@ -57,10 +58,10 @@ class Detail6 extends Component {
               <h2>Tổng hợp thông tin về chung về khoa Thần kinh Bệnh viện Chợ Rẫy, thủ tục thăm khám, hướng dẫn đặt lịch khám không cần xếp hàng lấy số,... sẽ giúp bạn đọc thăm khám thuận tiện, nhanh chóng hơn.</h2>
               <div className='detail-ct'>
                 <figure>
-                  <img src={HOSPCRay}></img>
+                  <img src={HOSPCRay} alt='handbook-img'></img>
                   <figcaption>Đăng ký khám Thần kinh tại khoa khám bệnh lầu 1, Bệnh viện Chợ Rẫy</figcaption>
                 </figure>
-                <p>Là bệnh viện tuyến cuối của phía Nam, <a onClick={() => this.handleClinic()}>Bệnh viện Chợ Rẫy</a> tiếp nhận bệnh nhân thăm khám và điều trị ở nhiều chuyên khoa: ung bướu, nội tiết, nội tiêu hóa, nội tim mạch, cơ xương khớp,... Trong đó, khám Thần kinh là thế mạnh đặc biệt của bệnh viện. Nếu bạn đang có dự định thăm khám tại Khoa Thần kinh Bệnh viện Chợ Rẫy (Nội thần kinh, Ngoại thần kinh),những thông tin dưới đây sẽ giúp bạn đưa ra quyết định thăm khám phù hợp và giúp quá trình đi khám thuận tiện, nhanh chóng hơn.</p>
+                <p>Là bệnh viện tuyến cuối của phía Nam, <Link to='/detail-clinic/4'>Bệnh viện Chợ Rẫy</Link> tiếp nhận bệnh nhân thăm khám và điều trị ở nhiều chuyên khoa: ung bướu, nội tiết, nội tiêu hóa, nội tim mạch, cơ xương khớp,... Trong đó, khám Thần kinh là thế mạnh đặc biệt của bệnh viện. Nếu bạn đang có dự định thăm khám tại Khoa Thần kinh Bệnh viện Chợ Rẫy (Nội thần kinh, Ngoại thần kinh),những thông tin dưới đây sẽ giúp bạn đưa ra quyết định thăm khám phù hợp và giúp quá trình đi khám thuận tiện, nhanh chóng hơn.</p>
                 <blockquote>
                   <div><i className="fas fa-quote-left"></i></div>
                   <p>Bệnh lý thần kinh là một trong những bệnh lý phức tạp nhất, nếu không có hướng điều trị kịp thời sẽ dẫn tới những biến chứng xấu, nguy hiểm đến tính mạng người bệnh. Để điều trị bệnh hiệu quả, người bệnh nên lựa chọn thăm khám tại các bệnh viện, phòng khám Thần kinh uy tín. </p>
@@ -117,13 +118,13 @@ class Detail6 extends Component {
                 <p>Các bác sĩ tại khoa Thần Kinh đã điều trị thành công nhiều trường hợp bệnh nặng, phẫu thuật cứu sống nhiều bệnh nhân gặp các tình trạng bệnh phức tạp như phình máu não nguy cấp, bệnh nhân đột quỵ trên bệnh nền Lupus ban đỏ, u não xâm lấn,...</p>
                 <p>Bên cạnh công tác thăm khám, các bác sĩ của khoa cũng thực hiện nhiều đề tài nghiên cứu (phẫu thuật chuyển lưu dịch não tủy não thất vào tâm nhĩ: trong điều trị đầu nước (não úng thủy); dị dạng động tĩnh mạch não xuất huyết,... ). Nhờ đó đưa ra hướng điều trị ngày càng tốt hơn, hiệu quả hơn cho bệnh nhân. </p>
                 <figure>
-                  <img src={HOSPCRayDo}></img>
+                  <img src={HOSPCRayDo} alt='handbook-img'></img>
                   <figcaption>Bác sĩ Bệnh viện Chợ Rẫy thực hiện phẫu thuật thần kinh</figcaption>
                 </figure>
 
                 <span id='5'></span>
                 <h3>Cơ sở vật chất tại bệnh viện</h3>
-                <p><a onClick={() => this.handleClinic()}>Bệnh viện Chợ Rẫy</a> là bệnh viện công, tuyến cuối của phía Nam, nên cơ sở vật chất được đầu tư hiện đại, đầy đủ các thiết bị cần thiết trong thăm khám và điều trị bệnh lý Thần Kinh.</p>
+                <p><Link to='/detail-clinic/4'>Bệnh viện Chợ Rẫy</Link> là bệnh viện công, tuyến cuối của phía Nam, nên cơ sở vật chất được đầu tư hiện đại, đầy đủ các thiết bị cần thiết trong thăm khám và điều trị bệnh lý Thần Kinh.</p>
                 <ul>
                   <li>Máy điện cơ: được sử dụng để thăm dò hệ thần kinh ngoại biên, hỗ trợ chẩn đoán và theo dõi các rối loạn thần kinh ngoài tủy sống như hội chứng ống cổ tay, bệnh lý thần kinh ngoại biên; các rối loạn ảnh hưởng đến tế bào thần kinh vận động của tủy sống,...</li>
                   <li>Điện não: giúp tìm ra những sóng điện não bất thường, hỗ trợ chẩn đoán bệnh đau đầu, động kinh,...</li>
@@ -141,13 +142,13 @@ class Detail6 extends Component {
                 <p>Theo đánh giá của BookingCare, Bệnh viện Chợ Rẫy là địa chỉ tin cậy để khám và điều trị các bệnh thần kinh ở tình trạng nặng. Hầu như những bệnh mà các bệnh viện tuyến tỉnh không thể xử lý được, bệnh nhân đều tìm đến hoặc được chuyển lên Bệnh viện Chợ Rẫy.</p>
                 <p>Bên cạnh phản hồi tích cực, bệnh viện cũng nhận được một số phản hồi chưa tốt về phong cách tiếp đón của nhân viên y tế, một số khâu làm thủ tục còn chậm, người bệnh chờ đợi lâu. Tuy nhiên, đánh giá khách quan, mỗi ngày bệnh viện tiếp đón đến hàng ngàn lượt bệnh nhân, nên không tránh khỏi tình trạng quá tải.</p>
                 <p>Khắc phục những vấn đề này, trong những năm gần đây, bệnh viện đã có những giải pháp cải thiện. Trong đó, để giảm thời gian chờ khám, bệnh viện đã hợp tác với LiveCare, hỗ trợ đặt lịch khám các chuyên khoa.</p>
-                <p>Để cải thiện phong cách phục vụ của nhân viên y tế, trong năm 2020, bệnh viện áp dụng <a href="http://choray.vn/Default.aspx?tabid=135&amp;ID=9032" target='_blank'>mô hình giao tiếp AIDET</a> - mô hình giao tiếp chuẩn giữa nhân viên y tế và bệnh nhân. Người bệnh đi khám nếu có nhận xét về sự thay đổi này có thể góp ý cuối bài viết để BookingCare và bạn đọc khác cùng tham khảo.</p>
+                <p>Để cải thiện phong cách phục vụ của nhân viên y tế, trong năm 2020, bệnh viện áp dụng <a href="http://choray.vn/Default.aspx?tabid=135&amp;ID=9032" rel="noreferrer" target='_blank'>mô hình giao tiếp AIDET</a> - mô hình giao tiếp chuẩn giữa nhân viên y tế và bệnh nhân. Người bệnh đi khám nếu có nhận xét về sự thay đổi này có thể góp ý cuối bài viết để BookingCare và bạn đọc khác cùng tham khảo.</p>
                 <figure>
-                  <img src={HOSPCRayReview1}></img>
+                  <img src={HOSPCRayReview1} alt='handbook-img'></img>
                   <figcaption>Phản hồi về chất lượng thăm khám tại BV Chợ Rẫy</figcaption>
                 </figure>
                 <figure>
-                  <img src={HOSPCRayReview2}></img>
+                  <img src={HOSPCRayReview2} alt='handbook-img'></img>
                   <figcaption>Đánh giá của bệnh nhân thăm khám tại Bệnh viện Chợ Rẫy</figcaption>
                 </figure>
 
@@ -164,7 +165,7 @@ class Detail6 extends Component {
                   </li>
                 </ul>
                 <figure>
-                  <img src={HOSPCRayMap}></img>
+                  <img src={HOSPCRayMap} alt='handbook-img'></img>
                   <figcaption>Sơ đồ Bệnh viện Chợ Rẫy</figcaption>
                 </figure>
                 <ul>

@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageUser.scss';
 import * as actions from "../../../../store/actions";
-import { LANGUAGES, LanguageUtils } from '../../../../utils';
+import { LANGUAGES } from '../../../../utils';
 
 class TableManageUser extends Component {
 

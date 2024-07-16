@@ -198,7 +198,7 @@ class ManageUser extends Component {
     handleEditUserFromParent = (user) => {
         let imageBase64 = '';
         if (user.image) {
-            const imageBuffer = Buffer.from(JSON.stringify(user.image));
+            // const imageBuffer = Buffer.from(JSON.stringify(user.image));
             imageBase64 = new Buffer(user.image, 'base64').toString('binary');
         }
         this.setState({
@@ -245,7 +245,7 @@ class ManageUser extends Component {
         let roles = this.state.roleArr;
 
         let { email, password, firstName, lastName, phoneNumber,
-            address, gender, position, role, avatar } = this.state;
+            address, gender, position, role } = this.state;
 
         return (
             <div className='user-redux-container'>

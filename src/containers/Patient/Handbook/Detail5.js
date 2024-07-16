@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+// import { LANGUAGES } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './scss/Detail.scss';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
-import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
+// import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
 import HOSP115Register from '../../../assets/handBook/174114bv-115-register.jpg';
 import HOSP115 from '../../../assets/handBook/160418-bv-nhan-dan-115-ggrv-min.png';
 import HOSP115Map from '../../../assets/handBook/100052bv-115-so-do.jpg';
@@ -51,7 +51,7 @@ class Detail5 extends Component {
               <h2>Bệnh viện Nhân dân 115 đón tiếp hàng nghìn lượt bệnh nhân đăng kí khám mỗi ngày. Những thông tin về kinh nghiệm khám chữa bệnh tại Bệnh viện 115 sẽ giúp người đi khám chủ động và chuẩn bị tốt cho quá trình đi khám.</h2>
               <div className='detail-ct'>
                 <figure>
-                  <img src={HOSP115}></img>
+                  <img src={HOSP115} alt='handbook-img'></img>
                   <figcaption>Cổng số 1 lối vào Bệnh viện Nhân dân 115</figcaption>
                 </figure>
                 <p>Bệnh viện Nhân dân 115 là bệnh viện đa khoa hạng I thuộc Sở Y tế TP.HCM. Bệnh viện đang triển khai nhiều dịch vụ khám khác nhau để phù hợp với từng bệnh nhân.</p>
@@ -70,7 +70,7 @@ class Detail5 extends Component {
                 </ul>
                 <p>Người đi khám có thể đi bộ từ khu chính sang khoa Khám bệnh và ngược lại, men theo đường Dương Quang Trung.</p>
                 <figure>
-                  <img src={HOSP115Map}></img>
+                  <img src={HOSP115Map} alt='img'></img>
                   <figcaption>Sơ đồ Bệnh viện Nhân dân 115</figcaption>
                 </figure>
 
@@ -93,7 +93,7 @@ class Detail5 extends Component {
                   </li>
                 </ul>
                 <figure>
-                  <img src={HOSP115Gate}></img>
+                  <img src={HOSP115Gate} alt='handbook-img'></img>
                   <figcaption>Lối vào khoa Khám bệnh, Bệnh viện Nhân dân 115</figcaption>
                 </figure>
                 <p>Lối vào chính của khoa Khám bệnh, Bệnh viện Nhân dân 115 ở đường Thành Thái, tách biệt so với các khu khác của Bệnh viện. Người đi khám có thể đăng kí khám BHYT, khám không BHYT và đăng kí khám hẹn giờ (qua 1080 hoặc tổng đài bệnh viện) tại khoa Khám bệnh.</p>
@@ -118,7 +118,7 @@ class Detail5 extends Component {
                   </li>
                 </ul>
                 <figure>
-                  <img src={HOSP115Register}></img>
+                  <img src={HOSP115Register} alt='handbook-img'></img>
                   <figcaption>Khu vực nhận bệnh  tại khoa Khám và điều trị theo yêu cầu, Bệnh viện Nhân dân 115</figcaption>
                 </figure>
                 <p>Khoa Khám và điều trị theo yêu cầu nằm ở khu A Bệnh viện Nhân dân 115. Người đi khám đi thẳng từ cổng số 3 (đường Sư Vạn Hạnh) sẽ thấy khoa Khám theo yêu cầu trước mặt.</p>

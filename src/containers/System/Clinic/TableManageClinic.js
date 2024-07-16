@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+// import { Redirect, Route, Switch } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import './TableManageClinic.scss';
-import * as actions from "../../../store/actions";
+// import * as actions from "../../../store/actions";
 import { deleteClinicService, getAllClinic } from '../../../services/userService';
 import { toast } from 'react-toastify';
 

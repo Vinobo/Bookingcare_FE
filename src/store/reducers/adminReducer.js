@@ -111,18 +111,18 @@ const adminReducer = (state = initialState, action) => {
       }
 
     //get detail doctor
-    // case actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS:
-    //   state.detailDoctor = action.detailDr;
+    case actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS:
+      state.detailDoctor = action.detailDr;
 
-    //   return {
-    //     ...state,
-    //   }
+      return {
+        ...state,
+      }
 
-    // case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
-    //   state.detailDoctor = [];
-    //   return {
-    //     ...state,
-    //   }
+    case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
+      state.detailDoctor = [];
+      return {
+        ...state,
+      }
 
     case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
       state.allScheduleTime = action.dataTime;

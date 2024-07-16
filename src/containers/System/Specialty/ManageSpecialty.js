@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES, CommonUtils, CRUD_ACTIONS } from '../../../utils';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import './ManageSpecialty.scss';
 import MarkdownIt from 'markdown-it';
@@ -38,7 +38,7 @@ class ManageSpecialty extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
@@ -52,7 +52,7 @@ class ManageSpecialty extends Component {
       });
       let nameSpecialty = '', imageBase64 = '', descriptionHTML = '', descriptionMarkdown = ''
       if (res.data.image) {
-        const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
+        // const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
         imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
       }
       if (res && res.errCode === 0) {
@@ -180,7 +180,7 @@ class ManageSpecialty extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    // let { language } = this.props;
     let { hasOldData } = this.state
 
     return (

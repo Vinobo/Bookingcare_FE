@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+// import { LANGUAGES } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './scss/Detail.scss';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
@@ -48,7 +48,7 @@ class Detail3 extends Component {
               <h1>Cần lưu ý gì khi đi khám Tiêu hóa?</h1>
               <div className='detail-ct'>
                 <figure>
-                  <img src={GI_END}></img>
+                  <img src={GI_END} alt='handbook-img'></img>
                   <figcaption>Bác sĩ quan sát hình ảnh nội soi trên màn hình</figcaption>
                 </figure>
                 <p>Trước khi đi khám, dù là chuyên khoa nào bạn cũng nên có sự chuẩn bị để việc thăm khám có hiệu quả tốt hơn. Đặc biệt là tiêu hóa, chuyên khoa tiêu hóa có một số đặc thù không giống các chuyên khoa khác mà người bệnh cần lưu ý khi đi khám.</p>

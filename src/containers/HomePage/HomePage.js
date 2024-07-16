@@ -7,8 +7,6 @@ import OutStandingDoctor from './Section/OutStandingDoctor';
 import Handbook from './Section/Handbook';
 import About from './Section/About';
 import './HomePage.scss';
-import Slider from "react-slick";
-// Import css files react slick
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from './Footer';

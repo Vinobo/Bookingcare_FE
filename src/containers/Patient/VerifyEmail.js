@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../utils';
-import { FormattedMessage } from 'react-intl';
 import { postVerifyAppointment } from '../../services/userService';
 import Header from '../HomePage/Header';
 import './VerifyEmail.scss'
@@ -20,7 +17,7 @@ class VerifyEmail extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     if (this.props.location && this.props.location.search) {
       let urlParams = new URLSearchParams(this.props.location.search);
@@ -55,7 +52,7 @@ class VerifyEmail extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    // let { language } = this.props;
     let { statusVerify, errCode } = this.state;
 
     return (

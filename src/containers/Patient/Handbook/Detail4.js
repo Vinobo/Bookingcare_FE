@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+// import { LANGUAGES } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './scss/Detail.scss';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
-import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
-import generalHealth from '../../../assets/handBook/110621-kham-tong-quat-doctor-check.png'
+// import five_different from '../../../assets/handBook/105518-tam-soat-benh-doctor-check.png';
+// import generalHealth from '../../../assets/handBook/110621-kham-tong-quat-doctor-check.png'
 import Male from '../../../assets/handBook/114438phong-kham-nam-khoa-uy-tin3.jpg';
 
 class Detail4 extends Component {
@@ -48,7 +48,7 @@ class Detail4 extends Component {
               <h1>Cần lưu ý gì trước khi đi khám Nam khoa (bệnh nam giới)</h1>
               <div className='detail-ct'>
                 <figure>
-                  <img src={Male}></img>
+                  <img src={Male} alt='handbook-img'></img>
                   <figcaption>Một số điều cần lưu ý trước khi đi khám Nam khoa</figcaption>
                 </figure>
                 <p>Ngày nay, khi kiến thức về sức khỏe giới tính tăng lên thì sự ngại ngùng trong mỗi người sẽ giảm đi. Những bệnh nhân lâu nay chỉ biết “âm thầm chịu đựng” sẽ vượt qua những mặc cảm bản thân, sẵn sàng đến gặp bác sĩ nam khoa để “trần tình” những điều thầm kín, khó nói của bản thân.</p>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
+// import { Redirect, Route, Switch } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import * as actions from "../../../store/actions";
 import './ManageSchedule.scss'
-import { LANGUAGES, dateFormat } from '../../../utils';
+import { LANGUAGES } from '../../../utils';
 import Select from 'react-select';
 import DatePicker from '../../../components/Input/DatePicker';
 import moment from 'moment';
@@ -64,14 +64,14 @@ class ManageSchedule extends Component {
     let result = [];
     let { language } = this.props;
     if (inputData && inputData.length > 0) {
-      inputData.map((item, index) => {
+      inputData.map((item) => {
         let object = {};
         let labelVi = `${item.lastName} ${item.firstName}`;
         let labelEn = `${item.firstName} ${item.lastName}`;
 
         object.label = language === LANGUAGES.VI ? labelVi : labelEn;
         object.value = item.id;
-        result.push(object)
+        return result.push(object);
       })
     }
 
@@ -137,7 +137,7 @@ class ManageSchedule extends Component {
         } else object.doctorId = userInfo.id;
         object.date = formatedDate;
         object.timeType = schedule.keyMap;
-        result.push(object);
+        return result.push(object);
       })
     } else {
       toast.error("Invalid selected time!");

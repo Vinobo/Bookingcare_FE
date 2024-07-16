@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
 import './scss/ProfileDoctor.scss'
 import { getProfileDoctorById } from '../../../services/userService';
 import _ from 'lodash';
 import moment from 'moment';
-import localization from 'moment/locale/vi';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 
@@ -23,7 +20,7 @@ class ProfileDoctor extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
     let data = await this.getInforDoctor(this.props.doctorId);
     this.setState({
       dataProfile: data

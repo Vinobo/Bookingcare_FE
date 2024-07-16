@@ -10,8 +10,8 @@ import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../../utils';
 import { getDetailInforDoctor } from '../../../../services/userService';
-import { toast } from 'react-toastify';
-import actionTypes from '../../../../store/actions/actionTypes';
+// import { toast } from 'react-toastify';
+// import actionTypes from '../../../../store/actions/actionTypes';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -56,53 +56,53 @@ class ManageDoctor extends Component {
     let { language } = this.props;
     if (inputData && inputData.length > 0) {
       if (type === 'USERS') {
-        inputData.map((item, index) => {
+        inputData.map((item) => {
           let object = {};
           let labelVi = `${item.lastName} ${item.firstName}`;
           let labelEn = `${item.firstName} ${item.lastName}`;
           object.label = language === LANGUAGES.VI ? labelVi : labelEn;
           object.value = item.id;
-          result.push(object)
+          return result.push(object);
         })
       }
 
       if (type === 'PRICE') {
-        inputData.map((item, index) => {
+        inputData.map((item) => {
           let object = {};
           let labelVi = `${item.valueVi}đ`;
           let labelEn = `${item.valueEn} USD`;
           object.label = language === LANGUAGES.VI ? labelVi : labelEn;
           object.value = item.keyMap;
-          result.push(object)
+          return result.push(object);
         })
       }
 
       if (type === 'PAYMENT' || type === 'PROVINCE') {
-        inputData.map((item, index) => {
+        inputData.map((item) => {
           let object = {};
           let labelVi = `${item.valueVi}`;
           let labelEn = `${item.valueEn}`;
           object.label = language === LANGUAGES.VI ? labelVi : labelEn;
           object.value = item.keyMap;
-          result.push(object)
+          return result.push(object);
         })
       }
 
       if (type === 'SPECIALTY') {
-        inputData.map((item, index) => {
+        inputData.map((item) => {
           let object = {};
           object.label = item.name;
           object.value = item.id;
-          result.push(object)
+          return result.push(object);
         })
       }
 
       if (type === 'CLINIC') {
-        inputData.map((item, index) => {
+        inputData.map((item) => {
           let object = {};
           object.label = item.name;
           object.value = item.id;
-          result.push(object)
+          return result.push(object);
         })
       }
     }

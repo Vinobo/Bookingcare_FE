@@ -33,37 +33,37 @@ class HandBook extends Component {
           <div className='section-content'>
             <Slider {...this.props.settings}>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(1)}>
-                <img src={five_different} />
+                <img src={five_different} alt='logo' />
                 <div className='text-content'>
                   <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(2)}>
-                <img src={five_clinic} />
+                <img src={five_clinic} alt='logo' />
                 <div className='text-content'>
                   <span>Top 5 địa chỉ khám chấn thương thể thao tốt tại TP.HCM</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(3)}>
-                <img src={GI_END} />
+                <img src={GI_END} alt='logo' />
                 <div className='text-content'>
                   <span>Cần lưu ý gì khi đi khám Tiêu hóa?</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(4)}>
-                <img src={Male} />
+                <img src={Male} alt='logo' />
                 <div className='text-content'>
                   <span>Cần lưu ý gì trước khi đi khám Nam khoa (bệnh nam giới)</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(5)}>
-                <img src={HOSP115} />
+                <img src={HOSP115} alt='logo' />
                 <div className='text-content'>
                   <span>Kinh nghiệm thực tế đi khám tại Bệnh viện Nhân dân 115</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(6)}>
-                <img src={HOSPCRay} />
+                <img src={HOSPCRay} alt='logo' />
                 <div className='text-content'>
                   <span>Hướng dẫn đi khám tại khoa Thần kinh, Bệnh viện Chợ Rẫy: Thủ tục thăm khám? Bác sĩ nào giỏi?</span>
                 </div>

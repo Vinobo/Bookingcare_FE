@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Footer.scss';
-import { FormattedMessage } from 'react-intl';
-
-import Slider from "react-slick";
-
 
 class Footer extends Component {
 
@@ -19,8 +15,8 @@ class Footer extends Component {
               <span>&copy; 2023 TrinhNKGCS18897.</span>
             </div>
             <div className='footer-right'>
-              <a href='https://www.facebook.com/PolNKT/' target='_blank'><i className="fab fa-facebook-square"></i></a>
-              <a href='https://www.youtube.com/@nguyenkhanhtrinh7021' target='_blank'><i className="fab fa-youtube-square"></i></a>
+              <a href='https://www.facebook.com/PolNKT/' target='_blank' ref="noreferrer"><i className="fab fa-facebook-square"></i></a>
+              <a href='https://www.youtube.com/@nguyenkhanhtrinh7021' target='_blank' ref="noreferrer"><i className="fab fa-youtube-square"></i></a>
             </div>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import './scss/AddressDoctor.scss';
 import { LANGUAGES } from '../../../utils';
 import { getAddressFeeDoctorById } from '../../../services/userService';
@@ -23,7 +22,7 @@ class AddressDoctor extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     if (this.props.doctorIdFromParent) {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
@@ -43,7 +42,7 @@ class AddressDoctor extends Component {
     if (this.props.language !== prevProps.language) {
 
     }
-    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
+    if (this.props !== prevProps) {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
       if (res && res.errCode === 0) {
         this.setState({
@@ -71,7 +70,7 @@ class AddressDoctor extends Component {
 
   render() {
     let { language } = this.props;
-    let { isShowDetailFee, isShowDetailInsurance, addressFeeDoctor, clinicData } = this.state
+    let { isShowDetailFee, addressFeeDoctor, clinicData } = this.state
 
     return (
       <div className='container address-doctor'>

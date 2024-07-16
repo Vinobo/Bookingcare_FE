@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import UserManage from '../containers/System/UserManage';
+// import UserManage from '../containers/System/UserManage';
 import ManageUser from '../containers/System/Admin/User/ManageUser';
 import Header from '../containers/Header/Header';
 import ManageDoctor from '../containers/System/Admin/Doctor/ManageDoctor';

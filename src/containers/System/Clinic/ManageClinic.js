@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES, CommonUtils, CRUD_ACTIONS } from '../../../utils';
-import * as actions from "../../../store/actions";
+// import { Redirect, Route, Switch } from 'react-router-dom';
+import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
+// import * as actions from "../../../store/actions";
 import { FormattedMessage } from 'react-intl';
 import './ManageClinic.scss';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { createNewClinic, getAllClinic, getAllDetailClinicById } from '../../../services/userService';
+import { createNewClinic, getAllDetailClinicById } from '../../../services/userService';
 import { toast } from 'react-toastify';
-import Select from 'react-select';
+// import Select from 'react-select';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -47,7 +47,7 @@ class ManageClinic extends Component {
 
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params;
@@ -60,7 +60,7 @@ class ManageClinic extends Component {
         specialtyHTML = '', specialtyMarkdown = '', deviceHTML = '', deviceMarkdown = '',
         locationHTML = '', locationMarkdown = '', processHTML = '', processMarkdown = ''
       if (res.data.image) {
-        const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
+        // const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
         imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
       }
       if (res && res.errCode === 0) {
@@ -273,7 +273,7 @@ class ManageClinic extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    // let { language } = this.props;
     let { hasOldData } = this.state;
 
     return (

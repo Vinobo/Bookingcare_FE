@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
-import { bind } from 'lodash';
+// import { bind } from 'lodash';
 import ModalUser from './ModalUser';
 import ModalEditUser from './ModalEditUser';
 

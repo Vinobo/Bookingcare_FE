@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
+// import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import './ManagePatient.scss';
 import DatePicker from '../../../components/Input/DatePicker';
 import { getAllPatientForDoctor, postSendRemedy } from '../../../services/userService';
@@ -30,7 +30,7 @@ class ManagePatient extends Component {
   }
 
   getDataPatient = async () => {
-    let { language, user } = this.props;
+    let { user } = this.props;
     let { currentDate } = this.state;
     let formatedDate = new Date(currentDate).getTime();
 

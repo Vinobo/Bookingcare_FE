@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
 import './scss/AllDoctor.scss';
-import * as actions from '../../../store/actions';
+// import * as actions from '../../../store/actions';
 import { FormattedMessage } from 'react-intl';
-import { getAllCodeService, getAllDetailDoctorByLoction, getAllDoctors } from '../../../services/userService';
+import { getAllCodeService, getAllDoctors } from '../../../services/userService';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 class AllDoctor extends Component {
 
@@ -25,7 +24,7 @@ class AllDoctor extends Component {
 
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     let res = await getAllDoctors();
 
@@ -58,7 +57,7 @@ class AllDoctor extends Component {
   }
 
   handleOnChangeSelectProvince = async (event) => {
-    let location = event.target.value;
+    // let location = event.target.value;
     let res = await getAllDoctors();
 
     this.setState({
@@ -74,8 +73,7 @@ class AllDoctor extends Component {
 
   render() {
     let { language } = this.props;
-    let { dataDetailDoctor, listProvince } = this.state;
-    console.log('cheks stateeeeeeeeee: ', this.state)
+    let { dataDetailDoctor } = this.state;
 
     return (
       <>
@@ -120,6 +118,7 @@ class AllDoctor extends Component {
                     return (
                       <Link to={`/detail-doctor/${item.id}`}
                         className='text-view'
+                        key={index}
                       >
                         <div className='item-row'>
                           <div className='img-doctor'

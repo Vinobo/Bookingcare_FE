@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
-import { getProfileDoctorById } from '../../../services/userService';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import Slider from "react-slick";
 

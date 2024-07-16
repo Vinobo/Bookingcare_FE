@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 import logo from "../../../assets/images/LOGO.png";
 import MOIT from "../../../assets/about/bo-cong-thuong.svg"
-import Slider from "react-slick";
 
 
 class About extends Component {
@@ -25,7 +24,7 @@ class About extends Component {
             <div className='info-company'>
               <div className='about-logo'>
                 <div className='logo' onClick={() => this.returnToHome()} >
-                  <img src={logo} />
+                  <img src={logo} alt='Logo' />
                   <span>LiveCare</span>
                 </div>
               </div>
@@ -35,8 +34,8 @@ class About extends Component {
                 <p><i className="fas fa-check"></i><FormattedMessage id="about.certification" /></p>
               </div>
               <div className='certification'>
-                <img src={MOIT}></img>
-                <img src={MOIT}></img>
+                <img src={MOIT} alt='certification'></img>
+                <img src={MOIT} alt='certification'></img>
               </div>
               <div className='contact'>
                 <div className='ct-content'>
@@ -71,8 +70,8 @@ class About extends Component {
               <span className='title-pt'><FormattedMessage id="about.partner.title" /></span>
               <ul>
                 <li>
-                  <a href="https://hellodoctors.vn/" target="_blank">
-                    <img src="https://cdn.bookingcare.vn/fo/2023/09/08/093706-hellodoctorlogo.png" width="65px" height="40px" />
+                  <a href="https://hellodoctors.vn/" target="_blank" ref="noreferrer">
+                    <img src="https://cdn.bookingcare.vn/fo/2023/09/08/093706-hellodoctorlogo.png" width="65px" height="40px" alt='hellodoctorlogo' />
                     <div className="pt-detail">
                       <span className='title-pt'>Hello Doctor</span>
                       <span><FormattedMessage id="about.partner.span1" /></span>
@@ -80,8 +79,8 @@ class About extends Component {
                   </a>
                 </li>
                 <li>
-                  <a href="https://bernard.vn/" target="_blank">
-                    <img src="https://cdn.bookingcare.vn/fo/2022/03/21/082316-logo-bernard.png" width="65px" height="65px" />
+                  <a href="https://bernard.vn/" target="_blank" ref="noreferrer">
+                    <img src="https://cdn.bookingcare.vn/fo/2022/03/21/082316-logo-bernard.png" width="65px" height="65px" alt='logo-bernard' />
                     <div className="pt-detail">
                       <span className='title-pt'><FormattedMessage id="about.partner.partner2" /></span>
                       <span><FormattedMessage id="about.partner.span2" /></span>

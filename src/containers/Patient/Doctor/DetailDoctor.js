@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import * as actions from "../../../store/actions";
 import Header from '../../HomePage/Header';
 import './scss/DetailDoctor.scss';
-import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import AddressDoctor from './AddressDoctor';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
+import Comment from '../SocialPlugin/Comment';
+import LikeAndShare from '../SocialPlugin/LikeAndShare';
 
 
 class DetailDoctor extends Component {
@@ -18,59 +18,37 @@ class DetailDoctor extends Component {
     super(props);
     this.state = {
       detailDoctor: {},
-      currentDoctorId: -1,
     }
 
   }
 
   async componentDidMount() {
-    // this.props.fetchAllDoctors();
-
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
-      let id = this.props.match.params.id;
-      this.setState({
-        currentDoctorId: id
-      })
-      // this.props.fetchDetailDoctor(id);
+      const id = this.props.match.params.id;
+      this.props.fetchDetailDoctor(id);
 
-      let res = await getDetailInforDoctor(id);
-      if (res && res.errCode === 0) {
-        this.setState({
-          detailDoctor: res.data,
-          currentDoctorId: id
-        })
-      }
     }
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.match !== this.props.match) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
       if (this.props.match && this.props.match.params && this.props.match.params.id) {
-        let id = this.props.match.params.id;
-        this.setState({
-          currentDoctorId: id
-        })
-
-        let res = await getDetailInforDoctor(id);
-        if (res && res.errCode === 0) {
-          this.setState({
-            detailDoctor: res.data,
-            currentDoctorId: id
-          })
-        }
+        const id = this.props.match.params.id;
+        this.props.fetchDetailDoctor(id);
       }
     }
   }
 
   render() {
-    let { language } = this.props;
-    let { detailDoctor } = this.state;
+    const { language } = this.props;
+    const { detailDoctor } = this.props;
     let nameVi = '', nameEn = ''
     if (detailDoctor && detailDoctor.positionData) {
       nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
       nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
+    const url = +process.env.REACT_APP_IS_LOCALHOST === 1 ? '' : window.location.href;
 
     return (
       <>
@@ -103,6 +81,9 @@ class DetailDoctor extends Component {
                     {detailDoctor.Markdown.description}
                   </span>
                 }
+                <div className='like-share-plugin'>
+                  <LikeAndShare dataHref={url} />
+                </div>
               </div>
             </div>
           </div>
@@ -110,12 +91,12 @@ class DetailDoctor extends Component {
           <div className='schedule-doctor general-container'>
             <div className='content-left'>
               <DoctorSchedule
-                doctorIdFromParent={this.state.currentDoctorId}
+                doctorIdFromParent={detailDoctor.id}
               />
             </div>
             <div className='content-right'>
               <AddressDoctor
-                doctorIdFromParent={this.state.currentDoctorId}
+                doctorIdFromParent={detailDoctor.id}
               />
             </div>
           </div>
@@ -130,9 +111,9 @@ class DetailDoctor extends Component {
               }
             </div>
           </div>
-          {/* <div className='comment-doctor'>
-
-          </div> */}
+          <div className='comment-doctor'>
+            <Comment dataHref={url} />
+          </div>
           <About />
           <Footer />
         </div>
@@ -144,14 +125,13 @@ class DetailDoctor extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
-    // detailDoctor: state.admin.detailDoctor
+    detailDoctor: state.admin.detailDoctor
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    //   fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
-    // fetchDetailDoctor: (Id) => dispatch(actions.fetchDetailDoctor(Id))
+    fetchDetailDoctor: (Id) => dispatch(actions.fetchDetailDoctor(Id))
   };
 };
 

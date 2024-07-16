@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+// import { LANGUAGES } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './scss/Detail.scss';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
@@ -50,7 +50,7 @@ class Detail1 extends Component {
               <h2>Với 5 khác biệt khi tầm soát bệnh tại Doctor Check dưới đây, bạn đọc có thể phần nào tự giải đáp câu hỏi "Có nên khám tổng quát tại Doctor Check hay không?"</h2>
               <div className='detail-ct'>
                 <figure>
-                  <img src={five_different}></img>
+                  <img src={five_different} alt='handbook-img'></img>
                   <figcaption>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</figcaption>
                 </figure>
                 <p>Doctor Check là một trong những địa chỉ khám chữa bệnh uy tín và chất lượng nhất ở TPHCM. Bên cạnh hoạt động thăm khám, Trung tâm cũng rất đầu tư vào lĩnh vực khám tổng quát, tầm soát bệnh. Với đội ngũ bác sĩ giàu kinh nghiệm, hệ thống máy móc hiện đại và chi phí hợp lý, Doctor Check đã trở thành lựa chọn của nhiều người dân TPHCM khi cần kiểm tra sức khỏe.</p>
@@ -67,7 +67,7 @@ class Detail1 extends Component {
                     </ul>
                   </li>
                 </ul>
-                <p><a href="https://www.doctorcheck.vn/" rel="nofollow" target='_blank'>Doctor Check</a> là một cơ sở y tế tại TPHCM chuyên về tầm soát bệnh và khám sức khỏe tổng quát. Với tầm nhìn là trở thành địa chỉ tin cậy cho việc tầm soát và chăm sóc sức khỏe của mọi người, Doctor Check chú trọng đầu tư vào cả đội ngũ con người lẫn hệ thống máy móc tiên tiến, hiện đại.</p>
+                <p><a href="https://www.doctorcheck.vn/" rel="noreferrer" target='_blank'>Doctor Check</a> là một cơ sở y tế tại TPHCM chuyên về tầm soát bệnh và khám sức khỏe tổng quát. Với tầm nhìn là trở thành địa chỉ tin cậy cho việc tầm soát và chăm sóc sức khỏe của mọi người, Doctor Check chú trọng đầu tư vào cả đội ngũ con người lẫn hệ thống máy móc tiên tiến, hiện đại.</p>
                 <span id='1'></span>
                 <h2>5 khác biệt khi tầm soát bệnh tại Doctor Check</h2>
                 <p>Dưới đây là một số ưu điểm khi tầm soát bệnh tại Doctor Check mà bạn đọc có thể tham khảo trước khi lựa chọn thăm khám tại đây.</p>
@@ -80,7 +80,7 @@ class Detail1 extends Component {
                 <p>Một trong những lợi ích khi tầm soát bệnh tại Doctor Check là thời gian khám tổng quát được tối ưu hóa. Chỉ trong 60 phút, khách hàng có thể hoàn tất quá trình khám sức khỏe tổng quát. Điều này giúp tiết kiệm thời gian cho những người bận rộn, không có nhiều thời gian.</p>
                 <p>Với thời gian khám tổng quát tiêu chuẩn chỉ 60 phút, Doctor Check vừa giúp tiết kiệm thời gian cho bệnh nhân mà vẫn đảm bảo chất lượng thăm khám, dịch vụ.</p>
                 <figure>
-                  <img src={generalHealth}></img>
+                  <img src={generalHealth} alt='handbook-img'></img>
                   <figcaption>Khách hàng khám tổng quát tại Doctor Check</figcaption>
                 </figure>
                 <span id='4'></span>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
 import './scss/AllHandBooks.scss';
 import { FormattedMessage } from 'react-intl';
 import Header from '../../HomePage/Header';
@@ -44,7 +42,7 @@ class AllHandBooks extends Component {
   }
 
   render() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     return (
       <>
@@ -65,37 +63,37 @@ class AllHandBooks extends Component {
             <h1><FormattedMessage id="patient.title.all-handbook" /></h1>
             <div className='detail-all-handbook'>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(1)}>
-                <img src={five_different} />
+                <img src={five_different} alt='handbook-img' />
                 <div className='text-content'>
                   <span>5 khác biệt khi tầm soát bệnh, khám tổng quát tại Doctor Check</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(2)}>
-                <img src={five_clinic} />
+                <img src={five_clinic} alt='handbook-img' />
                 <div className='text-content'>
                   <span>Top 5 địa chỉ khám chấn thương thể thao tốt tại TP.HCM</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(3)}>
-                <img src={GI_END} />
+                <img src={GI_END} alt='handbook-img' />
                 <div className='text-content'>
                   <span>Cần lưu ý gì khi đi khám Tiêu hóa?</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(4)}>
-                <img src={Male} />
+                <img src={Male} alt='handbook-img' />
                 <div className='text-content'>
                   <span>Cần lưu ý gì trước khi đi khám Nam khoa (bệnh nam giới)</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(5)}>
-                <img src={HOSP115} />
+                <img src={HOSP115} alt='handbook-img' />
                 <div className='text-content'>
                   <span>Kinh nghiệm thực tế đi khám tại Bệnh viện Nhân dân 115</span>
                 </div>
               </div>
               <div className='section-img-row' onClick={() => this.handleViewDetailHandbook(6)}>
-                <img src={HOSPCRay} />
+                <img src={HOSPCRay} alt='handbook-img' />
                 <div className='text-content'>
                   <span>Hướng dẫn đi khám tại khoa Thần kinh, Bệnh viện Chợ Rẫy: Thủ tục thăm khám? Bác sĩ nào giỏi?</span>
                 </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import './DetailSpecialty.scss';
@@ -48,9 +47,7 @@ class DetailsSpecialty extends Component {
         if (data && !_.isEmpty(res.data)) {
           let arr = data.doctorSpecialty;
           if (arr && arr.length > 0) {
-            arr.map(item => {
-              arrDoctorId.push(item.doctorId)
-            })
+            arr.map(item => arrDoctorId.push(item.doctorId))
           }
         }
 
@@ -74,7 +71,7 @@ class DetailsSpecialty extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     this.handleData()
 
@@ -113,10 +110,7 @@ class DetailsSpecialty extends Component {
         if (data && !_.isEmpty(res.data)) {
           let arr = data.doctorSpecialty;
           if (arr && arr.length > 0) {
-            arr.map(item => {
-              arrDoctorId.push(item.doctorId)
-            })
-
+            arr.map(item => arrDoctorId.push(item.doctorId))
           }
         }
 
@@ -141,7 +135,7 @@ class DetailsSpecialty extends Component {
         let object = {};
         object.label = item.name;
         object.value = item.id;
-        result.push(object)
+        return result.push(object);
       })
     }
     return result;
@@ -153,6 +147,9 @@ class DetailsSpecialty extends Component {
     }
     this.setState({
       selectedSpecialty: selectedSpecialty,
+    });
+    this.setState({
+      selectedSpecialty: '',
     });
   }
 
@@ -169,7 +166,7 @@ class DetailsSpecialty extends Component {
   }
 
   render() {
-    let { language, isShowLinkDetail, isShowLocation } = this.props;
+    let { language } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty } = this.state;
 
 

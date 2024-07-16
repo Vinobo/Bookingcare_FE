@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
-import { FormattedMessage } from 'react-intl';
+// import { Redirect, Route, Switch } from 'react-router-dom';
+// import { LANGUAGES } from '../../../utils';
+// import { FormattedMessage } from 'react-intl';
 import './scss/Detail.scss';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
@@ -52,7 +52,7 @@ class Detail2 extends Component {
               <h2>Danh sách địa chỉ dưới đây sẽ giúp bạn đọc bớt băn khoăn khi cần phải lựa chọn địa chỉ khám chấn thương thể thao tốt tại TP.HCM.</h2>
               <div className='detail-ct'>
                 <figure>
-                  <img src={five_clinic}></img>
+                  <img src={five_clinic} alt='handbook-img'></img>
                   <figcaption>5 địa chỉ khám chấn thương thể thao tốt tại TPHCM</figcaption>
                 </figure>
                 <p>Hoạt động thể thao là phương pháp cải thiện sức bền và duy trì sức khỏe hiệu quả. Tuy nhiên, việc gặp chấn thương trong quá trình vận động là điều khó tránh khỏi, đặc biệt với các đối tượng chơi thể thao thường xuyên.</p>
@@ -108,7 +108,7 @@ class Detail2 extends Component {
                   <li>Hội viên Hội Chấn thương Chỉnh hình TP.HCM</li>
                 </ul>
                 <figure>
-                  <img src={HOSP115}></img>
+                  <img src={HOSP115} alt='handbook-img'></img>
                   <figcaption>Bệnh viện Nhân dân 115 là một trong những bệnh viện tốp đầu về chuyên môn tại TP.HCM</figcaption>
                 </figure>
                 <h4>Kinh nghiệm đi khám</h4>
@@ -145,7 +145,7 @@ class Detail2 extends Component {
                   <li>Bác sĩ Calvin Q Trịnh</li>
                 </ul>
                 <figure>
-                  <img src={HOSP1A}></img>
+                  <img src={HOSP1A} alt='handbook-img'></img>
                   <figcaption>Bệnh viện 1A chuyên về chấn thương chỉnh hình và phục hồi chức năng</figcaption>
                 </figure>
                 <h4>Kinh nghiệm đi khám</h4>
@@ -184,7 +184,7 @@ class Detail2 extends Component {
                   <li>Thạc sĩ, Bác sĩ Chuyên khoa I Trương Hữu Bảo</li>
                 </ul>
                 <figure>
-                  <img src={HOSPTamAnh}></img>
+                  <img src={HOSPTamAnh} alt='handbook-img'></img>
                   <figcaption>Bệnh viện Tâm Anh TP.HCM được đầu tư mạnh về trang thiết bị máy móc</figcaption>
                 </figure>
                 <h4>Kinh nghiệm đi khám</h4>
@@ -224,7 +224,7 @@ class Detail2 extends Component {
                 </ul>
                 <p>Như đã đề cập, đội ngũ chuyên gia của Phòng khám là các bác sĩ nước ngoài có chuyên môn sâu trong lĩnh vực nắn chỉnh cột sống và phục hồi chức năng. Các bác sĩ có thời gian nghiên cứu và điều trị thực tế nhiều năm trước khi đến với Phòng khám ACC TP.HCM.</p>
                 <figure>
-                  <img src={HOSPACC}></img>
+                  <img src={HOSPACC} alt='handbook-img'></img>
                   <figcaption>Phòng khám ACC quy tụ đội ngũ chuyên gia nước ngoài đnág tin cậy</figcaption>
                 </figure>
                 <h4>Kinh nghiệm đi khám</h4>
@@ -259,7 +259,7 @@ class Detail2 extends Component {
                   <li>Khám và chữa trị hơn 50.000 bệnh nhân xương khớp – thể thao, phẫu thuật hơn 3000 trường hợp xương khớp – thể thao, tái tạo dây chằng gối cho hơn 2000 trường hợp.</li>
                 </ul>
                 <figure>
-                  <img src={HOSPSportMedic}></img>
+                  <img src={HOSPSportMedic} alt='handbook-img'></img>
                   <figcaption>Phòng khám Medic Sport từng thăm khám cho nhiều vận động viên nổi tiếng</figcaption>
                 </figure>
                 <h4>Kinh nghiệm đi khám</h4>

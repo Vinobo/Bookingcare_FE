@@ -1,18 +1,16 @@
-import React, { Component, useRef } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { LANGUAGES } from '../../../utils';
+// import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import './DetailClinic.scss';
 import Header from '../../HomePage/Header';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import AddressDoctor from '../Doctor/AddressDoctor';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
-import { getAllCodeService, getAllDetailClinicById } from '../../../services/userService';
+import { getAllDetailClinicById } from '../../../services/userService';
 import _ from 'lodash';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 
 class DetailsClinic extends Component {
@@ -28,7 +26,7 @@ class DetailsClinic extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props;
+    // let { language } = this.props;
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
@@ -43,10 +41,7 @@ class DetailsClinic extends Component {
         if (data && !_.isEmpty(res.data)) {
           let arr = data.doctorClinic;
           if (arr && arr.length > 0) {
-            arr.map(item => {
-              arrDoctorId.push(item.doctorId)
-            })
-
+            arr.map(item => arrDoctorId.push(item.doctorId))
           }
         }
 
@@ -76,7 +71,7 @@ class DetailsClinic extends Component {
 
 
   render() {
-    let { language, isShowLinkDetail, isShowLocation } = this.props;
+    // let { language, isShowLinkDetail, isShowLocation } = this.props;
     let { arrDoctorId, dataDetailClinic } = this.state;
 
     return (
@@ -90,6 +85,7 @@ class DetailsClinic extends Component {
           >
             <img
               src={`${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''}`}
+              alt='clinic img'
             ></img>
           </div>
           <div className='spacing'></div>

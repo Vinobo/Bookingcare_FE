@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
 import moment from 'moment';
-import localization from 'moment/locale/vi';
 import './scss/DoctorSchedule.scss';
 import { LANGUAGES } from '../../../utils';
 import { getScheduleDoctorByDate } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
 import BookingDoctor from './Modal/BookingDoctor';
-import { times, uniq, uniqBy } from 'lodash';
-
-// import
 
 class DoctorSchedule extends Component {
 
@@ -168,8 +163,8 @@ class DoctorSchedule extends Component {
   }
 
   render() {
-    let { allDays, allAvailable, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
-    let { language } = this.props;
+    let { allDays, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
+    // let { language } = this.props;
 
     return (
       <>

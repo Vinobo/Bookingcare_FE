@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+// import { Redirect, Route, Switch } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import './TableManageSchedule.scss';
-import * as actions from "../../../store/actions";
-import { deletescheduleService, deleteScheduleService, getScheduleDoctorByDate } from '../../../services/userService';
+// import * as actions from "../../../store/actions";
+import { deleteScheduleService, getScheduleDoctorByDate } from '../../../services/userService';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import DatePicker from '../../../components/Input/DatePicker';
@@ -32,7 +32,7 @@ class TableManageSchedule extends Component {
   }
 
   async componentDidMount() {
-    let { language } = this.props.language;
+    // let { language } = this.props.language;
     this.handleGetDataSchedule()
   }
 
@@ -71,8 +71,7 @@ class TableManageSchedule extends Component {
 
   render() {
     let dataSchedule = this.state.dataSchedule;
-    let { userInfo, language } = this.props;
-    console.log('chekc state: ', this.state)
+    let { language } = this.props;
 
     return (
       <div className='mamage-schedule'>
