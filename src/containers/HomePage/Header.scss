@@ -161,15 +161,20 @@
     .search {
       display: flex;
       border-radius: 25px;
-      width: fit-content;
+      width: 450px;
       justify-content: center;
       align-items: center;
       margin: 0 auto;
       padding: 10px;
       background: #f7d800;
+      position: relative;
 
       i {
         margin: 0 5px;
+      }
+
+      i:last-child {
+        cursor: pointer;
       }
 
       input {
@@ -178,6 +183,44 @@
         background: transparent;
         border: none;
         outline: none;
+      }
+    }
+
+    .hasInputSearch {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .search-result {
+      background-color: #f7d800;
+      display: flex;
+      flex-direction: column;
+      width: 450px;
+      position: absolute;
+      top: 61%;
+      z-index: 1000;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding: 1rem 1rem;
+
+      ul {
+        outline: none;
+        list-style: none;
+
+        p {
+          font-weight: bold;
+        }
+
+        li {
+          margin-bottom: 5px;
+          cursor: pointer;
+
+          img {
+            width: 30px;
+            height: 30px;
+            margin-right: 1rem;
+          }
+        }
       }
     }
   }

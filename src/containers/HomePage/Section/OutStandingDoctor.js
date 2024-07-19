@@ -36,7 +36,6 @@ class OutStandingDoctor extends Component {
     if (this.props.history) {
       this.props.history.push(`/detail-doctor/${doctor.id}`)
     }
-
   }
 
   render() {

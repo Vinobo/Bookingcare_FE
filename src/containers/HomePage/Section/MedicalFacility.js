@@ -16,7 +16,7 @@ class MedicalFacility extends Component {
   }
 
   async componentDidMount() {
-    let res = await getAllClinic();
+    const res = await getAllClinic();
     if (res && res.errCode === 0) {
       this.setState({
         dataClinic: res.data ? res.data : []
@@ -31,7 +31,7 @@ class MedicalFacility extends Component {
   }
 
   render() {
-    let { dataClinic } = this.state;
+    const { dataClinic } = this.state;
 
     return (
       <div className='section-general medical-facility'>

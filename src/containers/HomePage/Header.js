@@ -7,20 +7,42 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions"
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { getAllSpecialties } from '../../services/userService';
+import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSpecialty: []
+      dataSpecialties: [],
+      dataClinic: [],
+      dataDoctors: [],
+      inputValue: '',
+      searchSpecialties: [],
+      searchClinic: [],
+      searchDoctors: []
     };
   }
-  handleDataSpecialty = async () => {
-    let res = await getAllSpecialties();
-    if (res && res.errCode === 0) {
+
+  async componentDidMount() {
+
+    const resAllSpecailties = await getAllSpecialties();
+    if (resAllSpecailties && resAllSpecailties.errCode === 0) {
       this.setState({
-        dataSpecialty: res.data
+        dataSpecialties: resAllSpecailties.data ? resAllSpecailties.data : []
+      })
+    }
+
+    const resAllClinic = await getAllClinic();
+    if (resAllClinic && resAllClinic.errCode === 0) {
+      this.setState({
+        dataClinic: resAllClinic.data ? resAllClinic.data : []
+      })
+    }
+
+    const resDoctors = await getAllDoctors();
+    if (resDoctors && resDoctors.errCode === 0) {
+      this.setState({
+        dataDoctors: resDoctors.data ? resDoctors.data : []
       })
     }
   }
@@ -36,8 +58,104 @@ class Header extends Component {
     }
   }
 
+  removeAscent = (str) => {
+    if (str === null || str === undefined) return str;
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+  }
+
+
+  handleSearch = (event) => {
+    const value = event.target.value;
+    const { dataSpecialties, dataClinic, dataDoctors } = this.state;
+
+    if (value) {
+      this.setState({
+        inputValue: value
+      })
+    } else {
+      this.setState({
+        inputValue: ''
+      })
+    }
+
+    const findValue = (name) => {
+      return this.removeAscent(name).toLowerCase().includes(value.toLowerCase()) === true;
+    }
+    const setLimitArr = (arr) => {
+      arr.length = arr.length > 5 ? 5 : arr.length;
+    }
+
+    if (dataSpecialties.length > 0) {
+      const specialties = value ? dataSpecialties.filter(e => findValue(e.name)) : [];
+      setLimitArr(specialties);
+      // specialties.length = specialties.length > 5 ? 5 : specialties.length;
+      this.setState({
+        searchSpecialties: specialties
+      })
+    }
+
+    if (dataClinic.length > 0) {
+      const clinic = value ? dataClinic.filter(e => findValue(e.name)) : [];
+      setLimitArr(clinic);
+      // clinic.length = clinic.length > 5 ? 5 : clinic.length;
+      this.setState({
+        searchClinic: clinic
+      })
+    }
+
+    if (dataDoctors.length > 0) {
+      const doctors = value ? dataDoctors.filter(e => {
+        return (findValue(e.firstName)
+          ||
+          findValue(e.lastName)
+        )
+      }) : [];
+
+      setLimitArr(doctors);
+      // doctors.length = doctors.length > 5 ? 5 : doctors.length;
+      this.setState({
+        searchDoctors: doctors
+      })
+    }
+  }
+
+  handleCleanInput = () => {
+    this.setState({
+      inputValue: ''
+    })
+  }
+
+  handleViewDetailSpecialty = (id) => {
+    if (this.props.history) {
+      this.props.history.push(`/detail-specialty/${id}`)
+    }
+  }
+
+  handleViewDetailClinic = (id) => {
+    if (this.props.history) {
+      this.props.history.push(`/detail-clinic/${id}`)
+    }
+  }
+
+  handleViewDetailDoctor = (id) => {
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${id}`)
+    }
+  }
+
   render() {
-    let language = this.props.language;
+    const language = this.props.language;
+    const { inputValue, searchSpecialties, searchClinic, searchDoctors } = this.state;
+    const placeholder = language === LANGUAGES.VI ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialist";
+    let imageBase64 = '';
 
     return (
       <React.Fragment>
@@ -107,10 +225,53 @@ class Header extends Component {
             <div className='content-up'>
               <div className='title1'><FormattedMessage id="banner.title1" /></div>
               <div className='title2'><FormattedMessage id="banner.title2" /></div>
-              <div className='search'>
+              <div className={`search ${inputValue && 'hasInputSearch'}`}>
                 <i className="fas fa-search"></i>
-                <input type='text' placeholder='Tìm chuyên khoa khám bệnh' />
+                <input
+                  type='text'
+                  placeholder={placeholder}
+                  value={inputValue}
+                  onChange={(event) => this.handleSearch(event)}
+                />
+                {inputValue &&
+                  <i className="fa fa-times" onClick={() => this.handleCleanInput()}></i>
+                }
               </div>
+              {inputValue &&
+                <div div className='search-result'>
+                  {(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
+                    <p>{language === LANGUAGES.VI ? 'Không tìm thấy kết quả nào' : 'No search results'}</p>
+                  }
+                  {searchSpecialties.length > 0 &&
+                    <ul className='specailties-result'>
+                      <p><FormattedMessage id="common.specialty" /></p>
+                      {searchSpecialties && searchSpecialties.map(e => (
+                        <li key={e.id} onClick={() => this.handleViewDetailSpecialty(e.id)}><img src={`${e.image}`} alt='specialty' />{e.name}</li>
+                      ))}
+                    </ul>
+                  }
+                  {searchClinic.length > 0 &&
+                    <ul className='clinic-result'>
+                      <p><FormattedMessage id="common.clinic" /></p>
+                      {searchClinic && searchClinic.map(e => (
+                        <li key={e.id} onClick={() => this.handleViewDetailClinic(e.id)}><img src={`${e.image}`} alt='clinic' />{e.name}</li>
+                      ))}
+                    </ul>
+                  }
+                  {searchDoctors.length > 0 &&
+                    <ul className='doctors-result'>
+                      <p><FormattedMessage id="common.doctor" /></p>
+                      {searchDoctors && searchDoctors.map(e => {
+                        if (e.image) {
+                          imageBase64 = new Buffer(e.image, 'base64').toString('binary');
+                        }
+
+                        return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${imageBase64}`} alt='doctor' />{e.firstName} {e.lastName}</li>
+                      })}
+                    </ul>
+                  }
+                </div>
+              }
             </div>
 
             {/* <div className='content-down'>
