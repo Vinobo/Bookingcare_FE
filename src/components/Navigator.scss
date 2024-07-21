@@ -37,10 +37,10 @@
                 text-transform: none;
 
                 &.active {
+                    background-color: #ededed;
                     a {
                         color: rgba(37, 128, 231, 0.904);
                     }
-                    background-color: #ededed;
                 }
 
                 .menu-link {

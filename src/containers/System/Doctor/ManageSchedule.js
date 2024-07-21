@@ -151,7 +151,7 @@ class ManageSchedule extends Component {
         toast.error("Invalid selected doctor!");
         return;
       }
-    } else doctorId = userInfo.id
+    } else doctorId = userInfo.id;
 
     let res = await saveBulkScheduleDoctor({
       arrSchedule: result,
@@ -165,9 +165,19 @@ class ManageSchedule extends Component {
         this.props.history.push(`/doctor/manage-schedule`)
       }
       let res = await getScheduleDoctorByDate(selectedDoctor.value, currentDate);
+
+      let { rangeTime } = this.state;
+      if (rangeTime && rangeTime.length > 0) {
+        rangeTime = rangeTime.map(item => {
+          item.isSelected = false;
+          return item;
+        })
+      }
+
       this.setState({
         currentDate: currentDate,
         dataSchedule: res.data ? res.data : [],
+        rangeTime: rangeTime
       })
     } else {
       toast.error("error saveBulkScheduleDoctor!");
@@ -196,7 +206,7 @@ class ManageSchedule extends Component {
     let { language, userInfo } = this.props;
     let userRole = userInfo.roleId;
     let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-    console.log('check pros: ', this.state)
+    const existDate = rangeTime.filter(o1 => !dataSchedule.some(o2 => o1.keyMap === o2.timeType));
 
     return (
       <div className='container manage-shedule '>
@@ -240,8 +250,8 @@ class ManageSchedule extends Component {
             </div>
 
             <div className='pick-hour'>
-              {rangeTime && rangeTime.length > 0 &&
-                rangeTime.map((item, index) => {
+              {existDate && existDate.length > 0 &&
+                existDate.map((item, index) => {
                   return (
                     <button
                       className={item.isSelected === true ? 'btn btn-schedule active' : 'btn btn-schedule'}

@@ -7,7 +7,7 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Montserrat", sans-serif;
-  font-size: $base-size - 2px;
+  font-size: calc($base-size - 2px);
   height: 100vh;
   overflow: hidden;
 }
@@ -17,7 +17,7 @@ html {
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: $base-size + 4px;
+    font-size: calc($base-size + 4px);
     margin-top: 15px;
     color: $colormain;
   }
@@ -38,14 +38,14 @@ html {
         .modal-title {
           line-height: 35px;
           font-weight: 500;
-          font-size: $base-size + 1px;
+          font-size: calc($base-size + 1px);
         }
         .btn-close {
           position: absolute;
           color: $common-text-color;
           i {
             line-height: 35px;
-            font-size: $base-size + 2px;
+            font-size: calc($base-size + 2px);
           }
         }
       }
