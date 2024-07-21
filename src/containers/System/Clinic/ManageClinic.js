@@ -274,7 +274,7 @@ class ManageClinic extends Component {
 
   render() {
     // let { language } = this.props;
-    let { hasOldData } = this.state;
+    let { hasOldData, previewImgURL } = this.state;
 
     return (
       <div className='container manage-clinic'>
@@ -286,6 +286,7 @@ class ManageClinic extends Component {
           <div className='name-clinic clinic-item'>
             <label><FormattedMessage id="admin.manage-clinic.name" /></label>
             <input type='text'
+              className='form-control'
               value={this.state.name}
               onChange={(event) => this.handleOnchangeInput(event, 'name')}
             ></input>
@@ -297,8 +298,8 @@ class ManageClinic extends Component {
                 onChange={(event) => this.handleOnchangeImage(event)}
               />
               <label className='label-upload' htmlFor='uploadImg'><FormattedMessage id="user-manage.upload" /> <i className="fas fa-upload"></i></label>
-              <div className='preview-img'
-                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+              <div className={previewImgURL ? 'preview-img' : ''}
+                style={{ backgroundImage: `url(${previewImgURL})` }}
                 onClick={() => this.openPreviewImage()}
               ></div>
             </div>
@@ -306,6 +307,7 @@ class ManageClinic extends Component {
           <div className='address-clinic clinic-item'>
             <label><FormattedMessage id="admin.manage-clinic.address" /></label>
             <input type='text'
+              className='form-control'
               value={this.state.address}
               onChange={(event) => this.handleOnchangeInput(event, 'address')}
             ></input>

@@ -171,15 +171,17 @@ class ManageUser extends Component {
                 arrCheck: { email: 'Email', password: 'Mật khẩu', firstName: 'Tên', lastName: 'Họ', phoneNumber: 'Số điện thoại', address: 'Địa chỉ' }
             })
         }
-        for (let i = 0; i < Object.keys(this.state.arrCheck).length; i++) {
-            let key = Object.keys(this.state.arrCheck)[i];
+
+        const { arrCheck } = this.state;
+        for (let i = 0; i < Object.keys(arrCheck).length; i++) {
+            let key = Object.keys(arrCheck)[i];
             // console.log('key: ', key);
             if (!this.state[key]) {
                 isValid = false;
                 if (this.props.language === 'en') {
-                    alert('This input is required: ' + this.state.arrCheck[key]);
+                    alert('This input is required: ' + arrCheck[key]);
                 } else {
-                    alert('Ô dữ liệu cần phải nhập vào: ' + this.state.arrCheck[key]);
+                    alert('Ô dữ liệu cần phải nhập vào: ' + arrCheck[key]);
                 }
                 break;
             }
@@ -218,6 +220,15 @@ class ManageUser extends Component {
         })
     }
 
+    hasInput = () => {
+        const { email, password, firstName, lastName, phoneNumber,
+            address, previewImgURL } = this.state;
+        if (email || password || firstName || lastName || phoneNumber ||
+            address || previewImgURL) {
+            return true;
+        } else return false;
+    }
+
     handleCancle = () => {
         let arrGenders = this.props.genderRedux;
         let arrPosition = this.props.positionRedux;
@@ -245,7 +256,7 @@ class ManageUser extends Component {
         let roles = this.state.roleArr;
 
         let { email, password, firstName, lastName, phoneNumber,
-            address, gender, position, role } = this.state;
+            address, gender, position, role, previewImgURL } = this.state;
 
         return (
             <div className='user-redux-container'>
@@ -326,8 +337,8 @@ class ManageUser extends Component {
                                         onChange={(event) => this.handleOnchangeImage(event)}
                                     />
                                     <label className='label-upload' htmlFor='uploadImg'><FormattedMessage id="user-manage.upload" /> <i className="fas fa-upload"></i></label>
-                                    <div className='preview-img'
-                                        style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+                                    <div className={previewImgURL ? 'preview-img' : ''}
+                                        style={{ backgroundImage: `url(${previewImgURL})` }}
                                         onClick={() => this.openPreviewImage()}
                                     ></div>
                                 </div>
@@ -374,7 +385,7 @@ class ManageUser extends Component {
                                         <FormattedMessage id="user-manage.edit" /> :
                                         <FormattedMessage id="common.save" />}
                                 </button>
-                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                {this.state.action === CRUD_ACTIONS.EDIT || this.hasInput() ?
                                     <button className='cancle' onClick={() => this.handleCancle()}>Cancle</button>
                                     :
                                     <></>

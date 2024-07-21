@@ -44,8 +44,8 @@
     "yet-another-react-lightbox": "^3.12.2"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -65,6 +65,7 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.77.8"
+    "node-sass": "^6.0.1",
+    "sass": "^1.77.6"
   }
 }

@@ -5,6 +5,25 @@
   margin: 0;
 }
 
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid hsl(0, 0%, 80%);
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .section-general {
   padding-top: 20px;
   padding-bottom: 30px;

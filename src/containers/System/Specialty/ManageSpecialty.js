@@ -181,7 +181,7 @@ class ManageSpecialty extends Component {
 
   render() {
     // let { language } = this.props;
-    let { hasOldData } = this.state
+    let { hasOldData, previewImgURL } = this.state
 
     return (
       <div className='container manage-specialty'>
@@ -191,6 +191,7 @@ class ManageSpecialty extends Component {
           <div className='name-specialty specialty-item'>
             <label><FormattedMessage id="admin.manage-specialty.name" /></label>
             <input type='text'
+              className='form-control'
               value={this.state.nameSpecialty}
               onChange={(event) => this.handleOnchangeInput(event, 'nameSpecialty')}
             ></input>
@@ -202,8 +203,8 @@ class ManageSpecialty extends Component {
                 onChange={(event) => this.handleOnchangeImage(event)}
               />
               <label className='label-upload' htmlFor='uploadImg'><FormattedMessage id="user-manage.upload" /> <i className="fas fa-upload"></i></label>
-              <div className='preview-img'
-                style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
+              <div className={previewImgURL ? 'preview-img' : ''}
+                style={{ backgroundImage: `url(${previewImgURL})` }}
                 onClick={() => this.openPreviewImage()}
               ></div>
             </div>
