@@ -236,42 +236,42 @@ class Header extends Component {
                 {inputValue &&
                   <i className="fa fa-times" onClick={() => this.handleCleanInput()}></i>
                 }
-              </div>
-              {inputValue &&
-                <div div className='search-result'>
-                  {(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
-                    <p>{language === LANGUAGES.VI ? 'Không tìm thấy kết quả nào' : 'No search results'}</p>
-                  }
-                  {searchSpecialties.length > 0 &&
-                    <ul className='specailties-result'>
-                      <p><FormattedMessage id="common.specialty" /></p>
-                      {searchSpecialties && searchSpecialties.map(e => (
-                        <li key={e.id} onClick={() => this.handleViewDetailSpecialty(e.id)}><img src={`${e.image}`} alt='specialty' />{e.name}</li>
-                      ))}
-                    </ul>
-                  }
-                  {searchClinic.length > 0 &&
-                    <ul className='clinic-result'>
-                      <p><FormattedMessage id="common.clinic" /></p>
-                      {searchClinic && searchClinic.map(e => (
-                        <li key={e.id} onClick={() => this.handleViewDetailClinic(e.id)}><img src={`${e.image}`} alt='clinic' />{e.name}</li>
-                      ))}
-                    </ul>
-                  }
-                  {searchDoctors.length > 0 &&
-                    <ul className='doctors-result'>
-                      <p><FormattedMessage id="common.doctor" /></p>
-                      {searchDoctors && searchDoctors.map(e => {
-                        if (e.image) {
-                          imageBase64 = new Buffer(e.image, 'base64').toString('binary');
-                        }
+                {inputValue &&
+                  <div div className='search-result'>
+                    {(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
+                      <p>{language === LANGUAGES.VI ? 'Không tìm thấy kết quả nào' : 'No search results'}</p>
+                    }
+                    {searchSpecialties.length > 0 &&
+                      <ul className='specailties-result'>
+                        <p><FormattedMessage id="common.specialty" /></p>
+                        {searchSpecialties && searchSpecialties.map(e => (
+                          <li key={e.id} onClick={() => this.handleViewDetailSpecialty(e.id)}><img src={`${e.image}`} alt='specialty' />{e.name}</li>
+                        ))}
+                      </ul>
+                    }
+                    {searchClinic.length > 0 &&
+                      <ul className='clinic-result'>
+                        <p><FormattedMessage id="common.clinic" /></p>
+                        {searchClinic && searchClinic.map(e => (
+                          <li key={e.id} onClick={() => this.handleViewDetailClinic(e.id)}><img src={`${e.image}`} alt='clinic' />{e.name}</li>
+                        ))}
+                      </ul>
+                    }
+                    {searchDoctors.length > 0 &&
+                      <ul className='doctors-result'>
+                        <p><FormattedMessage id="common.doctor" /></p>
+                        {searchDoctors && searchDoctors.map(e => {
+                          if (e.image) {
+                            imageBase64 = new Buffer(e.image, 'base64').toString('binary');
+                          }
 
-                        return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${imageBase64}`} alt='doctor' />{e.firstName} {e.lastName}</li>
-                      })}
-                    </ul>
-                  }
-                </div>
-              }
+                          return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${imageBase64}`} alt='doctor' />{e.firstName} {e.lastName}</li>
+                        })}
+                      </ul>
+                    }
+                  </div>
+                }
+              </div>
             </div>
 
             {/* <div className='content-down'>
