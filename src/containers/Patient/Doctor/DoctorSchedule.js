@@ -14,6 +14,7 @@ class DoctorSchedule extends Component {
     this.state = {
       allDays: [],
       allAvailable: [],
+      currentDate: 0,
       isOpenBookingDoctor: false,
       dataScheduleTimeModal: {}
     }
@@ -23,8 +24,10 @@ class DoctorSchedule extends Component {
   async componentDidMount() {
     let { language } = this.props;
     let allDays = this.getArrDays(language);
+
     this.setState({
       allDays: allDays,
+      currentDate: allDays[0].value
     })
 
     if (this.props.doctorIdFromParent) {
@@ -49,10 +52,33 @@ class DoctorSchedule extends Component {
           let today = `Hôm nay - ${ddMM}`;
           object.label = today;
         } else {
-          let labelVi = moment(new Date()).add(i, 'days').format('dddd - DD/MM');
-          object.label = this.capitalizeFirstLetter(labelVi);
-        }
+          const days = moment(new Date()).add(i, 'days').locale('en').format('ddd')
+          let day = '';
+          switch (days) {
+            case 'Sun':
+              day = "Chủ nhật";
+              break;
+            case 'Mon':
+              day = "Thứ 2";
+              break;
+            case 'Tue':
+              day = "Thứ 3";
+              break;
+            case 'Wed':
+              day = "Thứ 4";
+              break;
+            case 'Thu':
+              day = "Thứ 5";
+              break;
+            case 'Fri':
+              day = "Thứ 6";
+              break;
+            case 'Sat':
+              day = "Thứ 7";
+          }
 
+          object.label = `${day} - ${moment(new Date()).add(i, 'days').locale('en').format('DD/MM')}`;
+        }
       } else {
         if (i === 0) {
           let ddMM = moment(new Date()).format('DD/MM');
@@ -92,25 +118,18 @@ class DoctorSchedule extends Component {
         allAvailable: res.data ? res.data : [],
       })
     }
-
-    // if (prevState.allAvailable !== this.state.allAvailable) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
-    //   this.setState({
-    //     allAvailable: res.data ? res.data : [],
-    //   })
-    // }
   }
 
   handleOnchangeSelect = async (event) => {
     if (this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
       let doctorId = this.props.doctorIdFromParent;
-      let date = event.target.value
+      let date = event.target.value;
       let res = await getScheduleDoctorByDate(doctorId, date);
 
       if (res && res.errCode === 0) {
         this.setState({
           allAvailable: res.data ? res.data : [],
+          currentDate: +date
         })
       }
     }
@@ -130,8 +149,15 @@ class DoctorSchedule extends Component {
   }
 
   renderTimeSchedule = () => {
-    let { allAvailable } = this.state;
+    let { allAvailable, currentDate } = this.state;
     let { language } = this.props;
+    const dateNow = moment(new Date()).startOf('day').valueOf();
+    const hourNow = new Date().getHours();
+    if (dateNow === currentDate) {
+      for (let i = 0; i <= hourNow; i++) {
+        allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 7}`);
+      }
+    }
 
     return (
       <>
@@ -175,8 +201,8 @@ class DoctorSchedule extends Component {
                 allDays.map((item, index) => {
                   return (
                     <option
-                      value={item.value}
                       key={index}
+                      value={item.value}
                     >
                       {item.label}
                     </option>

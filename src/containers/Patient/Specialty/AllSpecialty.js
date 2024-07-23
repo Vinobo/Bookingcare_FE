@@ -33,12 +33,9 @@ class AllSpecialty extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.language !== prevProps.language) {
-
-    }
-    if (this.state !== prevState) {
-      this.handleDataSpecialty()
-    }
+    // if (this.state.dataSpecialty !== prevState.dataSpecialty) {
+    //   this.handleDataSpecialty()
+    // }
   }
 
   returnToHome = () => {
@@ -49,7 +46,7 @@ class AllSpecialty extends Component {
 
   render() {
     // let { language } = this.props;
-    let { dataSpecialty } = this.state
+    let { dataSpecialty } = this.state;
 
     return (
       <>

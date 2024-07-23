@@ -62,10 +62,14 @@ class TableManageSchedule extends Component {
 
   handleOnchangeDatePiker = async (date) => {
     let formatedDate = new Date(date[0]).getTime();
-    let res = await getScheduleDoctorByDate(this.props.userInfo.id, formatedDate);
+    let res = []
+    if (this.props.userInfo.id) {
+      res = await getScheduleDoctorByDate(this.props.userInfo.id, formatedDate);
+    }
+
     this.setState({
       currentDate: formatedDate,
-      dataSchedule: res.data ? res.data : [],
+      dataSchedule: res && res.data ? res.data : [],
     })
   }
 

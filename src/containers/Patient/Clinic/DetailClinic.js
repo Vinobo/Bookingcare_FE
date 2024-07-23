@@ -155,7 +155,7 @@ class DetailsClinic extends Component {
               return (
                 <>
                   <div className='general-container'>
-                    <div className='content-clinic' key={index}>
+                    <div className='content-clinic' key={item}>
                       <div className='detail-doctor'>
                         <div className='profile-doctor'>
                           <ProfileDoctor

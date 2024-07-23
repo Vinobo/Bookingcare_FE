@@ -1,4 +1,12 @@
 .remedy-modal-container {
+  .modal-header {
+    justify-content: space-between;
+
+    .close {
+      padding: 0 5px;
+    }
+  }
+
   .remedy-content {
     display: grid;
     grid-template-columns: 50% 50%;

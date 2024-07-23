@@ -106,14 +106,12 @@ class ManagePatient extends Component {
         isShowLoading: false
       })
       toast.error('Something wrongs...');
-      console.log('error send remedy: ', res)
     }
   }
 
   render() {
     let { language } = this.props;
     let { dataPatient, isOpenRemedyModal, dataModal } = this.state;
-    console.log('cácgasfchgascgsa', this.state)
 
     return (
       <>

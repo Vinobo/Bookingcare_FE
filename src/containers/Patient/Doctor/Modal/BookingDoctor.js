@@ -41,6 +41,14 @@ class BookingDoctor extends Component {
   async componentDidMount() {
     // let { language } = this.props;
     this.props.getGender();
+    let res = await getAddressFeeDoctorById(this.props.dataTime.doctorId);
+
+    if (res && res.errCode === 0) {
+
+      this.setState({
+        priceModal: res.data.priceData
+      })
+    }
 
   }
 
@@ -147,7 +155,22 @@ class BookingDoctor extends Component {
     if (res && res.errCode === 0) {
       toast.success('Booking a new appointment succeed!')
       this.props.closeBookingDoctor();
-      // setTimeout(() => window.location.reload(), 2000)
+
+      this.setState({
+        priceModal: '',
+
+        fullName: '',
+        selectedGender: '',
+        birthday: '',
+        phoneNumber: '',
+        email: '',
+        address: '',
+        reason: '',
+        doctorId: '',
+        genders: '',
+        timeType: '',
+        date: '',
+      })
     } else {
       toast.error('Booking a new appointment error!')
     }
@@ -160,11 +183,38 @@ class BookingDoctor extends Component {
   buildTimeBooking = (dataTime) => {
     let { language } = this.props;
     if (dataTime && !_.isEmpty(dataTime)) {
-      let time = language === LANGUAGES.VI ? dataTime.timeTypeData.valueVi
-        : dataTime.timeTypeData.valueEn;
+      let time = language === LANGUAGES.VI ?
+        dataTime.timeTypeData.valueVi
+        :
+        dataTime.timeTypeData.valueEn;
+
+      const days = moment.unix(+dataTime.date / 1000).format('ddd')
+      let day = '';
+      switch (days) {
+        case 'Sun':
+          day = "Chủ nhật";
+          break;
+        case 'Mon':
+          day = "Thứ 2";
+          break;
+        case 'Tue':
+          day = "Thứ 3";
+          break;
+        case 'Wed':
+          day = "Thứ 4";
+          break;
+        case 'Thu':
+          day = "Thứ 5";
+          break;
+        case 'Fri':
+          day = "Thứ 6";
+          break;
+        case 'Sat':
+          day = "Thứ 7";
+      }
 
       let date = language === LANGUAGES.VI ?
-        this.capitalizeFirstLetter(moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY'))
+        `${day} - ${moment.unix(+dataTime.date / 1000).format('DD/MM/YYYY')}`
         :
         moment.unix(+dataTime.date / 1000).locale('en').format('ddd - MM/DD/YYYY');
 
@@ -233,6 +283,7 @@ class BookingDoctor extends Component {
                 <div className='booking-item'>
                   <label><FormattedMessage id="patient.booking-modal.fullName" /></label>
                   <input
+                    className='form-control'
                     value={this.state.fullName}
                     onChange={(event) => this.handleOnchangeInput(event, 'fullName')}
                   ></input>
@@ -249,6 +300,7 @@ class BookingDoctor extends Component {
                 <div className='booking-item'>
                   <label><FormattedMessage id="patient.booking-modal.birthday" /></label>
                   <DatePicker
+                    className='form-control'
                     value={this.state.birthday}
                     onChange={this.handleOnchangeDatePiker}
                   />
@@ -256,6 +308,7 @@ class BookingDoctor extends Component {
                 <div className='booking-item'>
                   <label><FormattedMessage id="patient.booking-modal.phoneNumber" /></label>
                   <input
+                    className='form-control'
                     value={this.state.phoneNumber}
                     onChange={(event) => this.handleOnchangeInput(event, 'phoneNumber')}
                   ></input>
@@ -263,6 +316,7 @@ class BookingDoctor extends Component {
                 <div className='booking-item'>
                   <label>Email</label>
                   <input
+                    className='form-control'
                     value={this.state.email}
                     onChange={(event) => this.handleOnchangeInput(event, 'email')}
                   ></input>
@@ -270,6 +324,7 @@ class BookingDoctor extends Component {
                 <div className='booking-item'>
                   <label><FormattedMessage id="patient.booking-modal.address" /></label>
                   <input
+                    className='form-control'
                     value={this.state.address}
                     onChange={(event) => this.handleOnchangeInput(event, 'address')}
                   ></input>
@@ -277,6 +332,7 @@ class BookingDoctor extends Component {
                 <div className='booking-item reason'>
                   <label><FormattedMessage id="patient.booking-modal.reason" /></label>
                   <input
+                    className='form-control'
                     value={this.state.reason}
                     onChange={(event) => this.handleOnchangeInput(event, 'reason')}
                   ></input>

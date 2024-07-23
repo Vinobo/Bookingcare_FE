@@ -49,9 +49,10 @@ class ManageSchedule extends Component {
     }
 
     if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
+      const { dataSchedule } = this.state;
       let data = this.props.allScheduleTime;
       if (data && data.length > 0) {
-        data = data.map(item => ({ ...item, isSelected: false }))
+        data = data.map(item => ({ ...item, isSelected: false }));
       }
 
       this.setState({
@@ -92,11 +93,19 @@ class ManageSchedule extends Component {
 
 
   handleOnchangeDatePiker = async (date) => {
+    let { userInfo } = this.props;
     let formatedDate = new Date(date[0]).getTime();
-    let res = await getScheduleDoctorByDate(this.state.selectedDoctor.value, formatedDate);
+    let res = [];
+
+    if (userInfo) {
+      res = await getScheduleDoctorByDate(userInfo.id, formatedDate);
+    }
+    if (this.state.selectedDoctor.value) {
+      res = await getScheduleDoctorByDate(this.state.selectedDoctor.value, formatedDate);
+    }
     this.setState({
       currentDate: formatedDate,
-      dataSchedule: res.data ? res.data : [],
+      dataSchedule: res && res.data ? res.data : [],
     })
   }
 
@@ -137,6 +146,7 @@ class ManageSchedule extends Component {
         } else object.doctorId = userInfo.id;
         object.date = formatedDate;
         object.timeType = schedule.keyMap;
+        object.hasBooking = false;
         return result.push(object);
       })
     } else {
@@ -181,7 +191,6 @@ class ManageSchedule extends Component {
       })
     } else {
       toast.error("error saveBulkScheduleDoctor!");
-      console.log('error saveBulkScheduleDoctor >>> res: ', res)
     }
   }
 
@@ -202,11 +211,18 @@ class ManageSchedule extends Component {
   }
 
   render() {
-    let { rangeTime, dataSchedule } = this.state;
+    let { rangeTime, dataSchedule, currentDate } = this.state;
     let { language, userInfo } = this.props;
     let userRole = userInfo.roleId;
     let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-    const existDate = rangeTime.filter(o1 => !dataSchedule.some(o2 => o1.keyMap === o2.timeType));
+    const dateNow = moment(new Date()).startOf('day').valueOf();
+    const hourNow = new Date().getHours();
+    if (dateNow === currentDate) {
+      for (let i = 0; i <= hourNow; i++) {
+        rangeTime = rangeTime.filter(e => e.keyMap !== `T${i - 7}`);
+      }
+    }
+    rangeTime = rangeTime.filter(o1 => !dataSchedule.some(o2 => o1.keyMap === o2.timeType));
 
     return (
       <div className='container manage-shedule '>
@@ -250,8 +266,8 @@ class ManageSchedule extends Component {
             </div>
 
             <div className='pick-hour'>
-              {existDate && existDate.length > 0 &&
-                existDate.map((item, index) => {
+              {rangeTime && rangeTime.length > 0 &&
+                rangeTime.map((item, index) => {
                   return (
                     <button
                       className={item.isSelected === true ? 'btn btn-schedule active' : 'btn btn-schedule'}
