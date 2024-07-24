@@ -61,7 +61,7 @@ class Header extends Component {
 
   handleSearch = (event) => {
     const value = event.target.value;
-    const { dataSpecialties, dataClinic, dataDoctors } = this.props.dataSearch;
+    const { dataSpecialties, dataClinic, dataDoctors } = this.props.dataSearch || [];
 
     if (value) {
       this.setState({
@@ -141,7 +141,7 @@ class Header extends Component {
   render() {
     const language = this.props.language;
     const { inputValue, searchSpecialties, searchClinic, searchDoctors } = this.state;
-    const { isLoading } = this.props.dataSearch;
+    const { isLoading } = this.props.dataSearch || false;
     const placeholder = language === LANGUAGES.VI ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialist";
     let imageBase64 = '';
 
