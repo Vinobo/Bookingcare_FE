@@ -7,43 +7,30 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions"
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
+// import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSpecialties: [],
-      dataClinic: [],
-      dataDoctors: [],
+      // dataSpecialties: [],
+      // dataClinic: [],
+      // dataDoctors: [],
       inputValue: '',
       searchSpecialties: [],
       searchClinic: [],
-      searchDoctors: []
+      searchDoctors: [],
+      // isLoading: false
     };
   }
 
   async componentDidMount() {
 
-    const resAllSpecailties = await getAllSpecialties();
-    if (resAllSpecailties && resAllSpecailties.errCode === 0) {
-      this.setState({
-        dataSpecialties: resAllSpecailties.data ? resAllSpecailties.data : []
-      })
-    }
+  }
 
-    const resAllClinic = await getAllClinic();
-    if (resAllClinic && resAllClinic.errCode === 0) {
-      this.setState({
-        dataClinic: resAllClinic.data ? resAllClinic.data : []
-      })
-    }
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.dataSearch !== this.props.dataSearch) {
 
-    const resDoctors = await getAllDoctors();
-    if (resDoctors && resDoctors.errCode === 0) {
-      this.setState({
-        dataDoctors: resDoctors.data ? resDoctors.data : []
-      })
     }
   }
 
@@ -74,7 +61,7 @@ class Header extends Component {
 
   handleSearch = (event) => {
     const value = event.target.value;
-    const { dataSpecialties, dataClinic, dataDoctors } = this.state;
+    const { dataSpecialties, dataClinic, dataDoctors } = this.props.dataSearch;
 
     if (value) {
       this.setState({
@@ -92,7 +79,6 @@ class Header extends Component {
     const setLimitArr = (arr) => {
       arr.length = arr.length > 5 ? 5 : arr.length;
     }
-
     if (dataSpecialties.length > 0) {
       const specialties = value ? dataSpecialties.filter(e => findValue(e.name)) : [];
       setLimitArr(specialties);
@@ -125,6 +111,7 @@ class Header extends Component {
         searchDoctors: doctors
       })
     }
+
   }
 
   handleCleanInput = () => {
@@ -154,6 +141,7 @@ class Header extends Component {
   render() {
     const language = this.props.language;
     const { inputValue, searchSpecialties, searchClinic, searchDoctors } = this.state;
+    const { isLoading } = this.props.dataSearch;
     const placeholder = language === LANGUAGES.VI ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialist";
     let imageBase64 = '';
 
@@ -229,7 +217,7 @@ class Header extends Component {
                 <i className="fas fa-search"></i>
                 <input
                   type='text'
-                  placeholder={placeholder}
+                  placeholder={isLoading ? 'Loading...' : placeholder}
                   value={inputValue}
                   onChange={(event) => this.handleSearch(event)}
                 />
@@ -238,37 +226,38 @@ class Header extends Component {
                 }
                 {inputValue &&
                   <div div className='search-result'>
-                    {(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
+                    <>{(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
                       <p>{language === LANGUAGES.VI ? 'Không tìm thấy kết quả nào' : 'No search results'}</p>
                     }
-                    {searchSpecialties.length > 0 &&
-                      <ul className='specailties-result'>
-                        <p><FormattedMessage id="common.specialty" /></p>
-                        {searchSpecialties && searchSpecialties.map(e => (
-                          <li key={e.id} onClick={() => this.handleViewDetailSpecialty(e.id)}><img src={`${e.image}`} alt='specialty' />{e.name}</li>
-                        ))}
-                      </ul>
-                    }
-                    {searchClinic.length > 0 &&
-                      <ul className='clinic-result'>
-                        <p><FormattedMessage id="common.clinic" /></p>
-                        {searchClinic && searchClinic.map(e => (
-                          <li key={e.id} onClick={() => this.handleViewDetailClinic(e.id)}><img src={`${e.image}`} alt='clinic' />{e.name}</li>
-                        ))}
-                      </ul>
-                    }
-                    {searchDoctors.length > 0 &&
-                      <ul className='doctors-result'>
-                        <p><FormattedMessage id="common.doctor" /></p>
-                        {searchDoctors && searchDoctors.map(e => {
-                          if (e.image) {
-                            imageBase64 = new Buffer(e.image, 'base64').toString('binary');
-                          }
+                      {searchSpecialties.length > 0 &&
+                        <ul className='specailties-result'>
+                          <p><FormattedMessage id="common.specialty" /></p>
+                          {searchSpecialties && searchSpecialties.map(e => (
+                            <li key={e.id} onClick={() => this.handleViewDetailSpecialty(e.id)}><img src={`${e.image}`} alt='specialty' />{e.name}</li>
+                          ))}
+                        </ul>
+                      }
+                      {searchClinic.length > 0 &&
+                        <ul className='clinic-result'>
+                          <p><FormattedMessage id="common.clinic" /></p>
+                          {searchClinic && searchClinic.map(e => (
+                            <li key={e.id} onClick={() => this.handleViewDetailClinic(e.id)}><img src={`${e.image}`} alt='clinic' />{e.name}</li>
+                          ))}
+                        </ul>
+                      }
+                      {searchDoctors.length > 0 &&
+                        <ul className='doctors-result'>
+                          <p><FormattedMessage id="common.doctor" /></p>
+                          {searchDoctors && searchDoctors.map(e => {
+                            if (e.image) {
+                              imageBase64 = new Buffer(e.image, 'base64').toString('binary');
+                            }
 
-                          return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${imageBase64}`} alt='doctor' />{e.firstName} {e.lastName}</li>
-                        })}
-                      </ul>
-                    }
+                            return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${imageBase64}`} alt='doctor' />{e.firstName} {e.lastName}</li>
+                          })}
+                        </ul>
+                      }
+                    </>
                   </div>
                 }
               </div>

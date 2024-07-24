@@ -25,7 +25,8 @@ class DetailsSpecialty extends Component {
       listProvince: [],
       isShowDescriptionSpecialty: false,
       selectedSpecialty: '',
-      listSpecialty: []
+      listSpecialty: [],
+      isLoading: false
     }
 
   }
@@ -64,7 +65,8 @@ class DetailsSpecialty extends Component {
         this.setState({
           dataDetailSpecialty: res.data,
           arrDoctorId: arrDoctorId,
-          listProvince: dataProvince ? dataProvince : []
+          listProvince: dataProvince ? dataProvince : [],
+          isLoading: false
         })
       }
     }
@@ -72,8 +74,10 @@ class DetailsSpecialty extends Component {
 
   async componentDidMount() {
     // let { language } = this.props;
+    this.setState({
+      isLoading: true
+    })
 
-    this.handleData()
 
     let res = await getAllSpecialties();
     if (res && res.errCode === 0) {
@@ -82,6 +86,8 @@ class DetailsSpecialty extends Component {
         listSpecialty: dataSelect
       })
     }
+
+    this.handleData()
 
   }
 
@@ -167,115 +173,120 @@ class DetailsSpecialty extends Component {
 
   render() {
     let { language } = this.props;
-    let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty } = this.state;
+    let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty, isLoading } = this.state;
 
 
     return (
       <div className='detail-specialty'>
         <div>
           <div>
-            <Header />
+            <Header search={false} />
           </div>
-          <div className='sticky-menu'>
-            <div className='goBack'>
-              <div className='general-container flex-back'>
-                <div className='title-specialty'>
-                  <i className="fas fa-long-arrow-alt-left" onClick={() => this.handleGoBack()}></i>
-                  <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
-                  <span>{dataDetailSpecialty ? dataDetailSpecialty.name : ''}</span>
+          {isLoading && <div className='loading-page'>Loading...</div>}
+          {!isLoading &&
+            <>
+
+              <div className='sticky-menu'>
+                <div className='goBack'>
+                  <div className='general-container flex-back'>
+                    <div className='title-specialty'>
+                      <i className="fas fa-long-arrow-alt-left" onClick={() => this.handleGoBack()}></i>
+                      <span className='bd-l-r' onClick={() => this.returnToHome()}> <i className="fas fa-home"></i> </span>
+                      <span>{dataDetailSpecialty ? dataDetailSpecialty.name : ''}</span>
+                    </div>
+                    <Select
+                      value={selectedSpecialty}
+                      onChange={this.handleChangeSelect}
+                      options={listSpecialty}
+                      placeholder={<FormattedMessage id="patient.specialty.select" />}
+                    />
+                  </div>
                 </div>
-                <Select
-                  value={selectedSpecialty}
-                  onChange={this.handleChangeSelect}
-                  options={listSpecialty}
-                  placeholder={<FormattedMessage id="patient.specialty.select" />}
-                />
               </div>
-            </div>
-          </div>
-          <div className='specialty-img'
-            style={{
-              backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)),
+              <div className='specialty-img'
+                style={{
+                  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)),
               url(${dataDetailSpecialty && dataDetailSpecialty.image ? dataDetailSpecialty.image : ''})`,
-            }}
-          >
-            <div className='description-specialty general-container'>
-              {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
-                <>
-                  <div className={isShowDescriptionSpecialty === false ? 'max-height' : 'min-height'
+                }}
+              >
+                <div className='description-specialty general-container'>
+                  {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) &&
+                    <>
+                      <div className={isShowDescriptionSpecialty === false ? 'max-height' : 'min-height'
+                      }
+                        dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
+                      >
+                      </div>
+                      <div>
+                        {isShowDescriptionSpecialty === false ?
+                          <>
+                            <span className='btn-showOn'
+                              onClick={() => this.showHideDiscription(true)}
+                            >
+                              <FormattedMessage id="common.see-details" />
+                            </span>
+                          </>
+                          :
+                          <>
+                            <span className='btn-showOff'
+                              onClick={() => this.showHideDiscription(false)}
+                            >
+                              <FormattedMessage id="common.shorten" />
+                            </span>
+                          </>
+                        }
+                      </div>
+                    </>
                   }
-                    dangerouslySetInnerHTML={{ __html: dataDetailSpecialty.descriptionHTML }}
-                  >
-                  </div>
-                  <div>
-                    {isShowDescriptionSpecialty === false ?
-                      <>
-                        <span className='btn-showOn'
-                          onClick={() => this.showHideDiscription(true)}
-                        >
-                          <FormattedMessage id="common.see-details" />
-                        </span>
-                      </>
-                      :
-                      <>
-                        <span className='btn-showOff'
-                          onClick={() => this.showHideDiscription(false)}
-                        >
-                          <FormattedMessage id="common.shorten" />
-                        </span>
-                      </>
+                </div>
+              </div>
+              <div className='general-container'>
+                <div className='search-specialty-doctor'>
+                  <select className='select-province'
+                    onChange={(event) => this.handleOnChangeSelectProvince(event)}>
+                    {listProvince && listProvince.length > 0 &&
+                      listProvince.map((item, index) => {
+                        return (
+                          <option key={index} value={item.keyMap}>
+                            {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
+                          </option>
+                        )
+                      })
                     }
-                  </div>
-                </>
-              }
-            </div>
-          </div>
-          <div className='general-container'>
-            <div className='search-specialty-doctor'>
-              <select className='select-province'
-                onChange={(event) => this.handleOnChangeSelectProvince(event)}>
-                {listProvince && listProvince.length > 0 &&
-                  listProvince.map((item, index) => {
+                  </select>
+                </div>
+                {arrDoctorId && arrDoctorId.length > 0 &&
+                  arrDoctorId.map((item, index) => {
                     return (
-                      <option key={index} value={item.keyMap}>
-                        {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
-                      </option>
+                      <div className='content-specialty' key={index}>
+                        <div className='detail-doctor'>
+                          <div className='profile-doctor'>
+                            <ProfileDoctor
+                              doctorId={item}
+                              // dataTime={dataTime}
+                              isShowDescriptionDoctor={true}
+                              isShowLinkDetail={true}
+                              isShowLocation={true}
+                            />
+                          </div>
+                        </div>
+                        <div className='extra-infor-doctor'>
+                          <div className='schedule-doctor'>
+                            <DoctorSchedule
+                              doctorIdFromParent={item}
+                            />
+                          </div>
+                          <div className='fee-address-doctor'>
+                            <AddressDoctor
+                              doctorIdFromParent={item}
+                            />
+                          </div>
+                        </div>
+                      </div>
                     )
-                  })
-                }
-              </select>
-            </div>
-            {arrDoctorId && arrDoctorId.length > 0 &&
-              arrDoctorId.map((item, index) => {
-                return (
-                  <div className='content-specialty' key={index}>
-                    <div className='detail-doctor'>
-                      <div className='profile-doctor'>
-                        <ProfileDoctor
-                          doctorId={item}
-                          // dataTime={dataTime}
-                          isShowDescriptionDoctor={true}
-                          isShowLinkDetail={true}
-                          isShowLocation={true}
-                        />
-                      </div>
-                    </div>
-                    <div className='extra-infor-doctor'>
-                      <div className='schedule-doctor'>
-                        <DoctorSchedule
-                          doctorIdFromParent={item}
-                        />
-                      </div>
-                      <div className='fee-address-doctor'>
-                        <AddressDoctor
-                          doctorIdFromParent={item}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-          </div>
+                  })}
+              </div>
+            </>}
           <About />
           <Footer />
         </div>

@@ -57,7 +57,7 @@ class VerifyEmail extends Component {
 
     return (
       <>
-        <Header isShowBanner={false} />
+        <Header isShowBanner={false} search={false} />
         <div className='container verify-booking'>
           {statusVerify === false ?
             <div className='infor-booking'>Loanding data...</div>

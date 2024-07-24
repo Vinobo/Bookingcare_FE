@@ -20,13 +20,17 @@ class DetailsClinic extends Component {
     this.state = {
       arrDoctorId: [],
       dataDetailClinic: {},
-      isShowDescriptionClinic: false
+      isShowDescriptionClinic: false,
+      isLoading: false
     }
 
   }
 
   async componentDidMount() {
     // let { language } = this.props;
+    this.setState({
+      isLoading: true
+    })
 
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
       let id = this.props.match.params.id;
@@ -48,6 +52,7 @@ class DetailsClinic extends Component {
         this.setState({
           dataDetailClinic: res.data,
           arrDoctorId: arrDoctorId,
+          isLoading: false
         })
       }
 
@@ -72,185 +77,187 @@ class DetailsClinic extends Component {
 
   render() {
     // let { language, isShowLinkDetail, isShowLocation } = this.props;
-    let { arrDoctorId, dataDetailClinic } = this.state;
+    let { arrDoctorId, dataDetailClinic, isLoading } = this.state;
 
     return (
       <div className='detail-clinic'>
         <div className='clinic-container'>
           <div >
-            <Header />
+            <Header search={false} />
           </div>
-          <div className='clinic-img'
+          {isLoading ? <p className='loading-page'>Loading...</p> :
+            <>
+              <div className='clinic-img'
 
-          >
-            <img
-              src={`${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''}`}
-              alt='clinic img'
-            ></img>
-          </div>
-          <div className='spacing'></div>
-          <div className='general-container'>
-            <div className='title-clinic'>
-              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
-                <>
-                  <div className='name-clinic'>
-                    <h1>{dataDetailClinic.name}</h1>
+              >
+                <img
+                  src={`${dataDetailClinic && dataDetailClinic.image ? dataDetailClinic.image : ''}`}
+                  alt='clinic img'
+                ></img>
+              </div>
+              <div className='spacing'></div>
+              <div className='general-container'>
+                <div className='title-clinic'>
+                  {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                    <>
+                      <div className='name-clinic'>
+                        <h1>{dataDetailClinic.name}</h1>
+                      </div>
+                      <div className='address-clinic'>
+                        {dataDetailClinic.address}
+                      </div>
+                    </>
+                  }
+                </div>
+              </div>
+              <div className='sticky-menu'>
+                <div className='general-container'>
+                  <div className='menu-clinic'>
+                    {arrDoctorId && !_.isEmpty(arrDoctorId) &&
+                      <>
+                        <a href='#doctor'><FormattedMessage id="clinic.schedule" /></a>
+                      </>
+                    }
+                    {dataDetailClinic && !_.isEmpty(dataDetailClinic.introHTML) &&
+                      <>
+                        <a href='#intro'><FormattedMessage id="clinic.intro" /></a>
+                      </>
+                    }
+                    {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
+                      <>
+                        <a href='#specialty'><FormattedMessage id="clinic.specialty" /></a>
+                      </>
+                    }
+                    {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
+                      <>
+                        <a href='#device'><FormattedMessage id="clinic.device" /></a>
+                      </>
+                    }
+                    {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
+                      <>
+                        <a href='#location'><FormattedMessage id="clinic.location" /></a>
+                      </>
+                    }
+                    {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
+                      <>
+                        <a href='#process'><FormattedMessage id="clinic.process" /></a>
+                      </>
+                    }
                   </div>
-                  <div className='address-clinic'>
-                    {dataDetailClinic.address}
+                </div>
+              </div>
+              {arrDoctorId && !_.isEmpty(arrDoctorId) &&
+                <>
+                  <span id='doctor'></span>
+                  <div className='general-container'>
+                    <div className='title-detail'>
+                      <FormattedMessage id="common.doctor" />
+                    </div>
                   </div>
                 </>
+
               }
-            </div>
-          </div>
-          <div className='sticky-menu'>
-            <div className='general-container'>
-              <div className='menu-clinic'>
-                {arrDoctorId && !_.isEmpty(arrDoctorId) &&
-                  <>
-                    <a href='#doctor'><FormattedMessage id="clinic.schedule" /></a>
-                  </>
-                }
-                {dataDetailClinic && !_.isEmpty(dataDetailClinic.introHTML) &&
-                  <>
-                    <a href='#intro'><FormattedMessage id="clinic.intro" /></a>
-                  </>
-                }
+              {arrDoctorId && arrDoctorId.length > 0 &&
+                arrDoctorId.map((item, index) => {
+                  return (
+                    <>
+                      <div className='general-container'>
+                        <div className='content-clinic' key={index}>
+                          <div className='detail-doctor'>
+                            <div className='profile-doctor'>
+                              <ProfileDoctor
+                                doctorId={item}
+                                // dataTime={dataTime}
+                                isShowDescriptionDoctor={true}
+                                isShowLinkDetail={true}
+                                isShowLocation={true}
+                              />
+                            </div>
+                          </div>
+                          <div className='extra-infor-doctor'>
+                            <div className='schedule-doctor'>
+                              <DoctorSchedule
+                                doctorIdFromParent={item}
+                              />
+                            </div>
+                            <div className='fee-address-doctor'>
+                              <AddressDoctor
+                                doctorIdFromParent={item}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )
+                })}
+              <div className='description-clinic general-container'>
+                <span id='intro'></span>
+                <div className='intro-clinic'>
+                  <div className='title-detail'><FormattedMessage id="clinic.intro" /></div>
+
+                  {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
+                    <>
+                      <div className='text-details'
+                        dangerouslySetInnerHTML={{ __html: dataDetailClinic.introHTML }}
+                      >
+                      </div>
+                    </>
+                  }
+                </div>
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
                   <>
-                    <a href='#specialty'><FormattedMessage id="clinic.specialty" /></a>
+                    <span id='specialty'></span>
+                    <div className='specialty-clinic'>
+                      <div className='title-detail'><FormattedMessage id="clinic.specialty" /></div>
+                      <div className='text-details'
+                        dangerouslySetInnerHTML={{ __html: dataDetailClinic.specialtyHTML }}
+                      >
+                      </div>
+                    </div>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
                   <>
-                    <a href='#device'><FormattedMessage id="clinic.device" /></a>
+                    <span id='device' ></span>
+                    <div className='device-clinic'>
+                      <div className='title-detail'><FormattedMessage id="clinic.device" /></div>
+
+                      <div className='text-details'
+                        dangerouslySetInnerHTML={{ __html: dataDetailClinic.deviceHTML }}
+                      >
+                      </div>
+                    </div>
                   </>
                 }
+
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
                   <>
-                    <a href='#location'><FormattedMessage id="clinic.location" /></a>
+                    <span id='location'></span>
+                    <div className='location-clinic'>
+                      <div className='title-detail'><FormattedMessage id="clinic.location" /></div>
+                      <div className='text-details'
+                        dangerouslySetInnerHTML={{ __html: dataDetailClinic.locationHTML }}
+                      >
+                      </div>
+                    </div>
                   </>
                 }
                 {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
                   <>
-                    <a href='#process'><FormattedMessage id="clinic.process" /></a>
+                    <span id='process' ></span>
+                    <div className='process-clinic'>
+                      <div className='title-detail'><FormattedMessage id="clinic.process" /></div>
+
+                      <div className='text-details'
+                        dangerouslySetInnerHTML={{ __html: dataDetailClinic.processHTML }}
+                      >
+                      </div>
+                    </div>
                   </>
                 }
               </div>
-            </div>
-          </div>
-          {arrDoctorId && !_.isEmpty(arrDoctorId) &&
-            <>
-              <span id='doctor'></span>
-              <div className='general-container'>
-                <div className='title-detail'>
-                  <FormattedMessage id="common.doctor" />
-                </div>
-              </div>
-            </>
-
-          }
-          {arrDoctorId && arrDoctorId.length > 0 &&
-            arrDoctorId.map((item, index) => {
-              return (
-                <>
-                  <div className='general-container'>
-                    <div className='content-clinic' key={item}>
-                      <div className='detail-doctor'>
-                        <div className='profile-doctor'>
-                          <ProfileDoctor
-                            doctorId={item}
-                            // dataTime={dataTime}
-                            isShowDescriptionDoctor={true}
-                            isShowLinkDetail={true}
-                            isShowLocation={true}
-                          />
-                        </div>
-                      </div>
-                      <div className='extra-infor-doctor'>
-                        <div className='schedule-doctor'>
-                          <DoctorSchedule
-                            doctorIdFromParent={item}
-                          />
-                        </div>
-                        <div className='fee-address-doctor'>
-                          <AddressDoctor
-                            doctorIdFromParent={item}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )
-            })}
-          <div className='description-clinic general-container'>
-            <span id='intro'></span>
-            <div className='intro-clinic'>
-              <div className='title-detail'><FormattedMessage id="clinic.intro" /></div>
-
-              {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
-                <>
-                  <div className='text-details'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.introHTML }}
-                  >
-                  </div>
-                </>
-              }
-            </div>
-            {dataDetailClinic && !_.isEmpty(dataDetailClinic.specialtyHTML) &&
-              <>
-                <span id='specialty'></span>
-                <div className='specialty-clinic'>
-                  <div className='title-detail'><FormattedMessage id="clinic.specialty" /></div>
-                  <div className='text-details'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.specialtyHTML }}
-                  >
-                  </div>
-                </div>
-              </>
-            }
-            {dataDetailClinic && !_.isEmpty(dataDetailClinic.deviceHTML) &&
-              <>
-                <span id='device' ></span>
-                <div className='device-clinic'>
-                  <div className='title-detail'><FormattedMessage id="clinic.device" /></div>
-
-                  <div className='text-details'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.deviceHTML }}
-                  >
-                  </div>
-                </div>
-              </>
-            }
-
-            {dataDetailClinic && !_.isEmpty(dataDetailClinic.locationHTML) &&
-              <>
-                <span id='location'></span>
-                <div className='location-clinic'>
-                  <div className='title-detail'><FormattedMessage id="clinic.location" /></div>
-                  <div className='text-details'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.locationHTML }}
-                  >
-                  </div>
-                </div>
-              </>
-            }
-            {dataDetailClinic && !_.isEmpty(dataDetailClinic.processHTML) &&
-              <>
-                <span id='process' ></span>
-                <div className='process-clinic'>
-                  <div className='title-detail'><FormattedMessage id="clinic.process" /></div>
-
-                  <div className='text-details'
-                    dangerouslySetInnerHTML={{ __html: dataDetailClinic.processHTML }}
-                  >
-                  </div>
-                </div>
-              </>
-            }
-
-          </div>
+            </>}
 
           <About />
           <Footer />

@@ -14,16 +14,22 @@ class AllClinic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataClinic: []
+      dataClinic: [],
+      isLoading: false
     }
 
   }
 
   handleDataClinic = async () => {
+    this.setState({
+      isLoading: true
+    })
+
     let res = await getAllClinic();
     if (res && res.errCode === 0) {
       this.setState({
-        dataClinic: res.data
+        dataClinic: res.data,
+        isLoading: false
       })
     }
   }
@@ -37,9 +43,6 @@ class AllClinic extends Component {
     if (this.props.language !== prevProps.language) {
 
     }
-    if (this.state !== prevState) {
-      this.handleDataClinic()
-    }
   }
 
   returnToHome = () => {
@@ -50,11 +53,11 @@ class AllClinic extends Component {
 
   render() {
     // let { language } = this.props;
-    let { dataClinic } = this.state
+    let { dataClinic, isLoading } = this.state
 
     return (
       <>
-        <Header></Header>
+        <Header search={false}></Header>
         <div className='all-clinic-container'>
           <div className='goBack'>
             <div className='general-container flex-back'>
@@ -66,6 +69,7 @@ class AllClinic extends Component {
           <div className='general-container'>
             <h1><FormattedMessage id="patient.title.all-clinic" /></h1>
             <div className='detail-all-clinic'>
+              {isLoading && <p className='loading-page'>Loading...</p>}
               {dataClinic && dataClinic.length > 0 ?
                 <>
                   {dataClinic.map((item, index) => {

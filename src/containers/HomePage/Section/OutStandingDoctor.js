@@ -13,11 +13,12 @@ class OutStandingDoctor extends Component {
     super(props)
     this.state = {
       arrDoctors: [],
-      doctorId: ''
+      doctorId: '',
     }
   }
 
   async componentDidMount() {
+
     this.props.loadTopDoctors();
   }
 
@@ -25,7 +26,6 @@ class OutStandingDoctor extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
       let arrDoctors = this.props.topDoctorsRedux;
-
       this.setState({
         arrDoctors: arrDoctors
       })
@@ -39,7 +39,7 @@ class OutStandingDoctor extends Component {
   }
 
   render() {
-    let { arrDoctors } = this.state;
+    let { arrDoctors, isLoading } = this.state;
     let { language } = this.props;
 
     return (
@@ -54,8 +54,10 @@ class OutStandingDoctor extends Component {
             </Link>
           </div>
           <div className='section-content'>
+            {arrDoctors.length === 0 &&
+              <p>Loading...</p>
+            }
             <Slider {...this.props.settings}>
-
               {arrDoctors && arrDoctors.length > 0
                 && arrDoctors.map((item, index) => {
                   let imageBase64 = '';

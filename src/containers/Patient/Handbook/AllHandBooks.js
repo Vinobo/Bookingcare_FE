@@ -47,7 +47,7 @@ class AllHandBooks extends Component {
     return (
       <>
         <div>
-          <Header></Header>
+          <Header search={false}></Header>
         </div>
         <div className='all-handbook-container'>
           <div className='sticky-menu'>

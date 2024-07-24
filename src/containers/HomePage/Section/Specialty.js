@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, memo } from 'react';
 import { connect } from 'react-redux';
 import './scss/Specialty.scss';
 import { FormattedMessage } from 'react-intl';
@@ -13,17 +13,24 @@ class Specialty extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataSpecialty: []
+      dataSpecialty: [],
+      isLoading: false
     }
   }
 
   async componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
+
     let res = await getAllSpecialties();
     if (res && res.errCode === 0) {
       this.setState({
-        dataSpecialty: res.data ? res.data : []
+        dataSpecialty: res.data ? res.data : [],
+        isLoading: false
       })
     }
+
   }
 
   handleViewDetailSpecialty = (item) => {
@@ -34,7 +41,7 @@ class Specialty extends Component {
   }
 
   render() {
-    let { dataSpecialty } = this.state;
+    let { dataSpecialty, isLoading } = this.state;
 
     return (
       <div className='section-general specialty'>
@@ -48,24 +55,26 @@ class Specialty extends Component {
             </Link>
           </div>
           <div className='section-content'>
-            <Slider {...this.props.settings}>
-              {dataSpecialty && dataSpecialty.length > 0 &&
-                dataSpecialty.map((item, index) => {
-                  return (
-                    <div className='section-img' key={index}
-                      onClick={() => this.handleViewDetailSpecialty(item)}
-                    >
-                      <div className='img-customize'
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      />
-                      <span className='text-img'>{item.name}</span>
-                    </div>
-                  )
-                })
-              }
-
-
-            </Slider>
+            {isLoading ?
+              <p>Loading...</p>
+              :
+              <Slider {...this.props.settings}>
+                {dataSpecialty && dataSpecialty.length > 0 &&
+                  dataSpecialty.map((item, index) => {
+                    return (
+                      <div className='section-img' key={index}
+                        onClick={() => this.handleViewDetailSpecialty(item)}
+                      >
+                        <div className='img-customize'
+                          style={{ backgroundImage: `url(${item.image})` }}
+                        />
+                        <span className='text-img'>{item.name}</span>
+                      </div>
+                    )
+                  })
+                }
+              </Slider>
+            }
           </div>
         </div >
       </div >

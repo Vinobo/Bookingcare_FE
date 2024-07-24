@@ -35,7 +35,7 @@ class Support extends Component {
     return (
       <>
         <div>
-          <Header></Header>
+          <Header search={false}></Header>
         </div>
         <div className='support'>
           <div className='goBack'>

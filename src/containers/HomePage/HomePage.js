@@ -11,12 +11,53 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from './Footer';
 import Media from './Section/Media';
+import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
 
 
 
 
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSpecialties: [],
+      dataClinic: [],
+      dataDoctors: [],
+      isLoading: false
+    };
+  }
+
+  async componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
+
+    const resAllSpecailties = await getAllSpecialties();
+    if (resAllSpecailties && resAllSpecailties.errCode === 0) {
+      this.setState({
+        dataSpecialties: resAllSpecailties.data ? resAllSpecailties.data : []
+      })
+    }
+
+    const resAllClinic = await getAllClinic();
+    if (resAllClinic && resAllClinic.errCode === 0) {
+      this.setState({
+        dataClinic: resAllClinic.data ? resAllClinic.data : []
+      })
+    }
+
+    const resDoctors = await getAllDoctors();
+    if (resDoctors && resDoctors.errCode === 0) {
+      this.setState({
+        dataDoctors: resDoctors.data ? resDoctors.data : []
+      })
+    }
+
+    this.setState({
+      isLoading: false
+    })
+  }
 
   render() {
     //slick 4
@@ -29,7 +70,7 @@ class HomePage extends Component {
       initialSlide: 0,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 1025,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
@@ -67,7 +108,7 @@ class HomePage extends Component {
 
     return (
       <div>
-        <Header isShowBanner={true} />
+        <Header isShowBanner={true} dataSearch={this.state} />
         <Specialty settings={settings} />
         <MedicalFacility settings={settings} />
         <OutStandingDoctor settings={settings} />

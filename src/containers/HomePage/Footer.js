@@ -15,7 +15,7 @@ class Footer extends Component {
               <span>&copy; 2023 TrinhNKGCS18897.</span>
             </div>
             <div className='footer-right'>
-              <a href='https://www.facebook.com/PolNKT/' target='_blank' ref="noreferrer"><i className="fab fa-facebook-square"></i></a>
+              <a href='https://www.facebook.com/PolNKT/' target='_blank' ref="noreferrer"><i className="fab fa-facebook"></i></a>
               <a href='https://www.youtube.com/@nguyenkhanhtrinh7021' target='_blank' ref="noreferrer"><i className="fab fa-youtube-square"></i></a>
             </div>
           </div>

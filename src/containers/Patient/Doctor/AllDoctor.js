@@ -17,7 +17,8 @@ class AllDoctor extends Component {
     super(props);
     this.state = {
       arrDoctors: [],
-      listProvince: []
+      listProvince: [],
+      isLoading: false
     }
 
   }
@@ -25,6 +26,9 @@ class AllDoctor extends Component {
 
   async componentDidMount() {
     // let { language } = this.props;
+    this.setState({
+      isLoading: true
+    })
 
     let res = await getAllDoctors();
 
@@ -44,7 +48,8 @@ class AllDoctor extends Component {
 
       this.setState({
         dataDetailDoctor: res.data,
-        listProvince: dataProvince ? dataProvince : []
+        listProvince: dataProvince ? dataProvince : [],
+        isLoading: false
       })
     }
   }
@@ -73,12 +78,12 @@ class AllDoctor extends Component {
 
   render() {
     let { language } = this.props;
-    let { dataDetailDoctor } = this.state;
+    let { dataDetailDoctor, isLoading } = this.state;
 
     return (
       <>
         <div>
-          <Header></Header>
+          <Header search={false}></Header>
         </div>
         <div className='all-doctor-container'>
           <div className='goBack'>
@@ -90,21 +95,8 @@ class AllDoctor extends Component {
           </div>
           <div className='general-container'>
             <h1><FormattedMessage id="patient.title.all-doctor" /></h1>
-            {/* <div className='search-specialty-doctor'>
-              <select className='select-province'
-                onChange={(event) => this.handleOnChangeSelectProvince(event)}>
-                {listProvince && listProvince.length > 0 &&
-                  listProvince.map((item, index) => {
-                    return (
-                      <option key={index} value={item.keyMap}>
-                        {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
-                      </option>
-                    )
-                  })
-                }
-              </select>
-            </div> */}
             <div className='detail-all-doctor'>
+              {isLoading && <p className='loading-page'>Loading...</p>}
               {dataDetailDoctor && dataDetailDoctor.length > 0 ?
                 <>
                   {dataDetailDoctor.map((item, index) => {

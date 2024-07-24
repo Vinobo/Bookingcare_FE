@@ -13,16 +13,22 @@ class AllSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSpecialty: []
+      dataSpecialty: [],
+      isLoading: false
     }
 
   }
 
   handleDataSpecialty = async () => {
+    this.setState({
+      isLoading: true
+    })
+
     let res = await getAllSpecialties();
     if (res && res.errCode === 0) {
       this.setState({
-        dataSpecialty: res.data
+        dataSpecialty: res.data,
+        isLoading: false
       })
     }
   }
@@ -46,12 +52,12 @@ class AllSpecialty extends Component {
 
   render() {
     // let { language } = this.props;
-    let { dataSpecialty } = this.state;
+    let { dataSpecialty, isLoading } = this.state;
 
     return (
       <>
         <div>
-          <Header></Header>
+          <Header search={false}></Header>
         </div>
         <div className='all-specialty-container'>
           <div className='sticky-menu'>
@@ -66,6 +72,7 @@ class AllSpecialty extends Component {
           <div className='general-container'>
             <h1><FormattedMessage id="patient.title.all-specialty" /></h1>
             <div className='detail-all-specialty'>
+              {isLoading && <p className='loading-page'>Loading...</p>}
               {dataSpecialty && dataSpecialty.length > 0 ?
                 <>
                   {dataSpecialty.map((item, index) => {

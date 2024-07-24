@@ -6,20 +6,27 @@ import Slider from "react-slick";
 import { getAllClinic } from '../../../services/userService';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { flatMap, isLength } from 'lodash';
 
 class MedicalFacility extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataClinic: []
+      dataClinic: [],
+      isLoading: false
     }
   }
 
   async componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
+
     const res = await getAllClinic();
     if (res && res.errCode === 0) {
       this.setState({
-        dataClinic: res.data ? res.data : []
+        dataClinic: res.data ? res.data : [],
+        isLoading: false
       })
     }
   }
@@ -31,7 +38,7 @@ class MedicalFacility extends Component {
   }
 
   render() {
-    const { dataClinic } = this.state;
+    const { dataClinic, isLoading } = this.state;
 
     return (
       <div className='section-general medical-facility'>
@@ -45,6 +52,7 @@ class MedicalFacility extends Component {
             </Link>
           </div>
           <div className='section-content'>
+            {isLoading && <p>Loading...</p>}
             <Slider {...this.props.settings}>
               {dataClinic && dataClinic.length > 0 &&
                 dataClinic.map((item, index) => {

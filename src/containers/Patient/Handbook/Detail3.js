@@ -32,7 +32,7 @@ class Detail3 extends Component {
     return (
       <>
         <div>
-          <Header />
+          <Header search={false} />
         </div>
         <div className='handbook-detail'>
           <div className='flex-menu'>
