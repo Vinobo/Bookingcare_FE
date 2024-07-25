@@ -49,7 +49,6 @@ class ManageSchedule extends Component {
     }
 
     if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
-      const { dataSchedule } = this.state;
       let data = this.props.allScheduleTime;
       if (data && data.length > 0) {
         data = data.map(item => ({ ...item, isSelected: false }));

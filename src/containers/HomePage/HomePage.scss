@@ -1,3 +1,5 @@
+@import "../../styles/mixins";
+
 * {
   font-family: "Montserrat", sans-serif;
   outline: none;
@@ -44,11 +46,26 @@
   }
 
   .section-cotainer {
-    width: 70%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     padding: 0 15px;
+
+    @include smalldevices {
+      width: 340px;
+    }
+
+    @include mobile {
+      width: 508px;
+    }
+
+    @include tablet {
+      width: 708px;
+    }
+
+    @include desktop {
+      width: 1080px;
+    }
 
     .section-header {
       padding-top: 15px;
@@ -57,6 +74,18 @@
       span {
         font-size: 24px;
         font-weight: bold;
+
+        @include smalldevices {
+          font-size: 18px;
+        }
+
+        @include mobile {
+          font-size: 20px;
+        }
+
+        @include tablet {
+          font-size: 22px;
+        }
       }
 
       button {
@@ -69,6 +98,11 @@
         background: #ebebee;
         color: #202536;
         text-transform: uppercase;
+
+        @include mobile {
+          padding: 5px 10px;
+          font-size: 10px;
+        }
 
         &:hover {
           cursor: pointer;
@@ -88,6 +122,18 @@
         &:hover {
           cursor: pointer;
           color: #45c3d2;
+        }
+
+        @include smalldevices {
+          width: 300px !important;
+        }
+
+        @include mobile {
+          width: 230px !important;
+        }
+
+        @include tablet {
+          width: 215px !important;
         }
 
         .img-customize {
@@ -143,6 +189,13 @@
     content: "\e2ea" !important;
     color: #959595 !important;
     font-size: 20px;
+
+    @include mobile {
+      display: none !important;
+    }
+    @include smalldevices {
+      display: none !important;
+    }
   }
 
   .slick-next {
@@ -150,6 +203,12 @@
     top: 50%;
     transform: translate(10%, -50%);
     z-index: 999 !important;
+    @include mobile {
+      display: none !important;
+    }
+    @include smalldevices {
+      display: none !important;
+    }
 
     &:hover {
       background: #f5f5f5;
@@ -159,6 +218,14 @@
     content: "\e5e1" !important;
     color: #959595 !important;
     font-size: 20px;
+
+    @include mobile {
+      display: none !important;
+    }
+
+    @include smalldevices {
+      display: none !important;
+    }
   }
 
   .slick-next.slick-disabled:before {
@@ -174,6 +241,14 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
+
+    @include smalldevices {
+      display: none !important;
+    }
+
+    @include mobile {
+      display: none !important;
+    }
   }
 
   .slick-arrow:before {
@@ -185,8 +260,17 @@
     padding: 8px;
     text-align: center;
     // color: #959595 !important;
+
+    @include smalldevices {
+      display: none !important;
+    }
+
+    @include mobile {
+      display: none !important;
+    }
   }
-  .slick-disabled {
+
+  .slick-next:hover .slick-disabled {
     display: none !important;
   }
 }

@@ -79,6 +79,7 @@ class AllSpecialty extends Component {
                     return (
                       <Link to={`/detail-specialty/${item.id}`}
                         className='text-view'
+                        key={index}
                       >
                         <div className='item-row'>
                           <div className='img-specialty'

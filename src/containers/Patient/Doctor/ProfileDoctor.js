@@ -7,7 +7,35 @@ import _ from 'lodash';
 import moment from 'moment';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 
-
+export const setDayOfVn = (dataTime) => {
+  const days = moment.unix(+dataTime.date / 1000).format('ddd')
+  let day = '';
+  switch (days) {
+    case 'Sun':
+      day = "Chủ nhật";
+      break;
+    case 'Mon':
+      day = "Thứ 2";
+      break;
+    case 'Tue':
+      day = "Thứ 3";
+      break;
+    case 'Wed':
+      day = "Thứ 4";
+      break;
+    case 'Thu':
+      day = "Thứ 5";
+      break;
+    case 'Fri':
+      day = "Thứ 6";
+      break;
+    case 'Sat':
+      day = "Thứ 7";
+      break;
+    default: day = days;
+  }
+  return day;
+}
 
 class ProfileDoctor extends Component {
 
@@ -58,30 +86,7 @@ class ProfileDoctor extends Component {
         :
         dataTime.timeTypeData.valueEn;
 
-      const days = moment.unix(+dataTime.date / 1000).format('ddd')
-      let day = '';
-      switch (days) {
-        case 'Sun':
-          day = "Chủ nhật";
-          break;
-        case 'Mon':
-          day = "Thứ 2";
-          break;
-        case 'Tue':
-          day = "Thứ 3";
-          break;
-        case 'Wed':
-          day = "Thứ 4";
-          break;
-        case 'Thu':
-          day = "Thứ 5";
-          break;
-        case 'Fri':
-          day = "Thứ 6";
-          break;
-        case 'Sat':
-          day = "Thứ 7";
-      }
+      const day = setDayOfVn(dataTime);
 
       let date = language === LANGUAGES.VI ?
         `${day} - ${moment.unix(+dataTime.date / 1000).format('DD/MM/YYYY')}`

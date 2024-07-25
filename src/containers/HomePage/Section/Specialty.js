@@ -1,9 +1,8 @@
-import React, { Component, memo } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './scss/Specialty.scss';
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
-import { getAllSpecialties } from '../../../services/userService';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 
@@ -13,23 +12,10 @@ class Specialty extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataSpecialty: [],
-      isLoading: false
     }
   }
 
   async componentDidMount() {
-    this.setState({
-      isLoading: true
-    })
-
-    let res = await getAllSpecialties();
-    if (res && res.errCode === 0) {
-      this.setState({
-        dataSpecialty: res.data ? res.data : [],
-        isLoading: false
-      })
-    }
 
   }
 
@@ -41,7 +27,7 @@ class Specialty extends Component {
   }
 
   render() {
-    let { dataSpecialty, isLoading } = this.state;
+    let { dataSpecialty, isLoading } = this.props;
 
     return (
       <div className='section-general specialty'>

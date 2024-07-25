@@ -3,32 +3,18 @@ import { connect } from 'react-redux';
 import './scss/MedicalFacility.scss';
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
-import { getAllClinic } from '../../../services/userService';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { flatMap, isLength } from 'lodash';
 
 class MedicalFacility extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataClinic: [],
-      isLoading: false
     }
   }
 
   async componentDidMount() {
-    this.setState({
-      isLoading: true
-    })
 
-    const res = await getAllClinic();
-    if (res && res.errCode === 0) {
-      this.setState({
-        dataClinic: res.data ? res.data : [],
-        isLoading: false
-      })
-    }
   }
 
   handleViewDetailClinic = (item) => {
@@ -38,7 +24,7 @@ class MedicalFacility extends Component {
   }
 
   render() {
-    const { dataClinic, isLoading } = this.state;
+    const { dataClinic, isLoading } = this.props;
 
     return (
       <div className='section-general medical-facility'>

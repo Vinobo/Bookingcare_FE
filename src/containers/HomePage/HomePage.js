@@ -70,27 +70,29 @@ class HomePage extends Component {
       initialSlide: 0,
       responsive: [
         {
-          breakpoint: 1025,
+          breakpoint: 1279,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
-            infinite: true,
-            dots: true
+            infinite: false,
+            initialSlide: 0,
+            dots: false
           }
         },
         {
-          breakpoint: 600,
+          breakpoint: 767,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
-            initialSlide: 2
+            initialSlide: 0
           }
         },
         {
-          breakpoint: 480,
+          breakpoint: 500,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            initialSlide: 0
           }
         }
       ]
@@ -104,13 +106,26 @@ class HomePage extends Component {
       slidesToShow: 2,
       slidesToScroll: 2,
       initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1279,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: false,
+            initialSlide: 0
+          }
+        }
+      ]
     };
+
+    const { dataSpecialties, dataClinic, isLoading } = this.state;
 
     return (
       <div>
         <Header isShowBanner={true} dataSearch={this.state} />
-        <Specialty settings={settings} />
-        <MedicalFacility settings={settings} />
+        <Specialty settings={settings} dataSpecialty={dataSpecialties} isLoading={isLoading} />
+        <MedicalFacility settings={settings} dataClinic={dataClinic} isLoading={isLoading} />
         <OutStandingDoctor settings={settings} />
         <Handbook settings={setting_two} />
         <Media />

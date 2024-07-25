@@ -4,7 +4,7 @@ import { Modal } from 'reactstrap';
 import { LANGUAGES } from '../../../../utils';
 import { FormattedMessage } from 'react-intl';
 import './BookingDoctor.scss';
-import ProfileDoctor from '../ProfileDoctor';
+import ProfileDoctor, { setDayOfVn } from '../ProfileDoctor';
 import _ from 'lodash';
 import { getAddressFeeDoctorById, postPatientBookAppointment } from '../../../../services/userService';
 import { NumericFormat } from 'react-number-format';
@@ -188,30 +188,7 @@ class BookingDoctor extends Component {
         :
         dataTime.timeTypeData.valueEn;
 
-      const days = moment.unix(+dataTime.date / 1000).format('ddd')
-      let day = '';
-      switch (days) {
-        case 'Sun':
-          day = "Chủ nhật";
-          break;
-        case 'Mon':
-          day = "Thứ 2";
-          break;
-        case 'Tue':
-          day = "Thứ 3";
-          break;
-        case 'Wed':
-          day = "Thứ 4";
-          break;
-        case 'Thu':
-          day = "Thứ 5";
-          break;
-        case 'Fri':
-          day = "Thứ 6";
-          break;
-        case 'Sat':
-          day = "Thứ 7";
-      }
+      const day = setDayOfVn(dataTime);
 
       let date = language === LANGUAGES.VI ?
         `${day} - ${moment.unix(+dataTime.date / 1000).format('DD/MM/YYYY')}`

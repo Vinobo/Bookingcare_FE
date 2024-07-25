@@ -75,6 +75,8 @@ class DoctorSchedule extends Component {
               break;
             case 'Sat':
               day = "Thứ 7";
+              break;
+            default: day = days;
           }
 
           object.label = `${day} - ${moment(new Date()).add(i, 'days').locale('en').format('DD/MM')}`;

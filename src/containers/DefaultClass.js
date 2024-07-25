@@ -4,7 +4,13 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { LANGUAGES } from '../utils';
 import { FormattedMessage } from 'react-intl';
 import './DefaultClass.scss';
+// @include tablet {
 
+// }
+
+// @include desktop {
+
+// }
 
 class DefaultClass extends Component {
 

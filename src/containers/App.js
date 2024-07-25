@@ -6,6 +6,7 @@ import { history } from '../redux';
 import { ToastContainer } from 'react-toastify';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 import { path } from '../utils';
+import '../styles/styles.scss';
 import Home from '../routes/Home';
 import Login from './Auth/Login';
 import System from '../routes/System';
@@ -127,5 +128,4 @@ const mapDispatchToProps = dispatch => {
     return {
     };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -39,7 +39,7 @@ class OutStandingDoctor extends Component {
   }
 
   render() {
-    let { arrDoctors, isLoading } = this.state;
+    let { arrDoctors } = this.state;
     let { language } = this.props;
 
     return (
