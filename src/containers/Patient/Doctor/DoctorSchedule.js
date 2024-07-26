@@ -167,7 +167,7 @@ class DoctorSchedule extends Component {
         {allAvailable && allAvailable.length > 0 ?
           <>
             <div className='time-schedule-btns'>
-              {allAvailable.map((item) => {
+              {allAvailable.toSorted((a, b) => a - b).map((item) => {
                 let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
                 return (
                   <button key={item.id}

@@ -270,7 +270,7 @@ class ManageSchedule extends Component {
                   return (
                     <button
                       className={item.isSelected === true ? 'btn btn-schedule active' : 'btn btn-schedule'}
-                      key={index}
+                      key={item.id}
                       onClick={() => this.handleClickBtnTime(item)}
                     >
                       {language === LANGUAGES.VI ? item.valueVi : item.valueEn}

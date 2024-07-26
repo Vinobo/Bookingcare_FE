@@ -1,3 +1,5 @@
+@import "../../../../styles/mixins";
+
 .handbook-detail {
   a {
     color: #45c3d2;
@@ -8,8 +10,23 @@
   .general-container {
     padding-right: 15px;
     padding-left: 15px;
-    width: 70%;
     margin: 0 auto;
+
+    @include smalldevices {
+      width: 340px;
+    }
+
+    @include mobile {
+      width: 508px;
+    }
+
+    @include tablet {
+      width: 708px;
+    }
+
+    @include desktop {
+      width: 1080px;
+    }
   }
 
   .flex-menu {
