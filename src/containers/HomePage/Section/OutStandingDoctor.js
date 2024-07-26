@@ -14,20 +14,35 @@ class OutStandingDoctor extends Component {
     this.state = {
       arrDoctors: [],
       doctorId: '',
+      isLoading: false
     }
   }
 
   async componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
 
     this.props.loadTopDoctors();
+    const { topDoctorsRedux } = this.props;
+    if (topDoctorsRedux && topDoctorsRedux.length > 0) {
+      this.setState({
+        isLoading: false
+      })
+    }
   }
 
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      this.setState({
+        isLoading: true
+      })
+
       let arrDoctors = this.props.topDoctorsRedux;
       this.setState({
-        arrDoctors: arrDoctors
+        arrDoctors: arrDoctors,
+        isLoading: false
       })
     }
   }
@@ -39,7 +54,7 @@ class OutStandingDoctor extends Component {
   }
 
   render() {
-    let { arrDoctors } = this.state;
+    let { arrDoctors, isLoading } = this.state;
     let { language } = this.props;
 
     return (
@@ -54,38 +69,41 @@ class OutStandingDoctor extends Component {
             </Link>
           </div>
           <div className='section-content'>
-            {arrDoctors.length === 0 &&
-              <p>Loading...</p>
-            }
-            <Slider {...this.props.settings}>
-              {arrDoctors && arrDoctors.length > 0
-                && arrDoctors.map((item, index) => {
-                  let imageBase64 = '';
-                  if (item.image) {
-                    imageBase64 = new Buffer(item.image, 'base64').toString('binary');
-                  }
-                  let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-                  let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-                  return (
-                    <div className='section-img'
-                      key={{ index }}
-                      onClick={() => this.handleViewDetailDoctor(item)}
-                    >
-                      <div className='img-customize'
-                        style={{ backgroundImage: `url(${imageBase64})` }}
-                      />
-                      <div>
-                        {language === LANGUAGES.VI ? nameVi : nameEn}
-                      </div>
+            {
+              isLoading ?
+                <p>Loading...</p>
+                :
 
-                      <span className='text-img'>
-                        {item.Doctor_Infor && item.Doctor_Infor.specialtyData ? item.Doctor_Infor.specialtyData.name : ''}
-                      </span>
-                    </div>
-                  )
-                })
-              }
-            </Slider>
+                <Slider {...this.props.settings}>
+                  {arrDoctors && arrDoctors.length > 0
+                    && arrDoctors.map((item, index) => {
+                      let imageBase64 = '';
+                      if (item.image) {
+                        imageBase64 = new Buffer(item.image, 'base64').toString('binary');
+                      }
+                      let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                      let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+                      return (
+                        <div className='section-img'
+                          key={{ index }}
+                          onClick={() => this.handleViewDetailDoctor(item)}
+                        >
+                          <div className='img-customize'
+                            style={{ backgroundImage: `url(${imageBase64})` }}
+                          />
+                          <div>
+                            {language === LANGUAGES.VI ? nameVi : nameEn}
+                          </div>
+
+                          <span className='text-img'>
+                            {item.Doctor_Infor && item.Doctor_Infor.specialtyData ? item.Doctor_Infor.specialtyData.name : ''}
+                          </span>
+                        </div>
+                      )
+                    })
+                  }
+                </Slider>
+            }
           </div>
         </div>
       </div>

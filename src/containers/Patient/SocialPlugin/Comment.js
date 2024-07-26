@@ -50,6 +50,8 @@ class Comment extends Component {
         data-href={dataHref}
         data-width={width ? width : ''}
         data-numpost={numPost ? numPost : 5}
+        data-lazy="true"
+        data-mobile
       ></div>
     );
   }

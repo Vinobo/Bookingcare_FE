@@ -38,26 +38,30 @@ class MedicalFacility extends Component {
             </Link>
           </div>
           <div className='section-content'>
-            {isLoading && <p>Loading...</p>}
-            <Slider {...this.props.settings}>
-              {dataClinic && dataClinic.length > 0 &&
-                dataClinic.map((item, index) => {
-                  return (
-                    <div className='section-img' key={index}
-                      onClick={() => this.handleViewDetailClinic(item)}
-                    >
-                      <div className='img-customize'
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      />
-                      <span className='text-img'>{item.name}</span>
-                    </div>
-                  )
-                })
-              }
-            </Slider>
+            {
+              isLoading ?
+                <p>Loading...</p>
+                :
+                <Slider {...this.props.settings}>
+                  {dataClinic && dataClinic.length > 0 &&
+                    dataClinic.map((item, index) => {
+                      return (
+                        <div className='section-img' key={index}
+                          onClick={() => this.handleViewDetailClinic(item)}
+                        >
+                          <div className='img-customize'
+                            style={{ backgroundImage: `url(${item.image})` }}
+                          />
+                          <span className='text-img'>{item.name}</span>
+                        </div>
+                      )
+                    })
+                  }
+                </Slider>
+            }
           </div>
         </div>
-      </div>
+      </div >
 
     );
   }

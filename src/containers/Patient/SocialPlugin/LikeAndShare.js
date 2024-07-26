@@ -49,9 +49,10 @@ class LikeAndShare extends Component {
         className="fb-like"
         data-href={dataHref}
         data-width=""
-        data-layout=""
+        data-layout="button_count"
         data-action=""
         data-size=""
+        data-lazy="true"
         data-share="true"
       ></div>
     );

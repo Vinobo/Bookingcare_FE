@@ -228,8 +228,9 @@
     }
   }
 
-  .slick-next.slick-disabled:before {
-    opacity: 0;
+  .slick-next.slick-disabled:before,
+  .slick-prev.slick-disabled:before {
+    opacity: 0 !important;
     border-color: transparent;
     color: transparent !important;
   }

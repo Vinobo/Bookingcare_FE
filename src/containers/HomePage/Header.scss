@@ -4,6 +4,7 @@
   padding: 10px 0;
   background-color: #fff;
   width: 100%;
+  overflow-y: scroll;
 
   @include tablet {
     // height: 100vmax;
@@ -47,7 +48,6 @@
       align-items: center;
       background-color: #fff;
       z-index: 1000;
-      height: auto;
 
       .child-content {
         cursor: pointer;
@@ -129,8 +129,6 @@
         font-size: smaller;
         gap: 5px;
         margin-top: 1rem;
-        position: sticky;
-        top: 0;
 
         .child-content {
           .subs-title {
@@ -144,6 +142,12 @@
 
       .right-content {
         font-size: 11px;
+      }
+
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
       }
     }
 
@@ -173,12 +177,16 @@
         font-size: large;
         gap: 20px;
         margin-top: 1rem;
-        position: sticky;
-        top: 0;
       }
 
       .right-content {
         font-size: 12px;
+      }
+
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
       }
     }
 
@@ -206,8 +214,12 @@
       .center-content {
         grid-area: 2 / span 2;
         margin-top: 1rem;
-        position: sticky;
+      }
+
+      .sticky {
+        position: fixed;
         top: 0;
+        width: 100%;
       }
     }
 

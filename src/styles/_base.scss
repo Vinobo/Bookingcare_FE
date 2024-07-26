@@ -9,7 +9,7 @@ html {
   font-family: "Montserrat", sans-serif;
   font-size: calc($base-size - 2px);
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .content-container {
