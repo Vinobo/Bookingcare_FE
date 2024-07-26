@@ -103,7 +103,7 @@ class TableManageSchedule extends Component {
               </tr>
 
               {dataSchedule && dataSchedule.length > 0 ?
-                dataSchedule.map((item) => {
+                dataSchedule.toSorted().map((item) => {
                   return (
                     <tr key={item.id}>
                       <td>{language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn}</td>
