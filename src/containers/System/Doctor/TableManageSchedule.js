@@ -103,9 +103,9 @@ class TableManageSchedule extends Component {
               </tr>
 
               {dataSchedule && dataSchedule.length > 0 ?
-                dataSchedule.map((item, index) => {
+                dataSchedule.map((item) => {
                   return (
-                    <tr key={index}>
+                    <tr key={item.id}>
                       <td>{language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn}</td>
                       <td className='btn-item'>
                         <button className='btn-delete'
