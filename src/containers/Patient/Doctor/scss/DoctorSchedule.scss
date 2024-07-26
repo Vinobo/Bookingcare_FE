@@ -1,3 +1,5 @@
+@import "../../../../styles/mixins";
+
 .doctor-schedule {
   .all-schedule {
     select {
@@ -53,6 +55,33 @@
         .disabled {
           opacity: 0.6;
           pointer-events: none;
+        }
+
+        @include smalldevices {
+          gap: 15px;
+
+          button {
+            font-size: 12px;
+            padding: 3px 8px;
+          }
+          .btn-vi {
+            width: 45%;
+          }
+
+          .btn-en {
+            width: 99px;
+          }
+        }
+
+        @include mobile {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+
+          button {
+          }
+        }
+
+        @include tablet {
         }
       }
 

@@ -1,3 +1,5 @@
+@import "../../../../styles/mixins";
+
 .all-doctor-container {
   .goBack {
     background-color: #45c3d2;
@@ -87,6 +89,24 @@
           & span:last-child {
             font-size: 12px;
             font-style: italic;
+          }
+        }
+
+        @include smalldevices {
+          .img-doctor {
+            height: 80px;
+            width: 80px;
+          }
+
+          .text-column {
+            width: 100px;
+            & span:first-child {
+              font-size: 12px;
+            }
+
+            & span:last-child {
+              font-size: 10px;
+            }
           }
         }
       }

@@ -1,3 +1,5 @@
+@import "../../../styles/mixins";
+
 .all-clinic-container {
   .goBack {
     background-color: #45c3d2;
@@ -66,9 +68,35 @@
         .img-clinic {
           background-position: center center;
           background-repeat: no-repeat;
-          background-size: contain;
-          height: 105px;
-          width: 200px;
+          background-size: cover;
+          height: 150px;
+          width: 40%;
+        }
+
+        span {
+          width: 50%;
+        }
+      }
+
+      @include smalldevices {
+        .item-row {
+          .img-clinic {
+            height: 90px;
+            width: 90px;
+          }
+
+          span {
+            font-size: 12px;
+            width: 90px;
+          }
+        }
+      }
+
+      @include desktop {
+        .item-row {
+          .img-clinic {
+            height: 200px;
+          }
         }
       }
     }

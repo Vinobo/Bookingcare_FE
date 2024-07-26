@@ -1,3 +1,5 @@
+@import "../../../../styles/mixins";
+
 .all-handbook-container {
   .sticky-menu {
     position: sticky;
@@ -76,6 +78,30 @@
         .text-content {
           padding: 0 15px;
         }
+      }
+
+      @include smalldevices {
+        grid-template-columns: 1fr;
+
+        .section-img-row {
+          .text-content {
+            padding: 0px;
+          }
+        }
+      }
+
+      @include mobile {
+        grid-template-columns: 1fr 1fr;
+
+        .section-img-row {
+          .text-content {
+            padding: 0px;
+          }
+        }
+      }
+
+      @include tablet {
+        grid-template-columns: 1fr 1fr;
       }
     }
   }

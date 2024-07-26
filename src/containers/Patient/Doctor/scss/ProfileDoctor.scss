@@ -1,6 +1,9 @@
+@import "../../../../styles/mixins";
+
 .profile-doctor {
   .intro-doctor {
     display: flex;
+    gap: 15px;
 
     .content-left {
       display: flex;
@@ -26,10 +29,23 @@
           text-decoration: none;
         }
       }
+
+      @include smalldevices {
+        font-size: smaller;
+        .avatar-doctor {
+          height: 70px;
+          width: 70px;
+        }
+
+        .view-detail-doctor {
+          .text-view {
+          }
+        }
+      }
     }
     .content-right {
       width: 90%;
-      padding-left: 15px;
+      // padding-left: 15px;
       display: flex;
       flex-direction: column;
 

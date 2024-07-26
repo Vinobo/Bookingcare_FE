@@ -1,19 +1,23 @@
+@import "../../../../styles/mixins";
+
 .media {
   .section-content {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: 30px;
-    height: 320px !important;
+    height: max-content;
 
     .content-left {
-      width: 50%;
+      height: 320px;
+      width: 100%;
     }
 
     .content-right {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 20px;
-      width: 50%;
+      width: 100%;
       align-items: center;
       justify-content: center;
 
@@ -38,6 +42,19 @@
             background-size: cover;
           }
         }
+      }
+    }
+
+    @include desktop {
+      flex-direction: row;
+
+      .content-left {
+        width: 50%;
+      }
+
+      .content-right {
+        width: 50%;
+        grid-template-columns: 1fr 1fr;
       }
     }
   }

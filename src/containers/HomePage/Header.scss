@@ -103,6 +103,50 @@
       }
     }
 
+    @include smalldevices {
+      width: 308px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      justify-content: center;
+
+      .left-content {
+        .header-logo {
+          .logo {
+            img {
+              width: 30px;
+            }
+
+            span {
+              font-size: 15px;
+              color: orange;
+            }
+          }
+        }
+      }
+
+      .center-content {
+        grid-area: 2 / span 2;
+        font-size: smaller;
+        gap: 5px;
+        margin-top: 1rem;
+        position: sticky;
+        top: 0;
+
+        .child-content {
+          .subs-title {
+            font-size: 11px;
+          }
+          .subs-content {
+            font-size: 9px;
+          }
+        }
+      }
+
+      .right-content {
+        font-size: 11px;
+      }
+    }
+
     @include mobile {
       width: 408px;
       display: grid;
@@ -282,6 +326,30 @@
     .hasInputSearch {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+    }
+
+    @include smalldevices {
+      height: 300px;
+
+      .title1,
+      .title2 {
+        font-size: 20px;
+      }
+
+      .search {
+        width: 280px;
+        padding: 7px;
+        font-size: smaller;
+
+        input {
+          height: 18px;
+          width: 300px;
+        }
+
+        .search-result {
+          width: 280px;
+        }
+      }
     }
 
     @include mobile {

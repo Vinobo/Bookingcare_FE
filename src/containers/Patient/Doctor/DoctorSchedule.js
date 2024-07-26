@@ -107,18 +107,19 @@ class DoctorSchedule extends Component {
     }
     if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
       let allDays = this.getArrDays(this.props.language);
-      let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
+      let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, this.state.currentDate);
       this.setState({
         allAvailable: res.data ? res.data : [],
         allDays: allDays
       })
     }
     if (prevState.isOpenBookingDoctor !== this.state.isOpenBookingDoctor) {
-      let allDays = this.getArrDays(this.props.language);
-      let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
+      let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, this.state.currentDate);
+
       this.setState({
         allAvailable: res.data ? res.data : [],
       })
+
     }
   }
 

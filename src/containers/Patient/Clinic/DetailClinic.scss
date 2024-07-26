@@ -1,3 +1,5 @@
+@import "../../../styles/mixins";
+
 .detail-clinic {
   .clinic-container {
     .clinic-img {
@@ -45,6 +47,42 @@
         color: rgb(40, 49, 63);
         font-weight: 400;
       }
+
+      @include smalldevices {
+        .name-clinic {
+          h1 {
+            font-size: 20px;
+          }
+        }
+
+        .address-clinic {
+          font-size: 12px;
+        }
+      }
+
+      @include mobile {
+        .name-clinic {
+          h1 {
+            font-size: 24px;
+          }
+        }
+
+        .address-clinic {
+          font-size: 14px;
+        }
+      }
+
+      @include tablet {
+        .name-clinic {
+          h1 {
+            font-size: 26px;
+          }
+        }
+
+        .address-clinic {
+          font-size: 16px;
+        }
+      }
     }
 
     .sticky-menu {
@@ -55,7 +93,6 @@
         box-shadow: rgba(32, 33, 36, 0.28) 0px 2px 6px;
         padding: 5px 20px;
         display: flex;
-        flex-flow: wrap;
         justify-content: space-evenly;
         background-color: rgb(255, 255, 255);
         margin-bottom: 10px;
@@ -69,6 +106,26 @@
 
           &:hover {
             color: rgb(51, 122, 183);
+          }
+        }
+
+        @include smalldevices {
+          padding: 5px 5px;
+
+          a {
+            font-size: 8px;
+          }
+        }
+
+        @include mobile {
+          a {
+            font-size: 8px;
+          }
+        }
+
+        @include tablet {
+          a {
+            font-size: 12px;
           }
         }
       }
@@ -126,13 +183,27 @@
     .general-container {
       padding-right: 15px;
       padding-left: 15px;
-      width: 70%;
       margin: 0 auto;
+
+      @include smalldevices {
+        width: 340px;
+      }
+
+      @include mobile {
+        width: 508px;
+      }
+
+      @include tablet {
+        width: 708px;
+      }
+
+      @include desktop {
+        width: 1080px;
+      }
     }
     .content-clinic {
       display: flex;
-      flex-direction: row;
-      gap: 15px;
+      flex-direction: column;
       // justify-content: space-around;
       background-color: #fff;
       box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
@@ -141,12 +212,10 @@
       margin-bottom: 10px;
 
       .detail-doctor {
-        width: 50%;
         padding: 15px;
       }
 
       .extra-infor-doctor {
-        width: 50%;
         border-left: 1px solid #eee;
         padding: 15px;
 
@@ -157,6 +226,19 @@
           border-top: 1px solid #eee;
           padding-top: 10px;
           margin-top: 10px;
+        }
+      }
+
+      @include desktop {
+        flex-direction: row;
+        gap: 15px;
+
+        .detail-doctor {
+          width: 50%;
+        }
+
+        .extra-infor-doctor {
+          width: 50%;
         }
       }
     }
