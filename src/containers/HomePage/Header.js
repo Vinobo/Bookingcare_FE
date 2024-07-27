@@ -22,18 +22,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    // window.addEventListener('scroll', (event) => {
-    //   const scrollY = window.scrollY //Don't get confused by what's scrolling - It's not the window
-    //   console.log(`onScroll, window.scrollY: ${scrollY}`)
-    // }, true);
   }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener('scroll', (event) => {
-  //     const scrollY = window.scrollY //Don't get confused by what's scrolling - It's not the window
-  //     console.log(`onScroll, window.scrollY: ${scrollY}`)
-  //   }, false);
-  // }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.dataSearch !== this.props.dataSearch) {
@@ -145,25 +134,9 @@ class Header extends Component {
     }
   }
 
-  // onScroll = () => {
-  //   const scrollY = window.scrollY //Don't get confused by what's scrolling - It's not the window
-  //   console.log(`onScroll, window.scrollY: ${scrollY}`)
-  //   // if (window.scrollY >= sticky) {
-  //   //   this.setState({
-  //   //     isSticky: true
-  //   //   })
-  //   // } else {
-  //   //   this.setState({
-  //   //     isSticky: false
-  //   //   })
-  //   // }
-  // }
-
-
-
 
   render() {
-    const language = this.props.language;
+    const { language } = this.props;
     const { inputValue, searchSpecialties, searchClinic, searchDoctors, isSticky } = this.state;
     const { isLoading } = this.props.dataSearch || false;
     const placeholder = language === LANGUAGES.VI ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialist";

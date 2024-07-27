@@ -4,7 +4,7 @@
   padding: 10px 0;
   background-color: #fff;
   width: 100%;
-  overflow-y: scroll;
+  height: 100%;
 
   @include tablet {
     // height: 100vmax;
@@ -13,7 +13,6 @@
   @include desktop {
     position: sticky;
     z-index: 1000;
-    overflow: auto;
     top: 0;
   }
 
@@ -214,6 +213,9 @@
       .center-content {
         grid-area: 2 / span 2;
         margin-top: 1rem;
+        position: sticky;
+        top: 0;
+        width: 100%;
       }
 
       .sticky {

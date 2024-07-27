@@ -118,7 +118,9 @@ class DetailDoctor extends Component {
             </>
           }
           <div className='comment-doctor'>
-            <Comment dataHref={url} />
+            <div className='general-container'>
+              <Comment dataHref={url} />
+            </div>
           </div>
           <About />
           <Footer />

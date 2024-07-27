@@ -59,6 +59,7 @@ class HomePage extends Component {
     })
   }
 
+
   render() {
     //slick 4
     let settings = {
@@ -119,7 +120,7 @@ class HomePage extends Component {
     const { dataSpecialties, dataClinic, isLoading } = this.state;
 
     return (
-      <div>
+      <div className='home-page'>
         <Header isShowBanner={true} dataSearch={this.state} />
         <Specialty settings={settings} dataSpecialty={dataSpecialties} isLoading={isLoading} />
         <MedicalFacility settings={settings} dataClinic={dataClinic} isLoading={isLoading} />
