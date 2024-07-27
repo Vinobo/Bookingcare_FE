@@ -19,29 +19,27 @@ class OutStandingDoctor extends Component {
   }
 
   async componentDidMount() {
-    this.setState({
-      isLoading: true
-    })
-
     this.props.loadTopDoctors();
-    const { topDoctorsRedux } = this.props;
-    if (topDoctorsRedux && topDoctorsRedux.length > 0) {
-      this.setState({
-        isLoading: false
-      })
-    }
+    this.getDataDoctor();
   }
 
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
-      this.setState({
-        isLoading: true
-      })
+      this.getDataDoctor();
+    }
+  }
 
-      let arrDoctors = this.props.topDoctorsRedux;
+  getDataDoctor = () => {
+    this.setState({
+      isLoading: true
+    })
+
+    const { topDoctorsRedux } = this.props;
+    if (topDoctorsRedux && topDoctorsRedux.length > 0) {
+
       this.setState({
-        arrDoctors: arrDoctors,
+        arrDoctors: topDoctorsRedux,
         isLoading: false
       })
     }
@@ -73,7 +71,6 @@ class OutStandingDoctor extends Component {
               isLoading ?
                 <p>Loading...</p>
                 :
-
                 <Slider {...this.props.settings}>
                   {arrDoctors && arrDoctors.length > 0
                     && arrDoctors.map((item, index) => {
@@ -85,7 +82,7 @@ class OutStandingDoctor extends Component {
                       let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                       return (
                         <div className='section-img'
-                          key={{ index }}
+                          key={item.id}
                           onClick={() => this.handleViewDetailDoctor(item)}
                         >
                           <div className='img-customize'
@@ -106,7 +103,7 @@ class OutStandingDoctor extends Component {
             }
           </div>
         </div>
-      </div>
+      </div >
 
     );
   }
