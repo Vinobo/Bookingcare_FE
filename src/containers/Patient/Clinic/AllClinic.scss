@@ -3,6 +3,9 @@
 .all-clinic-container {
   .goBack {
     background-color: #45c3d2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
     .flex-back {
       display: flex;
@@ -35,8 +38,23 @@
   .general-container {
     padding-right: 15px;
     padding-left: 15px;
-    width: 70%;
     margin: 0 auto;
+
+    @include smalldevices {
+      width: 340px;
+    }
+
+    @include mobile {
+      width: 508px;
+    }
+
+    @include tablet {
+      width: 708px;
+    }
+
+    @include desktop {
+      width: 1080px;
+    }
 
     h1 {
       font-size: 18px;

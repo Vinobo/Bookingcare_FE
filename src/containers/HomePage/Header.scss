@@ -46,7 +46,6 @@
       justify-content: space-evenly;
       align-items: center;
       background-color: #fff;
-      z-index: 1000;
 
       .child-content {
         cursor: pointer;
@@ -103,7 +102,7 @@
     }
 
     @include smalldevices {
-      width: 308px;
+      width: 340px;
       display: grid;
       grid-template-columns: 1fr auto;
       justify-content: center;
@@ -155,7 +154,7 @@
     }
 
     @include mobile {
-      width: 408px;
+      width: 508px;
       display: grid;
       grid-template-columns: 1fr auto;
       justify-content: center;
@@ -221,9 +220,6 @@
       .center-content {
         grid-area: 2 / span 2;
         margin-top: 1rem;
-        position: sticky;
-        top: 0;
-        width: 100%;
       }
 
       .sticky {

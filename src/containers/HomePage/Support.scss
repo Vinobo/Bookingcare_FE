@@ -1,9 +1,11 @@
+@import "../../styles/mixins";
+
 .support {
   .goBack {
     background-color: #45c3d2;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 1000;
 
     .flex-row {
       display: flex;
@@ -24,8 +26,23 @@
 
     .general-container {
       padding: 0 15px;
-      width: 70%;
       margin: 0 auto;
+
+      @include smalldevices {
+        width: 340px;
+      }
+
+      @include mobile {
+        width: 508px;
+      }
+
+      @include tablet {
+        width: 708px;
+      }
+
+      @include desktop {
+        width: 1080px;
+      }
     }
   }
 
@@ -44,6 +61,14 @@
     justify-content: center;
     gap: 30px;
     margin-top: 20px;
+
+    @include smalldevices {
+      flex-direction: column;
+    }
+
+    @include mobile {
+      flex-direction: column;
+    }
 
     a:first-child {
       display: flex;

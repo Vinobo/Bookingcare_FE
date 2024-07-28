@@ -57,7 +57,9 @@ class AllClinic extends Component {
 
     return (
       <>
-        <Header search={false}></Header>
+        <div>
+          <Header search={false}></Header>
+        </div>
         <div className='all-clinic-container'>
           <div className='goBack'>
             <div className='general-container flex-back'>
