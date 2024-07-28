@@ -8,8 +8,8 @@ html {
   background-size: cover;
   font-family: "Montserrat", sans-serif;
   font-size: calc($base-size - 2px);
-  height: 100vh;
-  overflow: visible;
+  height: auto;
+  display: block;
 }
 
 .content-container {

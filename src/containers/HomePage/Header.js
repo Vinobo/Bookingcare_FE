@@ -21,7 +21,13 @@ class Header extends Component {
     };
   }
 
+
   componentDidMount() {
+    window.addEventListener('wheel', (event) => this.wheelScroll(event));
+  }
+
+  componentWillUnmount() {
+    window.addEventListener('wheel', (event) => this.wheelScroll(event))
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -29,6 +35,27 @@ class Header extends Component {
 
     }
   }
+
+  wheelScroll = (event) => {
+    const scroll = document.getElementsByTagName('div')[4].scrollTop;
+    const sticky = document.getElementsByClassName('center-content')[0].scrollHeight;
+    if (event.deltaY < 0) {
+      if (sticky + 20 < scroll) {
+        this.setState({
+          isSticky: true
+        })
+      } else {
+        this.setState({
+          isSticky: false
+        })
+      }
+    }
+    else if (event.deltaY > 0) {
+      this.setState({
+        isSticky: false
+      })
+    }
+  };
 
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
