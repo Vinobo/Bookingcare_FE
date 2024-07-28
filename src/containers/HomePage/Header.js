@@ -23,11 +23,11 @@ class Header extends Component {
 
 
   componentDidMount() {
-    window.addEventListener('wheel', (event) => this.wheelScroll(event));
+    document.addEventListener('wheel', (event) => this.wheelScroll(event));
   }
 
   componentWillUnmount() {
-    window.addEventListener('wheel', (event) => this.wheelScroll(event))
+    document.addEventListener('wheel', (event) => this.wheelScroll(event))
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -163,7 +163,7 @@ class Header extends Component {
 
 
   render() {
-    const { language } = this.props;
+    const { language, isShowBanner } = this.props;
     const { inputValue, searchSpecialties, searchClinic, searchDoctors, isSticky } = this.state;
     const { isLoading } = this.props.dataSearch || false;
     const placeholder = language === LANGUAGES.VI ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialist";
@@ -182,7 +182,7 @@ class Header extends Component {
               </div>
             </div>
 
-            <div className={`center-content ${isSticky ? 'sticky' : ''}`}>
+            <div className={`center-content ${isShowBanner === true && isSticky ? 'sticky' : ''}`}>
               <Link to={`/all-specialty/`}
                 className='text-view'
               >
@@ -232,7 +232,7 @@ class Header extends Component {
           </div>
         </div>
 
-        {this.props.isShowBanner === true &&
+        {isShowBanner === true &&
           <div className='home-header-banner'>
             <div className='content-up'>
               <div className='title1'><FormattedMessage id="banner.title1" /></div>

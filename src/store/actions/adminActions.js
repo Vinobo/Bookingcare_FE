@@ -363,3 +363,51 @@ export const fetchRequiredDoctorInforSuccess = (allRequiredData) => ({
 export const fetchRequiredDoctorInforFailed = () => ({
   type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED
 })
+
+//get All Specialties
+export const fetchAllSpecialties = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllSpecialties();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_SPECIALTIES_SUCCESS,
+          dataSpecialties: res.data,
+        })
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_SPECIALTIES_FAILED,
+        })
+      }
+    } catch (e) {
+      console.log('FETCH_ALL_SPECIALTIES_FAILED: ', e)
+      dispatch({
+        type: actionTypes.FETCH_ALL_SPECIALTIES_FAILED,
+      })
+    }
+  }
+}
+
+//get All Clinics
+export const fetchAllClinics = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllClinic();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_CLINICS_SUCCESS,
+          dataClinic: res.data,
+        })
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_CLINICS_FAILED,
+        })
+      }
+    } catch (e) {
+      console.log('FETCH_ALL_CLINCS_FAILED: ', e)
+      dispatch({
+        type: actionTypes.FETCH_ALL_CLINICS_FAILED,
+      })
+    }
+  }
+}

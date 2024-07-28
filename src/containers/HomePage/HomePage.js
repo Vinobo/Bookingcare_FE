@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Footer from './Footer';
 import Media from './Section/Media';
 import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
-
+import * as actions from '../../store/actions';
 
 
 
@@ -23,42 +23,52 @@ class HomePage extends Component {
     this.state = {
       dataSpecialties: [],
       dataClinic: [],
-      dataDoctors: [],
-      isLoading: false
+      isLoadingSp: false,
+      isLoadingCl: false
     };
   }
 
   async componentDidMount() {
-    this.setState({
-      isLoading: true
-    })
-
-    const resAllSpecailties = await getAllSpecialties();
-    if (resAllSpecailties && resAllSpecailties.errCode === 0) {
-      this.setState({
-        dataSpecialties: resAllSpecailties.data ? resAllSpecailties.data : []
-      })
-    }
-
-    const resAllClinic = await getAllClinic();
-    if (resAllClinic && resAllClinic.errCode === 0) {
-      this.setState({
-        dataClinic: resAllClinic.data ? resAllClinic.data : []
-      })
-    }
-
-    const resDoctors = await getAllDoctors();
-    if (resDoctors && resDoctors.errCode === 0) {
-      this.setState({
-        dataDoctors: resDoctors.data ? resDoctors.data : []
-      })
-    }
-
-    this.setState({
-      isLoading: false
-    })
+    this.props.loadAllSpecialties();
+    this.props.loadAllClinics();
+    this.getData();
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { dataSpecialties, dataClinic } = this.props;
+    if (prevProps.dataSpecialties !== dataSpecialties) {
+      this.getData();
+    }
+    if (prevProps.dataClinic !== dataClinic) {
+      this.getData();
+    }
+  }
+
+  getData = () => {
+    this.setState({
+      isLoadingSp: true
+    })
+
+    const { dataSpecialties, dataClinic } = this.props;
+
+    if (dataSpecialties && dataSpecialties.length > 0) {
+      this.setState({
+        dataSpecialties: dataSpecialties,
+        isLoadingSp: false
+      })
+    }
+
+    this.setState({
+      isLoadingCl: true
+    })
+
+    if (dataClinic && dataClinic.length > 0) {
+      this.setState({
+        dataClinic: dataClinic,
+        isLoadingCl: false
+      })
+    }
+  }
 
   render() {
     //slick 4
@@ -75,8 +85,6 @@ class HomePage extends Component {
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
-            // infinite: true,
-            // autoplay: true,
           }
         },
         {
@@ -85,7 +93,10 @@ class HomePage extends Component {
             slidesToShow: 2,
             slidesToScroll: 2,
             autoplay: true,
-            autoplaySpeed: 3000
+            autoplaySpeed: 3000,
+            pauseOnFocus: true,
+            pauseOnHover: true,
+            pauseOnDotsHover: true
           }
         },
         {
@@ -94,7 +105,10 @@ class HomePage extends Component {
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay: true,
-            autoplaySpeed: 3000
+            autoplaySpeed: 3000,
+            pauseOnFocus: true,
+            pauseOnHover: true,
+            pauseOnDotsHover: true
           }
         }
       ]
@@ -121,13 +135,13 @@ class HomePage extends Component {
       ]
     };
 
-    const { dataSpecialties, dataClinic, isLoading } = this.state;
+    const { dataSpecialties, dataClinic, isLoadingSp, isLoadingCl } = this.state;
 
     return (
       <div className='home-page'>
         <Header isShowBanner={true} dataSearch={this.state} />
-        <Specialty settings={settings} dataSpecialty={dataSpecialties} isLoading={isLoading} />
-        <MedicalFacility settings={settings} dataClinic={dataClinic} isLoading={isLoading} />
+        <Specialty settings={settings} dataSpecialty={dataSpecialties} isLoading={isLoadingSp} />
+        <MedicalFacility settings={settings} dataClinic={dataClinic} isLoading={isLoadingCl} />
         <OutStandingDoctor settings={settings} />
         <Handbook settings={setting_two} />
         <Media />
@@ -141,12 +155,16 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    dataSpecialties: state.admin.allSpecialties,
+    dataClinic: state.admin.allClinics
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadAllSpecialties: () => dispatch(actions.fetchAllSpecialties()),
+    loadAllClinics: () => dispatch(actions.fetchAllClinics()),
   };
 };
 
