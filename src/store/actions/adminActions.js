@@ -297,6 +297,31 @@ export const fetchDetailDoctor = currentDoctorId => {
   }
 }
 
+//Province
+export const fetchAllProvince = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("PROVINCE");
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllProvinceSuccess(res.data));
+      } else {
+        dispatch(fetchAllProvinceFailed());
+      }
+    } catch (e) {
+      dispatch(fetchAllProvinceFailed());
+      console.log('fetchAllProvinceStart error'.e)
+    }
+  }
+}
+
+export const fetchAllProvinceSuccess = (provinceData) => ({
+  type: actionTypes.FETCH_ALLPROVINCE_SUCCESS,
+  data: provinceData
+})
+export const fetchAllProvinceFailed = () => ({
+  type: actionTypes.FETCH_ALLPROVINCE_FAILED
+})
+
 //get All Schedul Time
 export const fetchAllSchedulTime = () => {
   return async (dispatch, getState) => {

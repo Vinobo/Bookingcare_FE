@@ -13,6 +13,7 @@ import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import Select from 'react-select';
 import { withRouter } from 'react-router';
+import * as actions from '../../../store/actions';
 
 
 class DetailsSpecialty extends Component {
@@ -31,57 +32,18 @@ class DetailsSpecialty extends Component {
 
   }
 
-  handleData = async () => {
-    if (this.props.match && this.props.match.params && this.props.match.params.id) {
-      let id = this.props.match.params.id;
-
-      let res = await getAllDetailSpecialtyById({
-        id: id,
-        location: 'ALL'
-      });
-
-      let resProvince = await getAllCodeService('PROVINCE')
-
-      if (res && res.errCode === 0 && resProvince && resProvince.errCode === 0) {
-        let data = res.data;
-        let arrDoctorId = [];
-        if (data && !_.isEmpty(res.data)) {
-          let arr = data.doctorSpecialty;
-          if (arr && arr.length > 0) {
-            arr.map(item => arrDoctorId.push(item.doctorId))
-          }
-        }
-
-        let dataProvince = resProvince.data;
-        if (dataProvince && dataProvince.length > 0) {
-          dataProvince.unshift({
-            keyMap: 'ALL',
-            type: 'PROVINCE',
-            valueEn: 'ALL',
-            valueVi: 'Toàn quốc'
-          })
-        }
-
-        this.setState({
-          dataDetailSpecialty: res.data,
-          arrDoctorId: arrDoctorId,
-          listProvince: dataProvince ? dataProvince : [],
-          isLoading: false
-        })
-      }
-    }
-  }
-
   async componentDidMount() {
     // let { language } = this.props;
+    this.props.loadAllSpecialties();
+    this.props.loadAllProvince();
     this.setState({
       isLoading: true
     })
 
 
-    let res = await getAllSpecialties();
-    if (res && res.errCode === 0) {
-      let dataSelect = this.buildDataInputSelect(res.data)
+    let res = this.props.allSpecialties;
+    if (res && res.length > 0) {
+      let dataSelect = this.buildDataInputSelect(res)
       this.setState({
         listSpecialty: dataSelect
       })
@@ -96,10 +58,105 @@ class DetailsSpecialty extends Component {
 
     }
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.handleData();
+      this.setState({
+        isLoading: true
+      })
+      let id = this.props.match.params.id;
+
+      let res = await getAllDetailSpecialtyById({
+        id: id,
+        location: 'ALL'
+      });
+      let arrDoctorId = [];
+      if (res && res.errCode === 0) {
+        let data = res.data;
+        if (data && !_.isEmpty(res.data)) {
+          let arr = data.doctorSpecialty;
+          if (arr && arr.length > 0) {
+            arr.map(item => arrDoctorId.push(item.doctorId))
+          }
+        }
+      }
+      this.setState({
+        dataDetailSpecialty: res.data,
+        arrDoctorId: arrDoctorId,
+        isLoading: false
+      })
+    }
+    if (this.props.allProvince !== prevProps.allProvince) {
+      this.setState({
+        isLoading: true
+      })
+
+      let resProvince = this.props.allProvince;
+      // let dataProvince = resProvince;
+      if (resProvince && resProvince.length > 0 && resProvince[0].keyMap !== 'ALL') {
+        resProvince.unshift({
+          keyMap: 'ALL',
+          type: 'PROVINCE',
+          valueEn: 'ALL',
+          valueVi: 'Toàn quốc'
+        })
+      }
+      this.setState({
+        listProvince: resProvince ? resProvince : [],
+        isLoading: false
+      })
+    }
+    if (this.props.allSpecialties !== prevProps.allSpecialties) {
+      this.setState({
+        isLoading: true
+      })
+
+      let res = this.props.allSpecialties;
+      if (res && res.length > 0) {
+        let dataSelect = this.buildDataInputSelect(res)
+        this.setState({
+          listSpecialty: dataSelect,
+          isLoading: false
+        })
+      }
     }
 
   }
+
+  handleData = async () => {
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      let id = this.props.match.params.id;
+
+      let res = await getAllDetailSpecialtyById({
+        id: id,
+        location: 'ALL'
+      });
+      let arrDoctorId = [];
+      if (res && res.errCode === 0) {
+        let data = res.data;
+        if (data && !_.isEmpty(res.data)) {
+          let arr = data.doctorSpecialty;
+          if (arr && arr.length > 0) {
+            arr.map(item => arrDoctorId.push(item.doctorId))
+          }
+        }
+      }
+      let resProvince = this.props.allProvince;
+      // let dataProvince = resProvince;
+      if (resProvince && resProvince.length > 0 && resProvince[0].keyMap !== 'ALL') {
+        resProvince.unshift({
+          keyMap: 'ALL',
+          type: 'PROVINCE',
+          valueEn: 'ALL',
+          valueVi: 'Toàn quốc'
+        })
+      }
+      this.setState({
+        dataDetailSpecialty: res.data,
+        arrDoctorId: arrDoctorId,
+        listProvince: resProvince ? resProvince : [],
+        isLoading: false
+      })
+    }
+  }
+
 
   handleOnChangeSelectProvince = async (event) => {
     if (this.props.match && this.props.match.params && this.props.match.params.id) {
@@ -175,15 +232,14 @@ class DetailsSpecialty extends Component {
     let { language } = this.props;
     let { arrDoctorId, dataDetailSpecialty, listProvince, isShowDescriptionSpecialty, listSpecialty, selectedSpecialty, isLoading } = this.state;
 
-
     return (
       <div className='detail-specialty'>
         <div>
           <div>
             <Header search={false} />
           </div>
-          {isLoading && <div className='loading-page'>Loading...</div>}
-          {!isLoading &&
+          {isLoading ? <div className='loading-page'>Loading...</div>
+            :
             <>
 
               <div className='sticky-menu'>
@@ -262,7 +318,7 @@ class DetailsSpecialty extends Component {
                         <div className='detail-doctor'>
                           <div className='profile-doctor'>
                             <ProfileDoctor
-                              doctorId={item}
+                              doctorId={+item}
                               // dataTime={dataTime}
                               isShowDescriptionDoctor={true}
                               isShowLinkDetail={true}
@@ -273,12 +329,12 @@ class DetailsSpecialty extends Component {
                         <div className='extra-infor-doctor'>
                           <div className='schedule-doctor'>
                             <DoctorSchedule
-                              doctorIdFromParent={item}
+                              doctorIdFromParent={+item}
                             />
                           </div>
                           <div className='fee-address-doctor'>
                             <AddressDoctor
-                              doctorIdFromParent={item}
+                              doctorIdFromParent={+item}
                             />
                           </div>
                         </div>
@@ -286,7 +342,8 @@ class DetailsSpecialty extends Component {
                     )
                   })}
               </div>
-            </>}
+            </>
+          }
           <About />
           <Footer />
         </div>
@@ -298,12 +355,15 @@ class DetailsSpecialty extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
+    allSpecialties: state.admin.allSpecialties,
+    allProvince: state.admin.allProvince
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    loadAllSpecialties: () => dispatch(actions.fetchAllSpecialties()),
+    loadAllProvince: () => dispatch(actions.fetchAllProvince())
   };
 };
 

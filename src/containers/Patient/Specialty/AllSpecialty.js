@@ -7,6 +7,7 @@ import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import * as actions from '../../../store/actions';
 
 class AllSpecialty extends Component {
 
@@ -24,10 +25,10 @@ class AllSpecialty extends Component {
       isLoading: true
     })
 
-    let res = await getAllSpecialties();
-    if (res && res.errCode === 0) {
+    const { allSpecialties } = this.props;
+    if (allSpecialties && allSpecialties.length > 0) {
       this.setState({
-        dataSpecialty: res.data,
+        dataSpecialty: allSpecialties,
         isLoading: false
       })
     }
@@ -35,13 +36,14 @@ class AllSpecialty extends Component {
 
   async componentDidMount() {
     // let { language } = this.props;
+    this.props.loadAllSpecialties()
     this.handleDataSpecialty()
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (this.state.dataSpecialty !== prevState.dataSpecialty) {
-    //   this.handleDataSpecialty()
-    // }
+    if (this.props.allSpecialties !== prevProps.allSpecialties) {
+      this.handleDataSpecialty()
+    }
   }
 
   returnToHome = () => {
@@ -108,12 +110,13 @@ class AllSpecialty extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
+    allSpecialties: state.admin.allSpecialties,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    loadAllSpecialties: () => dispatch(actions.fetchAllSpecialties()),
   };
 };
 

@@ -126,6 +126,20 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       }
 
+    //get all province
+    case actionTypes.FETCH_ALLPROVINCE_SUCCESS:
+      state.allProvince = action.data;
+
+      return {
+        ...state,
+      }
+
+    case actionTypes.ALLPROVINCE_FAILED:
+      state.allProvince = [];
+      return {
+        ...state,
+      }
+
     case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
       state.allScheduleTime = action.dataTime;
 

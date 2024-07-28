@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from './Footer';
 import Media from './Section/Media';
-import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
+// import { getAllClinic, getAllDoctors, getAllSpecialties } from '../../services/userService';
 import * as actions from '../../store/actions';
 
 

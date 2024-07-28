@@ -9,6 +9,7 @@ import { NumericFormat } from 'react-number-format';
 // import
 
 class AddressDoctor extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -23,26 +24,32 @@ class AddressDoctor extends Component {
 
   async componentDidMount() {
     // let { language } = this.props;
+    this._isMounted = true;
 
     if (this.props.doctorIdFromParent) {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
 
       if (res && res.errCode === 0) {
-
-        this.setState({
-          addressFeeDoctor: res.data,
-          clinicData: res.data.clinicData
-        })
+        if (this._isMounted) {
+          this.setState({
+            addressFeeDoctor: res && res.data ? res.data : [],
+            clinicData: res.data.clinicData
+          })
+        }
       }
     }
 
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
 
     }
-    if (this.props !== prevProps) {
+    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
       let res = await getAddressFeeDoctorById(this.props.doctorIdFromParent);
       if (res && res.errCode === 0) {
         this.setState({

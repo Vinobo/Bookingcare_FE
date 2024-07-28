@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { LANGUAGES } from '../../../utils';
 import './scss/AllDoctor.scss';
-// import * as actions from '../../../store/actions';
 import { FormattedMessage } from 'react-intl';
-import { getAllCodeService, getAllDoctors } from '../../../services/userService';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import * as actions from '../../../store/actions';
 // import _ from 'lodash';
 
 class AllDoctor extends Component {
@@ -20,24 +19,32 @@ class AllDoctor extends Component {
       listProvince: [],
       isLoading: false
     }
-
   }
 
 
   async componentDidMount() {
-    // let { language } = this.props;
+    this.props.loadAllDoctors();
+    this.props.loadAllProvince();
+    this.getDataDoctors();
+  }
+
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.allDoctors !== prevProps.allDoctors) {
+      this.getDataDoctors()
+    }
+  }
+
+  getDataDoctors = async () => {
     this.setState({
       isLoading: true
     })
 
-    let res = await getAllDoctors();
+    const { allDoctors, allProvince } = this.props;
 
-    let resProvince = await getAllCodeService('PROVINCE')
+    if (allDoctors && allDoctors.length > 0 && allProvince && allProvince.length > 0) {
 
-    if (res && res.errCode === 0 && resProvince && resProvince.errCode === 0) {
-
-      let dataProvince = resProvince.data;
-      if (dataProvince && dataProvince.length > 0) {
+      let dataProvince = allProvince;
+      if (dataProvince && dataProvince.length > 0 && dataProvince[0].keyMap !== 'ALL') {
         dataProvince.unshift({
           keyMap: 'ALL',
           type: 'PROVINCE',
@@ -47,26 +54,20 @@ class AllDoctor extends Component {
       }
 
       this.setState({
-        dataDetailDoctor: res.data,
+        arrDoctors: allDoctors,
         listProvince: dataProvince ? dataProvince : [],
         isLoading: false
       })
     }
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.language !== prevProps.language) {
-
-    }
-
-  }
-
   handleOnChangeSelectProvince = async (event) => {
-    // let location = event.target.value;
-    let res = await getAllDoctors();
+    const value = event.target.value;
+    const { allDoctors } = this.props;
+    const dataDoctors = allDoctors.filter(e => value !== 'All' && e.Doctor_Infor.provinceId === value)
 
     this.setState({
-      dataDetailDoctor: res.data,
+      arrDoctors: value === 'ALL' ? allDoctors : dataDoctors,
     })
   }
 
@@ -78,7 +79,7 @@ class AllDoctor extends Component {
 
   render() {
     let { language } = this.props;
-    let { dataDetailDoctor, isLoading } = this.state;
+    let { arrDoctors, listProvince, isLoading } = this.state;
 
     return (
       <>
@@ -95,38 +96,51 @@ class AllDoctor extends Component {
           </div>
           <div className='general-container'>
             <h1><FormattedMessage id="patient.title.all-doctor" /></h1>
+            <select className='select-province'
+              onChange={(event) => this.handleOnChangeSelectProvince(event)}>
+              {listProvince && listProvince.length > 0 &&
+                listProvince.map((item, index) => {
+                  return (
+                    <option key={index} value={item.keyMap}>
+                      {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
+                    </option>
+                  )
+                })
+              }
+            </select>
             <div className='detail-all-doctor'>
-              {isLoading && <p className='loading-page'>Loading...</p>}
-              {dataDetailDoctor && dataDetailDoctor.length > 0 ?
-                <>
-                  {dataDetailDoctor.map((item, index) => {
-                    let imageBase64 = '';
-                    if (item.image) {
-                      imageBase64 = new Buffer(item.image, 'base64').toString('binary');
-                    }
-                    let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-                    let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-
-                    return (
-                      <Link to={`/detail-doctor/${item.id}`}
-                        className='text-view'
-                        key={index}
-                      >
-                        <div className='item-row'>
-                          <div className='img-doctor'
-                            style={{ backgroundImage: `url(${imageBase64})` }}
-                          ></div>
-                          <div className='text-column'>
-                            <span>{language === LANGUAGES.VI ? nameVi : nameEn}</span>
-                            <span>{item.Doctor_Infor && item.Doctor_Infor.specialtyData ? item.Doctor_Infor.specialtyData.name : ''}</span>
-                          </div>
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </>
+              {isLoading ? <p className='loading-page'>Loading...</p>
                 :
-                <></>
+                <>
+                  {arrDoctors && arrDoctors.length > 0 &&
+                    arrDoctors.map((item, index) => {
+                      let imageBase64 = '';
+                      if (item.image) {
+                        imageBase64 = new Buffer(item.image, 'base64').toString('binary');
+                      }
+                      let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                      let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+
+                      return (
+                        <Link to={`/detail-doctor/${item.id}`}
+                          className='text-view'
+                          key={index}
+                        >
+                          <div className='item-row'>
+                            <div className='img-doctor'
+                              style={{ backgroundImage: `url(${imageBase64})` }}
+                            ></div>
+                            <div className='text-column'>
+                              <span>{language === LANGUAGES.VI ? nameVi : nameEn}</span>
+                              <span>{item.Doctor_Infor && item.Doctor_Infor.specialtyData ? item.Doctor_Infor.specialtyData.name : ''}</span>
+                            </div>
+                          </div>
+                        </Link>
+                      )
+                    })
+
+                  }
+                </>
               }
             </div>
           </div>
@@ -142,12 +156,15 @@ class AllDoctor extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
+    allDoctors: state.admin.allDoctors,
+    allProvince: state.admin.allProvince
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    loadAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+    loadAllProvince: () => dispatch(actions.fetchAllProvince())
   };
 };
 

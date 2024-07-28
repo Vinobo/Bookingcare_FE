@@ -8,6 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import BookingDoctor from './Modal/BookingDoctor';
 
 class DoctorSchedule extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -22,6 +23,8 @@ class DoctorSchedule extends Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
+
     let { language } = this.props;
     let allDays = this.getArrDays(language);
 
@@ -32,10 +35,16 @@ class DoctorSchedule extends Component {
 
     if (this.props.doctorIdFromParent) {
       let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value);
-      this.setState({
-        allAvailable: res.data ? res.data : [],
-      })
+      if (this._isMounted) {
+        this.setState({
+          allAvailable: res.data ? res.data : [],
+        })
+      }
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   capitalizeFirstLetter(string) {
@@ -107,11 +116,13 @@ class DoctorSchedule extends Component {
     }
     if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
       let allDays = this.getArrDays(this.props.language);
-      let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, this.state.currentDate);
-      this.setState({
-        allAvailable: res.data ? res.data : [],
-        allDays: allDays
-      })
+      if (this.props.doctorIdFromParent) {
+        let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, this.state.currentDate);
+        this.setState({
+          allAvailable: res.data ? res.data : [],
+          allDays: allDays
+        })
+      }
     }
     if (prevState.isOpenBookingDoctor !== this.state.isOpenBookingDoctor) {
       let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, this.state.currentDate);

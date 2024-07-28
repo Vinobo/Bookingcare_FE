@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 // import { LANGUAGES } from '../../../utils';
 import './AllClinic.scss';
 import { FormattedMessage } from 'react-intl';
-import { getAllClinic } from '../../../services/userService';
+// import { getAllClinic } from '../../../services/userService';
 import Header from '../../HomePage/Header';
 import About from '../../HomePage/Section/About';
 import Footer from '../../HomePage/Footer';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import * as actions from '../../../store/actions';
 
 class AllClinic extends Component {
 
@@ -25,23 +26,23 @@ class AllClinic extends Component {
       isLoading: true
     })
 
-    let res = await getAllClinic();
-    if (res && res.errCode === 0) {
+    const { allClinic } = this.props
+    if (allClinic && allClinic.length > 0) {
       this.setState({
-        dataClinic: res.data,
+        dataClinic: allClinic,
         isLoading: false
       })
     }
   }
 
   async componentDidMount() {
-    // let { language } = this.props;
+    this.props.loadAllClinic()
     this.handleDataClinic()
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.language !== prevProps.language) {
-
+    if (this.props.allClinic !== prevProps.allClinic) {
+      this.handleDataClinic()
     }
   }
 
@@ -107,12 +108,13 @@ class AllClinic extends Component {
 const mapStateToProps = state => {
   return {
     language: state.app.language,
+    allClinic: state.admin.allClinics
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    loadAllClinic: () => dispatch(actions.fetchAllClinics()),
   };
 };
 

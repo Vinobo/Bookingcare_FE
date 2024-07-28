@@ -38,6 +38,7 @@ export const setDayOfVn = (dataTime) => {
 }
 
 class ProfileDoctor extends Component {
+  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -49,10 +50,8 @@ class ProfileDoctor extends Component {
 
   async componentDidMount() {
     // let { language } = this.props;
-    let data = await this.getInforDoctor(this.props.doctorId);
-    this.setState({
-      dataProfile: data
-    })
+    this._isMounted = true;
+    this.getData();
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -60,7 +59,17 @@ class ProfileDoctor extends Component {
 
     }
     if (this.props.doctorId !== prevProps.doctorId) {
-      let data = await this.getInforDoctor(this.props.doctorId);
+      this.getData()
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  getData = async () => {
+    let data = await this.getInforDoctor(this.props.doctorId);
+    if (this._isMounted) {
       this.setState({
         dataProfile: data
       })
