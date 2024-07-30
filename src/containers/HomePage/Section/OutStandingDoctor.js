@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './scss/OutStandingDoctor.scss';
 import { FormattedMessage } from 'react-intl';
-import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
@@ -12,37 +11,14 @@ class OutStandingDoctor extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      arrDoctors: [],
-      doctorId: '',
-      isLoading: false
     }
   }
 
   async componentDidMount() {
-    this.props.loadTopDoctors();
-    this.getDataDoctor();
   }
 
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
-      this.getDataDoctor();
-    }
-  }
-
-  getDataDoctor = () => {
-    this.setState({
-      isLoading: true
-    })
-
-    const { topDoctorsRedux } = this.props;
-    if (topDoctorsRedux && topDoctorsRedux.length > 0) {
-
-      this.setState({
-        arrDoctors: topDoctorsRedux,
-        isLoading: false
-      })
-    }
   }
 
   handleViewDetailDoctor = (doctor) => {
@@ -52,8 +28,7 @@ class OutStandingDoctor extends Component {
   }
 
   render() {
-    let { arrDoctors, isLoading } = this.state;
-    let { language } = this.props;
+    let { language, dataDoctors, isLoading } = this.props;
 
     return (
       <div className='section-general out-standing-doctor'>
@@ -72,8 +47,8 @@ class OutStandingDoctor extends Component {
                 <p>Loading...</p>
                 :
                 <Slider {...this.props.settings}>
-                  {arrDoctors && arrDoctors.length > 0
-                    && arrDoctors.map((item, index) => {
+                  {dataDoctors && dataDoctors.length > 0
+                    && dataDoctors.map((item, index) => {
                       let imageBase64 = '';
                       if (item.image) {
                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
@@ -114,13 +89,11 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
-    topDoctorsRedux: state.admin.topDoctors,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
   }
 };
 

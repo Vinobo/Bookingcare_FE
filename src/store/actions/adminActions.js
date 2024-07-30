@@ -5,7 +5,8 @@ import {
   deleteUserService, editUserService, getTopDoctorHomeSevice,
   getAllDoctors, saveInforDoctorService,
   getDetailInforDoctor,
-  getAllSpecialties, getAllClinic
+  getAllSpecialties, getAllClinic,
+  getAllDetailSpecialtyById
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -408,6 +409,30 @@ export const fetchAllSpecialties = () => {
       console.log('FETCH_ALL_SPECIALTIES_FAILED: ', e)
       dispatch({
         type: actionTypes.FETCH_ALL_SPECIALTIES_FAILED,
+      })
+    }
+  }
+}
+
+//get All Detail Specialties by Id & location
+export const fetchAllDetailSpecialtyById = (id, location) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllDetailSpecialtyById(id, location);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DETAIL_SPECIALTIES_SUCCESS,
+          data: res.data
+        })
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DETAIL_SPECIALTIES_FAILED,
+        })
+      }
+    } catch (e) {
+      console.log('FETCH_ALL_DETAIL_SPECIALTIES_FAILED: ', e)
+      dispatch({
+        type: actionTypes.FETCH_ALL_DETAIL_SPECIALTIES_FAILED,
       })
     }
   }

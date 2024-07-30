@@ -23,24 +23,58 @@ class HomePage extends Component {
     this.state = {
       dataSpecialties: [],
       dataClinic: [],
+      dataDoctors: [],
       isLoadingSp: false,
-      isLoadingCl: false
+      isLoadingCl: false,
+      isLoadingDt: false
     };
   }
 
   async componentDidMount() {
     this.props.loadAllSpecialties();
     this.props.loadAllClinics();
+    this.props.loadTopDoctors();
     this.getData();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { dataSpecialties, dataClinic } = this.props;
+    const { dataSpecialties, dataClinic, topDoctors } = this.props;
     if (prevProps.dataSpecialties !== dataSpecialties) {
-      this.getData();
+      this.setState({
+        isLoadingSp: true
+      })
+
+      if (dataSpecialties && dataSpecialties.length > 0) {
+        this.setState({
+          dataSpecialties: dataSpecialties,
+          isLoadingSp: false
+        })
+      }
     }
     if (prevProps.dataClinic !== dataClinic) {
-      this.getData();
+      this.setState({
+        isLoadingCl: true
+      })
+
+      if (dataClinic && dataClinic.length > 0) {
+        this.setState({
+          dataClinic: dataClinic,
+          isLoadingCl: false
+        })
+      }
+    }
+    if (prevProps.topDoctors !== topDoctors) {
+      this.setState({
+        isLoadingDt: true
+      })
+
+      if (topDoctors && topDoctors.length > 0) {
+
+        this.setState({
+          dataDoctors: topDoctors,
+          isLoadingDt: false
+        })
+      }
     }
   }
 
@@ -49,7 +83,7 @@ class HomePage extends Component {
       isLoadingSp: true
     })
 
-    const { dataSpecialties, dataClinic } = this.props;
+    const { dataSpecialties, dataClinic, topDoctors } = this.props;
 
     if (dataSpecialties && dataSpecialties.length > 0) {
       this.setState({
@@ -66,6 +100,18 @@ class HomePage extends Component {
       this.setState({
         dataClinic: dataClinic,
         isLoadingCl: false
+      })
+    }
+
+    this.setState({
+      isLoadingDt: true
+    })
+
+    if (topDoctors && topDoctors.length > 0) {
+
+      this.setState({
+        dataDoctors: topDoctors,
+        isLoadingDt: false
       })
     }
   }
@@ -135,14 +181,14 @@ class HomePage extends Component {
       ]
     };
 
-    const { dataSpecialties, dataClinic, isLoadingSp, isLoadingCl } = this.state;
+    const { dataSpecialties, dataClinic, dataDoctors, isLoadingSp, isLoadingCl, isLoadingDt } = this.state;
 
     return (
       <div className='home-page'>
         <Header isShowBanner={true} dataSearch={this.state} />
         <Specialty settings={settings} dataSpecialty={dataSpecialties} isLoading={isLoadingSp} />
         <MedicalFacility settings={settings} dataClinic={dataClinic} isLoading={isLoadingCl} />
-        <OutStandingDoctor settings={settings} />
+        <OutStandingDoctor settings={settings} dataDoctors={dataDoctors} isLoading={isLoadingDt} />
         <Handbook settings={setting_two} />
         <Media />
         <About />
@@ -157,7 +203,8 @@ const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     dataSpecialties: state.admin.allSpecialties,
-    dataClinic: state.admin.allClinics
+    dataClinic: state.admin.allClinics,
+    topDoctors: state.admin.topDoctors,
   };
 };
 
@@ -165,6 +212,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadAllSpecialties: () => dispatch(actions.fetchAllSpecialties()),
     loadAllClinics: () => dispatch(actions.fetchAllClinics()),
+    loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
   };
 };
 

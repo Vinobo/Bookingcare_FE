@@ -12,6 +12,7 @@ const initialState = {
   allScheduleTime: [],
   allRequiredDoctorInfor: [],
   allSpecialties: [],
+  detailSpecialty: [],
   allClinics: []
 }
 
@@ -166,7 +167,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       }
 
-    //get doctor
+    //get specialties
     case actionTypes.FETCH_ALL_SPECIALTIES_SUCCESS:
       state.allSpecialties = action.dataSpecialties;
 
@@ -180,7 +181,21 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       }
 
-    //get doctor
+    //get All Detail Specialties by Id & location
+    case actionTypes.FETCH_ALL_DETAIL_SPECIALTIES_SUCCESS:
+      state.detailSpecialty = action.data;
+
+      return {
+        ...state,
+      }
+
+    case actionTypes.FETCH_ALL_DETAIL_SPECIALTIES_FAILED:
+      state.detailSpecialty = [];
+      return {
+        ...state,
+      }
+
+    //get clinic
     case actionTypes.FETCH_ALL_CLINICS_SUCCESS:
       state.allClinics = action.dataClinic;
 

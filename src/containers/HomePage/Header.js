@@ -24,15 +24,45 @@ class Header extends Component {
 
   componentDidMount() {
     document.addEventListener('wheel', (event) => this.wheelScroll(event));
+
+
+    document.addEventListener("touchstart", (e) => this.checkDirection(e), { passive: false });
+    document.addEventListener("touchmove", (e) => this.checkDirection(e), { passive: false });
   }
 
   componentWillUnmount() {
     document.addEventListener('wheel', (event) => this.wheelScroll(event))
+
+    document.addEventListener("touchstart", (e) => this.checkDirection(e), { passive: false });
+    document.addEventListener("touchmove", (e) => this.checkDirection(e), { passive: false });
   }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.dataSearch !== this.props.dataSearch) {
 
+    }
+  }
+
+  checkDirection = (e) => {
+    e.preventDefault();
+    let touchStartY = 0;
+    let touchEndY = 0;
+    touchStartY = e.touches[0].clientY;
+    touchEndY = e.changedTouches[0].clientY;
+
+    if (touchStartY > touchEndY) {
+      this.setState({
+        isSticky: true
+      })
+    } else {
+      this.setState({
+        isSticky: false
+      })
+    }
+    if (touchStartY < touchEndY) {
+      this.setState({
+        isSticky: false
+      })
     }
   }
 
@@ -165,7 +195,7 @@ class Header extends Component {
   render() {
     const { language, isShowBanner } = this.props;
     const { inputValue, searchSpecialties, searchClinic, searchDoctors, isSticky } = this.state;
-    const { isLoading } = this.props.dataSearch || false;
+    const { isLoadingSp, isLoadingCl, isLoadingDt } = this.props.dataSearch || false;
     const placeholder = language === LANGUAGES.VI ? "Tìm chuyên khoa khám bệnh" : "Find a medical specialist";
     let imageBase64 = '';
 
@@ -241,7 +271,7 @@ class Header extends Component {
                 <i className="fas fa-search"></i>
                 <input
                   type='text'
-                  placeholder={isLoading ? 'Loading...' : placeholder}
+                  placeholder={isLoadingSp && isLoadingCl && isLoadingDt ? 'Loading...' : placeholder}
                   value={inputValue}
                   onChange={(event) => this.handleSearch(event)}
                 />
@@ -250,9 +280,10 @@ class Header extends Component {
                 }
                 {inputValue &&
                   <div div className='search-result'>
-                    <>{(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
-                      <p>{language === LANGUAGES.VI ? 'Không tìm thấy kết quả nào' : 'No search results'}</p>
-                    }
+                    <>
+                      {(searchSpecialties.length === 0 && searchClinic.length === 0 && searchDoctors.length === 0) &&
+                        <p>{language === LANGUAGES.VI ? 'Không tìm thấy kết quả nào' : 'No search results'}</p>
+                      }
                       {searchSpecialties.length > 0 &&
                         <ul className='specailties-result'>
                           <p><FormattedMessage id="common.specialty" /></p>
