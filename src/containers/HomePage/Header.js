@@ -31,9 +31,6 @@ class Header extends Component {
       touchStartY = e.touches[0].clientY
     }, { passive: false });
     document.addEventListener("touchmove", (e) => this.checkDirection(e, touchStartY), { passive: false });
-    // document.addEventListener("touchend", function (e) {
-    //   console.log(e)
-    // }, { passive: false });
   }
 
   componentWillUnmount() {
@@ -59,10 +56,6 @@ class Header extends Component {
       this.setState({
         isSticky: true
       })
-    } else {
-      this.setState({
-        isSticky: false
-      })
     }
     if (touchStartY > touchEndY) {
       this.setState({
@@ -70,7 +63,6 @@ class Header extends Component {
       })
     }
   }
-
 
   wheelScroll = (event) => {
     const scroll = document.getElementsByTagName('div')[4].scrollTop;

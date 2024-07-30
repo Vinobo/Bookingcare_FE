@@ -120,7 +120,8 @@ class DoctorSchedule extends Component {
         let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, this.state.currentDate);
         this.setState({
           allAvailable: res.data ? res.data : [],
-          allDays: allDays
+          allDays: allDays,
+          currentDate: allDays[0].value
         })
       }
     }
@@ -130,7 +131,13 @@ class DoctorSchedule extends Component {
       this.setState({
         allAvailable: res.data ? res.data : [],
       })
-
+    }
+    if (prevState.allDays !== this.state.allDays) {
+      const currentDate = this.state.allDays[0].value;
+      console.log(this.state.allDays[0])
+      this.setState({
+        currentDate: currentDate
+      })
     }
   }
 
@@ -162,8 +169,8 @@ class DoctorSchedule extends Component {
     })
   }
 
-  renderTimeSchedule = () => {
-    let { allAvailable, currentDate } = this.state;
+  render() {
+    let { allDays, allAvailable, currentDate, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
     const dateNow = moment(new Date()).startOf('day').valueOf();
     const hourNow = new Date().getHours();
@@ -171,41 +178,10 @@ class DoctorSchedule extends Component {
       for (let i = 0; i <= hourNow; i++) {
         allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 7}`);
       }
+      if (hourNow >= 17) {
+        allDays.shift()
+      }
     }
-
-    return (
-      <>
-        {allAvailable && allAvailable.length > 0 ?
-          <>
-            <div className='time-schedule-btns'>
-              {allAvailable.toSorted().map((item) => {
-                let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
-                return (
-                  <button key={item.id}
-                    className={`${language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'} ${item.hasBooking ? 'disabled' : ''}`}
-                    onClick={() => this.handleClickScheduleTime(item)}
-                  >
-                    {timeDisplay}
-                  </button>);
-
-              })
-              }
-            </div>
-            <div className='book-free'>
-              <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
-            </div>
-          </>
-          :
-          <div className='not-schedule'><FormattedMessage id="patient.detail-doctor.not-schedule" /></div>
-        }
-      </>
-    )
-  }
-
-  render() {
-    let { allDays, isOpenBookingDoctor, dataScheduleTimeModal } = this.state;
-    // let { language } = this.props;
-    console.log('ok')
 
     return (
       <>
@@ -231,7 +207,31 @@ class DoctorSchedule extends Component {
               <span><i className="fas fa-calendar-alt"></i> <FormattedMessage id="common.schedule" /></span>
             </div>
             <div className='time-schedule'>
-              {this.renderTimeSchedule()}
+              <>
+                {allAvailable && allAvailable.length > 0 ?
+                  <>
+                    <div className='time-schedule-btns'>
+                      {allAvailable.toSorted().map((item) => {
+                        let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn;
+                        return (
+                          <button key={item.id}
+                            className={`${language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'} ${item.hasBooking ? 'disabled' : ''}`}
+                            onClick={() => this.handleClickScheduleTime(item)}
+                          >
+                            {timeDisplay}
+                          </button>);
+
+                      })
+                      }
+                    </div>
+                    <div className='book-free'>
+                      <span><FormattedMessage id="common.select" /> <i className="far fa-hand-point-up"></i> <FormattedMessage id="common.book-free" /></span>
+                    </div>
+                  </>
+                  :
+                  <div className='not-schedule'><FormattedMessage id="patient.detail-doctor.not-schedule" /></div>
+                }
+              </>
             </div>
           </div>
         </div >
