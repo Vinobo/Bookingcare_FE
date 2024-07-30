@@ -31,6 +31,9 @@ class Header extends Component {
       touchStartY = e.touches[0].clientY
     }, { passive: false });
     document.addEventListener("touchmove", (e) => this.checkDirection(e, touchStartY), { passive: false });
+    // document.addEventListener("touchend", function (e) {
+    //   console.log(e)
+    // }, { passive: false });
   }
 
   componentWillUnmount() {
@@ -50,9 +53,9 @@ class Header extends Component {
     let touchEndY = 0;
 
     touchEndY = e.changedTouches[0].clientY;
-
+    // const sticky = document.getElementsByClassName('center-content')[0].scrollHeight;
+    // console.log(e.changedTouches[0].pageY)
     if (touchStartY < touchEndY) {
-      console.log('up')
       this.setState({
         isSticky: true
       })
@@ -62,12 +65,12 @@ class Header extends Component {
       })
     }
     if (touchStartY > touchEndY) {
-      console.log('down')
       this.setState({
         isSticky: false
       })
     }
   }
+
 
   wheelScroll = (event) => {
     const scroll = document.getElementsByTagName('div')[4].scrollTop;
