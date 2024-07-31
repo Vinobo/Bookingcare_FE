@@ -132,9 +132,8 @@ class DoctorSchedule extends Component {
         allAvailable: res.data ? res.data : [],
       })
     }
-    if (prevState.allDays !== this.state.allDays) {
+    if (prevState.allDays[0] !== this.state.allDays[0]) {
       const currentDate = this.state.allDays[0].value;
-      console.log(this.state.allDays[0])
       this.setState({
         currentDate: currentDate
       })
@@ -174,9 +173,14 @@ class DoctorSchedule extends Component {
     let { language } = this.props;
     const dateNow = moment(new Date()).startOf('day').valueOf();
     const hourNow = new Date().getHours();
+
     if (dateNow === currentDate) {
-      for (let i = 0; i <= hourNow; i++) {
-        allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 7}`);
+      for (let i = 8; i <= hourNow; i++) {
+        if (i === 8) {
+          allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 7}`);;
+        } else {
+          allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 8}`);
+        }
       }
       if (hourNow >= 17) {
         allDays.shift()
