@@ -218,12 +218,11 @@ class ManageSchedule extends Component {
     const hourNow = new Date().getHours();
     if (dateNow === currentDate) {
       for (let i = 8; i <= hourNow; i++) {
-        if (i === 8) {
-          rangeTime = rangeTime.filter(e => e.keyMap !== `T${i - 7}`);
-        } else {
+        if (i >= 13) {
           rangeTime = rangeTime.filter(e => e.keyMap !== `T${i - 8}`);
+        } else {
+          rangeTime = rangeTime.filter(e => e.keyMap !== `T${i - 7}`);
         }
-
       }
     }
     rangeTime = rangeTime.filter(o1 => !dataSchedule.some(o2 => o1.keyMap === o2.timeType));

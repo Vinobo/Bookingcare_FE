@@ -176,10 +176,10 @@ class DoctorSchedule extends Component {
 
     if (dateNow === currentDate) {
       for (let i = 8; i <= hourNow; i++) {
-        if (i === 8) {
-          allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 7}`);;
+        if (i >= 13) {
+          allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 8}`);;
         } else {
-          allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 8}`);
+          allAvailable = allAvailable.filter(e => e.timeType !== `T${i - 7}`);
         }
       }
       if (hourNow >= 17) {
