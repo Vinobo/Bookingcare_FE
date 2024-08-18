@@ -114,10 +114,7 @@ class AllDoctor extends Component {
                 <>
                   {arrDoctors && arrDoctors.length > 0 &&
                     arrDoctors.map((item, index) => {
-                      let imageBase64 = '';
-                      if (item.image) {
-                        imageBase64 = new Buffer(item.image, 'base64').toString('binary');
-                      }
+
                       let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                       let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
 
@@ -128,7 +125,7 @@ class AllDoctor extends Component {
                         >
                           <div className='item-row'>
                             <div className='img-doctor'
-                              style={{ backgroundImage: `url(${imageBase64})` }}
+                              style={{ backgroundImage: `url(${item.image})` }}
                             ></div>
                             <div className='text-column'>
                               <span>{language === LANGUAGES.VI ? nameVi : nameEn}</span>

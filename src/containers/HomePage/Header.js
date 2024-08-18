@@ -302,11 +302,7 @@ class Header extends Component {
                         <ul className='doctors-result'>
                           <p><FormattedMessage id="common.doctor" /></p>
                           {searchDoctors && searchDoctors.map(e => {
-                            if (e.image) {
-                              imageBase64 = new Buffer(e.image, 'base64').toString('binary');
-                            }
-
-                            return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${imageBase64}`} alt='doctor' />{e.firstName} {e.lastName}</li>
+                            return <li key={e.id} onClick={() => this.handleViewDetailDoctor(e.id)}><img src={`${e.image}`} alt='doctor' />{e.firstName} {e.lastName}</li>
                           })}
                         </ul>
                       }

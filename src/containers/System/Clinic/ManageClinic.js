@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 // import { Redirect, Route, Switch } from 'react-router-dom';
-import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
+import { CRUD_ACTIONS } from '../../../utils';
 // import * as actions from "../../../store/actions";
 import { FormattedMessage } from 'react-intl';
 import './ManageClinic.scss';
@@ -11,6 +11,8 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { createNewClinic, getAllDetailClinicById } from '../../../services/userService';
 import { toast } from 'react-toastify';
+import { saveImgAws, urlAws } from '../../../utils/S3_image_aws';
+
 // import Select from 'react-select';
 
 // Initialize a markdown parser
@@ -59,10 +61,10 @@ class ManageClinic extends Component {
       let name = '', imageBase64 = '', address = '', introHTML = '', introMarkdown = '',
         specialtyHTML = '', specialtyMarkdown = '', deviceHTML = '', deviceMarkdown = '',
         locationHTML = '', locationMarkdown = '', processHTML = '', processMarkdown = ''
-      if (res.data.image) {
-        // const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
-        imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
-      }
+      // if (res.data.image) {
+      //   // const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
+      //   imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
+      // }
       if (res && res.errCode === 0) {
         name = res.data.name;
         imageBase64 = res.data.image;
@@ -94,7 +96,8 @@ class ManageClinic extends Component {
           processHTML: processHTML,
           processMarkdown: processMarkdown,
           hasOldData: true,
-          currentClinicId: id.id
+          currentClinicId: id.id,
+          file: imageBase64
         })
       } else {
         this.setState({
@@ -172,11 +175,13 @@ class ManageClinic extends Component {
     let data = event.target.files;
     let file = data[0];
     if (file) {
-      let base64 = await CommonUtils.getBase64(file);
+      // let base64 = await CommonUtils.getBase64(file);
       let objectUrl = URL.createObjectURL(file);
+      const aswURL = urlAws.clinics + file.name;
       this.setState({
         previewImgURL: objectUrl,
-        imageBase64: base64,
+        imageBase64: aswURL,
+        file: file
       })
     }
   }
@@ -211,26 +216,32 @@ class ManageClinic extends Component {
 
     if (hasOldData === false) {
       if (res && res.errCode === 0) {
-        toast.success('Add new clinic succeed!')
-        this.setState({
-          name: '',
-          imageBase64: '',
-          previewImgURL: '',
-          address: '',
-          introHTML: '',
-          introMarkdown: '',
-          specialtyHTML: '',
-          specialtyMarkdown: '',
-          deviceHTML: '',
-          deviceMarkdown: '',
-          locationHTML: '',
-          locationMarkdown: '',
-          processHTML: '',
-          processMarkdown: '',
-        })
-
-        if (this.props.history) {
-          this.props.history.push(`/system/manage-clinic`)
+        const saveAws = saveImgAws(this.state.file, 'Clinics');
+        if (saveAws.message === 'ok') {
+          toast.success('Add new clinic succeed!')
+          this.setState({
+            name: '',
+            imageBase64: '',
+            previewImgURL: '',
+            address: '',
+            introHTML: '',
+            introMarkdown: '',
+            specialtyHTML: '',
+            specialtyMarkdown: '',
+            deviceHTML: '',
+            deviceMarkdown: '',
+            locationHTML: '',
+            locationMarkdown: '',
+            processHTML: '',
+            processMarkdown: '',
+          })
+          setTimeout(() => {
+            if (this.props.history) {
+              this.props.history.push(`/system/manage-clinic`)
+            }
+          }, 1000);
+        } else {
+          toast.error('Save image to AWS faile')
         }
       } else {
         toast.error('Add clinic failed!')
@@ -239,26 +250,32 @@ class ManageClinic extends Component {
 
     if (hasOldData === true) {
       if (res && res.errCode === 0) {
-        toast.success('Edit the clinic succeed!')
-        this.setState({
-          name: '',
-          imageBase64: '',
-          previewImgURL: '',
-          address: '',
-          introHTML: '',
-          introMarkdown: '',
-          specialtyHTML: '',
-          specialtyMarkdown: '',
-          deviceHTML: '',
-          deviceMarkdown: '',
-          locationHTML: '',
-          locationMarkdown: '',
-          processHTML: '',
-          processMarkdown: '',
-        })
-
-        if (this.props.history) {
-          this.props.history.push(`/system/manage-clinic`)
+        const saveAws = saveImgAws(this.state.file, 'Clinics')
+        if (saveAws.message === 'ok') {
+          toast.success('Edit the clinic succeed!')
+          this.setState({
+            name: '',
+            imageBase64: '',
+            previewImgURL: '',
+            address: '',
+            introHTML: '',
+            introMarkdown: '',
+            specialtyHTML: '',
+            specialtyMarkdown: '',
+            deviceHTML: '',
+            deviceMarkdown: '',
+            locationHTML: '',
+            locationMarkdown: '',
+            processHTML: '',
+            processMarkdown: '',
+          })
+          setTimeout(() => {
+            if (this.props.history) {
+              this.props.history.push(`/system/manage-clinic`)
+            }
+          }, 1000);
+        } else {
+          toast.error('Save image to AWS faile')
         }
       } else {
         toast.error('Edit the failed!')

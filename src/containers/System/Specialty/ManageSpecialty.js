@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 // import { Redirect, Route, Switch } from 'react-router-dom';
-import { CommonUtils, CRUD_ACTIONS } from '../../../utils';
+import { CRUD_ACTIONS } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import './ManageSpecialty.scss';
 import MarkdownIt from 'markdown-it';
@@ -10,6 +10,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { createNewSpecialty, getAllDetailSpecialtyById } from '../../../services/userService';
 import { toast } from 'react-toastify';
+import { saveImgAws, urlAws } from '../../../utils/S3_image_aws';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -51,10 +52,10 @@ class ManageSpecialty extends Component {
         location: 'ALL'
       });
       let nameSpecialty = '', imageBase64 = '', descriptionHTML = '', descriptionMarkdown = ''
-      if (res.data.image) {
-        // const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
-        imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
-      }
+      // if (res.data.image) {
+      //   // const imageBuffer = Buffer.from(JSON.stringify(res.data.image));
+      //   imageBase64 = new Buffer(res.data.image, 'base64').toString('binary');
+      // }
       if (res && res.errCode === 0) {
         nameSpecialty = res.data.name;
         imageBase64 = res.data.image;
@@ -68,7 +69,8 @@ class ManageSpecialty extends Component {
           descriptionHTML: descriptionHTML,
           descriptionMarkdown: descriptionMarkdown,
           hasOldData: true,
-          currentSpecialtyId: id
+          currentSpecialtyId: id,
+          file: imageBase64
         })
       } else {
         this.setState({
@@ -110,11 +112,13 @@ class ManageSpecialty extends Component {
     let data = event.target.files;
     let file = data[0];
     if (file) {
-      let base64 = await CommonUtils.getBase64(file);
+      // let base64 = await CommonUtils.getBase64(file);
       let objectUrl = URL.createObjectURL(file);
+      const aswURL = urlAws.doctors + file.name;
       this.setState({
         previewImgURL: objectUrl,
-        imageBase64: base64,
+        imageBase64: aswURL,
+        file: file
       })
     }
   }
@@ -139,16 +143,23 @@ class ManageSpecialty extends Component {
     });
     if (hasOldData === false) {
       if (res && res.errCode === 0) {
-        toast.success('Add new specialty succeed!')
-        this.setState({
-          nameSpecialty: '',
-          imageBase64: '',
-          previewImgURL: '',
-          descriptionHTML: '',
-          descriptionMarkdown: '',
-        })
-        if (this.props.history) {
-          this.props.history.push(`/system/manage-specialty`)
+        const saveAws = saveImgAws(this.state.file, 'Specialties');
+        if (saveAws.message === 'ok') {
+          toast.success('Add new specialty succeed!')
+          this.setState({
+            nameSpecialty: '',
+            imageBase64: '',
+            previewImgURL: '',
+            descriptionHTML: '',
+            descriptionMarkdown: '',
+          })
+          setTimeout(() => {
+            if (this.props.history) {
+              this.props.history.push(`/system/manage-specialty`)
+            }
+          }, 1000);
+        } else {
+          toast.error('Save image to AWS faile')
         }
       } else {
         toast.error('Add specialty failed!')
@@ -156,19 +167,24 @@ class ManageSpecialty extends Component {
     }
     if (hasOldData === true) {
       if (res && res.errCode === 0) {
-        toast.success('Edit the specialty succeed!')
-        this.setState({
-          nameSpecialty: '',
-          imageBase64: '',
-          previewImgURL: '',
-          descriptionHTML: '',
-          descriptionMarkdown: '',
-        })
-        if (this.props.history) {
-          this.props.history.push(`/system/manage-specialty`)
+        const saveAws = saveImgAws(this.state.file, 'Specialties');
+        if (saveAws.message === 'ok') {
+          toast.success('Edit the specialty succeed!')
+          this.setState({
+            nameSpecialty: '',
+            imageBase64: '',
+            previewImgURL: '',
+            descriptionHTML: '',
+            descriptionMarkdown: '',
+          })
+          setTimeout(() => {
+            if (this.props.history) {
+              this.props.history.push(`/system/manage-specialty`)
+            }
+          }, 1000);
+        } else {
+          toast.error('Edit the specialty failed!')
         }
-      } else {
-        toast.error('Edit the specialty failed!')
       }
     }
   }

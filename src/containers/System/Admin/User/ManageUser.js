@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../../utils';
+import { LANGUAGES, CRUD_ACTIONS } from '../../../../utils';
 import * as actions from "../../../../store/actions";
 import './ManageUser.scss';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManageUser from './TableManageUser';
+import { saveImgAws, urlAws } from '../../../../utils/S3_image_aws';
+import { toast } from 'react-toastify';
 
 
 
@@ -104,11 +106,13 @@ class ManageUser extends Component {
         let data = event.target.files;
         let file = data[0];
         if (file) {
-            let base64 = await CommonUtils.getBase64(file);
+            // let base64 = await CommonUtils.getBase64(file);
             let objectUrl = URL.createObjectURL(file);
+            const aswURL = urlAws.doctors + file.name;
             this.setState({
                 previewImgURL: objectUrl,
-                avatar: base64,
+                avatar: aswURL,
+                file: file
             })
         }
     }
@@ -127,36 +131,46 @@ class ManageUser extends Component {
 
         let { action } = this.state;
         if (action === CRUD_ACTIONS.CREATE) {
-            //fire redux create user
-            this.props.createNewUser({
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address,
-                phoneNumber: this.state.phoneNumber,
-                gender: this.state.gender,
-                positionId: this.state.position,
-                roleId: this.state.role,
-                avatar: this.state.avatar
-            })
+            const saveAws = saveImgAws(this.state.file, 'Doctors');
+            if (saveAws.message === 'ok') {
+                //fire redux create user
+                this.props.createNewUser({
+                    email: this.state.email,
+                    password: this.state.password,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    address: this.state.address,
+                    phoneNumber: this.state.phoneNumber,
+                    gender: this.state.gender,
+                    positionId: this.state.position,
+                    roleId: this.state.role,
+                    avatar: this.state.avatar
+                })
+            } else {
+                toast.error('Save image to AWS faile')
+            }
         }
 
         if (action === CRUD_ACTIONS.EDIT) {
-            //fire redux edit user
-            this.props.editUserRedux({
-                id: this.state.userEditId,
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address,
-                phoneNumber: this.state.phoneNumber,
-                gender: this.state.gender,
-                positionId: this.state.position,
-                roleId: this.state.role,
-                avatar: this.state.avatar,
-            })
+            const saveAws = saveImgAws(this.state.file, 'Doctors');
+            if (saveAws.message === 'ok') {
+                //fire redux edit user
+                this.props.editUserRedux({
+                    id: this.state.userEditId,
+                    email: this.state.email,
+                    password: this.state.password,
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    address: this.state.address,
+                    phoneNumber: this.state.phoneNumber,
+                    gender: this.state.gender,
+                    positionId: this.state.position,
+                    roleId: this.state.role,
+                    avatar: this.state.avatar,
+                })
+            } else {
+                toast.error('Save image to AWS faile')
+            }
         }
     }
 
@@ -198,11 +212,11 @@ class ManageUser extends Component {
     }
 
     handleEditUserFromParent = (user) => {
-        let imageBase64 = '';
-        if (user.image) {
-            // const imageBuffer = Buffer.from(JSON.stringify(user.image));
-            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
-        }
+        // let imageBase64 = '';
+        // if (user.image) {
+        //     // const imageBuffer = Buffer.from(JSON.stringify(user.image));
+        //     imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+        // }
         this.setState({
             userEditId: user.id,
             email: user.email,
@@ -215,8 +229,9 @@ class ManageUser extends Component {
             position: user.positionId,
             role: user.roleId,
             avatar: '',
-            previewImgURL: imageBase64,
+            previewImgURL: user.image,
             action: CRUD_ACTIONS.EDIT,
+            file: user.image
         })
     }
 
@@ -300,7 +315,7 @@ class ManageUser extends Component {
                                 />
                             </div>
                             <div className="gender-user">
-                                <label for="inputState" className="form-label"><FormattedMessage id="user-manage.gender" /></label>
+                                <label htmlFor="inputState" className="form-label"><FormattedMessage id="user-manage.gender" /></label>
                                 <select id="inputState" className="form-select"
                                     value={gender}
                                     onChange={(event) => this.onChangInput(event, 'gender')}
@@ -331,7 +346,7 @@ class ManageUser extends Component {
                                 />
                             </div>
                             <div className="avatar">
-                                <label for="inputEmail4" className="form-label"><FormattedMessage id="user-manage.avatar" /></label>
+                                <label htmlFor="inputEmail4" className="form-label"><FormattedMessage id="user-manage.avatar" /></label>
                                 <div className='preview-container'>
                                     <input id='uploadImg' type="file" hidden
                                         onChange={(event) => this.handleOnchangeImage(event)}
@@ -344,7 +359,7 @@ class ManageUser extends Component {
                                 </div>
                             </div>
                             <div className="position">
-                                <label for="inputState" className="form-label"><FormattedMessage id="user-manage.position" /></label>
+                                <label htmlFor="inputState" className="form-label"><FormattedMessage id="user-manage.position" /></label>
                                 <select id="inputState" className="form-select"
                                     value={position}
                                     onChange={(event) => this.onChangInput(event, 'position')}
@@ -361,7 +376,7 @@ class ManageUser extends Component {
                                 </select>
                             </div>
                             <div className="role">
-                                <label for="inputState" className="form-label"><FormattedMessage id="user-manage.role" /></label>
+                                <label htmlFor="inputState" className="form-label"><FormattedMessage id="user-manage.role" /></label>
                                 <select id="inputState" className="form-select"
                                     value={role}
                                     onChange={(event) => this.onChangInput(event, 'role')}

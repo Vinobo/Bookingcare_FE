@@ -49,10 +49,6 @@ class OutStandingDoctor extends Component {
                 <Slider {...this.props.settings}>
                   {dataDoctors && dataDoctors.length > 0
                     && dataDoctors.map((item, index) => {
-                      let imageBase64 = '';
-                      if (item.image) {
-                        imageBase64 = new Buffer(item.image, 'base64').toString('binary');
-                      }
                       let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                       let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                       return (
@@ -61,7 +57,7 @@ class OutStandingDoctor extends Component {
                           onClick={() => this.handleViewDetailDoctor(item)}
                         >
                           <div className='img-customize'
-                            style={{ backgroundImage: `url(${imageBase64})` }}
+                            style={{ backgroundImage: `url(${item.image})` }}
                           />
                           <div>
                             {language === LANGUAGES.VI ? nameVi : nameEn}
